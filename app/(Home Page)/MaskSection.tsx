@@ -48,24 +48,41 @@ const CardDistribution = () => {
       tl.to("#line2", { x: isMobile ? -100 : -300, duration: 1 }, 0);
       tl.to("#line3", { x: isMobile ? 100 : 300, duration: 1 }, 0);
 
-      // --- Cards animation (after text) ---
-      tl.to(
-        cardsRef.current,
-        {
-          y: 0,
-          x: (i) => {
-            if (isMobile) return 0; // stack on mobile
-            if (total === 1) return vw / 2 - cardWidth / 2;
-            const step = availableWidth / (total - 1);
-            return -vw / 2 + leftPadding + i * step + cardWidth / 2;
+      if (isMobile) {
+        // --- Cards animation one by one ---
+        cardsRef.current.forEach((card, i) => {
+          tl.to(
+            card,
+            {
+              y: 0,
+              scale: 1,
+              autoAlpha: 1,
+              rotate: 0,
+              duration: 0.8,
+              ease: "power3.out",
+            },
+            i * 0.5 + 1 // stagger by 0.5 scroll units after text animation
+          );
+        });
+      } else {
+        // --- Desktop animation ---
+        tl.to(
+          cardsRef.current,
+          {
+            y: 0,
+            x: (i) => {
+              if (total === 1) return vw / 2 - cardWidth / 2;
+              const step = availableWidth / (total - 1);
+              return -vw / 2 + leftPadding + i * step + cardWidth / 2;
+            },
+            rotate: (i) => (i % 2 === 0 ? 5 : -5),
+            scale: 1,
+            stagger: 0.15,
+            ease: "power3.out",
           },
-          rotate: (i) => (isMobile ? 0 : i % 2 === 0 ? 5 : -5), // no rotation on mobile
-          scale: 1,
-          stagger: 0.15,
-          ease: "power3.out",
-        },
-        1 // start after text animation
-      );
+          1
+        );
+      }
     }, containerRef);
 
     return () => ctx.revert();
@@ -202,7 +219,7 @@ const CardDistribution = () => {
         </svg>
       </div>
       <h1
-        className="absolute top-0 py-10 lg:py-14 left-1/2 -translate-x-1/2 text-5xl lg:text-[10rem] font-bold opacity-20 pointer-events-none select-none text-center leading-[1]"
+        className="absolute top-0 py-10 lg:py-14 left-1/2 -translate-x-1/2 text-4xl lg:text-[10rem] font-bold opacity-20 pointer-events-none select-none text-center leading-[1]"
         id="bg-text"
       >
         <span className="block !text-slate-950" id="line1">

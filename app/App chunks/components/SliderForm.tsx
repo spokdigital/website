@@ -150,14 +150,14 @@ const SliderForm: React.FC<SliderFormProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ ease: [0.19, 1, 0.22, 1], duration: 0.7 }}
-            className="fixed z-[999999999999] flex px-2 justify-center lg:justify-end items-center top-0 left-0 w-screen h-screen bg-slate-50/30"
+            className="fixed z-[999999999999]  flex px-2 justify-center lg:justify-end items-center top-0 left-0 w-screen h-screen bg-slate-50/30"
           >
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: "0%" }}
               exit={{ x: "100%" }}
               transition={{ ease: [0.19, 1, 0.22, 1], duration: 0.7 }}
-              className="w-[500px] p-6 bg-white rounded-xl"
+              className="w-[500px] p-6 bg-white shadow-xl rounded-xl"
               ref={form}
             >
               <div className="flex justify-end text-slate-950">

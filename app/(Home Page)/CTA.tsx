@@ -39,10 +39,13 @@ const CTA = () => {
             market with Spok Digital.
           </p>
           <div className="flex justify-center items-center gap-5 mt-5">
-            <button className="bg-black px-4 py-[.4rem] rounded-lg text-slate-50">
+            <a
+              href={"https://calendly.com/spokdigital/30min"}
+              className="bg-black px-4 py-[.4rem] rounded-lg text-slate-50"
+            >
               {" "}
               Book a Call Now
-            </button>
+            </a>
           </div>
         </div>
       </div>
