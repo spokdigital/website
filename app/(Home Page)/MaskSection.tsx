@@ -12,29 +12,29 @@ const CardDistribution = () => {
   const videos = [
     {
       video:
-        "/media/PhotosVideos/Business Setup/Bizgrowth 4th Render-compressed.mov",
-      thumbnail: "/media/PhotosVideos/Business Setup/bizgrowth-image.png",
+        "/media/PhotosVideos/Bizgrowth 4th Render-compressed.mp4",
+      thumbnail: "/media/PhotosVideos/bizgrowth-image.png",
     },
     {
-      video: "/media/PhotosVideos/FandB/4.mp4",
-      thumbnail: "/media/PhotosVideos/FandB/4-image.png",
+      video: "/media/PhotosVideos/4.mp4",
+      thumbnail: "/media/PhotosVideos/4-image.png",
     },
     {
-      video: "/media/PhotosVideos/FandB/12.mp4",
-      thumbnail: "/media/PhotosVideos/FandB/12-image.png",
+      video: "/media/PhotosVideos/12.mp4",
+      thumbnail: "/media/PhotosVideos/12-image.png",
     },
     {
-      video: "/media/PhotosVideos/Marketing/IKEA CO WORKER V2-compressed.mov",
-      thumbnail: "/media/PhotosVideos/Marketing/ikea-image.png",
+      video: "/media/PhotosVideos/IKEA CO WORKER V2-compressed.mp4",
+      thumbnail: "/media/PhotosVideos/ikea-image.png",
     },
     {
-      video: "/media/PhotosVideos/Real Estate/Ram_Podcast_Final-compressed.mov",
-      thumbnail: "/media/PhotosVideos/Real Estate/ram-image.png",
+      video: "/media/PhotosVideos/Ram_Podcast_Final-compressed.mp4",
+      thumbnail: "/media/PhotosVideos/ram-image.png",
     },
     {
       video:
-        "/media/PhotosVideos/Real Estate/Salwa_Javed_Meraas_with new qr-compressed.mov",
-      thumbnail: "/media/PhotosVideos/Real Estate/salwa-image.png",
+        "/media/PhotosVideos/Salwa_Javed_Meraas_with new qr-compressed.mp4",
+      thumbnail: "/media/PhotosVideos/salwa-image.png",
     },
   ];
   useEffect(() => {
