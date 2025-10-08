@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -8,7 +8,35 @@ gsap.registerPlugin(ScrollTrigger);
 const CardDistribution = () => {
   const containerRef = useRef(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
-
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const videos = [
+    {
+      video:
+        "/media/PhotosVideos/Business Setup/Bizgrowth 4th Render-compressed.mov",
+      thumbnail: "/media/PhotosVideos/Business Setup/bizgrowth-image.png",
+    },
+    {
+      video: "/media/PhotosVideos/FandB/4.mp4",
+      thumbnail: "/media/PhotosVideos/FandB/4-image.png",
+    },
+    {
+      video: "/media/PhotosVideos/FandB/12.mp4",
+      thumbnail: "/media/PhotosVideos/FandB/12-image.png",
+    },
+    {
+      video: "/media/PhotosVideos/Marketing/IKEA CO WORKER V2-compressed.mov",
+      thumbnail: "/media/PhotosVideos/Marketing/ikea-image.png",
+    },
+    {
+      video: "/media/PhotosVideos/Real Estate/Ram_Podcast_Final-compressed.mov",
+      thumbnail: "/media/PhotosVideos/Real Estate/ram-image.png",
+    },
+    {
+      video:
+        "/media/PhotosVideos/Real Estate/Salwa_Javed_Meraas_with new qr-compressed.mov",
+      thumbnail: "/media/PhotosVideos/Real Estate/salwa-image.png",
+    },
+  ];
   useEffect(() => {
     const ctx = gsap.context(() => {
       const total = cardsRef.current.length;
@@ -234,31 +262,32 @@ const CardDistribution = () => {
       </h1>
       {/* Full viewport container */}
       <div className="relative w-full h-screen">
-        {[
-          "Business Setup/Bizgrowth 4th Render-compressed.mov",
-          "FandB/4.mp4",
-          "FandB/12.mp4",
-          "Marketing/IKEA CO WORKER V2-compressed.mov",
-          "Real Estate/Ram_Podcast_Final-compressed.mov",
-          "Real Estate/Salwa_Javed_Meraas_with new qr-compressed.mov",
-        ].map((card, i) => (
+        {videos.map((card, i) => (
           <div
-            key={card}
+            key={i}
+            onMouseEnter={() => setHoveredIndex(i)}
+            onMouseLeave={() => setHoveredIndex(null)}
             ref={(el) => {
               if (el) cardsRef.current[i] = el;
             }}
             className="w-[370px] h-[550px] border-4 overflow-hidden border-white rounded-2xl shadow-xl  flex items-center justify-center text-2xl font-bold"
           >
-            <video
-              className="w-full h-full object-cover"
-              muted
-              loop
-              onMouseEnter={(e) => e.currentTarget.play()}
-              onMouseLeave={(e) => e.currentTarget.pause()}
-            >
-              <source src={`/media/PhotosVideos/${card}`} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            {hoveredIndex !== i && (
+              <img
+                src={card.thumbnail}
+                alt="Video thumbnail"
+                className="w-full h-full object-cover"
+              />
+            )}
+            {hoveredIndex === i && (
+              <video
+                className="w-full h-full object-cover"
+                src={card.video}
+                muted
+                autoPlay
+                loop
+              />
+            )}
           </div>
         ))}
       </div>
