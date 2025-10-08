@@ -112,32 +112,41 @@ const SliderForm: React.FC<SliderFormProps> = ({
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (validateForm()) {
       setIsSubmitting(true);
 
-      emailjs
-        .send(
-          "service_k34vn0n", // Replace with your EmailJS service ID
-          "template_0ao3rbn", // Replace with your EmailJS template ID
-          formData,
-          "dwtj2-cJpAOHH2pwy" // Replace with your EmailJS public key
-        )
-        .then(
-          (response) => {
-            console.log("SUCCESS!", response.status, response.text);
-            setIsSubmitting(false);
-            setIsFormOpen(false);
-            alert("Message sent successfully!");
-          },
-          (err) => {
-            console.log("FAILED...", err);
-            setIsSubmitting(false);
-            alert("Failed to send the message, please try again.");
-          }
-        );
+     try {
+       const resp = await fetch("/api/email", {
+        method: "POST",
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          message: formData.message,
+          contact: formData.phone,
+          createdAt: new Date(),
+          subject: formData.message,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+        alert("Message sent successfully!");
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      } catch (error) {
+        console.error("FAILED...", error);
+        alert("Failed to send the message, please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 

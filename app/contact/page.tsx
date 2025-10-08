@@ -6,7 +6,7 @@ import Head from "next/head";
 import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradient";
 import { SealCheck } from "@phosphor-icons/react";
 import Button from "../App chunks/components/Button";
-import emailjs from "@emailjs/browser";
+
 
 const Page = () => {
   const [height, setHeight] = React.useState(0);
@@ -101,20 +101,21 @@ const Page = () => {
     if (validateForm()) {
       setIsSubmitting(true);
 
-      const templateParams = {
-        from_name: formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        message: formData.message,
-      };
-
       try {
-        await emailjs.send(
-          "service_k34vn0n", // Replace with your EmailJS service ID
-          "template_0ao3rbn", // Replace with your EmailJS template ID
-          templateParams,
-          "dwtj2-cJpAOHH2pwy" // Replace with your EmailJS public key
-        );
+       const resp = await fetch("/api/email", {
+        method: "POST",
+        body: JSON.stringify({
+          name: formData.firstName + " " + formData.lastName,
+          email: formData.email,
+          message: formData.message,
+          contact: formData.phone,
+          createdAt: new Date(),
+          subject: formData.message,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
         alert("Message sent successfully!");
         setFormData({
