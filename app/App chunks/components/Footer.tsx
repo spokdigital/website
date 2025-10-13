@@ -41,7 +41,12 @@ const Footer = () => {
           <motion.p
             className={`text-indigo-50 text-md lg:text-md  font-Satoshi mt-2 lg:mt-4`}
           >
-            We create possibilities for the connected world.
+            At Spok Digital, we build high-performing, AI-powered websites that
+            don’t just look good — they convert. By combining our expertise in
+            web development, SEO, and performance marketing, we create digital
+            experiences that attract, engage, and sell. From strategy to
+            execution, every site we build is designed to deliver measurable
+            growth and help brands scale faster.
           </motion.p>
         </div>
 
@@ -77,14 +82,14 @@ const Footer = () => {
               Address
             </motion.p>
             <p className="text-sm lg:text-lg text-slate-100">
-              <span>Office</span> - Tower C, Plot No. B-8, Noida One, Sector -
-              62, Noida - 201301
+              <span>Office</span> - 1701, Churchill Towers, Business Bay, Dubai,
+              UAE
             </p>
             <p className="mt-2 text-sm lg:text-lg text-slate-100">
-              <span>Phone</span>- +91 9819321243
+              <span>Phone</span>- +971 50 712 1707
             </p>
             <p className="mt-2 text-sm lg:text-lg text-slate-100">
-              <span>Email</span> - info@Spok Digital.com
+              <span>Email</span> - info@spok.digital
             </p>
           </motion.div>
         </div>
