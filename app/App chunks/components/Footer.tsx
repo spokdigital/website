@@ -5,6 +5,8 @@ import Ribbon from "./Ribbon";
 import { motion, useInView } from "framer-motion";
 import { Circle, ArrowUpRight } from "@phosphor-icons/react";
 import Link from "next/link";
+import { MapPin, Phone, Mail } from "lucide-react";
+
 import { usePathname } from "next/navigation";
 const Footer = () => {
   const menu = [
@@ -77,20 +79,44 @@ const Footer = () => {
               </motion.li>
             ))}
           </motion.ul>
-          <motion.div className="col-span-2">
+          <motion.div className="col-span-2 space-y-3">
             <motion.p className="text-indigo-50 mb-2 font-Synonym font-[500] text-2xl lg:text-3xl">
               Address
             </motion.p>
-            <p className="text-sm lg:text-lg text-slate-100">
-              <span>Office</span> - 1701, Churchill Towers, Business Bay, Dubai,
-              UAE
-            </p>
-            <p className="mt-2 text-sm lg:text-lg text-slate-100">
-              <span>Phone</span>- +971 50 712 1707
-            </p>
-            <p className="mt-2 text-sm lg:text-lg text-slate-100">
-              <span>Email</span> - info@spok.digital
-            </p>
+
+            {/* UAE Office */}
+            <div className="flex items-start gap-3">
+              <MapPin className="text-indigo-300 w-5 h-5 mt-1" />
+              <p className="text-sm lg:text-lg text-slate-100 leading-relaxed">
+                <span className="font-medium">Office (UAE)</span> – 1701,
+                Churchill Towers, Business Bay, Dubai, UAE
+              </p>
+            </div>
+
+            {/* USA Address */}
+            <div className="flex items-start gap-3">
+              <MapPin className="text-indigo-300 w-5 h-5 mt-1" />
+              <p className="text-sm lg:text-lg text-slate-100 leading-relaxed">
+                <span className="font-medium">Office (USA)</span> – 2500
+                California St, Apt #1401, Mountain View, CA 94040
+              </p>
+            </div>
+
+            {/* Phone */}
+            <div className="flex items-start gap-3">
+              <Phone className="text-indigo-300 w-5 h-5 mt-1" />
+              <p className="text-sm lg:text-lg text-slate-100">
+                +971 50 712 1707
+              </p>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-start gap-3">
+              <Mail className="text-indigo-300 w-5 h-5 mt-1" />
+              <p className="text-sm lg:text-lg text-slate-100">
+                info@spok.digital
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>
