@@ -5,9 +5,9 @@ const reviews = [
   "WooCommerce",
   "ROAS",
   "Scaling",
-  "Funnles",
+  "Funnels",
   "Profit",
-  "Shofiy",
+  "Shopify",
   "Conversions",
 ];
 
