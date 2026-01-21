@@ -5,6 +5,7 @@ import BreadCrumb from "../App chunks/components/BreadCrumb";
 import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradient";
 import SliderForm from "../App chunks/components/SliderForm";
 import { ArrowUpRight, Pause, Play } from "@phosphor-icons/react";
+import Image from "next/image";
 const Page = () => {
   const [height, setHeight] = React.useState(0);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -100,7 +101,7 @@ const Page = () => {
   ];
 
   const scrollToWithEasing = (targetY: number) => {
-    const start =  window.scrollY
+    const start = window.scrollY;
     const distance = targetY - start;
 
     animate(0, 1, {
@@ -115,7 +116,7 @@ const Page = () => {
   const handleTabClick = (idx: number) => {
     const target = refs[idx]?.current;
     if (target) {
-      const top = target.getBoundingClientRect().top + window.scrollY - 100; // Offset for header
+      const top = target.getBoundingClientRect().top + window.scrollY - 100;
       scrollToWithEasing(top);
     }
   };
@@ -242,7 +243,7 @@ const Page = () => {
               </h2>
               {RenderMedia(
                 corporatePhotographs,
-                "media/PhotosVideos/Corporate Photographs/"
+                "media/PhotosVideos/Corporate Photographs/",
               )}
             </div>
           </div>
@@ -346,8 +347,10 @@ const VideoPlayer = ({
           </motion.div>
         </>
       ) : (
-        <img
-          src={`media/PhotosVideos/Thumbnails/${
+        <Image
+          width={300}
+          height={400}
+          src={`/media/PhotosVideos/Thumbnails/${
             thumbnail.split(".")[0] + ".jpg"
           }`}
           alt="Video thumbnail"
@@ -384,6 +387,7 @@ const VideoPlayer = ({
 const RenderMedia = (MediaArr: string[], path: string) => {
   const thumbnails = [
     "12.jpg",
+    "10.jpg",
     "14.jpg",
     "2.jpg",
     "4.jpg",
@@ -406,9 +410,8 @@ const RenderMedia = (MediaArr: string[], path: string) => {
     "salwa_office_Video_Draft03-compressed.jpg",
     "starbucks misspelling-compressed.jpg",
   ];
-  console.log(thumbnails.length);
-  const repoURL =
-    "https://media.githubusercontent.com/media/frontendmakaidigitals/Spok Digital/refs/heads/main/public/";
+
+  const repoURL = "/";
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full">
@@ -418,11 +421,13 @@ const RenderMedia = (MediaArr: string[], path: string) => {
         if (extension === "png" || extension === "jpg") {
           return (
             <div key={idx} className="h-[500px] w-full relative">
-              <img
+              <Image
+                width={300}
+                height={400}
                 className="w-full h-full object-cover transition-opacity duration-500"
                 alt={`Media ${idx}`}
                 loading="lazy"
-                src={path + media}
+                src={"/" + path + media}
               />
             </div>
           );
