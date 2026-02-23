@@ -29,7 +29,7 @@ const HeroSection = () => {
 
   return (
     <div className="!max-w-[94%] mx-auto pb-16 pt-12 lg:pt-24">
-      <div className="relative flex flex-col lg:flex-row justify-between items-end">
+      <div className="relative flex flex-col gap-4 lg:flex-row justify-between items-end">
         <div>
           <h1 className="max-w-3xl text-4xl lg:text-7xl mb-2 font-Grostek font-[400]">
             Your shortcut <br /> to a brand that connects meaning with feeling.
