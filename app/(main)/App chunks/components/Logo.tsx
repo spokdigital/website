@@ -3,14 +3,14 @@ import Link from "next/link";
 
 const Logo = ({
   className,
-  source = "/",
+  source = "/spok-white.png",
 }: {
   className?: string;
   source?: string;
 }) => {
   return (
     <Link href="/">
-      <div className={`w-[220px] ${className}`}>
+      <div className={`w-[180px] ${className}`}>
         <img src={source} alt="Logo" />
       </div>
     </Link>

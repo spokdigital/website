@@ -57,7 +57,7 @@ const Loader = () => {
                   ease: [0.215, 0.61, 0.355, 1],
                 }}
                 key={index}
-                className="bg-black w-full h-full"
+                className="bg-black will-change-transform w-full h-full"
               />
             ))}
           </div>

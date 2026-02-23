@@ -11,30 +11,35 @@ const CardDistribution = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const videos = [
     {
-      video:
-        "/media/PhotosVideos/Bizgrowth 4th Render-compressed.mp4",
-      thumbnail: "/media/PhotosVideos/bizgrowth-image.png",
+      video: "/media/PhotosVideos/Real Estate/Ram_Podcast_Final-compressed.mov",
+      thumbnail:
+        "/media/PhotosVideos/Thumbnails/Ram_Podcast_Final-compressed.jpg",
     },
     {
-      video: "/media/PhotosVideos/4.mp4",
-      thumbnail: "/media/PhotosVideos/4-image.png",
-    },
-    {
-      video: "/media/PhotosVideos/12.mp4",
-      thumbnail: "/media/PhotosVideos/12-image.png",
-    },
-    {
-      video: "/media/PhotosVideos/IKEA CO WORKER V2-compressed.mp4",
-      thumbnail: "/media/PhotosVideos/ikea-image.png",
-    },
-    {
-      video: "/media/PhotosVideos/Ram_Podcast_Final-compressed.mp4",
-      thumbnail: "/media/PhotosVideos/ram-image.png",
+      video: "/media/PhotosVideos/F&B/8.mp4",
+      thumbnail: "/media/PhotosVideos/Thumbnails/8.jpg",
     },
     {
       video:
-        "/media/PhotosVideos/Salwa_Javed_Meraas_with new qr-compressed.mp4",
-      thumbnail: "/media/PhotosVideos/salwa-image.png",
+        "/media/PhotosVideos/Marketing/starbucks misspelling-compressed.mov",
+      thumbnail:
+        "/media/PhotosVideos/Thumbnails/starbucks misspelling-compressed.jpg",
+    },
+    {
+      video:
+        "/media/PhotosVideos/Business Setup/4th Draft - Bizgrowth-compressed.mov",
+      thumbnail:
+        "/media/PhotosVideos/Thumbnails/4th Draft - Bizgrowth-compressed.jpg",
+    },
+    {
+      video: "/media/PhotosVideos/Marketing/IKEA CO WORKER V2-compressed.mov",
+      thumbnail:
+        "/media/PhotosVideos/Thumbnails/IKEA CO WORKER V2-compressed.jpg",
+    },
+    {
+      video:
+        "/media/PhotosVideos/Real Estate/Salwa_Javed_Meraas_with new qr-compressed.mov",
+      thumbnail: "/media/PhotosVideos/Thumbnails/Salwa_Javed_Meraas_with new qr-compressed.jpg",
     },
   ];
   useEffect(() => {
@@ -89,7 +94,7 @@ const CardDistribution = () => {
               duration: 0.8,
               ease: "power3.out",
             },
-            i * 0.5 + 1 // stagger by 0.5 scroll units after text animation
+            i * 0.5 + 1, // stagger by 0.5 scroll units after text animation
           );
         });
       } else {
@@ -108,7 +113,7 @@ const CardDistribution = () => {
             stagger: 0.15,
             ease: "power3.out",
           },
-          1
+          1,
         );
       }
     }, containerRef);
@@ -247,16 +252,25 @@ const CardDistribution = () => {
         </svg>
       </div>
       <h1
-        className="absolute top-0 py-10 lg:py-14 left-1/2 -translate-x-1/2 text-4xl lg:text-[10rem] font-bold opacity-20 pointer-events-none select-none text-center leading-[1]"
+        className="absolute top-0 will-change-transform transform-gpu py-10 lg:py-14 left-1/2 -translate-x-1/2 text-4xl lg:text-[8.3rem] font-bold opacity-20 pointer-events-none select-none text-center leading-[1]"
         id="bg-text"
       >
-        <span className="block !text-slate-950" id="line1">
+        <span
+          className="block will-change-transform transform-gpu !text-slate-950"
+          id="line1"
+        >
           See Our
         </span>
-        <span className="block !text-slate-50" id="line2">
+        <span
+          className="block will-change-transform transform-gpu !text-slate-50"
+          id="line2"
+        >
           Best UGC
         </span>
-        <span className="block !text-slate-950" id="line3">
+        <span
+          className="block will-change-transform transform-gpu !text-slate-950"
+          id="line3"
+        >
           Content
         </span>
       </h1>
@@ -270,7 +284,7 @@ const CardDistribution = () => {
             ref={(el) => {
               if (el) cardsRef.current[i] = el;
             }}
-            className="w-[370px] h-[550px] border-4 overflow-hidden border-white rounded-2xl shadow-xl  flex items-center justify-center text-2xl font-bold"
+            className="w-[370px] will-change-transform transform-gpu h-[550px] border-4 overflow-hidden border-white rounded-2xl shadow-xl  flex items-center justify-center text-2xl font-bold"
           >
             {hoveredIndex !== i && (
               <img

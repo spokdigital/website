@@ -9,6 +9,13 @@ body {
 @layer base {
   :root {
     --radius: 0.5rem;
+    --ink: #0a0a0a;
+    --paper: #f5f2ed;
+    --spok: #0a0a0a;
+    --accent: #ff3c00;
+    --muted: #898783;
+    --border: rgba(10, 10, 10, 0.1);
+    --primary: #ff4040;
   }
 }
 
@@ -17,26 +24,39 @@ body {
 }
 
 .editor-container {
-  width: 100%; 
+  width: 100%;
 }
 
 .mdx-editor {
   width: 100%;
   box-sizing: border-box;
- 
 }
 
 .prose {
   width: 100%;
   max-width: none;
-  
 }
 
-.prose :where(ul > li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+.prose
+  :where(ul > li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   padding-inline-start: 1.375em; /* Adjust the left padding for list items */
 }
 
-._listItemUnchecked_1tncs_74:before, ._listItemChecked_1tncs_73:before {
-  top:'50%';
-  transform:translateY(50%)
+._listItemUnchecked_1tncs_74:before,
+._listItemChecked_1tncs_73:before {
+  top: "50%";
+  transform: translateY(50%);
+}
+img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }

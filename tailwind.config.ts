@@ -1,5 +1,7 @@
 import { Config } from "tailwindcss";
-const { default: flattenColorPalette } = require("tailwindcss/lib/util/flattenColorPalette");
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
 
 const config: Config = {
   darkMode: ["class"],
@@ -38,6 +40,7 @@ const config: Config = {
         Synonym: ["Synonym", "sans-serif"],
         SplineSans: ["Spline Sans", "sans-serif"],
         Grostek: ["Cabinet Grotesk", "sans-serif"],
+        Cormorant: ["Cormorant", "serif"],
       },
       animation: {
         first: "moveVertical 30s ease infinite",
@@ -92,8 +95,8 @@ const config: Config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    require('@tailwindcss/typography'),
-    addVariablesForColors
+    require("@tailwindcss/typography"),
+    addVariablesForColors,
   ],
 };
 
@@ -106,7 +109,7 @@ function addVariablesForColors({ addBase, theme }: any) {
       vars[`--${key}`] = value as string;
       return vars;
     },
-    {} as Record<string, string>
+    {} as Record<string, string>,
   );
 
   addBase({
