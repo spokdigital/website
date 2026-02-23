@@ -13,7 +13,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+const EditorComp = dynamic(
+  () => import("@/app/(main)/App chunks/components/MDXEditor"),
+  {
+    ssr: false,
+  },
+);
 const topics = [
   "Digital Age",
   "Transformation & Growth",
@@ -45,14 +50,8 @@ const industries = [
   "Resource and Wealth",
 ];
 const priorityOptions = ["1", "2", "3", "4", "Default"];
-const EditorComp = dynamic(
-  () => import("@/app/App chunks/components/MDXEditor"),
-  {
-    ssr: false,
-  }
-);
+
 const Page = ({ params }) => {
- 
   const id = params.id[0];
   return (
     <div className="relative">
@@ -81,7 +80,7 @@ const Blogform = ({ id, EditorComp }) => {
     inputValue: "",
     metaDescription: "",
     focusKeyword: "",
-    url:''
+    url: "",
   });
 
   // Handle Image Upload
@@ -162,295 +161,294 @@ const Blogform = ({ id, EditorComp }) => {
     }
   };
 
-
   return (
     <>
-     return (
-    <form className="w-full relative" onSubmit={handleSubmit}>
-      {/* Image Preview Modal */}
-      {formData.imageOpen && (
-        <div className="w-full h-screen max-h-screen fixed bg-gray-800/20 p-10 top-0 flex justify-center items-center left-0 z-[9999]">
-          <X
-            onClick={() =>
-              setFormData((prevState) => ({ ...prevState, imageOpen: false }))
-            }
-            className="text-4xl absolute p-1 top-4 right-4 bg-black rounded-md cursor-pointer hover:bg-red-500 text-gray-50"
-          />
-          <div className="h-full">
-            <img
-              src={URL.createObjectURL(formData.image[0])}
-              className="h-full"
-              alt="Preview"
+      return (
+      <form className="w-full relative" onSubmit={handleSubmit}>
+        {/* Image Preview Modal */}
+        {formData.imageOpen && (
+          <div className="w-full h-screen max-h-screen fixed bg-gray-800/20 p-10 top-0 flex justify-center items-center left-0 z-[9999]">
+            <X
+              onClick={() =>
+                setFormData((prevState) => ({ ...prevState, imageOpen: false }))
+              }
+              className="text-4xl absolute p-1 top-4 right-4 bg-black rounded-md cursor-pointer hover:bg-red-500 text-gray-50"
             />
-          </div>
-        </div>
-      )}
-
-      {/* Blog Title */}
-      <div className="flex w-full gap-10 items-center mt-6">
-        <div className="w-full">
-          <p className="font-Satoshi font-medium">Blog Title</p>
-          <input
-            placeholder="Title"
-            onChange={(e) =>
-              setFormData({ ...formData, title: e.target.value })
-            }
-            value={formData.title}
-            className="px-3 w-full py-2 block mt-1 bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md"
-            required
-          />
-        </div>
-        <div className="w-full">
-          <p className="font-Satoshi font-medium">Meta Desciription</p>
-          <input
-            placeholder="Meta Desc"
-            onChange={(e) =>
-              setFormData({ ...formData, metaDescription: e.target.value })
-            }
-            value={formData.metaDescription}
-            className="px-3 w-full py-2 block mt-1 bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md"
-            required
-          />
-        </div>
-      </div>
-      <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-10 place-items-center">
-        <div className="w-full">
-          <p className="font-Satoshi font-medium">Focus Keyword</p>
-          <input
-            placeholder="Focus Keyword"
-            onChange={(e) =>
-              setFormData({ ...formData, focusKeyword: e.target.value })
-            }
-            value={formData.focusKeyword}
-            className="px-3 w-full py-2 block mt-1 bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md"
-            required
-          />
-        </div>
-        <div className="w-full ">
-          <p className="font-Satoshi font-medium">Url Keyword</p>
-          <input
-            placeholder="Url keyword"
-            onChange={(e) =>
-              setFormData({ ...formData, url: e.target.value })
-            }
-            value={formData.url}
-            className="px-3 w-full py-2 block mt-1 bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md"
-            required
-          />
-        </div>
-      </div>
-
-      {/* Image Upload */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 place-items-center mt-6">
-        <div className="w-full">
-          <p className="font-Satoshi font-medium">
-            Add Image{" "}
-            <span className="text-gray-500">
-              Image size should not exceed 2mb.
-            </span>
-          </p>
-          <div className="flex w-full items-center gap-2">
-            <div className="bg-transparent border border-gray-600 placeholder:text-gray-400 w-full relative flex items-center py-3 justify-between pl-3 pr-10 rounded-md">
-              <div className="w-full">
-                <p className="text-sm truncate font-Satoshi font-[500]">
-                  {formData.image?.length > 0
-                    ? formData.image[0]?.name
-                    : "No image selected"}
-                </p>
-              </div>
-              <label
-                htmlFor="image"
-                className="absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer hover:bg-sky-400 bg-sky-300 px-2 rounded-md font-Satoshi font-bold text-2xl"
-              >
-                +
-              </label>
-              <input
-                className="hidden"
-                id="image"
-                onChange={handleImageChange}
-                type="file"
-                accept=".jpg, .jpeg, .png"
-                required
+            <div className="h-full">
+              <img
+                src={URL.createObjectURL(formData.image[0])}
+                className="h-full"
+                alt="Preview"
               />
             </div>
-            <div
-              onClick={
-                formData.image?.length > 0
-                  ? () =>
-                      setFormData((prevState) => ({
-                        ...prevState,
-                        imageOpen: true,
-                      }))
-                  : null
+          </div>
+        )}
+
+        {/* Blog Title */}
+        <div className="flex w-full gap-10 items-center mt-6">
+          <div className="w-full">
+            <p className="font-Satoshi font-medium">Blog Title</p>
+            <input
+              placeholder="Title"
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
               }
-              className={`p-2 rounded-md ${
-                formData.image?.length > 0
-                  ? "text-gray-900 hover:bg-gray-300 cursor-pointer"
-                  : "text-gray-600 bg-gray-200 cursor-not-allowed"
-              }`}
-            >
-              <Eye className={`text-xl`} />
+              value={formData.title}
+              className="px-3 w-full py-2 block mt-1 bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md"
+              required
+            />
+          </div>
+          <div className="w-full">
+            <p className="font-Satoshi font-medium">Meta Desciription</p>
+            <input
+              placeholder="Meta Desc"
+              onChange={(e) =>
+                setFormData({ ...formData, metaDescription: e.target.value })
+              }
+              value={formData.metaDescription}
+              className="px-3 w-full py-2 block mt-1 bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md"
+              required
+            />
+          </div>
+        </div>
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-10 place-items-center">
+          <div className="w-full">
+            <p className="font-Satoshi font-medium">Focus Keyword</p>
+            <input
+              placeholder="Focus Keyword"
+              onChange={(e) =>
+                setFormData({ ...formData, focusKeyword: e.target.value })
+              }
+              value={formData.focusKeyword}
+              className="px-3 w-full py-2 block mt-1 bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md"
+              required
+            />
+          </div>
+          <div className="w-full ">
+            <p className="font-Satoshi font-medium">Url Keyword</p>
+            <input
+              placeholder="Url keyword"
+              onChange={(e) =>
+                setFormData({ ...formData, url: e.target.value })
+              }
+              value={formData.url}
+              className="px-3 w-full py-2 block mt-1 bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md"
+              required
+            />
+          </div>
+        </div>
+
+        {/* Image Upload */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 place-items-center mt-6">
+          <div className="w-full">
+            <p className="font-Satoshi font-medium">
+              Add Image{" "}
+              <span className="text-gray-500">
+                Image size should not exceed 2mb.
+              </span>
+            </p>
+            <div className="flex w-full items-center gap-2">
+              <div className="bg-transparent border border-gray-600 placeholder:text-gray-400 w-full relative flex items-center py-3 justify-between pl-3 pr-10 rounded-md">
+                <div className="w-full">
+                  <p className="text-sm truncate font-Satoshi font-[500]">
+                    {formData.image?.length > 0
+                      ? formData.image[0]?.name
+                      : "No image selected"}
+                  </p>
+                </div>
+                <label
+                  htmlFor="image"
+                  className="absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer hover:bg-sky-400 bg-sky-300 px-2 rounded-md font-Satoshi font-bold text-2xl"
+                >
+                  +
+                </label>
+                <input
+                  className="hidden"
+                  id="image"
+                  onChange={handleImageChange}
+                  type="file"
+                  accept=".jpg, .jpeg, .png"
+                  required
+                />
+              </div>
+              <div
+                onClick={
+                  formData.image?.length > 0
+                    ? () =>
+                        setFormData((prevState) => ({
+                          ...prevState,
+                          imageOpen: true,
+                        }))
+                    : null
+                }
+                className={`p-2 rounded-md ${
+                  formData.image?.length > 0
+                    ? "text-gray-900 hover:bg-gray-300 cursor-pointer"
+                    : "text-gray-600 bg-gray-200 cursor-not-allowed"
+                }`}
+              >
+                <Eye className={`text-xl`} />
+              </div>
+            </div>
+          </div>
+
+          {/* Tags Input */}
+          <div className="w-full">
+            <p className="font-Satoshi font-medium">Tags</p>
+            <div className="relative bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md flex items-center gap-3">
+              <input
+                type="text"
+                value={formData.inputValue}
+                onKeyDown={handleKeyDown}
+                onChange={(e) =>
+                  setFormData({ ...formData, inputValue: e.target.value })
+                }
+                placeholder={formData.tags.length === 0 ? "Add a tag" : ""}
+                className="px-3 py-2 bg-transparent focus:outline-none"
+              />
+              {formData.tags.length > 0 && (
+                <div className="absolute w-full gap-2 flex justify-center items-center -bottom-8 left-0">
+                  {formData.tags.map((tag, idx) => (
+                    <button
+                      onClick={() => deleteTag(idx)}
+                      className="flex px-3 font-[500] py-1 justify-between items-center gap-1 rounded-lg bg-sky-200"
+                      key={idx}
+                    >
+                      <p className="text-[.8rem]">{tag}</p>
+                      <X />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Tags Input */}
-        <div className="w-full">
-          <p className="font-Satoshi font-medium">Tags</p>
-          <div className="relative bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md flex items-center gap-3">
-            <input
-              type="text"
-              value={formData.inputValue}
-              onKeyDown={handleKeyDown}
-              onChange={(e) =>
-                setFormData({ ...formData, inputValue: e.target.value })
-              }
-              placeholder={formData.tags.length === 0 ? "Add a tag" : ""}
-              className="px-3 py-2 bg-transparent focus:outline-none"
-            />
-            {formData.tags.length > 0 && (
-              <div className="absolute w-full gap-2 flex justify-center items-center -bottom-8 left-0">
-                {formData.tags.map((tag, idx) => (
-                  <button
-                    onClick={() => deleteTag(idx)}
-                    className="flex px-3 font-[500] py-1 justify-between items-center gap-1 rounded-lg bg-sky-200"
-                    key={idx}
-                  >
-                    <p className="text-[.8rem]">{tag}</p>
-                    <X />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Dropdown Selections */}
-      <div className="grid grid-cols-2 w-full gap-10 mt-6">
-        <div className="w-full">
-          <p className="font-Satoshi font-medium">Topic</p>
-          <Select
-            onValueChange={(value) =>
-              setFormData((prevState) => ({
-                ...prevState,
-                selectedTopic: value,
-              }))
-            }
-            value={formData.selectedTopic}
-          >
-            <SelectTrigger className="w-full border border-gray-700">
-              <SelectValue placeholder="Select Topic" />
-            </SelectTrigger>
-            <SelectContent>
-              {topics.map((topic, index) => (
-                <SelectItem value={topic} key={index}>
-                  {topic}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="w-full">
-          <p className="font-Satoshi font-medium">Service</p>
-          <Select
-            onValueChange={(value) =>
-              setFormData((prevState) => ({
-                ...prevState,
-                selectedService: value,
-              }))
-            }
-            value={formData.selectedService}
-          >
-            <SelectTrigger className="w-full border border-gray-700">
-              <SelectValue placeholder="Select Service" />
-            </SelectTrigger>
-            <SelectContent>
-              {services.map((service, index) => (
-                <SelectItem value={service} key={index}>
-                  {service}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="w-full">
-          <p className="font-Satoshi font-medium">Industry</p>
-          <Select
-            onValueChange={(value) =>
-              setFormData((prevState) => ({
-                ...prevState,
-                selectedIndustry: value,
-              }))
-            }
-            value={formData.selectedIndustry}
-          >
-            <SelectTrigger className="w-full border border-gray-700">
-              <SelectValue placeholder="Select Industry" />
-            </SelectTrigger>
-            <SelectContent>
-              {industries.map((industry, index) => (
-                <SelectItem value={industry} key={index}>
-                  {industry}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="w-full">
-          <p className="font-Satoshi font-medium">Priority</p>
-          <Select
-            onValueChange={(value) =>
-              setFormData((prevState) => ({
-                ...prevState,
-                selectedPriority: value,
-              }))
-            }
-            value={formData.selectedPriority}
-          >
-            <SelectTrigger className="w-full border border-gray-700">
-              <SelectValue placeholder="Select Priority" />
-            </SelectTrigger>
-            <SelectContent>
-              {priorityOptions.map((priority, index) => (
-                <SelectItem value={priority} key={index}>
-                  {priority}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      {/* Blog Description */}
-      <div className="w-full mt-6">
-        <p className="font-Satoshi font-medium">Description</p>
-        <div className="bg-transparent border border-gray-600 rounded-md">
-          <Suspense fallback={null}>
-            <EditorComp
-              markdown={markdown}
-              onChange={(value) =>
+        {/* Dropdown Selections */}
+        <div className="grid grid-cols-2 w-full gap-10 mt-6">
+          <div className="w-full">
+            <p className="font-Satoshi font-medium">Topic</p>
+            <Select
+              onValueChange={(value) =>
                 setFormData((prevState) => ({
                   ...prevState,
-                  blogDetail: value,
+                  selectedTopic: value,
                 }))
               }
-            />
-          </Suspense>
+              value={formData.selectedTopic}
+            >
+              <SelectTrigger className="w-full border border-gray-700">
+                <SelectValue placeholder="Select Topic" />
+              </SelectTrigger>
+              <SelectContent>
+                {topics.map((topic, index) => (
+                  <SelectItem value={topic} key={index}>
+                    {topic}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="w-full">
+            <p className="font-Satoshi font-medium">Service</p>
+            <Select
+              onValueChange={(value) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  selectedService: value,
+                }))
+              }
+              value={formData.selectedService}
+            >
+              <SelectTrigger className="w-full border border-gray-700">
+                <SelectValue placeholder="Select Service" />
+              </SelectTrigger>
+              <SelectContent>
+                {services.map((service, index) => (
+                  <SelectItem value={service} key={index}>
+                    {service}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="w-full">
+            <p className="font-Satoshi font-medium">Industry</p>
+            <Select
+              onValueChange={(value) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  selectedIndustry: value,
+                }))
+              }
+              value={formData.selectedIndustry}
+            >
+              <SelectTrigger className="w-full border border-gray-700">
+                <SelectValue placeholder="Select Industry" />
+              </SelectTrigger>
+              <SelectContent>
+                {industries.map((industry, index) => (
+                  <SelectItem value={industry} key={index}>
+                    {industry}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="w-full">
+            <p className="font-Satoshi font-medium">Priority</p>
+            <Select
+              onValueChange={(value) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  selectedPriority: value,
+                }))
+              }
+              value={formData.selectedPriority}
+            >
+              <SelectTrigger className="w-full border border-gray-700">
+                <SelectValue placeholder="Select Priority" />
+              </SelectTrigger>
+              <SelectContent>
+                {priorityOptions.map((priority, index) => (
+                  <SelectItem value={priority} key={index}>
+                    {priority}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
-      </div>
 
-      {/* Submit Button */}
-      <div className="w-full mt-6">
-        <button
-          type="submit"
-          className="w-full px-4 py-2 bg-blue-500 text-white rounded-md"
-        >
-          Submit Blog
-        </button>
-      </div>
-    </form>
-  );
+        {/* Blog Description */}
+        <div className="w-full mt-6">
+          <p className="font-Satoshi font-medium">Description</p>
+          <div className="bg-transparent border border-gray-600 rounded-md">
+            <Suspense fallback={null}>
+              <EditorComp
+                markdown={markdown}
+                onChange={(value) =>
+                  setFormData((prevState) => ({
+                    ...prevState,
+                    blogDetail: value,
+                  }))
+                }
+              />
+            </Suspense>
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <div className="w-full mt-6">
+          <button
+            type="submit"
+            className="w-full px-4 py-2 bg-blue-500 text-white rounded-md"
+          >
+            Submit Blog
+          </button>
+        </div>
+      </form>
+      );
     </>
   );
 };

@@ -15,9 +15,7 @@ import {
   headingsPlugin,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
-import '../../globals.css'
- 
-const Editor =({ onChange, markdown }) => {
+const Editor = ({ onChange, markdown }) => {
   return (
     <div className="editor-container min-h-[200px]">
       <MDXEditor

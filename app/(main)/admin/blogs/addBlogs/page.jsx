@@ -13,12 +13,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 const EditorComp = dynamic(
-  () => import("@/app/App chunks/components/MDXEditor"),
+  () => import("@/app/(main)/App chunks/components/MDXEditor"),
   {
     ssr: false,
-  }
+  },
 );
 
 const markdown = `
@@ -82,7 +81,7 @@ const BlogForm = () => {
     inputValue: "",
     metaDescription: "",
     focusKeyword: "",
-    url:''
+    url: "",
   });
 
   // Handle Image Upload
@@ -195,9 +194,7 @@ const BlogForm = () => {
           <p className="font-Satoshi font-medium">Url Keyword</p>
           <input
             placeholder="Url keyword"
-            onChange={(e) =>
-              setFormData({ ...formData, url: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, url: e.target.value })}
             value={formData.url}
             className="px-3 w-full py-2 block mt-1 bg-transparent border border-gray-600 placeholder:text-gray-400 rounded-md"
             required

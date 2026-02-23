@@ -20,7 +20,17 @@ const monthlyData = [
 const CHART_HEIGHT = 280; // px — fixed pixel height for the chart
 const maxRevenue = Math.max(...monthlyData.map((d) => d.revenue)); // 390500
 
-function AnimatedNumber({ value, prefix = "", suffix = "", duration = 1400 }) {
+function AnimatedNumber({
+  value,
+  prefix = "",
+  suffix = "",
+  duration = 1400,
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  duration?: number;
+}) {
   const [current, setCurrent] = useState(0);
   const ref = useRef(null);
   const started = useRef(false);
@@ -52,7 +62,12 @@ function AnimatedNumber({ value, prefix = "", suffix = "", duration = 1400 }) {
   );
 }
 
-const getRating = (roi) =>
+interface RatingResult {
+  label: string;
+  color: string;
+}
+
+const getRating = (roi: number): RatingResult =>
   roi >= 500
     ? { label: "Exceptional", color: "#FF4040" }
     : roi >= 400
@@ -62,7 +77,7 @@ const getRating = (roi) =>
         : { label: "Good", color: "#FF9595" };
 
 export default function ROISection() {
-  const [hovered, setHovered] = useState(null);
+  const [hovered, setHovered] = useState<number | null>(null);
   const [animated, setAnimated] = useState(false);
   const [barHeights, setBarHeights] = useState(
     monthlyData.map(() => ({ rev: 0, spend: 0 })),
