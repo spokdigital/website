@@ -4,7 +4,7 @@ import { InlineWidget } from "react-calendly";
 
 export default function BookCallSection() {
   return (
-    <section className="relative w-full py-28 px-4 overflow-hidden bg-[#f7efef]">
+    <section className="relative w-full py-28 px-4 overflow-hidden bg-black">
       {/* Decorative background elements */}
       <div
         aria-hidden="true"
@@ -27,7 +27,7 @@ export default function BookCallSection() {
         <div className="flex items-center justify-center gap-3 mb-6">
           <div className="h-px w-12 bg-[#FF4040]/60" />
           <p
-            className={`font-mono text-[10px] tracking-[0.35em] uppercase text-[#C9A84C]`}
+            className={`font-mono text-[10px] tracking-[0.35em] uppercase text-red-500`}
           >
             Schedule a Meeting
           </p>
@@ -36,7 +36,7 @@ export default function BookCallSection() {
 
         {/* Heading */}
         <h2
-          className={`font-Grostek tracking-tighter text-center text-5xl lg:text-6xl font-light leading-[1.1]  text-[#1a1a1a]`}
+          className={`font-Grostek tracking-tighter text-center text-5xl lg:text-6xl font-light leading-[1.1]  text-gray-100`}
         >
           Book Your Free{" "}
           <em className={`font-Cormorant italic text-[#FF4040]`}>
@@ -46,7 +46,7 @@ export default function BookCallSection() {
 
         {/* Sub-copy */}
         <p
-          className={`font-mono mt-6 text-center text-sm leading-relaxed tracking-wide text-[#1a1a1a]/50 max-w-xl mx-auto font-light`}
+          className={`font-mono mt-6 text-center text-sm leading-relaxed tracking-wide text-gray-100 max-w-xl mx-auto font-light`}
         >
           Let's discuss your goals, challenges, and how we can help you grow.
           Choose a convenient time below.
@@ -60,9 +60,9 @@ export default function BookCallSection() {
             { icon: "◈", label: "Expert advice" },
           ].map((b) => (
             <div key={b.label} className="flex items-center gap-2">
-              <span className="text-[#C9A84C] text-xs">{b.icon}</span>
+              <span className="text-red-300 text-xs">{b.icon}</span>
               <span
-                className={`font-mono text-[10px] tracking-[0.2em] uppercase text-[#1a1a1a]/40`}
+                className={`font-mono text-[10px] tracking-[0.2em] uppercase text-gray-100`}
               >
                 {b.label}
               </span>
@@ -73,14 +73,10 @@ export default function BookCallSection() {
         {/* Calendly card */}
         <div className="mt-12 relative">
           {/* Offset shadow layer */}
-          <div className="absolute inset-0 translate-x-2 translate-y-2 rounded-2xl bg-[#C9A84C]/15" />
 
-          <div className="relative rounded-2xl overflow-hidden border border-[#1a1a1a]/8 bg-white shadow-xl shadow-[#1a1a1a]/6">
-            {/* Top accent bar */}
-            <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
-
+          <div className="relative rounded-2xl overflow-hidden border border-gray-700 bg-black/95 shadow-xl shadow-[#1a1a1a]/6">
             <InlineWidget
-              url="https://calendly.com/frontendmakaidigitals/30min"
+              url="https://calendly.com/frontendmakaidigitals/30min?background_color=0f172a&text_color=ffffff&primary_color=6366f1"
               styles={{ height: "720px" }}
             />
           </div>

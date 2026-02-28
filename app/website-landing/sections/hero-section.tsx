@@ -1,8 +1,8 @@
 "use client";
-
-import { Circle, Play, Pause, Maximize } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Play, Pause, Maximize } from "lucide-react";
 import React, { useRef, useState } from "react";
-
+import { Briefcase, Globe, BotOff } from "lucide-react";
 const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -31,31 +31,58 @@ const HeroSection = () => {
     <div className="!max-w-[94%] mx-auto pb-16 pt-12 lg:pt-24">
       <div className="relative flex flex-col gap-4 lg:flex-row justify-between items-end">
         <div>
-          <h1 className="max-w-3xl text-4xl lg:text-7xl mb-2 font-Grostek font-[400]">
-            Your shortcut <br /> to a brand that connects meaning with feeling.
+          <h1 className="max-w-4xl text-4xl lg:text-6xl mb-2 font-Grostek font-[500]">
+            Custom Websites and Conversion-Focused Lead Funnels Built to
+            Generate Real Revenue
           </h1>
+          <p className="text-lg text-gray-700">
+            For growing startups and established brands ready to scale their
+            digital presence.
+          </p>
 
-          <div className=" flex flex-col lg:flex-row items-center mt-6 gap-6">
-            <p>
-              for early stage tech startups that need direction and identity
-            </p>
+          <div className=" flex  flex-col-reverse items-start 2xl:flex-row 2xl:items-center mt-6 gap-6 2xl:gap-10">
+            <div className="flex items-center gap-4">
+              <button className="text-white flex items-center gap-2 rounded bg-primary px-7 py-[.6rem]">
+                <ArrowUpRight />
+                View Pricing
+              </button>
+              <button className="text-white flex items-center gap-2 rounded bg-black px-7 py-[.6rem]">
+                <ArrowUpRight />
+                Book a call
+              </button>
+            </div>
+            <div className="flex flex-nowrap xl:flex-wrap items-center text-gray-700">
+              {/* Dubai */}
+              <div className="flex items-center gap-2 pr-4 border-r border-gray-300">
+                <div className="relative w-8 h-5">
+                  <Image
+                    alt="dubai flag"
+                    src="/flag/dubai.png"
+                    fill
+                    className="rounded object-cover"
+                  />
+                </div>
+                <span>Based in Dubai</span>
+              </div>
 
-            <ul className="flex flex-wrap items-center gap-4">
-              {[
-                { lable: "Branding", color: "fill-blue-300" },
-                { lable: "Design", color: "fill-orange-400" },
-                { lable: "Marketing", color: "fill-green-400" },
-                { lable: "Content Creation", color: "fill-yellow-400" },
-              ].map((item, idx) => (
-                <li
-                  key={idx}
-                  className="px-5 flex items-center gap-1 text-xs bg-gray-100 rounded-full py-2"
-                >
-                  <Circle className={`stroke-gray-100 size-4 ${item.color}`} />
-                  {item.lable}
-                </li>
-              ))}
-            </ul>
+              {/* Industries */}
+              <div className="flex items-center gap-2 px-4 border-r border-gray-300">
+                <Briefcase size={18} className="text-gray-600" />
+                <span>10+ Industries</span>
+              </div>
+
+              {/* Websites */}
+              <div className="flex items-center gap-2 px-4 border-r border-gray-300">
+                <Globe size={18} className="text-gray-600" />
+                <span>200+ Websites</span>
+              </div>
+
+              {/* No AI */}
+              <div className="flex items-center gap-2 pl-4">
+                <BotOff size={18} className="text-gray-600" />
+                <span>No AI</span>
+              </div>
+            </div>
           </div>
         </div>
 

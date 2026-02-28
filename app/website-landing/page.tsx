@@ -1,29 +1,57 @@
 import React from "react";
 import Header from "./sections/header";
 import HeroSection from "./sections/hero-section";
-import BookCallSection from "./sections/form";
-import ComparisonSection from "./sections/comparison";
-import CTASection from "./sections/cta";
-import MarketingSolutions from "./sections/marketing-solutions";
-import WhyChooseMasterclassSection from "./sections/why-choose";
-import Testimonial from "./sections/testimonial";
-import HackFirstFooter from "./sections/footer";
-import { ProjectsHorizontalScroll } from "./sections/projects";
 import Graphics from "./sections/graphics-section";
+import TrustSection from "./sections/TrustSection";
+import VideoCarousel from "./sections/video-Carousel";
+import WhyChooseMasterclassSection from "./sections/why-choose";
+import ComparisonSection from "./sections/comparison";
+import ProjectsHorizontalScroll from "./sections/projects";
+import Testimonial from "./sections/testimonial";
+import PricingSection from "./sections/packages";
+import CTASection from "./sections/cta";
+import BookCallSection from "./sections/form";
+import HackFirstFooter from "./sections/footer";
 
 const page = () => {
   return (
     <>
+      {/* 1. Navigation */}
       <Header />
+
+      {/* 2. Hook — first impression, value proposition */}
       <HeroSection />
+
+      {/* 3. Visual credibility — eye-catching graphics right after hero */}
       <Graphics />
-      <ComparisonSection />
-      <MarketingSolutions />
-      <CTASection />
-      <Testimonial />
-      <ProjectsHorizontalScroll />
+
+      {/* 4. Social proof — logos / trust signals while attention is high */}
+
+      {/* 5. Video stories — humanize the brand early */}
+      <VideoCarousel />
+
+      {/* 6. Why us — core differentiators after they're warmed up */}
       <WhyChooseMasterclassSection />
+
+      {/* 7. Comparison — us vs. alternatives, seal the value argument */}
+      <ComparisonSection />
+
+      {/* 8. Portfolio — show the work, prove the claims */}
+      <ProjectsHorizontalScroll />
+
+      {/* 9. Testimonials — peer validation before asking for money */}
+      <Testimonial />
+
+      {/* 10. Pricing — present offer once trust is fully built */}
+      <PricingSection />
+
+      {/* 11. CTA banner — urgency nudge before the form */}
+      <CTASection />
+
+      {/* 12. Booking form — final conversion action */}
       <BookCallSection />
+
+      {/* 13. Footer */}
       <HackFirstFooter />
     </>
   );

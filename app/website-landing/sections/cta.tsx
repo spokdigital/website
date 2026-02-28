@@ -1,43 +1,48 @@
-import { ChevronRight, Zap } from "lucide-react";
+import { ChevronRight, Zap, Star } from "lucide-react";
 export default function CTASection() {
   return (
-    <div className="w-full py-16 ">
+    <div className="w-full pt-8 pb-20 ">
       <div className="max-w-6xl container mx-auto">
         {/* CTA Card with Gradient Background */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-red-50 via-white to-red-100 px-12 py-16">
+        <div className="relative overflow-hidden border border-red-100 rounded-3xl bg-gradient-to-br from-red-300/80 via-white to-red-300/80 px-12 py-16">
           {/* Content */}
           <div className="relative z-10 text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full mb-6 shadow-sm">
-              <div className="w-6 h-6 bg-gray-700 rounded flex items-center justify-center">
-                <Zap className="fill-white p-1" />
+            <div className="inline-flex mb-5 items-center gap-3 bg-red-100 text-gray-800 px-5 py-2 rounded-full shadow-sm">
+              {/* Stars */}
+              <div className="flex items-center gap-1 ">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={18}
+                    className="fill-primary stroke-primary"
+                  />
+                ))}
               </div>
-              <span className="text-sm font-medium text-gray-700">
-                Automate with AI
-              </span>
+
+              {/* Text */}
+              <p className="text-sm font-medium">
+                Rated <span className="font-bold">5.0</span> with{" "}
+                <span className="font-bold">100+ reviews</span>
+              </p>
             </div>
 
             {/* Heading */}
-            <h2 className="text-5xl md:text-6xl font-[500] font-Grostek text-gray-900 mb-6">
-              Start for free today.
+            <h2 className="text-5xl md:text-6xl max-w-4xl mx-auto font-[500] font-Grostek text-gray-900 mb-3">
+              Trusted by 100+ growing businesses
             </h2>
 
             {/* Subheading */}
-            <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-              Build AI agents in minutes to automate workflows, save
-              <br />
-              time, and grow your business.
+            <p className="text-gray-600 text-lg mb-4 max-w-2xl mx-auto">
+              High converting websites built in 14 days.
             </p>
 
-            {/* Features */}
-
-            {/* CTA Buttons */}
             <div className="flex flex-col lg:flex-row items-center justify-center gap-4">
-              <button className="px-6 py-3 text-gray-700 font-medium hover:text-gray-900 transition-colors">
+              <button className="px-6 py-3 text-gray-100 bg-gray-800 font-medium hover:text-gray-900 rounded transition-colors">
                 Get in touch
               </button>
-              <button className="px-6 py-3 bg-[#ff4040] hover:bg-red-400 text-white font-medium rounded-lg  transition-colors flex items-center gap-2 shadow-lg shadow-blue-600/30">
-                Try for free
+              <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded  transition-colors flex items-center gap-2 shadow-lg shadow-blue-600/30">
+                Book a call
                 <ChevronRight />
               </button>
             </div>

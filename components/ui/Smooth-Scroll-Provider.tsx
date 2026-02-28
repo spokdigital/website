@@ -16,7 +16,7 @@ export default function SmoothScrollProvider({
     const smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
-      smooth: .7, // speed of smoothing
+      smooth: 0.5, // speed of smoothing
       effects: true, // enables parallax effects
       normalizeScroll: true,
     });
