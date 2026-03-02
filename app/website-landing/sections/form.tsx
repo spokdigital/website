@@ -25,13 +25,13 @@ export default function BookCallSection() {
       <div className="relative max-w-5xl mx-auto">
         {/* Label */}
         <div className="flex items-center justify-center gap-3 mb-6">
-          <div className="h-px w-12 bg-[#FF4040]/60" />
+          <div className="h-px w-12 bg-primary/60" />
           <p
             className={`font-mono text-[10px] tracking-[0.35em] uppercase text-red-500`}
           >
             Schedule a Meeting
           </p>
-          <div className="h-px w-12 bg-[#FF4040]/60" />
+          <div className="h-px w-12 bg-primary/60" />
         </div>
 
         {/* Heading */}
@@ -39,7 +39,7 @@ export default function BookCallSection() {
           className={`font-Grostek tracking-tighter text-center text-5xl lg:text-6xl font-light leading-[1.1]  text-gray-100`}
         >
           Book Your Free{" "}
-          <em className={`font-Cormorant italic text-[#FF4040]`}>
+          <em className={`font-Cormorant italic text-primary`}>
             Strategy Call
           </em>
         </h2>
@@ -71,12 +71,12 @@ export default function BookCallSection() {
         </div>
 
         {/* Calendly card */}
-        <div className="mt-12 relative">
+        <div className="mt-2 relative">
           {/* Offset shadow layer */}
 
-          <div className="relative rounded-2xl overflow-hidden border border-gray-700 bg-black/95 shadow-xl shadow-[#1a1a1a]/6">
+          <div className="relative ">
             <InlineWidget
-              url="https://calendly.com/frontendmakaidigitals/30min?background_color=0f172a&text_color=ffffff&primary_color=6366f1"
+              url="https://calendly.com/frontendmakaidigitals/30min?background_color=612828&text_color=ffffff&primary_color=ffbdbd"
               styles={{ height: "720px" }}
             />
           </div>

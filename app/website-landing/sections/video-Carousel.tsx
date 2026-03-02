@@ -76,7 +76,7 @@ function VideoCard({ slide }: { slide: (typeof slides)[number] }) {
     >
       <video
         ref={videoRef}
-        className="object-cover w-full h-full"
+        className="object-cover grayscale group-hover:grayscale-0 w-full h-full"
         muted
         loop
         playsInline
@@ -100,15 +100,6 @@ function VideoCard({ slide }: { slide: (typeof slides)[number] }) {
           </svg>
         </div>
       </div>
-
-      <div className="absolute top-0 left-0 right-0 p-6 z-10">
-        <span className="text-white/80 text-[10px] font-semibold tracking-[0.18em] uppercase mb-2 block">
-          {slide.tag}
-        </span>
-        <h2 className="text-white text-2xl font-bold leading-snug max-w-xl drop-shadow-sm">
-          {slide.title}
-        </h2>
-      </div>
     </div>
   );
 }
@@ -117,7 +108,7 @@ export default function ProductCarousel() {
   return (
     <section className="pt-12">
       <div className="w-[93%] mx-auto">
-        <h1 className="text-gray-900 text-5xl lg:text-xl capitalize !font-Cormorant md:text-6xl font-[400] mb-7 leading-tight">
+        <h1 className="text-gray-900 text-5xl lg:text-6xl capitalize !font-Cormorant md:text-6xl font-[400] mb-7 leading-tight">
           Our <span className="text-primary"> Best Creative</span>
           <br /> Backed by Results
         </h1>
