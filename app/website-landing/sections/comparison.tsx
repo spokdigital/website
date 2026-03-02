@@ -64,7 +64,7 @@ export default function ComparisonTable() {
         </div>
 
         {/* ── MOBILE LAYOUT (two stacked columns) ── */}
-        <div className="sm:hidden space-y-6">
+        <div className="md:hidden space-y-6">
           {/* Other platforms column */}
           <div className="bg-stone-50 rounded-2xl border border-stone-200 shadow-sm">
             <div className="px-5 py-4 border-b border-stone-200">
@@ -115,51 +115,71 @@ export default function ComparisonTable() {
         </div>
 
         {/* ── DESKTOP TABLE (sm and up) ── */}
-        <div className="hidden sm:block bg-stone-50 rounded-2xl border border-stone-200 shadow-sm">
-          <div className="grid grid-cols-[1fr_180px_180px] border-b border-stone-200">
-            <div className="px-8 py-5">
-              <div className="text-sm font-bold text-stone-500">Features</div>
-              <div className="text-xs text-stone-400 font-normal mt-1">
-                What to expect from your website
+        <div className="hidden md:block bg-stone-50 rounded-2xl border border-stone-200 shadow-sm">
+          <div className="bg-stone-50 rounded-2xl  border border-stone-200 shadow-sm">
+            {/* Column headers */}
+            <div className="grid grid-cols-[1fr_180px_180px] border-b border-stone-200">
+              <div className="px-8 py-5 text-xs font-semibold  tracking-widest text-stone-500">
+                <div className="text-sm font-bold text-stone-500">Features</div>
+                <div className="text-xs text-stone-400 font-[400] mt-1">
+                  What to expect from your website
+                </div>
+              </div>
+              <div className="py-5 text-center border-l border-stone-200">
+                <div className="text-sm font-bold text-stone-500">
+                  Other platforms
+                </div>
+                <div className="text-xs text-stone-400  mt-1">
+                  Traditional Website
+                </div>
+              </div>
+              <div className="py-5 relative text-center bg-red-50/70 border-l border-red-100">
+                <div
+                  className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2
+                flex flex-nowrap items-center gap-1
+                whitespace-nowrap leading-none
+                text-[9px] font-bold uppercase tracking-wider
+                bg-primary text-white px-2.5 py-1.5 rounded-full"
+                >
+                  <Sparkle className="size-4 fill-white shrink-0" />
+                  <span>Best choice</span>
+                </div>
+                <div className="text-sm font-bold text-primary">Spok</div>
+                <div className="text-xs text-stone-400 mt-0.5">
+                  Custom-built Website
+                </div>
               </div>
             </div>
-            <div className="py-5 text-center border-l border-stone-200">
-              <div className="text-sm font-bold text-stone-500">
-                Other platforms
-              </div>
-              <div className="text-xs text-stone-400 mt-1">
-                Traditional Website
-              </div>
-            </div>
-            <div className="py-5 relative text-center bg-red-50/70 border-l border-red-100">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-nowrap items-center gap-1 whitespace-nowrap leading-none text-[9px] font-bold uppercase tracking-wider bg-primary text-white px-2.5 py-1.5 rounded-full">
-                <Sparkle className="size-4 fill-white shrink-0" />
-                <span>Best choice</span>
-              </div>
-              <div className="text-sm font-bold text-primary">Spok</div>
-              <div className="text-xs text-stone-400 mt-0.5">
-                Custom-built Website
-              </div>
-            </div>
-          </div>
 
-          {features.map((f, i) => (
-            <div
-              key={i}
-              className="grid grid-cols-[1fr_180px_180px] border-b border-stone-100 last:border-none hover:bg-black/[0.015] transition-colors"
-            >
-              <div className="px-8 py-5 flex items-center gap-3">
-                <span className="w-1 h-1 rounded-full bg-stone-300 flex-shrink-0" />
-                <span className="text-sm text-stone-600">{f.label}</span>
+            {/* Feature rows */}
+            {features.map((f, i) => (
+              <div
+                key={i}
+                className="grid grid-cols-[1fr_180px_180px] border-b border-stone-100 last:border-none hover:bg-black/[0.015] transition-colors"
+              >
+                <div className="px-8 py-5 flex items-center gap-3">
+                  <span className="w-1 h-1 rounded-full bg-stone-300 flex-shrink-0" />
+                  <span
+                    className={`text-sm ${!f.others ? "text-stone-600 " : "text-stone-600"}`}
+                  >
+                    {f.label}
+                  </span>
+                </div>
+
+                {/* Others */}
+                <div className="flex items-center justify-center border-l border-stone-100">
+                  <CheckCell value={f.others} variant="others" />
+                </div>
+
+                {/* Spok */}
+                <div className="flex items-center justify-center bg-red-50/40 border-l border-red-100/80">
+                  <CheckCell value={f.spok} variant="spok" />
+                </div>
               </div>
-              <div className="flex items-center justify-center border-l border-stone-100">
-                <CheckCell value={f.others} variant="others" />
-              </div>
-              <div className="flex items-center justify-center bg-red-50/40 border-l border-red-100/80">
-                <CheckCell value={f.spok} variant="spok" />
-              </div>
-            </div>
-          ))}
+            ))}
+
+            {/* Score + CTA footer */}
+          </div>
         </div>
 
         {/* CTA */}
