@@ -8,7 +8,7 @@ export default function WhyChooseMasterclassSection() {
   const textBlock = {
     title: ["From Brand To", "Business Growth"],
     description:
-      "This isn’t just marketing. It’s a structured system built to generate consistent, measurable growth.",
+      "This isn't just marketing. It's a structured system built to generate consistent, measurable growth.",
   };
 
   const topCards = [
@@ -16,7 +16,6 @@ export default function WhyChooseMasterclassSection() {
       title: "Authority First",
       description:
         "Build Your Digital Foundation We craft your positioning, messaging, and custom website to establish authority and trust from day one.",
-      bg: "bg-primary/10",
       duration: 0.6,
       id: 0,
     },
@@ -24,7 +23,6 @@ export default function WhyChooseMasterclassSection() {
       title: "Conversion Engine ",
       description:
         "Scale With Strategy Through SEO and performance-driven marketing, we turn visibility into predictable revenue.",
-      bg: "bg-primary/10",
       duration: 0.7,
       id: 1,
     },
@@ -35,8 +33,7 @@ export default function WhyChooseMasterclassSection() {
       title: "Revenue Engine",
       description:
         "Engineer Your Lead System We design structured funnels and conversion paths that capture and qualify the right audience.",
-      image:
-        "https://images.unsplash.com/photo-1706708316348-942c80a29576?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: "/landing/img-1.webp",
       gradient: "from-black/40",
       span: "md:col-span-2",
       duration: 0.8,
@@ -56,7 +53,7 @@ export default function WhyChooseMasterclassSection() {
   ];
 
   return (
-    <section className="w-full  py-20 pt-14 px-4 flex justify-center">
+    <section className="w-full py-20 px-4 flex justify-center">
       <div className="max-w-6xl w-full">
         {/* ─── TOP GRID ─── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -67,7 +64,7 @@ export default function WhyChooseMasterclassSection() {
             transition={{ duration: 0.5 }}
             className="md:col-span-1 mb-8 lg:mb-0 flex flex-col justify-center"
           >
-            <h2 className="text-5xl  font-Cormorant text-center lg:text-start md:text-5xl lg:font-Grostek font-semibold text-[#0E2B2B] leading-tight">
+            <h2 className="text-5xl font-Cormorant text-center lg:text-start md:text-5xl lg:font-Grostek font-semibold text-[#0E2B2B] leading-tight">
               {textBlock.title.map((line, i) => (
                 <React.Fragment key={i}>
                   {line}
@@ -75,7 +72,6 @@ export default function WhyChooseMasterclassSection() {
                 </React.Fragment>
               ))}
             </h2>
-
             <p className="mt-6 text-center lg:text-start text-gray-600 text-lg max-w-sm">
               {textBlock.description}
             </p>
@@ -93,14 +89,12 @@ export default function WhyChooseMasterclassSection() {
               <span className="absolute font-Satoshi top-0 text-7xl z-10 text-slate-900/40 -translate-y-1/2 left-4 font-bold">
                 {card.id + 1}
               </span>
-              <Card
-                className={`rounded-2xl border-0 shadow-sm h-full ${card.bg}`}
-              >
+              <Card className="rounded-2xl border-0 shadow-sm h-full bg-primary">
                 <CardContent className="p-8 flex flex-col justify-between h-full">
-                  <h3 className="text-xl lg:text-2xl font-Satoshi font-semibold text-gray-800">
+                  <h3 className="text-xl lg:text-2xl font-Satoshi font-semibold text-gray-50">
                     {card.title}
                   </h3>
-                  <p className="text-gray-600 mt-8">{card.description}</p>
+                  <p className="text-gray-200 mt-8">{card.description}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -108,7 +102,7 @@ export default function WhyChooseMasterclassSection() {
         </div>
 
         {/* ─── BOTTOM GRID ─── */}
-        <div className="grid grid-cols-1  md:grid-cols-3 gap-6 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
           {bottomCards.map((card, i) => (
             <motion.div
               key={i}
@@ -126,16 +120,14 @@ export default function WhyChooseMasterclassSection() {
                   alt={card.title}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-
                 <div
                   className={`absolute inset-0 bg-gradient-to-t ${card.gradient} to-transparent`}
                 />
-
                 <div className="absolute bottom-0 left-0 p-6 text-white">
                   <h3 className="text-xl lg:text-2xl font-semibold">
                     {card.title}
                   </h3>
-                  <p className="mt-2  ">{card.description}</p>
+                  <p className="mt-2">{card.description}</p>
                 </div>
               </div>
             </motion.div>
