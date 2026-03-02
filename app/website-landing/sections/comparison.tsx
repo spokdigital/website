@@ -6,41 +6,21 @@ const features = [
     others: false,
     spok: true,
   },
-  {
-    label: "Custom-built digital infrastructure.",
-    others: false,
-    spok: true,
-  },
+  { label: "Custom-built digital infrastructure.", others: false, spok: true },
   {
     label: "Structured funnels that turn attention into leads",
     others: false,
     spok: true,
   },
-  {
-    label: "SEO embedded into the foundation.",
-    others: false,
-    spok: true,
-  },
+  { label: "SEO embedded into the foundation.", others: false, spok: true },
   {
     label: "Clear positioning with aligned brand voice.",
     others: false,
     spok: true,
   },
-  {
-    label: "Systems focused on revenue.",
-    others: false,
-    spok: true,
-  },
-  {
-    label: "Long-term growth architecture.",
-    others: false,
-    spok: true,
-  },
-  {
-    label: "Marketing that performs.",
-    others: false,
-    spok: true,
-  },
+  { label: "Systems focused on revenue.", others: false, spok: true },
+  { label: "Long-term growth architecture.", others: false, spok: true },
+  { label: "Marketing that performs.", others: false, spok: true },
 ];
 
 const CheckCell = ({
@@ -68,7 +48,7 @@ const CheckCell = ({
 
 export default function ComparisonTable() {
   return (
-    <div className=" flex items-center justify-center px-6 pt-1 pb-10">
+    <div className="flex items-center justify-center px-4 sm:px-6 pt-1 pb-10">
       <div className="w-full max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
@@ -83,13 +63,63 @@ export default function ComparisonTable() {
           </p>
         </div>
 
-        {/* Table */}
-        <div className="bg-stone-50 rounded-2xl  border border-stone-200 shadow-sm">
-          {/* Column headers */}
+        {/* ── MOBILE LAYOUT (two stacked columns) ── */}
+        <div className="sm:hidden space-y-6">
+          {/* Other platforms column */}
+          <div className="bg-stone-50 rounded-2xl border border-stone-200 shadow-sm">
+            <div className="px-5 py-4 border-b border-stone-200">
+              <div className="text-sm font-bold text-stone-500">
+                Other platforms
+              </div>
+              <div className="text-xs text-stone-400 mt-0.5">
+                Traditional Website
+              </div>
+            </div>
+            {features.map((f, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 px-5 py-4 border-b border-stone-100 last:border-none"
+              >
+                <CheckCell value={f.others} variant="others" />
+                <span className="text-sm text-stone-600 leading-snug">
+                  {f.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Spok column */}
+          <div className="bg-red-50/50 rounded-2xl border border-red-100 shadow-sm">
+            <div className="px-5 py-4 border-b border-red-100 relative">
+              <div className="absolute top-0 right-4 -translate-y-1/2 flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider bg-primary text-white px-2.5 py-1.5 rounded-full whitespace-nowrap">
+                <Sparkle className="size-3.5 fill-white shrink-0" />
+                <span>Best choice</span>
+              </div>
+              <div className="text-sm font-bold text-primary">Spok</div>
+              <div className="text-xs text-stone-400 mt-0.5">
+                Custom-built Website
+              </div>
+            </div>
+            {features.map((f, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 px-5 py-4 border-b border-red-100/60 last:border-none"
+              >
+                <CheckCell value={f.spok} variant="spok" />
+                <span className="text-sm text-stone-600 leading-snug">
+                  {f.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── DESKTOP TABLE (sm and up) ── */}
+        <div className="hidden sm:block bg-stone-50 rounded-2xl border border-stone-200 shadow-sm">
           <div className="grid grid-cols-[1fr_180px_180px] border-b border-stone-200">
-            <div className="px-8 py-5 text-xs font-semibold  tracking-widest text-stone-500">
+            <div className="px-8 py-5">
               <div className="text-sm font-bold text-stone-500">Features</div>
-              <div className="text-xs text-stone-400 font-[400] mt-1">
+              <div className="text-xs text-stone-400 font-normal mt-1">
                 What to expect from your website
               </div>
             </div>
@@ -97,18 +127,12 @@ export default function ComparisonTable() {
               <div className="text-sm font-bold text-stone-500">
                 Other platforms
               </div>
-              <div className="text-xs text-stone-400  mt-1">
+              <div className="text-xs text-stone-400 mt-1">
                 Traditional Website
               </div>
             </div>
             <div className="py-5 relative text-center bg-red-50/70 border-l border-red-100">
-              <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2
-                flex flex-nowrap items-center gap-1
-                whitespace-nowrap leading-none
-                text-[9px] font-bold uppercase tracking-wider
-                bg-primary text-white px-2.5 py-1.5 rounded-full"
-              >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-nowrap items-center gap-1 whitespace-nowrap leading-none text-[9px] font-bold uppercase tracking-wider bg-primary text-white px-2.5 py-1.5 rounded-full">
                 <Sparkle className="size-4 fill-white shrink-0" />
                 <span>Best choice</span>
               </div>
@@ -119,7 +143,6 @@ export default function ComparisonTable() {
             </div>
           </div>
 
-          {/* Feature rows */}
           {features.map((f, i) => (
             <div
               key={i}
@@ -127,29 +150,21 @@ export default function ComparisonTable() {
             >
               <div className="px-8 py-5 flex items-center gap-3">
                 <span className="w-1 h-1 rounded-full bg-stone-300 flex-shrink-0" />
-                <span
-                  className={`text-sm ${!f.others ? "text-stone-600 " : "text-stone-600"}`}
-                >
-                  {f.label}
-                </span>
+                <span className="text-sm text-stone-600">{f.label}</span>
               </div>
-
-              {/* Others */}
               <div className="flex items-center justify-center border-l border-stone-100">
                 <CheckCell value={f.others} variant="others" />
               </div>
-
-              {/* Spok */}
               <div className="flex items-center justify-center bg-red-50/40 border-l border-red-100/80">
                 <CheckCell value={f.spok} variant="spok" />
               </div>
             </div>
           ))}
-
-          {/* Score + CTA footer */}
         </div>
-        <div className="flex justify-center items-center  mt-7 mb-4">
-          <button className="bg-primary hover:bg-primary/90 active:translate-y-px text-white font-bold px-5 py-2.5 rounded transition-all">
+
+        {/* CTA */}
+        <div className="flex justify-center items-center mt-7 mb-4">
+          <button className="bg-primary hover:bg-primary/90 active:translate-y-px text-white font-bold px-5 py-2.5 rounded transition-all w-full sm:w-auto">
             Book a call now
           </button>
         </div>

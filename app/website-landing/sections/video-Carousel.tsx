@@ -117,7 +117,7 @@ export default function ProductCarousel() {
   return (
     <section className="pt-12">
       <div className="w-[93%] mx-auto">
-        <h1 className="text-gray-900 capitalize !font-Cormorant md:text-6xl font-[400] mb-7 leading-tight">
+        <h1 className="text-gray-900 text-5xl lg:text-xl capitalize !font-Cormorant md:text-6xl font-[400] mb-7 leading-tight">
           Our <span className="text-primary"> Best Creative</span>
           <br /> Backed by Results
         </h1>
@@ -128,7 +128,7 @@ export default function ProductCarousel() {
               {slides.map((slide, i) => (
                 <CarouselItem
                   key={i}
-                  className={`pl-4 min-w-0 ${slide.wide ? "basis-[45%]" : "basis-[26%]"}`}
+                  className={`pl-4 min-w-0 ${slide.wide ? "basis-[45%]" : "basis-[86%] lg:basis-[26%]"}`}
                 >
                   <VideoCard slide={slide} />
                 </CarouselItem>

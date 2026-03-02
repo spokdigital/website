@@ -8,7 +8,7 @@ import gsap from "gsap";
 const slides = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=1200&auto=format&fit=crop",
+    src: "/landing/ads/ads-1.png",
     label: "A SUMMIT",
     sub: "FOR A NEW META",
     tag: "Curator Summit",
@@ -16,7 +16,7 @@ const slides = [
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
+    src: "/landing/ads/ads-2.png",
     label: "CURATOR",
     sub: "SUMMIT",
     tag: "ETH CC · Cannes · March 31",
@@ -24,7 +24,7 @@ const slides = [
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1200&auto=format&fit=crop",
+    src: "/landing/ads/ads-3.png",
     label: "YOU CREATE",
     sub: "A RIPPLE",
     tag: "Make an impact",
@@ -32,19 +32,11 @@ const slides = [
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop",
+    src: "/landing/ads/ads-4.png",
     label: "NEXT",
     sub: "GENERATION",
     tag: "Web3 infrastructure",
     accent: "#9b89dc",
-  },
-  {
-    id: 5,
-    src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop",
-    label: "BUILD",
-    sub: "THE FUTURE",
-    tag: "Innovation · Design",
-    accent: "#6ecf8e",
   },
 ];
 
@@ -52,7 +44,7 @@ const allSlides = [...slides, ...slides, ...slides];
 
 const CARD_WIDTH =
   typeof window !== "undefined" && window.innerWidth < 768
-    ? Math.round(window.innerWidth * 0.78)
+    ? Math.round(window.innerWidth * 1.4)
     : 420;
 const CARD_GAP = 20;
 const CARD_TOTAL = CARD_WIDTH + CARD_GAP;
@@ -260,12 +252,9 @@ const Graphics = () => {
       {/* Header */}
       <div className="flex items-end justify-between px-6 mb-8">
         <div>
-          <p className="text-[10px] tracking-[0.3em] font-Grostek uppercase text-neutral-400 mb-2">
-            Selected Works
-          </p>
-          <h2 className="text-4xl  md:text-6xl font-[500] font-Cormorant leading-none tracking-tight text-neutral-900">
-            Featured{" "}
-            <span className="text-neutral-300 font-Grostek">Projects</span>
+          <h2 className="text-5xl  md:text-6xl font-[500] font-Cormorant leading-none tracking-tight text-neutral-900">
+            <span className="text-primary">Real</span> Numbers <br />
+            <span className="text-primary">Real</span> Returns
           </h2>
         </div>
         <div className="hidden md:flex flex-col items-end gap-1">
@@ -314,25 +303,8 @@ const Graphics = () => {
                 style={{ opacity: 0.72 }}
                 draggable={false}
               />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.04) 55%)",
-                }}
-              />
+
               <div className="absolute top-5 left-5 right-5 flex items-start justify-between">
-                <div
-                  className="px-3 py-1 rounded-sm border border-white/20 backdrop-blur-md"
-                  style={{ background: "rgba(255,255,255,0.08)" }}
-                >
-                  <span
-                    className="text-white/90 uppercase tracking-[0.18em]"
-                    style={{ fontFamily: "monospace", fontSize: 9 }}
-                  >
-                    {slide.tag}
-                  </span>
-                </div>
                 <span
                   className="text-white/30 tabular-nums"
                   style={{ fontFamily: "monospace", fontSize: 11 }}
@@ -340,35 +312,6 @@ const Graphics = () => {
                   {String((idx % slides.length) + 1).padStart(2, "0")}/
                   {String(slides.length).padStart(2, "0")}
                 </span>
-              </div>
-              <div className="absolute bottom-7 left-6 right-6">
-                <div
-                  className="mb-4 h-0.5 w-8 rounded-full"
-                  style={{ background: slide.accent }}
-                />
-                <p
-                  className="text-white leading-none"
-                  style={{
-                    fontFamily: "'Syne', sans-serif",
-                    fontSize: "clamp(1.8rem, 3.5vw, 2.55rem)",
-                    fontWeight: 800,
-                    letterSpacing: "-0.02em",
-                    lineHeight: 0.93,
-                  }}
-                >
-                  {slide.label}
-                  <br />
-                  <span style={{ color: slide.accent }}>{slide.sub}</span>
-                </p>
-                <div className="flex items-center gap-2 mt-4">
-                  <div className="h-px flex-1 bg-white/10" />
-                  <span
-                    className="text-white/30 uppercase tracking-widest"
-                    style={{ fontFamily: "monospace", fontSize: 9 }}
-                  >
-                    View →
-                  </span>
-                </div>
               </div>
             </div>
           ))}

@@ -16,7 +16,7 @@ export default function WhyChooseMasterclassSection() {
       title: "Authority First",
       description:
         "Build Your Digital Foundation We craft your positioning, messaging, and custom website to establish authority and trust from day one.",
-      bg: "bg-[#E6E2DA]",
+      bg: "bg-primary/10",
       duration: 0.6,
       id: 0,
     },
@@ -24,7 +24,7 @@ export default function WhyChooseMasterclassSection() {
       title: "Conversion Engine ",
       description:
         "Scale With Strategy Through SEO and performance-driven marketing, we turn visibility into predictable revenue.",
-      bg: "bg-[#EFEFEF]",
+      bg: "bg-primary/10",
       duration: 0.7,
       id: 1,
     },
@@ -36,7 +36,7 @@ export default function WhyChooseMasterclassSection() {
       description:
         "Engineer Your Lead System We design structured funnels and conversion paths that capture and qualify the right audience.",
       image:
-        "https://images.pexels.com/photos/17486101/pexels-photo-17486101.png",
+        "https://images.unsplash.com/photo-1706708316348-942c80a29576?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       gradient: "from-black/40",
       span: "md:col-span-2",
       duration: 0.8,
@@ -47,7 +47,7 @@ export default function WhyChooseMasterclassSection() {
       description:
         "Once live, the system continuously attracts, nurtures, and converts high-intent prospects — reducing manual marketing.",
       image:
-        "https://images.pexels.com/photos/17483874/pexels-photo-17483874.png",
+        "https://images.unsplash.com/photo-1771732267119-3eb910f8be9c?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       gradient: "from-black/50",
       span: "",
       duration: 0.9,
@@ -67,7 +67,7 @@ export default function WhyChooseMasterclassSection() {
             transition={{ duration: 0.5 }}
             className="md:col-span-1 mb-8 lg:mb-0 flex flex-col justify-center"
           >
-            <h2 className="text-4xl  font-Cormorant text-center lg:text-start md:text-5xl lg:font-Grostek font-semibold text-[#0E2B2B] leading-tight">
+            <h2 className="text-5xl  font-Cormorant text-center lg:text-start md:text-5xl lg:font-Grostek font-semibold text-[#0E2B2B] leading-tight">
               {textBlock.title.map((line, i) => (
                 <React.Fragment key={i}>
                   {line}

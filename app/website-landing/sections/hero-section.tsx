@@ -51,7 +51,7 @@ const HeroSection = () => {
                 Book a call
               </button>
             </div>
-            <div className="flex flex-nowrap xl:flex-wrap items-center text-gray-700">
+            <div className="flex gap-8 lg:gap-0 flex-wrap items-center text-gray-700">
               {/* Dubai */}
               <div className="flex items-center gap-2 pr-4 border-r border-gray-300">
                 <div className="relative w-8 h-5">

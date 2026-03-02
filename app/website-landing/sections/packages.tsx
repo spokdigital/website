@@ -63,7 +63,7 @@ export default function PricingSection() {
         }
       `}</style>
 
-      <div className="max-w-[860px] mx-auto">
+      <div className="container lg:max-w-[860px] mx-auto">
         {/* Label */}
         <div className="flex justify-center items-center gap-2 mb-3">
           <span className="w-10 h-px bg-gray-300" />
@@ -75,14 +75,12 @@ export default function PricingSection() {
 
         {/* Heading */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-6xl font-Cormorant font-[400] text-gray-900 leading-tight mb-3 flex flex-wrap items-center justify-center gap-2 font-cormorant">
+          <h1 className="text-5xl lg:text-6xl font-Cormorant font-[400] text-gray-900 leading-tight mb-3 flex flex-wrap items-center justify-center gap-2 font-cormorant">
             Flexible <span className=" text-primary italic">Pricing</span> For
-            Every Writer
+            Every Need
           </h1>
           <p className="text-sm text-gray-500 max-w-[520px] mx-auto leading-relaxed font-mono">
-            Choose the perfect plan that suits your writing needs, whether
-            you're a solo blogger, content team, or a growing business. Get
-            started with AI-powered content generation today!
+
           </p>
         </div>
 
