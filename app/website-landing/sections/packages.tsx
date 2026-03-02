@@ -79,9 +79,7 @@ export default function PricingSection() {
             Flexible <span className=" text-primary italic">Pricing</span> For
             Every Need
           </h1>
-          <p className="text-sm text-gray-500 max-w-[520px] mx-auto leading-relaxed font-mono">
-
-          </p>
+          <p className="text-sm text-gray-500 max-w-[520px] mx-auto leading-relaxed font-mono"></p>
         </div>
 
         {/* Cards */}
@@ -149,7 +147,7 @@ export default function PricingSection() {
 
                 {/* CTA */}
                 <button
-                  className={`w-full py-3.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200 cursor-pointer border-none mb-7 font-Satoshi
+                  className={`w-full py-3.5 rounded text-sm font-bold tracking-wide transition-all duration-200 cursor-pointer border-none mb-7 font-Satoshi
                     ${
                       plan.dark
                         ? "bg-primary text-white hover:bg-primary/90"

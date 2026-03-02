@@ -184,7 +184,7 @@ export default function ComparisonTable() {
 
         {/* CTA */}
         <div className="flex justify-center items-center mt-7 mb-4">
-          <button className="bg-primary hover:bg-primary/90 active:translate-y-px text-white font-bold px-5 py-2.5 rounded transition-all w-full sm:w-auto">
+          <button className="bg-primary hover:scale-[1.02] hover:bg-primary/90 active:translate-y-px text-white font-bold px-5 py-2.5 rounded transition-all w-full ">
             Book a call now
           </button>
         </div>

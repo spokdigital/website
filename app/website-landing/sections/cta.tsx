@@ -38,10 +38,10 @@ export default function CTASection() {
             </p>
 
             <div className="flex flex-col lg:flex-row items-center justify-center gap-4">
-              <button className="px-6 py-3 text-gray-100 bg-gray-800 font-medium hover:text-gray-900 rounded transition-colors">
+              <button className="px-6 py-3 text-gray-100 bg-gray-800 font-medium hover:text-gray-50 hover:scale-[1.01] rounded transition-colors">
                 Get in touch
               </button>
-              <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded  transition-colors flex items-center gap-2 shadow-lg shadow-blue-600/30">
+              <button className="px-6 py-3 bg-primary hover:scale-[1.01] hover:bg-primary/90 text-white font-medium rounded  transition-colors flex items-center gap-2 shadow-lg shadow-blue-600/30">
                 Book a call
                 <ChevronRight />
               </button>

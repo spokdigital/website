@@ -6,7 +6,7 @@ const Header = () => {
     <div className="!max-w-[94%] mx-auto py-3 flex justify-between items-center ">
       <Logo source="/spok-balck.png" className="!w-[160px]" />
       <Link href={"/contact"}>
-        <button className="px-5 font-Satoshi py-2 bg-black text-slate-50 rounded-full">
+        <button className="px-5 font-Satoshi py-2 bg-black hover:bg-primary transition-colors duration-300 text-slate-50 rounded-full">
           Let's begin
         </button>
       </Link>

@@ -36,7 +36,7 @@ export default function HackFirstFooter() {
           </div>
           <a
             href="#"
-            className="self-start md:self-end inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary hover:bg-red-600 text-white text-sm font-bold tracking-wide transition-all duration-200 hover:scale-105 active:scale-100 shrink-0"
+            className="self-start md:self-end inline-flex items-center gap-2 px-6 py-3 rounded bg-primary hover:bg-red-600 text-white text-sm font-bold tracking-wide transition-all duration-200 hover:scale-105 active:scale-100 shrink-0"
           >
             <span className="w-2 h-2 rounded-full bg-red-50/60 animate-pulse" />
             Book a free call
