@@ -4,7 +4,7 @@ import { InlineWidget } from "react-calendly";
 
 export default function BookCallSection() {
   return (
-    <section className="relative w-full py-28 px-4 overflow-hidden bg-black">
+    <section className="relative w-full pt-28 px-4 overflow-hidden bg-black">
       {/* Decorative background elements */}
       <div
         aria-hidden="true"
