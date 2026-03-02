@@ -76,7 +76,7 @@ export default function HackFirstFooter() {
             <nav className="flex flex-col gap-3">
               {navLinks.map((item) => (
                 <Link
-                  key={item.link}
+                  key={item.label}
                   href={item.link}
                   className="group flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors duration-200 w-fit"
                 >
