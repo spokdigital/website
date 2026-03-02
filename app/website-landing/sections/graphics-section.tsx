@@ -45,7 +45,7 @@ const allSlides = [...slides, ...slides, ...slides];
 const CARD_WIDTH =
   typeof window !== "undefined" && window.innerWidth < 768
     ? Math.round(window.innerWidth * 1.4)
-    : 420;
+    : 480;
 const CARD_GAP = 20;
 const CARD_TOTAL = CARD_WIDTH + CARD_GAP;
 const SINGLE_SET_WIDTH = CARD_TOTAL * slides.length;
