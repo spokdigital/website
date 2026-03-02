@@ -12,52 +12,12 @@ import {
 
 const VIDEOS = [
   {
-    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+    src: "/landing/testimonial/menlocloud.mp4",
     poster:
       "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&q=70",
-    name: "Sarah Mitchell",
-    role: "CEO, Nexora Group",
+    name: "Chirag",
+    role: "Co-Founder, MenloCloud",
     quote: "Transformed how we source globally.",
-  },
-  {
-    src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=70",
-    name: "James Okafor",
-    role: "Procurement Lead, Veritas",
-    quote: "Reliable, fast, and exceptional quality.",
-  },
-  {
-    src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=70",
-    name: "Priya Sharma",
-    role: "Director, Solis Industries",
-    quote: "The partner we always needed.",
-  },
-  {
-    src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=70",
-    name: "Luca Ferrara",
-    role: "COO, Meridian Co.",
-    quote: "Products that truly perform.",
-  },
-  {
-    src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=70",
-    name: "Amara Diallo",
-    role: "Head of Ops, Lumis",
-    quote: "Honest, transparent, excellent.",
-  },
-  {
-    src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=70",
-    name: "David Chen",
-    role: "Founder, Apex Supply",
-    quote: "Multi-category done right.",
   },
 ];
 
@@ -213,7 +173,7 @@ export default function Testimonial() {
       {/* Top accent line */}
 
       {/* Header */}
-      <div className="max-w-[1400px] mx-auto px-10 flex items-end justify-between mb-12">
+      <div className="w-[93%] mx-auto flex items-end justify-between mb-12">
         <div>
           <p className="text-[10px] tracking-[0.3em] uppercase text-red-500 mb-3">
             Client Stories
