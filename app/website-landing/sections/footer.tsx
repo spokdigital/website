@@ -40,7 +40,7 @@ export default function HackFirstFooter() {
               {["Home", "Services", "About", "Contact"].map((item) => (
                 <a
                   key={item}
-                  href="#"
+                  href="/"
                   className="text-sm text-white/70 hover:text-white transition-colors duration-200 w-fit"
                 >
                   {item}
