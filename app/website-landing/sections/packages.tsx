@@ -91,7 +91,7 @@ export default function PricingSection() {
 
         {/* Heading */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl lg:text-6xl font-Cormorant font-[400] text-gray-900 leading-tight mb-3 flex flex-wrap items-center tracking-tight justify-center gap-2 font-cormorant">
+          <h1 className="text-5xl lg:text-6xl font-Cormorant font-[400] text-gray-900  mb-3 flex flex-wrap items-center tracking-tight justify-center gap-2 font-cormorant">
             Flexible <span className=" text-primary italic">Pricing</span> For
             Every Need
           </h1>

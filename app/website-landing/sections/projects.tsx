@@ -18,8 +18,8 @@ const PROJECTS = [
     image: "/projects/dimondra.jpg",
     link: "https://dimondra.com",
     spend: "12,500",
-    multiplier: "3.8x",
-    revenue: "47,500",
+    multiplier: "8.6x",
+    revenue: "107,500",
     description:
       "Comprehensive back-office solutions spanning HR, recruitment, IT, legal, and government relations — empowering businesses to scale compliantly across global markets.",
   },
@@ -29,13 +29,12 @@ const PROJECTS = [
     category: "Real Estate",
     image: "/projects/milestonehre.jpg",
     link: "https://milestonehomesre.com/",
-    spend: "8,200",
-    multiplier: "4.1x",
-    revenue: "33,600",
+    spend: "92,000",
+    multiplier: "9.2x",
+    revenue: "76,26,000",
     description:
       "Trusted real estate agency in Dubai connecting buyers with villas, apartments, and townhouses from top developers like Emaar, DAMAC, and Nakheel.",
   },
-
   {
     index: "04",
     title: "Advanz Tech",
@@ -43,8 +42,8 @@ const PROJECTS = [
     image: "/projects/advanz-tech.jpg",
     link: "https://advanztech.co/",
     spend: "6,500",
-    multiplier: "3.6x",
-    revenue: "23,400",
+    multiplier: "8.4x",
+    revenue: "54,600",
     description:
       "Premium luxury car repair, maintenance, and advanced diagnostics in Dubai — trusted by owners of BMW, Mercedes-Benz, Porsche, Lamborghini, and Rolls-Royce.",
   },
@@ -55,8 +54,8 @@ const PROJECTS = [
     image: "/projects/bizgrowth.jpg",
     link: "https://www.bizgrowthconsultancy.com/",
     spend: "10,000",
-    multiplier: "4.3x",
-    revenue: "43,000",
+    multiplier: "9.5x",
+    revenue: "95,000",
     description:
       "End-to-end business setup partner in the UAE helping entrepreneurs navigate mainland, free zone, and offshore company formation with ease.",
   },
@@ -67,8 +66,8 @@ const PROJECTS = [
     image: "/projects/flavor-street.jpg",
     link: "https://flavorsstreet.com/",
     spend: "7,800",
-    multiplier: "3.9x",
-    revenue: "30,400",
+    multiplier: "8.9x",
+    revenue: "69,420",
     description:
       "Global street food restaurant in Midland, MI blending East and West flavors — freshly prepared, halal-friendly dishes with bold, homestyle creativity.",
   },
@@ -79,8 +78,8 @@ const PROJECTS = [
     image: "/projects/zaaviyan.jpg",
     link: "https://www.zaaviyancontracting.com/",
     spend: "13,200",
-    multiplier: "5x",
-    revenue: "66,000",
+    multiplier: "10x",
+    revenue: "132,000",
     description:
       "Leading UAE fit-out and contracting company transforming residential, commercial, and hospitality spaces into bespoke interiors — from concept to completion.",
   },
@@ -91,8 +90,8 @@ const PROJECTS = [
     image: "/projects/menlocloud.jpg",
     link: "https://menlocloud.ai/",
     spend: "9,500",
-    multiplier: "3.7x",
-    revenue: "35,150",
+    multiplier: "8.7x",
+    revenue: "82,650",
     description:
       "Staff augmentation and cloud expertise firm specializing in Azure, AWS, Power BI, Snowflake, and Looker — elevating businesses through scalable tech talent.",
   },
@@ -126,7 +125,8 @@ export function ProjectsCarousel() {
           Our Work
         </p>
         <h2 className="font-Cormorant text-5xl text-center lg:text-6xl font-light text-white/90 leading-none tracking-tight">
-          Built to Convert. Proven Across UAE
+          <span className="text-primary">Built</span> to Convert.{" "}
+          <span className="text-primary">Proven</span> Across UAE
         </h2>
       </div>
 
@@ -268,8 +268,12 @@ function ProjectCard({
                 <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">
                   Spend
                 </p>
-                <p className="font-Cormorant text-[28px] sm:text-[32px] font-light text-white leading-none">
-                  AED {spend}
+                <p className="font-Cormorant text-xl md:text-3xl flex items-center font-light text-white leading-none">
+                  <img
+                    src={"/landing/dirham.png"}
+                    className="size-8 lg:size-10 invert "
+                  />{" "}
+                  {spend}
                 </p>
               </div>
               <div className="w-px bg-white/10 self-stretch" />
@@ -277,8 +281,12 @@ function ProjectCard({
                 <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">
                   Revenue
                 </p>
-                <p className="font-Cormorant text-[28px] sm:text-[32px] font-light text-primary leading-none">
-                  AED {revenue}
+                <p className="font-Cormorant text-xl md:text-3xl flex items-center font-light text-primary leading-none">
+                  <img
+                    src={"/landing/dirham-red.png"}
+                    className="size-8 lg:size-10 "
+                  />{" "}
+                  {revenue}
                 </p>
               </div>
             </div>

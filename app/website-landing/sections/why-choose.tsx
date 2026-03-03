@@ -54,9 +54,9 @@ export default function WhyChooseMasterclassSection() {
 
   return (
     <section className="w-full py-20 px-4 flex justify-center">
-      <div className="max-w-6xl w-full">
+      <div className="max-w-7xl w-full">
         {/* ─── TOP GRID ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-6">
           {/* Left Text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -64,7 +64,7 @@ export default function WhyChooseMasterclassSection() {
             transition={{ duration: 0.5 }}
             className="md:col-span-1 mb-8 lg:mb-0 flex flex-col justify-center"
           >
-            <h2 className="text-5xl font-Cormorant text-center lg:text-start md:text-4xl lg:font-Grostek  font-semibold text-[#0E2B2B] leading-tight">
+            <h2 className="text-5xl font-Cormorant  text-center lg:text-start md:text-5xl lg:font-Grostek tracking-tighter lg:font-semibold text-[#0E2B2B] leading-tight">
               1 System. 4 Steps. <br /> Predictable Growth.
             </h2>
             <p className="mt-6 text-center lg:text-start text-gray-600 text-lg max-w-sm">
@@ -79,14 +79,18 @@ export default function WhyChooseMasterclassSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: card.duration }}
-              className="relative"
+              className="relative "
             >
+              <img
+                src={"/landing/cta.svg"}
+                className="w-full h-full rounded-2xl object-cover absolute inset-0"
+              />
               <span className="absolute font-Satoshi top-0 text-7xl z-10 text-black/55 -translate-y-1/2 left-4 font-bold">
                 {card.id + 1}
               </span>
-              <Card className="rounded-2xl border-0 shadow-sm h-full bg-gradient-to-tr from-primary/90 via-red-500 to-red-400 ">
-                <CardContent className="p-8 flex flex-col justify-between h-full">
-                  <h3 className="text-xl lg:text-2xl font-Satoshi font-semibold text-gray-50">
+              <Card className="rounded-2xl relative bg-transparent! border-0 shadow-sm h-full  ">
+                <CardContent className="p-8  flex flex-col justify-between h-full">
+                  <h3 className="text-2xl lg:text-2xl font-Satoshi font-semibold text-gray-50">
                     {card.title}
                   </h3>
                   <p className="text-gray-200 mt-8">{card.description}</p>
@@ -97,21 +101,25 @@ export default function WhyChooseMasterclassSection() {
         </div>
 
         {/* ─── BOTTOM GRID ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-6 mt-10">
           {bottomCards.map((card, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: card.duration }}
-              className={`${card.span} bg-black rounded-2xl relative`}
+              className={`${card.span}  relative`}
             >
-              <span className="absolute font-Satoshi text-primary top-0 text-7xl z-10 -translate-y-1/2 left-4 font-bold">
+              <img
+                src={"/landing/cta.svg"}
+                className="w-full h-full rounded-2xl  object-cover absolute inset-0"
+              />
+              <span className="absolute font-Satoshi text-black/55 top-0 text-7xl z-10 -translate-y-1/2 left-4 font-bold">
                 {card.id + 1}
               </span>
-              <div className="relative rounded-2xl overflow-hidden h-[280px]">
-                <div className="absolute bottom-0 left-0 p-6 text-white">
-                  <h3 className="text-xl lg:text-2xl font-semibold">
+              <div className="relative rounded-2xl   min-h-[280px]">
+                <div className="lg:absolute bottom-0 left-0 p-6 text-white">
+                  <h3 className="text-2xl mb-7 lg:mb-0 lg:text-2xl font-semibold">
                     {card.title}
                   </h3>
                   <p className="mt-2 ">{card.description}</p>

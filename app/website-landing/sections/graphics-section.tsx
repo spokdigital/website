@@ -46,6 +46,46 @@ const slides = [
     tag: "Web3 infrastructure",
     accent: "#9b89dc",
   },
+  {
+    id: 1,
+    src: "/landing/ads/1.png",
+    label: "A SUMMIT",
+    sub: "FOR A NEW META",
+    tag: "Curator Summit",
+    accent: "#a8d8ea",
+  },
+  {
+    id: 2,
+    src: "/landing/ads/2.png",
+    label: "CURATOR",
+    sub: "SUMMIT",
+    tag: "ETH CC · Cannes · March 31",
+    accent: "#c8a97e",
+  },
+  {
+    id: 3,
+    src: "/landing/ads/3.png",
+    label: "YOU CREATE",
+    sub: "A RIPPLE",
+    tag: "Make an impact",
+    accent: "#e8734a",
+  },
+  {
+    id: 4,
+    src: "/landing/ads/4.png",
+    label: "NEXT",
+    sub: "GENERATION",
+    tag: "Web3 infrastructure",
+    accent: "#9b89dc",
+  },
+  {
+    id: 5,
+    src: "/landing/ads/5.png",
+    label: "NEXT",
+    sub: "GENERATION",
+    tag: "Web3 infrastructure",
+    accent: "#9b89dc",
+  },
 ];
 
 const allSlides = [...slides, ...slides, ...slides];
