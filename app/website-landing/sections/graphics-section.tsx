@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import gsap from "gsap";
 
@@ -53,7 +53,9 @@ const AUTO_SPEED = 0.9;
 
 const Graphics = () => {
   const trackRef = useRef<HTMLDivElement>(null);
+  const sliderWrapRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
+  const cursorVisible = useRef(false);
 
   const isDragging = useRef(false);
   const isDecelerating = useRef(false);
@@ -63,13 +65,39 @@ const Graphics = () => {
   const velocity = useRef(0);
   const lastMouseX = useRef(0);
 
-  // Track mounted state for portal
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => setMounted(true), []);
 
+  const hideCursorFn = useCallback(() => {
+    if (!cursorVisible.current) return;
+    cursorVisible.current = false;
+    isDragging.current = false;
+    isDecelerating.current = false;
+    document.body.style.cursor = "";
+    if (cursorRef.current) {
+      gsap.killTweensOf(cursorRef.current);
+      gsap.to(cursorRef.current, { scale: 0, opacity: 0, duration: 0.2 });
+    }
+  }, []);
+
+  const showCursorFn = useCallback(() => {
+    if (cursorVisible.current) return;
+    cursorVisible.current = true;
+    if (cursorRef.current) {
+      gsap.killTweensOf(cursorRef.current);
+      gsap.to(cursorRef.current, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.4,
+        ease: "back.out(2)",
+      });
+    }
+  }, []);
+
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    const sliderWrap = sliderWrapRef.current;
+    if (!track || !sliderWrap) return;
 
     gsap.set(track, { x: currentX.current });
 
@@ -115,17 +143,23 @@ const Graphics = () => {
     };
 
     const onMouseMove = (e: MouseEvent) => {
-      // ── KEY FIX ──────────────────────────────────────────────────────────────
-      // Use e.clientX / e.clientY — these are always relative to the VIEWPORT,
-      // unaffected by ScrollSmoother's translateY on the page wrapper.
-      // The cursor lives in a portal directly on <body>, outside the smoothed
-      // container, so viewport coordinates are exactly what we need.
-      // ─────────────────────────────────────────────────────────────────────────
       if (cursorRef.current) {
-        gsap.set(cursorRef.current, {
-          x: e.clientX,
-          y: e.clientY,
-        });
+        gsap.set(cursorRef.current, { x: e.clientX, y: e.clientY });
+      }
+
+      // ── BOUNDS CHECK: hide cursor if pointer drifted outside the slider ──
+      // This catches the fast-scroll case where mouseleave never fires.
+      if (cursorVisible.current && !isDragging.current) {
+        const rect = sliderWrap.getBoundingClientRect();
+        const outside =
+          e.clientX < rect.left ||
+          e.clientX > rect.right ||
+          e.clientY < rect.top ||
+          e.clientY > rect.bottom;
+        if (outside) {
+          hideCursorFn();
+          return;
+        }
       }
 
       if (!isDragging.current) return;
@@ -136,17 +170,22 @@ const Graphics = () => {
       currentX.current += delta;
     };
 
-    const onMouseUp = () => {
+    const onMouseUp = (e: MouseEvent) => {
       if (!isDragging.current) return;
       isDragging.current = false;
       document.body.style.cursor = "";
       targetX.current += velocity.current * 6;
       isDecelerating.current = true;
 
-      // Hide cursor if mouse is outside the slider track
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, { scale: 0, opacity: 0, duration: 0.25 });
-      }
+      // Only hide cursor if the mouse was released outside the slider bounds.
+      // If still inside, keep it visible so the user can keep dragging.
+      const rect = sliderWrap.getBoundingClientRect();
+      const outside =
+        e.clientX < rect.left ||
+        e.clientX > rect.right ||
+        e.clientY < rect.top ||
+        e.clientY > rect.bottom;
+      if (outside) hideCursorFn();
     };
 
     const onTouchStart = (e: TouchEvent) => {
@@ -171,9 +210,26 @@ const Graphics = () => {
       isDecelerating.current = true;
     };
 
+    // ── KEY FIX: hide cursor on any scroll (fast or slow) ──────────────────
+    // When the user scrolls rapidly, the mouse never "moves" over the element,
+    // so mouseleave / mousemove don't fire. Listening on scroll (capture phase,
+    // so it catches scrolls inside nested scrollable elements too) and on the
+    // window blur event covers all remaining edge-cases.
+    const onScroll = () => hideCursorFn();
+    const onBlur = () => hideCursorFn();
+    const onVisibilityChange = () => {
+      if (document.hidden) hideCursorFn();
+    };
+
     track.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("scroll", onScroll, {
+      capture: true,
+      passive: true,
+    });
+    window.addEventListener("blur", onBlur);
+    document.addEventListener("visibilitychange", onVisibilityChange);
     track.addEventListener("touchstart", onTouchStart, { passive: true });
     track.addEventListener("touchmove", onTouchMove, { passive: true });
     track.addEventListener("touchend", onTouchEnd);
@@ -196,29 +252,16 @@ const Graphics = () => {
       track.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("scroll", onScroll, {
+        capture: true,
+      } as EventListenerOptions);
+      window.removeEventListener("blur", onBlur);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       track.removeEventListener("touchstart", onTouchStart);
       track.removeEventListener("touchmove", onTouchMove);
       track.removeEventListener("touchend", onTouchEnd);
     };
-  }, []);
-
-  const showCursor = () => {
-    if (cursorRef.current)
-      gsap.to(cursorRef.current, {
-        scale: 1,
-        opacity: 1,
-        duration: 0.4,
-        ease: "back.out(2)",
-      });
-  };
-
-  const hideCursor = () => {
-    isDragging.current = false;
-    isDecelerating.current = false;
-    document.body.style.cursor = "";
-    if (cursorRef.current)
-      gsap.to(cursorRef.current, { scale: 0, opacity: 0, duration: 0.25 });
-  };
+  }, [hideCursorFn]);
 
   const cursorEl = (
     <div
@@ -246,38 +289,22 @@ const Graphics = () => {
 
   return (
     <div className="relative mt-5 lg:mt-10 mb-10 w-full overflow-hidden select-none">
-      {/* Portal cursor — lives on <body>, zero scroll-smoother influence */}
       {mounted && createPortal(cursorEl, document.body)}
 
       {/* Header */}
-      <div className="flex items-end justify-between px-6 mb-8">
-        <div>
-          <h2 className="text-5xl  md:text-6xl font-[500] font-Cormorant leading-none tracking-tight text-neutral-900">
-            <span className="text-primary">Real</span> Numbers <br />
-            <span className="text-primary">Real</span> Returns
-          </h2>
-        </div>
-        <div className="hidden md:flex flex-col items-end gap-1">
-          <span
-            className="text-[10px] tracking-[0.25em] uppercase text-neutral-400"
-            style={{ fontFamily: "monospace" }}
-          >
-            {slides.length} projects · ∞ loop
-          </span>
-          <div className="w-14 h-px bg-neutral-200 relative overflow-hidden">
-            <div
-              className="absolute inset-0 bg-neutral-800"
-              style={{ animation: "shimmer 1.6s ease-in-out infinite" }}
-            />
-          </div>
-        </div>
+      <div className="mb-8">
+        <h2 className="text-5xl md:text-6xl font-bold font-Cormorant text-center leading-none tracking-tight text-neutral-900">
+          <span className="text-primary">Real</span> Numbers,{" "}
+          <span className="text-primary">Real</span> Returns
+        </h2>
       </div>
 
-      {/* Slider */}
+      {/* Slider — ref attached here for bounds detection */}
       <div
+        ref={sliderWrapRef}
         className="w-full overflow-hidden cursor-grab active:cursor-grabbing"
-        onMouseEnter={showCursor}
-        onMouseLeave={hideCursor}
+        onMouseEnter={showCursorFn}
+        onMouseLeave={hideCursorFn}
       >
         <div
           ref={trackRef}

@@ -1,10 +1,22 @@
-import { ChevronRight, Zap, Star } from "lucide-react";
+"use client";
+import { ChevronRight, Star } from "lucide-react";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import gsap from "gsap";
+import Link from "next/link";
+gsap.registerPlugin(ScrollToPlugin);
 export default function CTASection() {
+  const scrollToBooking = () => {
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: "#booking",
+      ease: "power3.out",
+    });
+  };
   return (
     <div className="w-full pt-8 pb-20 ">
       <div className="max-w-6xl container mx-auto">
         {/* CTA Card with Gradient Background */}
-        <div className="relative overflow-hidden border border-red-100 rounded-3xl bg-gradient-to-br from-red-300/80 via-white to-red-300/80 px-12 py-16">
+        <div className="relative overflow-hidden border border-red-100 rounded-3xl bg-gradient-to-br from-primary/70 via-white to-primary/70 px-12 py-16">
           {/* Content */}
           <div className="relative z-10 text-center">
             {/* Badge */}
@@ -38,10 +50,15 @@ export default function CTASection() {
             </p>
 
             <div className="flex flex-col lg:flex-row items-center justify-center gap-4">
-              <button className="px-6 py-3 text-gray-100 bg-gray-800 font-medium hover:text-gray-50 hover:scale-[1.01] rounded transition-colors">
-                Get in touch
-              </button>
-              <button className="px-6 py-3 bg-primary hover:scale-[1.01] hover:bg-primary/90 text-white font-medium rounded  transition-colors flex items-center gap-2 shadow-lg shadow-blue-600/30">
+              <Link href={"/contact"}>
+                <button className="px-6 py-3 text-gray-100 bg-gray-800 font-medium hover:text-gray-50 hover:scale-[1.01] rounded transition-colors">
+                  Get in touch
+                </button>
+              </Link>
+              <button
+                onClick={scrollToBooking}
+                className="px-6 py-3 bg-primary hover:scale-[1.01] hover:bg-primary/90 text-white font-medium rounded  transition-colors flex items-center gap-2 shadow-lg shadow-blue-600/30"
+              >
                 Book a call
                 <ChevronRight />
               </button>

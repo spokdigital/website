@@ -1,7 +1,9 @@
 "use client";
 
 import { Check, Zap, Users } from "lucide-react";
-
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import gsap from "gsap";
+gsap.registerPlugin(ScrollToPlugin);
 const plans = [
   {
     name: "Lite",
@@ -14,29 +16,40 @@ const plans = [
     dark: false,
     icon: <Zap size={18} />,
     features: [
-      "Custom 5-page conversion-focused website",
-      "Basic on-page SEO setup",
-      " Lead capture form integration",
-      " Brand management refinement",
-      " Speed & mobile optimization",
+      "Custom 8-page conversion-focused website",
+      "Basic on-page SEO (up to 10 keywords)",
+      " 1 lead capture form integration",
+      "  Speed & mobile optimization",
+      " Brand positioning refinement",
+      "Basic analytics setup",
+      "1 primary CTA strategy",
+      "1 revision round per page",
+      "7-day post-launch support",
     ],
   },
   {
     name: "Core",
     badge: "Pro",
     badgeDark: false,
-    desc: "A complete growth system combining website performance with structured lead generation.",
+    desc: "A complete growth system seamlessly combining website performance with structured lead generation strategies.",
     price: "8,000",
     unit: "month",
     cta: "Book a call",
     dark: true,
     icon: <Users size={18} />,
     features: [
-      " Everything in Lite",
-      "Advanced SEO foundation",
-      "Strategic lead funnel setup",
-      "Conversion tracking integration",
+      "Everything in Lite",
+      "12–15 page high-conversion website",
+      "Advanced SEO (20+ keywords + structure)",
+      "3-step strategic funnel architecture",
+      "Up to 3 lead capture forms",
+      "Conversion tracking (Meta + Google)",
+      "Email automation (1 basic sequence)",
+      "A/B testing on 2 key pages",
+      "Messaging refinement for sales alignment",
+      "2 revision rounds per page",
       "30-day post-launch optimization support",
+      "1 performance strategy review call",
     ],
   },
 ];
@@ -49,6 +62,13 @@ const cornerPositions = [
 ];
 
 export default function PricingSection() {
+  const scrollToBooking = () => {
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: "#booking",
+      ease: "power3.out",
+    });
+  };
   return (
     <section className="min-h-screen pt-20 pb-20 font-cormorant">
       <style>{`
@@ -63,7 +83,7 @@ export default function PricingSection() {
         }
       `}</style>
 
-      <div className="container lg:max-w-[860px] mx-auto">
+      <div className="container lg:max-w-5xl mx-auto">
         {/* Label */}
         <div className="flex justify-center items-center gap-2 mb-3">
           <span className="w-10 h-px bg-gray-300" />
@@ -147,6 +167,7 @@ export default function PricingSection() {
 
                 {/* CTA */}
                 <button
+                  onClick={scrollToBooking}
                   className={`w-full py-3.5 rounded text-sm font-bold tracking-wide transition-all duration-200 cursor-pointer border-none mb-7 font-Satoshi
                     ${
                       plan.dark

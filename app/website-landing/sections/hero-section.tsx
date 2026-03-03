@@ -1,8 +1,11 @@
 "use client";
 import Image from "next/image";
-import { ArrowUpRight, Play, Pause, Maximize } from "lucide-react";
+import { ArrowUpRight, Play, Pause, Maximize, DollarSign } from "lucide-react";
 import React, { useRef, useState } from "react";
-import { Briefcase, Globe, BotOff } from "lucide-react";
+import { Briefcase, Globe } from "lucide-react";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import gsap from "gsap";
+gsap.registerPlugin(ScrollToPlugin);
 const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -26,6 +29,20 @@ const HeroSection = () => {
       videoRef.current.requestFullscreen();
     }
   };
+  const scrollToBooking = () => {
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: "#booking",
+      ease: "power3.out",
+    });
+  };
+  const scrollToPricing = () => {
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: "#pricing",
+      ease: "power3.out",
+    });
+  };
 
   return (
     <div className="!max-w-[94%] mx-auto pb-16 pt-12 lg:pt-24">
@@ -42,11 +59,17 @@ const HeroSection = () => {
 
           <div className=" flex  flex-col-reverse items-start 2xl:flex-row 2xl:items-center mt-6 gap-6 2xl:gap-10">
             <div className="flex items-center gap-4">
-              <button className="text-white flex items-center gap-2 rounded bg-primary px-7 py-[.6rem]">
+              <button
+                onClick={scrollToPricing}
+                className="text-white flex items-center gap-2 rounded bg-primary px-7 py-[.6rem]"
+              >
                 <ArrowUpRight />
                 View Pricing
               </button>
-              <button className="text-white flex items-center gap-2 rounded bg-black px-7 py-[.6rem]">
+              <button
+                onClick={scrollToBooking}
+                className="text-white flex items-center gap-2 rounded bg-black px-7 py-[.6rem]"
+              >
                 <ArrowUpRight />
                 Book a call
               </button>
@@ -74,13 +97,13 @@ const HeroSection = () => {
               {/* Websites */}
               <div className="flex items-center gap-2 px-4 border-r border-gray-300">
                 <Globe size={18} className="text-gray-600" />
-                <span>200+ Websites</span>
+                <span>50+ Websites</span>
               </div>
 
               {/* No AI */}
               <div className="flex items-center gap-2 pl-4">
-                <BotOff size={18} className="text-gray-600" />
-                <span>No AI</span>
+                <DollarSign size={18} className="text-gray-600" />
+                <span>10M+ Revenue</span>
               </div>
             </div>
           </div>

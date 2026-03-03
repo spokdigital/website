@@ -1,13 +1,11 @@
 "use client";
-
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useRef, useState, useCallback, useEffect } from "react";
 import type { CarouselApi } from "@/components/ui/carousel";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 const VIDEOS = [
@@ -61,10 +59,8 @@ function VideoCard({
     >
       <video
         ref={videoRef}
-        muted
         playsInline
         preload="metadata"
-        poster={poster}
         className={`w-full h-full object-cover block transition-[transform,filter] duration-500 ease-in-out ${
           playing
             ? "scale-[1.04] brightness-[0.55]"
@@ -121,31 +117,25 @@ function VideoCard({
 
 export default function Testimonial() {
   const [api, setApi] = useState<CarouselApi>();
-  const [progress, setProgress] = useState(0);
-  const total = VIDEOS.length;
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
 
-  // Wire up progress tracking once api is ready
   useEffect(() => {
     if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
 
-    const update = () => {
-      const current = api.selectedScrollSnap();
-      const snaps = api.scrollSnapList().length;
-      setProgress(snaps <= 1 ? 1 : current / (snaps - 1));
-    };
-
-    api.on("select", update);
-    api.on("reInit", update);
-    update(); // set initial value
-
-    return () => {
-      api.off("select", update);
-      api.off("reInit", update);
-    };
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
   }, [api]);
 
+  const scrollPrev = useCallback(() => api?.scrollPrev(), [api]);
+  const scrollNext = useCallback(() => api?.scrollNext(), [api]);
+
+  const progressPercent = count > 1 ? (current / (count - 1)) * 100 : 0;
   return (
-    <section className="relative bg-[#0a0a0a] pt-24 pb-20 overflow-hidden">
+    <section className="relative bg-[#0a0a0a] pt-1 pb-20 overflow-hidden">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,600;0,700;1,400;1,600&display=swap');
         .testimonial-nav {
@@ -173,17 +163,13 @@ export default function Testimonial() {
       {/* Top accent line */}
 
       {/* Header */}
-      <div className="w-[93%] mx-auto flex items-end justify-between mb-12">
+      <div className="w-[93%] mx-auto mb-12">
         <div>
-          <p className="text-[10px] tracking-[0.3em] uppercase text-red-500 mb-3">
+          <p className="text-[10px] text-center tracking-[0.3em] uppercase text-red-500 mb-3">
             Client Stories
           </p>
-          <h2 className="text-6xl font-light text-[#FEFCF8] leading-[0.95] tracking-tighter">
-            What They
-            <br />
-            <em className="font-[Cormorant,Georgia,serif] italic text-primary">
-              Say About Us
-            </em>
+          <h2 className="text-6xl font-Cormorant text-center font-light text-[#FEFCF8] leading-[0.95] tracking-tighter">
+            What They <em className=" italic text-primary">Say About Us</em>
           </h2>
         </div>
       </div>
@@ -204,25 +190,49 @@ export default function Testimonial() {
             </CarouselItem>
           ))}
         </CarouselContent>
-
-        {/* Progress + Nav row */}
-        <div className="max-w-[1400px] mx-auto mt-8 px-10 flex items-center gap-4">
-          {/* Live progress bar */}
-          <div className="flex-1 h-px bg-white/[0.08] rounded-sm overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-primary to-red-400 rounded-sm transition-[width] duration-300 ease-in-out"
-              style={{ width: `${progress * 100}%` }}
-            />
-          </div>
-          <span className="text-[10px] text-white/25 tracking-[0.1em] whitespace-nowrap font-mono">
-            {total} stories
-          </span>
-          <div className="flex gap-2.5">
-            <CarouselPrevious className="testimonial-nav" />
-            <CarouselNext className="testimonial-nav" />
-          </div>
-        </div>
       </Carousel>
+
+      <div className="px-6 sm:px-10 mt-8 flex items-center gap-6">
+        {/* Prev / Next buttons */}
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={scrollPrev}
+            disabled={current === 0}
+            aria-label="Previous project"
+            className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center
+              text-white/40 bg-primary/60 transition-all duration-200
+              hover:border-white/30 hover:text-white/80
+              disabled:bg-white/10 disabled:cursor-not-allowed"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <button
+            onClick={scrollNext}
+            disabled={current === count - 1}
+            aria-label="Next project"
+            className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center
+              text-white/70 transition-all duration-200
+              hover:border-white/30 bg-primary/60 hover:text-white/80
+              disabled:bg-white/10 disabled:cursor-not-allowed"
+          >
+            <ChevronRight size={16} />
+          </button>
+        </div>
+
+        {/* Progress bar */}
+        <div className="flex-1 h-px bg-white/[0.08] relative overflow-hidden rounded-full">
+          <div
+            className="absolute left-0 top-0 h-full bg-primary rounded-full transition-all duration-300 ease-out"
+            style={{ width: `${progressPercent}%` }}
+          />
+        </div>
+
+        {/* Counter */}
+        <span className="font-mono text-[11px] tracking-[0.15em] text-white/25 shrink-0 tabular-nums">
+          {String(current + 1).padStart(2, "0")} /{" "}
+          {String(count).padStart(2, "0")}
+        </span>
+      </div>
     </section>
   );
 }

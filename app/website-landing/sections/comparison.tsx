@@ -1,26 +1,19 @@
+"use client";
 import { Check, Sparkle, X } from "lucide-react";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import gsap from "gsap";
+gsap.registerPlugin(ScrollToPlugin);
 
 const features = [
-  {
-    label: "Strategy-led builds with measurable purpose",
-    others: false,
-    spok: true,
-  },
-  { label: "Custom-built digital infrastructure.", others: false, spok: true },
-  {
-    label: "Structured funnels that turn attention into leads",
-    others: false,
-    spok: true,
-  },
-  { label: "SEO embedded into the foundation.", others: false, spok: true },
-  {
-    label: "Clear positioning with aligned brand voice.",
-    others: false,
-    spok: true,
-  },
-  { label: "Systems focused on revenue.", others: false, spok: true },
-  { label: "Long-term growth architecture.", others: false, spok: true },
-  { label: "Marketing that performs.", others: false, spok: true },
+  { label: "Custom-built website", others: false, spok: true },
+  { label: "Revenue funnel architecture", others: false, spok: true },
+  { label: "Foundation SEO strategy", others: false, spok: true },
+  { label: "Performance video ads", others: false, spok: true },
+  { label: "Lead generation campaigns", others: false, spok: true },
+  { label: "Meta + Google conversion tracking", others: true, spok: true },
+  { label: "Spend-to-revenue ROI reporting", others: false, spok: true },
+  { label: "Post-launch scaling & optimization", others: false, spok: true },
+  { label: "Template website", others: true, spok: false },
 ];
 
 const CheckCell = ({
@@ -47,6 +40,13 @@ const CheckCell = ({
 };
 
 export default function ComparisonTable() {
+  const scrollToBooking = () => {
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: "#booking",
+      ease: "power3.out",
+    });
+  };
   return (
     <div className="flex items-center justify-center px-4 sm:px-6 pt-1 pb-10">
       <div className="w-full max-w-4xl">
@@ -144,7 +144,10 @@ export default function ComparisonTable() {
                   <Sparkle className="size-4 fill-white shrink-0" />
                   <span>Best choice</span>
                 </div>
-                <div className="text-sm font-bold text-primary">Spok</div>
+                <div className="text-sm font-bold text-primary">
+                  {" "}
+                  Spok Digital
+                </div>
                 <div className="text-xs text-stone-400 mt-0.5">
                   Custom-built Website
                 </div>
@@ -184,7 +187,10 @@ export default function ComparisonTable() {
 
         {/* CTA */}
         <div className="flex justify-center items-center mt-7 mb-4">
-          <button className="bg-primary hover:scale-[1.02] hover:bg-primary/90 active:translate-y-px text-white font-bold px-5 py-2.5 rounded transition-all w-full ">
+          <button
+            onClick={scrollToBooking}
+            className="bg-primary hover:scale-[1.02] hover:bg-primary/90 active:translate-y-px text-white font-bold px-5 py-2.5 rounded transition-all w-full "
+          >
             Book a call now
           </button>
         </div>

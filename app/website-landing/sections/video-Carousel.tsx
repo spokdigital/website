@@ -77,8 +77,6 @@ function VideoCard({ slide }: { slide: (typeof slides)[number] }) {
       <video
         ref={videoRef}
         className="object-cover grayscale group-hover:grayscale-0 w-full h-full"
-        muted
-        loop
         playsInline
         preload="metadata"
       >
@@ -106,11 +104,11 @@ function VideoCard({ slide }: { slide: (typeof slides)[number] }) {
 
 export default function ProductCarousel() {
   return (
-    <section className="pt-12">
+    <section className="pt-7">
       <div className="w-[93%] mx-auto">
-        <h1 className="text-gray-900 text-5xl lg:text-6xl capitalize !font-Cormorant md:text-6xl font-[400] mb-7 leading-tight">
-          Our <span className="text-primary"> Best Creative</span>
-          <br /> Backed by Results
+        <h1 className="text-gray-900 text-5xl font-bold lg:text-6xl text-center capitalize !font-Cormorant md:text-6xl mb-10 leading-tight">
+          Our <span className="text-primary"> Best Creative</span> Backed by
+          Results
         </h1>
 
         <div>

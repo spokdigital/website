@@ -13,16 +13,16 @@ export default function WhyChooseMasterclassSection() {
 
   const topCards = [
     {
-      title: "Authority First",
+      title: "Authority Platform",
       description:
-        "Build Your Digital Foundation We craft your positioning, messaging, and custom website to establish authority and trust from day one.",
+        "We create custom high-converting websites that establish your brand authority, sharpen your positioning, and turn visitors into qualified leads from day one.",
       duration: 0.6,
       id: 0,
     },
     {
-      title: "Conversion Engine ",
+      title: "Performance Creative",
       description:
-        "Scale With Strategy Through SEO and performance-driven marketing, we turn visibility into predictable revenue.",
+        "We produce strategic performance videos and ad creatives designed to stop attention instantly, communicate value clearly and persuasively, and drive measurable action at scale.",
       duration: 0.7,
       id: 1,
     },
@@ -30,9 +30,9 @@ export default function WhyChooseMasterclassSection() {
 
   const bottomCards = [
     {
-      title: "Revenue Engine",
+      title: "Performance Marketing",
       description:
-        "Engineer Your Lead System We design structured funnels and conversion paths that capture and qualify the right audience.",
+        "Through SEO and data-driven paid advertising, we turn visibility into consistent traffic, qualified leads, and predictable revenue growth.",
       image: "/landing/img-1.webp",
       gradient: "from-black/40",
       span: "md:col-span-2",
@@ -40,9 +40,9 @@ export default function WhyChooseMasterclassSection() {
       id: 2,
     },
     {
-      title: "Demand On Autopilot",
+      title: "Revenue Optimization",
       description:
-        "Once live, the system continuously attracts, nurtures, and converts high-intent prospects — reducing manual marketing.",
+        "We refine funnels, optimize conversion paths, and improve customer journeys to increase ROI and maximize long-term revenue performance",
       image:
         "https://images.unsplash.com/photo-1771732267119-3eb910f8be9c?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       gradient: "from-black/50",

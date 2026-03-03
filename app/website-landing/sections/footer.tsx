@@ -1,6 +1,10 @@
+"use client";
 import Logo from "@/app/(main)/App chunks/components/Logo";
 import React from "react";
 import Link from "next/link";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import gsap from "gsap";
+gsap.registerPlugin(ScrollToPlugin);
 const navLinks = [
   { label: "Home", link: "/" },
   { label: "Services", link: "/" },
@@ -8,12 +12,22 @@ const navLinks = [
   { label: "Contact", link: "/contact" },
 ];
 const socials = [
-  { label: "Facebook", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "X", href: "#" },
+  { label: "Facebook", href: "https://www.facebook.com/spokdigital/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/digitalspok" },
+  {
+    label: "Insta",
+    href: "https://www.instagram.com/spokdigital?igsh=MWIybzN1ejZocGcxdg==",
+  },
 ];
 
 export default function HackFirstFooter() {
+  const scrollToBooking = () => {
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: "#booking",
+      ease: "power3.out",
+    });
+  };
   return (
     <footer className="relative w-full bg-[#0a0a0a] text-white overflow-hidden">
       {/* Ambient glow */}
@@ -34,13 +48,13 @@ export default function HackFirstFooter() {
               <span className="text-white/20">that performs.</span>
             </h2>
           </div>
-          <a
-            href="#"
+          <button
+            onClick={scrollToBooking}
             className="self-start md:self-end inline-flex items-center gap-2 px-6 py-3 rounded bg-primary hover:bg-red-600 text-white text-sm font-bold tracking-wide transition-all duration-200 hover:scale-105 active:scale-100 shrink-0"
           >
             <span className="w-2 h-2 rounded-full bg-red-50/60 animate-pulse" />
             Book a free call
-          </a>
+          </button>
         </div>
 
         {/* Main grid */}
