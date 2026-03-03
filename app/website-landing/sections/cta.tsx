@@ -14,7 +14,7 @@ export default function CTASection() {
   };
   return (
     <div className="w-full pt-8 pb-20 ">
-      <div className="max-w-6xl container mx-auto">
+      <div className="w-[93%] lg:max-w-6xl  mx-auto">
         {/* CTA Card with Gradient Background */}
         <div className="relative overflow-hidden border border-red-100 rounded-3xl  px-12 py-16">
           {/* Content */}

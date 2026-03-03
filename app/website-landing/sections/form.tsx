@@ -79,7 +79,7 @@ export default function BookCallSection() {
 
           <div className="relative ">
             <InlineWidget
-              url="https://calendly.com/frontendmakaidigitals/30min?background_color=612828&text_color=ffffff&primary_color=ffbdbd"
+              url="https://calendly.com/info-spokdigital/30min?background_color=612828&text_color=ffffff&primary_color=ffbdbd"
               styles={{ height: "720px" }}
             />
           </div>

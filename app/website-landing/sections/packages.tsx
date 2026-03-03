@@ -79,7 +79,7 @@ export default function PricingSection() {
         }
       `}</style>
 
-      <div className="container lg:max-w-5xl mx-auto">
+      <div className="w-[93%] lg:max-w-5xl mx-auto">
         {/* Label */}
         <div className="flex justify-center items-center gap-2 mb-3">
           <span className="w-10 h-px bg-gray-300" />
@@ -91,7 +91,7 @@ export default function PricingSection() {
 
         {/* Heading */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl lg:text-6xl font-Cormorant font-[400] text-gray-900 leading-tight mb-3 flex flex-wrap items-center justify-center gap-2 font-cormorant">
+          <h1 className="text-5xl lg:text-6xl font-Cormorant font-[400] text-gray-900 leading-tight mb-3 flex flex-wrap items-center tracking-tight justify-center gap-2 font-cormorant">
             Flexible <span className=" text-primary italic">Pricing</span> For
             Every Need
           </h1>
