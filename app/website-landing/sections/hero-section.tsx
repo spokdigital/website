@@ -48,9 +48,8 @@ const HeroSection = () => {
     <div className="!max-w-[94%] mx-auto pb-16 pt-12 lg:pt-24">
       <div className="relative flex flex-col gap-4 lg:flex-row justify-between items-end">
         <div>
-          <h1 className="max-w-4xl text-4xl lg:text-6xl mb-2 font-Grostek font-[500]">
-            Custom Websites and Conversion-Focused Lead Funnels Built to
-            Generate Real Revenue
+          <h1 className="max-w-4xl text-4xl lg:text-7xl mb-2 font-Grostek font-[500]">
+            More Leads. More Sales. More Revenue. That's What We Build
           </h1>
           <p className="text-lg text-gray-700">
             For growing startups and established brands ready to scale their
@@ -110,43 +109,6 @@ const HeroSection = () => {
         </div>
 
         {/* VIDEO */}
-        <div className="w-full mt-10 lg:mt-0 lg:max-w-sm relative group">
-          <div className="absolute w-full h-full inset-0  bg-gradient-to-r from-amber-400 via-pink-500 to-blue-500 blur-xl opacity-60  animate-pulse" />
-          <div className="overflow-hidden relative rounded-2xl">
-            <video
-              ref={videoRef}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source
-                src="https://www.pexels.com/download/video/18702571/"
-                type="video/mp4"
-              />
-            </video>
-
-            {/* CONTROLS */}
-            <div className="absolute inset-0 flex items-end justify-between p-3 opacity-0 group-hover:opacity-100 transition">
-              {/* Play / Pause */}
-              <button
-                onClick={togglePlay}
-                className="bg-black/60 text-white p-2 rounded-full"
-              >
-                {isPlaying ? <Pause size={18} /> : <Play size={18} />}
-              </button>
-
-              {/* Fullscreen */}
-              <button
-                onClick={handleFullscreen}
-                className="bg-black/60 text-white p-2 rounded-full"
-              >
-                <Maximize size={18} />
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

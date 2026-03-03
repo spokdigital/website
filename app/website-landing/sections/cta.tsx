@@ -37,9 +37,9 @@ export default function CTASection() {
               </div>
 
               {/* Text */}
-              <p className="text-sm font-medium">
-                Rated <span className="font-bold">5.0</span> with{" "}
-                <span className="font-bold">100+ reviews</span>
+              <p className="text-sm flex items-center gap-[3px] font-medium">
+                Highly Rated on{" "}
+                <img src={"/landing/clutch-logo.png"} className="w-12" />
               </p>
             </div>
 
@@ -50,7 +50,7 @@ export default function CTASection() {
 
             {/* Subheading */}
             <p className="text-gray-200 text-lg mb-4 max-w-2xl mx-auto">
-              High converting websites built in 14 days.
+              From your website to your first sale — we handle it all.
             </p>
 
             <div className="flex flex-col lg:flex-row items-center justify-center gap-4">

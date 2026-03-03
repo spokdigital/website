@@ -6,23 +6,23 @@ import { motion } from "motion/react";
 
 export default function WhyChooseMasterclassSection() {
   const textBlock = {
-    title: ["From Brand To", "Business Growth"],
+    title: ["1 System. 4 Steps.", "Predictable Growth."],
     description:
-      "This isn't just marketing. It's a structured system built to generate consistent, measurable growth.",
+      "Most agencies do one piece. We build the full stack — from your first impression to your final sale.",
   };
 
   const topCards = [
     {
-      title: "Authority Platform",
+      title: "Your Conversion-Ready Website",
       description:
-        "We create custom high-converting websites that establish your brand authority, sharpen your positioning, and turn visitors into qualified leads from day one.",
+        "We custom-build websites and landing pages that establish instant credibility, sharpen your positioning, and turn visitors into leads — before you spend a single dirham on ads.",
       duration: 0.6,
       id: 0,
     },
     {
-      title: "Performance Creative",
+      title: " Creatives Built to Convert",
       description:
-        "We produce strategic performance videos and ad creatives designed to stop attention instantly, communicate value clearly and persuasively, and drive measurable action at scale.",
+        "We produce scroll-stopping videos and ad creatives engineered around your buyer's psychology — designed to grab attention in 2 seconds, communicate your value clearly, and drive measurable action.",
       duration: 0.7,
       id: 1,
     },
@@ -30,9 +30,9 @@ export default function WhyChooseMasterclassSection() {
 
   const bottomCards = [
     {
-      title: "Performance Marketing",
+      title: "Ads. Funnels. Revenue.",
       description:
-        "Through SEO and data-driven paid advertising, we turn visibility into consistent traffic, qualified leads, and predictable revenue growth.",
+        "We build and manage data-driven ad campaigns across Meta, Google, and TikTok — backed by a complete sales funnel strategy that captures attention, nurtures interest, and converts strangers into paying customers. Every campaign is tracked, tested, and optimized in real time — so your ad spend works harder, your cost per acquisition drops, and your revenue grows predictably and at scale.",
       image: "/landing/img-1.webp",
       gradient: "from-black/40",
       span: "md:col-span-2",
@@ -40,9 +40,9 @@ export default function WhyChooseMasterclassSection() {
       id: 2,
     },
     {
-      title: "Revenue Optimization",
+      title: "Scale What's Working",
       description:
-        "We refine funnels, optimize conversion paths, and improve customer journeys to increase ROI and maximize long-term revenue performance",
+        "We dig into your funnel data, cut what's losing, and double down on what's winning — reducing your cost per acquisition while compounding your revenue month over month.",
       image:
         "https://images.unsplash.com/photo-1771732267119-3eb910f8be9c?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       gradient: "from-black/50",
@@ -64,13 +64,8 @@ export default function WhyChooseMasterclassSection() {
             transition={{ duration: 0.5 }}
             className="md:col-span-1 mb-8 lg:mb-0 flex flex-col justify-center"
           >
-            <h2 className="text-5xl font-Cormorant text-center lg:text-start md:text-5xl lg:font-Grostek font-semibold text-[#0E2B2B] leading-tight">
-              {textBlock.title.map((line, i) => (
-                <React.Fragment key={i}>
-                  {line}
-                  <br />
-                </React.Fragment>
-              ))}
+            <h2 className="text-5xl font-Cormorant text-center lg:text-start md:text-4xl lg:font-Grostek  font-semibold text-[#0E2B2B] leading-tight">
+              1 System. 4 Steps. <br /> Predictable Growth.
             </h2>
             <p className="mt-6 text-center lg:text-start text-gray-600 text-lg max-w-sm">
               {textBlock.description}
@@ -86,10 +81,10 @@ export default function WhyChooseMasterclassSection() {
               transition={{ duration: card.duration }}
               className="relative"
             >
-              <span className="absolute font-Satoshi top-0 text-7xl z-10 text-slate-900/40 -translate-y-1/2 left-4 font-bold">
+              <span className="absolute font-Satoshi top-0 text-7xl z-10 text-black/55 -translate-y-1/2 left-4 font-bold">
                 {card.id + 1}
               </span>
-              <Card className="rounded-2xl border-0 shadow-sm h-full bg-primary">
+              <Card className="rounded-2xl border-0 shadow-sm h-full bg-gradient-to-tr from-primary/90 via-red-500 to-red-400 ">
                 <CardContent className="p-8 flex flex-col justify-between h-full">
                   <h3 className="text-xl lg:text-2xl font-Satoshi font-semibold text-gray-50">
                     {card.title}
@@ -109,25 +104,17 @@ export default function WhyChooseMasterclassSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: card.duration }}
-              className={`${card.span} relative`}
+              className={`${card.span} bg-black rounded-2xl relative`}
             >
-              <span className="absolute font-Satoshi text-slate-900/40 top-0 text-7xl z-10 -translate-y-1/2 left-4 font-bold">
+              <span className="absolute font-Satoshi text-primary top-0 text-7xl z-10 -translate-y-1/2 left-4 font-bold">
                 {card.id + 1}
               </span>
               <div className="relative rounded-2xl overflow-hidden h-[280px]">
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t ${card.gradient} to-transparent`}
-                />
                 <div className="absolute bottom-0 left-0 p-6 text-white">
                   <h3 className="text-xl lg:text-2xl font-semibold">
                     {card.title}
                   </h3>
-                  <p className="mt-2">{card.description}</p>
+                  <p className="mt-2 ">{card.description}</p>
                 </div>
               </div>
             </motion.div>

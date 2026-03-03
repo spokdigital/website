@@ -33,20 +33,15 @@ const page = () => {
       {/* 6. Why us — core differentiators after they're warmed up */}
       <WhyChooseMasterclassSection />
 
-      {/* 7. Comparison — us vs. alternatives, seal the value argument */}
-      <ComparisonSection />
-
       {/* 8. Portfolio — show the work, prove the claims */}
       <ProjectsHorizontalScroll />
 
       {/* 9. Testimonials — peer validation before asking for money */}
-      <Testimonial />
 
       {/* 10. Pricing — present offer once trust is fully built */}
       <PricingSection />
 
       {/* 11. CTA banner — urgency nudge before the form */}
-      <CTASection />
 
       {/* 12. Booking form — final conversion action */}
       <BookCallSection />

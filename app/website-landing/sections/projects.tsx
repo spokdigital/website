@@ -17,9 +17,9 @@ const PROJECTS = [
     category: "Business Process Outsourcing",
     image: "/projects/dimondra.jpg",
     link: "https://dimondra.com",
-    spend: "$12,500",
+    spend: "12,500",
     multiplier: "3.8x",
-    revenue: "$47,500",
+    revenue: "47,500",
     description:
       "Comprehensive back-office solutions spanning HR, recruitment, IT, legal, and government relations — empowering businesses to scale compliantly across global markets.",
   },
@@ -29,33 +29,22 @@ const PROJECTS = [
     category: "Real Estate",
     image: "/projects/milestonehre.jpg",
     link: "https://milestonehomesre.com/",
-    spend: "$8,200",
+    spend: "8,200",
     multiplier: "4.1x",
-    revenue: "$33,600",
+    revenue: "33,600",
     description:
       "Trusted real estate agency in Dubai connecting buyers with villas, apartments, and townhouses from top developers like Emaar, DAMAC, and Nakheel.",
   },
-  {
-    index: "03",
-    title: "Insight Vision",
-    category: "Digital Marketing",
-    image: "/projects/insight-vision.jpg",
-    link: "https://insightvision.marketing/",
-    spend: "$15,000",
-    multiplier: "5.2x",
-    revenue: "$78,000",
-    description:
-      "Result-driven marketing agency in Dubai delivering smart strategies across web development, app development, and performance campaigns that elevate brand visibility and growth.",
-  },
+
   {
     index: "04",
     title: "Advanz Tech",
     category: "Luxury Auto Care",
     image: "/projects/advanz-tech.jpg",
     link: "https://advanztech.co/",
-    spend: "$6,500",
+    spend: "6,500",
     multiplier: "3.6x",
-    revenue: "$23,400",
+    revenue: "23,400",
     description:
       "Premium luxury car repair, maintenance, and advanced diagnostics in Dubai — trusted by owners of BMW, Mercedes-Benz, Porsche, Lamborghini, and Rolls-Royce.",
   },
@@ -65,9 +54,9 @@ const PROJECTS = [
     category: "Business Setup",
     image: "/projects/bizgrowth.jpg",
     link: "https://www.bizgrowthconsultancy.com/",
-    spend: "$10,000",
+    spend: "10,000",
     multiplier: "4.3x",
-    revenue: "$43,000",
+    revenue: "43,000",
     description:
       "End-to-end business setup partner in the UAE helping entrepreneurs navigate mainland, free zone, and offshore company formation with ease.",
   },
@@ -77,9 +66,9 @@ const PROJECTS = [
     category: "Food & Hospitality",
     image: "/projects/flavor-street.jpg",
     link: "https://flavorsstreet.com/",
-    spend: "$7,800",
+    spend: "7,800",
     multiplier: "3.9x",
-    revenue: "$30,400",
+    revenue: "30,400",
     description:
       "Global street food restaurant in Midland, MI blending East and West flavors — freshly prepared, halal-friendly dishes with bold, homestyle creativity.",
   },
@@ -89,9 +78,9 @@ const PROJECTS = [
     category: "Fit-Out & Interiors",
     image: "/projects/zaaviyan.jpg",
     link: "https://www.zaaviyancontracting.com/",
-    spend: "$13,200",
+    spend: "13,200",
     multiplier: "5x",
-    revenue: "$66,000",
+    revenue: "66,000",
     description:
       "Leading UAE fit-out and contracting company transforming residential, commercial, and hospitality spaces into bespoke interiors — from concept to completion.",
   },
@@ -101,9 +90,9 @@ const PROJECTS = [
     category: "Tech & Cloud",
     image: "/projects/menlocloud.jpg",
     link: "https://menlocloud.ai/",
-    spend: "$9,500",
+    spend: "9,500",
     multiplier: "3.7x",
-    revenue: "$35,150",
+    revenue: "35,150",
     description:
       "Staff augmentation and cloud expertise firm specializing in Azure, AWS, Power BI, Snowflake, and Looker — elevating businesses through scalable tech talent.",
   },
@@ -137,7 +126,7 @@ export function ProjectsCarousel() {
           Our Work
         </p>
         <h2 className="font-Cormorant text-5xl text-center lg:text-6xl font-light text-white/90 leading-none tracking-tight">
-          Selected <em className="italic text-primary">Projects</em>
+          Built to Convert. Proven Across UAE
         </h2>
       </div>
 
@@ -280,7 +269,7 @@ function ProjectCard({
                   Spend
                 </p>
                 <p className="font-Cormorant text-[28px] sm:text-[32px] font-light text-white leading-none">
-                  {spend}
+                  AED {spend}
                 </p>
               </div>
               <div className="w-px bg-white/10 self-stretch" />
@@ -289,7 +278,7 @@ function ProjectCard({
                   Revenue
                 </p>
                 <p className="font-Cormorant text-[28px] sm:text-[32px] font-light text-primary leading-none">
-                  {revenue}
+                  AED {revenue}
                 </p>
               </div>
             </div>

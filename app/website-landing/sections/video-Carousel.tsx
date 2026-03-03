@@ -12,52 +12,49 @@ import {
 const slides = [
   {
     tag: "Product",
-    title: "Explore the all-new Apple Store experience.",
-    image: "/landing/videos/Ai-Property-SHow.mp4",
-    wide: false,
-  },
-  {
-    tag: "Product",
-    title: "Launching the new Apple Vision Pro.",
-    image: "/landing/videos/Qumber-Ad.mp4",
-    wide: false,
-  },
-
-  {
-    tag: "Product",
-    title: "Introducing the new MacBook Pro M3.",
-    image: "/landing/videos/Galena-Amaal-Russian-Draft.mp4",
-    wide: false,
-  },
-  {
-    tag: "Product",
-    title: "Introducing the new MacBook Pro M3.",
-    image: "/landing/videos/Business-in-Dubai.mp4",
-    wide: false,
-  },
-  {
-    tag: "Product",
-    title: "Introducing the new MacBook Pro M3.",
-    image: "/landing/videos/Azizi-Milan-Arabic.mp4",
-    wide: false,
-  },
-  {
-    tag: "Product",
-    title: "Introducing the new MacBook Pro M3.",
-    image: "/landing/videos/Binghatti-Flare-Walkthrough.mp4",
-    wide: false,
-  },
-  {
-    tag: "Product",
-    title: "Introducing the new MacBook Pro M3.",
     image: "/landing/videos/advanz.mp4",
     wide: false,
+    poster: "advanz.png",
   },
   {
     tag: "Product",
-    title: "Introducing the new MacBook Pro M3.",
+
+    image: "/landing/videos/Business-in-Dubai.mp4",
+    wide: false,
+    poster: "Business-in-Dubai.png",
+  },
+  {
+    tag: "Product",
+
     image: "/landing/videos/nabila.mp4",
     wide: false,
+    poster: "nabila.png",
+  },
+  {
+    tag: "Product",
+
+    image: "/landing/videos/itqara.mp4",
+    wide: false,
+    poster: "itqara.png",
+  },
+  {
+    tag: "Product",
+    image: "/landing/videos/bizgrowth.mov",
+    wide: false,
+    poster: "bizgrowth.png",
+  },
+  {
+    tag: "Product",
+    image: "/landing/videos/Ai-Property-SHow.mp4",
+    wide: false,
+    poster: "Ai-Property-SHow.png",
+  },
+  {
+    tag: "Product",
+
+    image: "/landing/videos/Galena-Amaal-Russian-Draft.mp4",
+    wide: false,
+    poster: "Galena-Amaal-Russian-Draft.png",
   },
 ];
 
@@ -85,6 +82,7 @@ function VideoCard({ slide }: { slide: (typeof slides)[number] }) {
         ref={videoRef}
         className="object-cover grayscale group-hover:grayscale-0 w-full h-full"
         playsInline
+        poster={`/landing/videos/thumbs/${slide.poster}`}
         preload="metadata"
       >
         <source src={slide.image} type="video/mp4" />
@@ -114,8 +112,8 @@ export default function ProductCarousel() {
     <section className="pt-7">
       <div className="w-[93%] mx-auto">
         <h1 className="text-gray-900 text-5xl lg:text-6xl text-center capitalize !font-Cormorant md:text-6xl mb-10 leading-tight">
-          Our <span className="text-primary"> Best Creative</span> Backed by
-          Results
+          Creatives That Convert
+          <span className={"text-primary"}>. Period.</span>
         </h1>
 
         <div>

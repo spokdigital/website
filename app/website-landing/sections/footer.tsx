@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import gsap from "gsap";
+import { Star } from "lucide-react";
 gsap.registerPlugin(ScrollToPlugin);
 const navLinks = [
   { label: "Home", link: "/" },
@@ -38,19 +39,39 @@ export default function HackFirstFooter() {
 
       <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-10">
         {/* CTA Banner */}
-        <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-b border-white/[0.07] pb-16">
+        <div className="mb-16 flex flex-col md:flex-row items-center md:justify-between gap-6 border-b border-white/[0.07] pb-16">
           <div>
             <p className="text-xs uppercase tracking-[0.25em] text-red-500 font-semibold mb-3">
               Ready to grow?
             </p>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight leading-none text-white">
               Let's build something <br />
-              <span className="text-white/20">that performs.</span>
+              <span className="text-primary/70">that performs.</span>
             </h2>
+            <Link href={"https://clutch.co/profile/spokdigital"}>
+              <div className="inline-flex mt-5 items-center gap-3 bg-red-100 text-gray-800 px-5 py-2 rounded-full shadow-sm">
+                {/* Stars */}
+                <div className="flex items-center gap-1 ">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={18}
+                      className="fill-primary stroke-primary"
+                    />
+                  ))}
+                </div>
+
+                {/* Text */}
+                <p className="text-sm flex items-center gap-[3px] font-medium">
+                  Highly Rated on{" "}
+                  <img src={"/landing/clutch-logo.png"} className="w-12" />
+                </p>
+              </div>
+            </Link>
           </div>
           <button
             onClick={scrollToBooking}
-            className="self-start md:self-end inline-flex items-center gap-2 px-6 py-3 rounded bg-primary hover:bg-red-600 text-white text-sm font-bold tracking-wide transition-all duration-200 hover:scale-105 active:scale-100 shrink-0"
+            className="self-start md:self-center inline-flex items-center gap-2 px-6 py-3 rounded bg-primary hover:bg-red-600 text-white text-sm font-bold tracking-wide transition-all duration-200 hover:scale-105 active:scale-100 shrink-0"
           >
             <span className="w-2 h-2 rounded-full bg-red-50/60 animate-pulse" />
             Book a free call

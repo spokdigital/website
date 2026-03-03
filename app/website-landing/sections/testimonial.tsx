@@ -11,8 +11,7 @@ import {
 const VIDEOS = [
   {
     src: "/landing/testimonial/menlocloud.mp4",
-    poster:
-      "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&q=70",
+    poster: "testimonial.png",
     name: "Chirag",
     role: "Co-Founder, MenloCloud",
     quote: "Transformed how we source globally.",
@@ -66,6 +65,7 @@ function VideoCard({
             ? "scale-[1.04] brightness-[0.55]"
             : "scale-100 brightness-[0.7] saturate-80"
         }`}
+        poster={`/landing/videos/thumbs/${poster}`}
       >
         <source src={src} type="video/mp4" />
       </video>
