@@ -301,7 +301,7 @@ const Graphics = () => {
 
       {/* Header */}
       <div className="mb-8">
-        <h2 className="text-5xl md:text-6xl font-bold font-Cormorant text-center leading-none tracking-tight text-neutral-900">
+        <h2 className="text-5xl md:text-6xl font-Cormorant text-center leading-none tracking-tight text-neutral-900">
           <span className="text-primary">Real</span> Numbers,{" "}
           <span className="text-primary">Real</span> Returns
         </h2>

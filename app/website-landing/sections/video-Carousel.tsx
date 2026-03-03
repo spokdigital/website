@@ -113,7 +113,7 @@ export default function ProductCarousel() {
   return (
     <section className="pt-7">
       <div className="w-[93%] mx-auto">
-        <h1 className="text-gray-900 text-5xl font-bold lg:text-6xl text-center capitalize !font-Cormorant md:text-6xl mb-10 leading-tight">
+        <h1 className="text-gray-900 text-5xl lg:text-6xl text-center capitalize !font-Cormorant md:text-6xl mb-10 leading-tight">
           Our <span className="text-primary"> Best Creative</span> Backed by
           Results
         </h1>
