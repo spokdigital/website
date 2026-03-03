@@ -16,8 +16,12 @@ export default function CTASection() {
     <div className="w-full pt-8 pb-20 ">
       <div className="max-w-6xl container mx-auto">
         {/* CTA Card with Gradient Background */}
-        <div className="relative overflow-hidden border border-red-100 rounded-3xl bg-gradient-to-br from-primary/70 via-white to-primary/70 px-12 py-16">
+        <div className="relative overflow-hidden border border-red-100 rounded-3xl  px-12 py-16">
           {/* Content */}
+          <img
+            src={"/landing/cta.svg"}
+            className="w-full h-full object-cover absolute inset-0"
+          />
           <div className="relative z-10 text-center">
             {/* Badge */}
             <div className="inline-flex mb-5 items-center gap-3 bg-red-100 text-gray-800 px-5 py-2 rounded-full shadow-sm">
@@ -40,12 +44,12 @@ export default function CTASection() {
             </div>
 
             {/* Heading */}
-            <h2 className="text-5xl md:text-6xl max-w-4xl mx-auto font-[500] font-Grostek text-gray-900 mb-3">
+            <h2 className="text-5xl md:text-6xl max-w-4xl mx-auto font-[500] font-Grostek text-gray-100 mb-3">
               Trusted by 100+ growing businesses
             </h2>
 
             {/* Subheading */}
-            <p className="text-gray-600 text-lg mb-4 max-w-2xl mx-auto">
+            <p className="text-gray-200 text-lg mb-4 max-w-2xl mx-auto">
               High converting websites built in 14 days.
             </p>
 
@@ -57,7 +61,7 @@ export default function CTASection() {
               </Link>
               <button
                 onClick={scrollToBooking}
-                className="px-6 py-3 bg-primary hover:scale-[1.01] hover:bg-primary/90 text-white font-medium rounded  transition-colors flex items-center gap-2 shadow-lg shadow-blue-600/30"
+                className="px-6 py-3 bg-red-50/80 hover:scale-[1.01] hover:bg-primary/90 text-gray-800 font-medium rounded  transition-colors flex items-center gap-2 "
               >
                 Book a call
                 <ChevronRight />
