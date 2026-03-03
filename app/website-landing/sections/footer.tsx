@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import gsap from "gsap";
 import { Star } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 gsap.registerPlugin(ScrollToPlugin);
 const navLinks = [
   { label: "Home", link: "/" },
@@ -13,11 +14,20 @@ const navLinks = [
   { label: "Contact", link: "/contact" },
 ];
 const socials = [
-  { label: "Facebook", href: "https://www.facebook.com/spokdigital/" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/digitalspok" },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/spokdigital/",
+    icon: <Facebook />,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/digitalspok",
+    icon: <Linkedin />,
+  },
   {
     label: "Insta",
     href: "https://www.instagram.com/spokdigital?igsh=MWIybzN1ejZocGcxdg==",
+    icon: <Instagram />,
   },
 ];
 
@@ -94,7 +104,7 @@ export default function HackFirstFooter() {
                   href={s.href}
                   className="text-xs text-white/30 hover:text-white border border-white/10 hover:border-white/30 px-3 py-1.5 rounded-full transition-all duration-200"
                 >
-                  {s.label}
+                  {s.icon}
                 </a>
               ))}
             </div>
