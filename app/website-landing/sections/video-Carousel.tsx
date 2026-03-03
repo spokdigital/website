@@ -22,12 +22,7 @@ const slides = [
     image: "/landing/videos/Qumber-Ad.mp4",
     wide: false,
   },
-  {
-    tag: "Product",
-    title: "Maps for your iPhone 15 Pro Max.",
-    image: "/landing/videos/rahil-bizgrowth-package.mp4",
-    wide: false,
-  },
+
   {
     tag: "Product",
     title: "Introducing the new MacBook Pro M3.",
@@ -50,6 +45,18 @@ const slides = [
     tag: "Product",
     title: "Introducing the new MacBook Pro M3.",
     image: "/landing/videos/Binghatti-Flare-Walkthrough.mp4",
+    wide: false,
+  },
+  {
+    tag: "Product",
+    title: "Introducing the new MacBook Pro M3.",
+    image: "/landing/videos/advanz.mp4",
+    wide: false,
+  },
+  {
+    tag: "Product",
+    title: "Introducing the new MacBook Pro M3.",
+    image: "/landing/videos/nabila.mp4",
     wide: false,
   },
 ];
@@ -125,8 +132,8 @@ export default function ProductCarousel() {
             </CarouselContent>
 
             <div className="flex justify-end gap-3 mt-8">
-              <CarouselPrevious className="static translate-y-0 w-11 h-11 rounded-full bg-white border border-gray-200 text-black shadow-md hover:bg-gray-100 hover:shadow-lg transition-all duration-200 [&_svg]:w-4 [&_svg]:h-4" />
-              <CarouselNext className="static translate-y-0 w-11 h-11 rounded-full bg-white border border-gray-200 text-black shadow-md hover:bg-gray-100 hover:shadow-lg transition-all duration-200 [&_svg]:w-4 [&_svg]:h-4" />
+              <CarouselPrevious className="static translate-y-0 w-11 h-11 rounded-full bg-primary/70 border border-gray-200 text-white hover:text-white shadow-md hover:bg-red-500 hover:shadow-lg transition-all duration-200 [&_svg]:w-4 [&_svg]:h-4" />
+              <CarouselNext className="static translate-y-0 w-11 h-11 rounded-full bg-primary/70 border border-gray-200 text-white shadow-md hover:text-white hover:bg-red-500 hover:shadow-lg transition-all duration-200 [&_svg]:w-4 [&_svg]:h-4" />
             </div>
           </Carousel>
         </div>

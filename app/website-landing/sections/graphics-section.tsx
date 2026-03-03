@@ -8,7 +8,7 @@ import gsap from "gsap";
 const slides = [
   {
     id: 1,
-    src: "/landing/ads/ads-1.png",
+    src: "/landing/ads/1.png",
     label: "A SUMMIT",
     sub: "FOR A NEW META",
     tag: "Curator Summit",
@@ -16,7 +16,7 @@ const slides = [
   },
   {
     id: 2,
-    src: "/landing/ads/ads-2.png",
+    src: "/landing/ads/2.png",
     label: "CURATOR",
     sub: "SUMMIT",
     tag: "ETH CC · Cannes · March 31",
@@ -24,7 +24,7 @@ const slides = [
   },
   {
     id: 3,
-    src: "/landing/ads/ads-3.png",
+    src: "/landing/ads/3.png",
     label: "YOU CREATE",
     sub: "A RIPPLE",
     tag: "Make an impact",
@@ -32,7 +32,15 @@ const slides = [
   },
   {
     id: 4,
-    src: "/landing/ads/ads-4.png",
+    src: "/landing/ads/4.png",
+    label: "NEXT",
+    sub: "GENERATION",
+    tag: "Web3 infrastructure",
+    accent: "#9b89dc",
+  },
+  {
+    id: 5,
+    src: "/landing/ads/5.png",
     label: "NEXT",
     sub: "GENERATION",
     tag: "Web3 infrastructure",
@@ -45,7 +53,7 @@ const allSlides = [...slides, ...slides, ...slides];
 const CARD_WIDTH =
   typeof window !== "undefined" && window.innerWidth < 768
     ? Math.round(window.innerWidth * 1.4)
-    : 480;
+    : 340;
 const CARD_GAP = 20;
 const CARD_TOTAL = CARD_WIDTH + CARD_GAP;
 const SINGLE_SET_WIDTH = CARD_TOTAL * slides.length;
@@ -320,7 +328,7 @@ const Graphics = () => {
             <div
               key={`${slide.id}-${idx}`}
               className="relative will-change-transform flex-shrink-0 overflow-hidden rounded-sm bg-neutral-900 group"
-              style={{ width: CARD_WIDTH, height: 460 }}
+              style={{ width: CARD_WIDTH, height: 500 }}
             >
               <Image
                 fill
@@ -330,16 +338,6 @@ const Graphics = () => {
                 style={{ opacity: 0.72 }}
                 draggable={false}
               />
-
-              <div className="absolute top-5 left-5 right-5 flex items-start justify-between">
-                <span
-                  className="text-white/30 tabular-nums"
-                  style={{ fontFamily: "monospace", fontSize: 11 }}
-                >
-                  {String((idx % slides.length) + 1).padStart(2, "0")}/
-                  {String(slides.length).padStart(2, "0")}
-                </span>
-              </div>
             </div>
           ))}
         </div>

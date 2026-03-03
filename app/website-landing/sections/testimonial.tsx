@@ -55,7 +55,7 @@ function VideoCard({
     <div
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      className="relative h-[370px] lg:h-[480px] rounded-2xl overflow-hidden cursor-pointer bg-[#0e0e0e]"
+      className="relative h-[420px] lg:h-[480px] rounded-2xl overflow-hidden cursor-pointer bg-[#0e0e0e]"
     >
       <video
         ref={videoRef}
@@ -135,40 +135,14 @@ export default function Testimonial() {
 
   const progressPercent = count > 1 ? (current / (count - 1)) * 100 : 0;
   return (
-    <section className="relative bg-[#0a0a0a] pt-1 pb-20 overflow-hidden">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,600;0,700;1,400;1,600&display=swap');
-        .testimonial-nav {
-          width: 48px !important;
-          height: 48px !important;
-          border-radius: 50% !important;
-          background: transparent !important;
-          border: 1px solid rgba(255,255,255,0.25) !important;
-          color: rgba(255,255,255,0.8) !important;
-          transition: border-color 0.2s, background 0.2s !important;
-          position: static !important;
-          transform: none !important;
-        }
-        .testimonial-nav:hover {
-          border-color: #fca5a5 !important;
-          background: rgba(252,165,165,0.08) !important;
-        }
-        .testimonial-nav:disabled {
-          opacity: 0.25 !important;
-          cursor: default !important;
-        }
-        .testimonial-nav svg { width: 16px; height: 16px; }
-      `}</style>
-
-      {/* Top accent line */}
-
+    <section className="relative bg-[#0a0a0a]  -mt-2 pb-20 overflow-hidden">
       {/* Header */}
       <div className="w-[93%] mx-auto mb-12">
         <div>
           <p className="text-[10px] text-center tracking-[0.3em] uppercase text-red-500 mb-3">
             Client Stories
           </p>
-          <h2 className="text-6xl font-Cormorant text-center font-light text-[#FEFCF8] leading-[0.95] tracking-tighter">
+          <h2 className="w-[80%] mx-auto lg:w-auto text-5xl lg:text-6xl font-Cormorant text-center font-light text-[#FEFCF8] leading-[0.95] tracking-tighter">
             What They <em className=" italic text-primary">Say About Us</em>
           </h2>
         </div>
@@ -180,11 +154,11 @@ export default function Testimonial() {
         opts={{ align: "start", loop: false, dragFree: true }}
         className="w-full"
       >
-        <CarouselContent className="ml-0 pl-10 gap-4">
+        <CarouselContent className="ml-0 pl-6 gap-4">
           {VIDEOS.map((v, i) => (
             <CarouselItem
               key={i}
-              className="pl-0 basis-[clamp(240px,25vw,300px)] shrink-0"
+              className="pl-0 basis-[70%] lg:basis-1/4 shrink-0"
             >
               <VideoCard {...v} index={i} />
             </CarouselItem>

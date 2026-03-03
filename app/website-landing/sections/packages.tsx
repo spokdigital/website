@@ -16,15 +16,13 @@ const plans = [
     dark: false,
     icon: <Zap size={18} />,
     features: [
-      "Custom 8-page conversion-focused website",
-      "Basic on-page SEO (up to 10 keywords)",
-      " 1 lead capture form integration",
-      "  Speed & mobile optimization",
-      " Brand positioning refinement",
-      "Basic analytics setup",
-      "1 primary CTA strategy",
-      "1 revision round per page",
-      "7-day post-launch support",
+      "8-page conversion website",
+      " Basic SEO setup",
+      " 5 performance creatives",
+      " 1 campaign angle",
+      "Lead gen campaign setup",
+      "Pixel & tracking setup",
+      "7-day post-launch optimization",
     ],
   },
   {
@@ -40,16 +38,14 @@ const plans = [
     features: [
       "Everything in Lite",
       "12–15 page high-conversion website",
-      "Advanced SEO (20+ keywords + structure)",
-      "3-step strategic funnel architecture",
-      "Up to 3 lead capture forms",
-      "Conversion tracking (Meta + Google)",
-      "Email automation (1 basic sequence)",
-      "A/B testing on 2 key pages",
-      "Messaging refinement for sales alignment",
-      "2 revision rounds per page",
-      "30-day post-launch optimization support",
-      "1 performance strategy review call",
+      " Advanced SEO",
+      " 10 performance creatives",
+      " 3 campaign angles",
+      " Multi-step funnel setup",
+      " Advanced audience targeting",
+      "Conversion tracking integration",
+      "Creative A/B testing",
+      " 30-day scaling & optimization",
     ],
   },
 ];
@@ -70,7 +66,7 @@ export default function PricingSection() {
     });
   };
   return (
-    <section className="min-h-screen pt-20 pb-20 font-cormorant">
+    <section id={"pricing"} className="min-h-screen pt-20 pb-20 font-cormorant">
       <style>{`
         .dot-grid::before {
           content: '';

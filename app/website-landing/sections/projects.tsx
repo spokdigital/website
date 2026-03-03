@@ -151,7 +151,7 @@ export function ProjectsCarousel() {
           {PROJECTS.map((project, i) => (
             <CarouselItem
               key={i}
-              className="pl-5 sm:pl-6 basis-[min(85vw,650px)]"
+              className="pl-5 sm:pl-6 basis-[min(90vw,650px)]"
             >
               <ProjectCard {...project} />
             </CarouselItem>
