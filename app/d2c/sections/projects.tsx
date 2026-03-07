@@ -13,87 +13,39 @@ import {
 const PROJECTS = [
   {
     index: "01",
-    title: "Dimondra",
-    category: "Business Process Outsourcing",
-    image: "/projects/dimondra.jpg",
-    link: "https://dimondra.com",
+    title: "Billionaire Mansions",
+    category: "Luxury Furniture & Interior Design",
+    image: "/landing/d2c/projects/1.jpg",
+    link: "https://www.billionaire-mansions.com/",
     spend: "12,500",
     multiplier: "8.6x",
     revenue: "107,500",
     description:
-      "Comprehensive back-office solutions spanning HR, recruitment, IT, legal, and government relations — empowering businesses to scale compliantly across global markets.",
+      "Dubai-based luxury interior brand specialising in bespoke marble furniture, custom bedroom suites, and full home renovations. We drove high-intent traffic to statement collections — from Armani marble dining tables to custom kitchen islands — growing their Shopify store into a destination for premium UAE homeowners.",
   },
   {
     index: "02",
-    title: "Milestone Homes RE",
-    category: "Real Estate",
-    image: "/projects/milestonehre.jpg",
-    link: "https://milestonehomesre.com/",
+    title: "Opto Watch Co.",
+    category: "Luxury Watch Accessories — E-Commerce",
+    image: "/landing/d2c/projects/2.jpg",
+    link: "https://optowatchco.com/",
     spend: "92,000",
     multiplier: "9.2x",
     revenue: "76,26,000",
     description:
-      "Trusted real estate agency in Dubai connecting buyers with villas, apartments, and townhouses from top developers like Emaar, DAMAC, and Nakheel.",
+      "Dubai-born watch strap brand built for serious collectors — offering alligator, shell cordovan, FKM rubber, and sailcloth straps with worldwide DHL shipping. We scaled their paid acquisition across Meta and Google, targeting niche watch enthusiast communities globally and turning a passion-led brand into a recognised international name.",
   },
   {
-    index: "04",
-    title: "Advanz Tech",
-    category: "Luxury Auto Care",
-    image: "/projects/advanz-tech.jpg",
-    link: "https://advanztech.co/",
-    spend: "6,500",
-    multiplier: "8.4x",
-    revenue: "54,600",
+    index: "03",
+    title: "Teeser",
+    category: "Fashion & Apparel — D2C",
+    image: "/landing/d2c/projects/3.jpg",
+    link: "https://teeser.ae/",
+    spend: "18,000",
+    multiplier: "6.4x",
+    revenue: "1,15,200",
     description:
-      "Premium luxury car repair, maintenance, and advanced diagnostics in Dubai — trusted by owners of BMW, Mercedes-Benz, Porsche, Lamborghini, and Rolls-Royce.",
-  },
-  {
-    index: "05",
-    title: "Biz Growth Consultancy",
-    category: "Business Setup",
-    image: "/projects/bizgrowth.jpg",
-    link: "https://www.bizgrowthconsultancy.com/",
-    spend: "10,000",
-    multiplier: "9.5x",
-    revenue: "95,000",
-    description:
-      "End-to-end business setup partner in the UAE helping entrepreneurs navigate mainland, free zone, and offshore company formation with ease.",
-  },
-  {
-    index: "06",
-    title: "Flavors Street",
-    category: "Food & Hospitality",
-    image: "/projects/flavor-street.jpg",
-    link: "https://flavorsstreet.com/",
-    spend: "7,800",
-    multiplier: "8.9x",
-    revenue: "69,420",
-    description:
-      "Global street food restaurant in Midland, MI blending East and West flavors — freshly prepared, halal-friendly dishes with bold, homestyle creativity.",
-  },
-  {
-    index: "07",
-    title: "Zaaviyan Contracting",
-    category: "Fit-Out & Interiors",
-    image: "/projects/zaaviyan.jpg",
-    link: "https://www.zaaviyancontracting.com/",
-    spend: "13,200",
-    multiplier: "10x",
-    revenue: "132,000",
-    description:
-      "Leading UAE fit-out and contracting company transforming residential, commercial, and hospitality spaces into bespoke interiors — from concept to completion.",
-  },
-  {
-    index: "08",
-    title: "MenloCloud",
-    category: "Tech & Cloud",
-    image: "/projects/menlocloud.jpg",
-    link: "https://menlocloud.ai/",
-    spend: "9,500",
-    multiplier: "8.7x",
-    revenue: "82,650",
-    description:
-      "Staff augmentation and cloud expertise firm specializing in Azure, AWS, Power BI, Snowflake, and Looker — elevating businesses through scalable tech talent.",
+      "UAE's go-to graphic tee brand for pop culture, nostalgia, and custom printing — serving men, women, and kids with oversized fits, official licensed merch, and made-to-order designs. We built a full-funnel paid social strategy on TikTok and Instagram that matched their bold brand voice, driving consistent orders and repeat buyers across the Emirates.",
   },
 ];
 
@@ -266,7 +218,7 @@ function ProjectCard({
             <div className="flex gap-5 sm:gap-8">
               <div>
                 <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">
-                  Spend
+                  Spent
                 </p>
                 <p className="font-Cormorant text-xl md:text-3xl flex items-center font-light text-white leading-none">
                   <img
@@ -279,7 +231,7 @@ function ProjectCard({
               <div className="w-px bg-white/10 self-stretch" />
               <div>
                 <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">
-                  Revenue
+                  ROAS
                 </p>
                 <p className="font-Cormorant text-xl md:text-3xl flex items-center font-light text-primary leading-none">
                   <img

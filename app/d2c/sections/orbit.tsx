@@ -1,119 +1,129 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 
-const OrbitingLogos = () => {
-  const orbit1 = useRef<HTMLDivElement>(null);
-  const orbit2 = useRef<HTMLDivElement>(null);
+const ICONS = [
+  {
+    src: "/landing/logos/meta.jpg",
+    alt: "Meta",
+    size: 72,
+    x: "70%",
+    y: "6%",
+    rotate: -6,
+  },
+
+  {
+    src: "/landing/logos/instagram.png",
+    alt: "Instagram",
+    size: 64,
+    x: "85%",
+    y: "76%",
+    rotate: -3,
+  },
+  {
+    src: "/landing/logos/ads.png",
+    alt: "Google Ads",
+    size: 54,
+    x: "55%",
+    y: "50%",
+    rotate: 5,
+  },
+  {
+    src: "/landing/logos/shopify.png",
+    alt: "Shopify",
+    size: 72,
+    x: "40%",
+    y: "0%",
+    rotate: -5,
+  },
+  {
+    src: "/landing/logos/tiktok.avif",
+    alt: "TikTok",
+    size: 66,
+    x: "92%",
+    y: "40%",
+    rotate: 3,
+  },
+  {
+    src: "/landing/logos/analytics.webp",
+    alt: "Analytics",
+    size: 56,
+    x: "25%",
+    y: "80%",
+    rotate: 6,
+  },
+  {
+    src: "/landing/logos/google.png",
+    alt: "Google 2",
+    size: 64,
+    x: "20%",
+    y: "25%",
+    rotate: -4,
+  },
+];
+
+export default function FloatingIcons() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const refs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    if (!orbit1.current || !orbit2.current) return;
+    const ctx = gsap.context(() => {
+      gsap.from(refs.current, {
+        opacity: 0,
+        scale: 0,
+        duration: 0.7,
+        ease: "back.out(2)",
+        stagger: 0.08,
+      });
 
-    gsap.to(orbit1.current, {
-      rotation: 360,
-      transformOrigin: "center center",
-      repeat: -1,
-      duration: 20,
-      ease: "linear",
-    });
+      refs.current.forEach((el, i) => {
+        gsap.to(el, {
+          y: "+=14",
+          duration: 2.5 + i * 0.2,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
+      });
+    }, containerRef);
 
-    gsap.to(orbit2.current, {
-      rotation: -360,
-      transformOrigin: "center center",
-      repeat: -1,
-      duration: 30,
-      ease: "linear",
-    });
-
-    // keep inner icons upright
-    gsap.to(".icon1", {
-      rotation: -360,
-      repeat: -1,
-      duration: 20,
-      ease: "linear",
-      transformOrigin: "center center",
-    });
-
-    // keep outer icons upright
-    gsap.to(".icon2", {
-      rotation: 360,
-      repeat: -1,
-      duration: 30,
-      ease: "linear",
-      transformOrigin: "center center",
-    });
+    return () => ctx.revert();
   }, []);
 
   return (
-    <div className="relative w-[420px]   h-[350px] flex items-center justify-center">
-      {/* Inner Circle */}
-      <div className="absolute w-[200px] h-[200px] border border-gray-300 rounded-full"></div>
-
-      {/* Outer Circle */}
-      <div className="absolute w-[380px] h-[380px] border border-gray-300 rounded-full"></div>
-
-      {/* Inner Orbit */}
-      <div ref={orbit1} className="absolute w-[200px] h-[200px]">
-        <div className="icon1 absolute -top-4 left-1/2 -translate-x-1/2">
-          <Image src="/landing/logos/meta.jpg" alt="" width={36} height={36} />
-        </div>
-
-        <div className="icon1 absolute bottom-0 left-0">
-          <Image src="/landing/logos/ads.png" alt="" width={36} height={36} />
-        </div>
-
-        <div className="icon1 absolute bottom-0 right-0">
+    <div
+      ref={containerRef}
+      className="relative hidden lg:block flex-1 w-full h-[300px]"
+    >
+      {ICONS.map((icon, i) => (
+        <div
+          key={icon.alt}
+          ref={(el) => {
+            if (el) refs.current[i] = el;
+          }}
+          className="absolute -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-hidden bg-white"
+          style={{
+            left: icon.x,
+            top: icon.y,
+            width: icon.size,
+            height: icon.size,
+            transform: `translate(-50%, -50%) rotate(${icon.rotate}deg)`,
+            boxShadow:
+              "0 12px 30px rgba(0,0,0,0.12), 0 3px 8px rgba(0,0,0,0.06)",
+          }}
+        >
           <Image
-            src="/landing/logos/google.png"
-            alt=""
-            width={36}
-            height={36}
+            src={icon.src}
+            alt={icon.alt}
+            width={icon.size}
+            height={icon.size}
+            className="object-contain p-2"
+            priority
           />
         </div>
-      </div>
-
-      {/* Outer Orbit */}
-      <div ref={orbit2} className="absolute w-[380px] h-[380px]">
-        <div className="icon2 absolute -top-4 left-1/2 -translate-x-1/2">
-          <Image
-            src="/landing/logos/tiktok.avif"
-            alt=""
-            width={40}
-            height={40}
-          />
-        </div>
-
-        <div className="icon2 absolute left-0 top-1/2 -translate-y-1/2">
-          <Image
-            src="/landing/logos/instagram.png"
-            alt=""
-            width={40}
-            height={40}
-          />
-        </div>
-
-        <div className="icon2 absolute right-0 top-1/2 -translate-y-1/2">
-          <Image
-            src="/landing/logos/shopify.png"
-            alt=""
-            width={40}
-            height={40}
-          />
-        </div>
-
-        <div className="icon2 absolute bottom-0 left-1/2 -translate-x-1/2">
-          <Image
-            src="/landing/logos/analytics.webp"
-            alt=""
-            width={40}
-            height={40}
-          />
-        </div>
-      </div>
+      ))}
     </div>
   );
-};
-
-export default OrbitingLogos;
+}
