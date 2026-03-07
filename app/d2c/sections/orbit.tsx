@@ -15,7 +15,7 @@ const ICONS = [
   },
 
   {
-    src: "/landing/logos/instagram.png",
+    src: "/landing/logos/Instagram.png",
     alt: "Instagram",
     size: 64,
     x: "85%",
