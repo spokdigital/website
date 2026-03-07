@@ -49,6 +49,12 @@ const slides = [
     wide: false,
     poster: "img-6.png",
   },
+  {
+    tag: "Product",
+    image: "/landing/d2c/vid/vid-7.mp4",
+    wide: false,
+    poster: "img-7.png",
+  },
 ];
 
 function VideoCard({ slide }: { slide: (typeof slides)[number] }) {
