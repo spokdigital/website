@@ -13,6 +13,13 @@ const LOGOS = [
   { src: "/landing/logos/shopify.png", alt: "Shopify" },
   { src: "/landing/logos/tiktok.avif", alt: "TikTok" },
   { src: "/landing/logos/analytics.webp", alt: "Analytics" },
+  { src: "/landing/logos/meta.jpg", alt: "Meta" },
+  { src: "/landing/logos/google.png", alt: "Google" },
+  { src: "/landing/logos/Instagram.png", alt: "Instagram" },
+  { src: "/landing/logos/ads.png", alt: "Google Ads" },
+  { src: "/landing/logos/shopify.png", alt: "Shopify" },
+  { src: "/landing/logos/tiktok.avif", alt: "TikTok" },
+  { src: "/landing/logos/analytics.webp", alt: "Analytics" },
 ];
 
 // Duplicate logos for seamless loop
