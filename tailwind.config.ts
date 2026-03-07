@@ -52,6 +52,7 @@ const config: Config = {
         marquee: "marquee var(--duration) infinite linear",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
         aurora: "aurora 60s linear infinite",
+        orbit: "orbit 20s linear infinite",
       },
       keyframes: {
         moveHorizontal: {
