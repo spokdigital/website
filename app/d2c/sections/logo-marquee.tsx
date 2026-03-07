@@ -8,14 +8,7 @@ import Image from "next/image";
 const LOGOS = [
   { src: "/landing/logos/meta.jpg", alt: "Meta" },
   { src: "/landing/logos/google.png", alt: "Google" },
-  { src: "/landing/logos/instagram.png", alt: "Instagram" },
-  { src: "/landing/logos/ads.png", alt: "Google Ads" },
-  { src: "/landing/logos/shopify.png", alt: "Shopify" },
-  { src: "/landing/logos/tiktok.avif", alt: "TikTok" },
-  { src: "/landing/logos/analytics.webp", alt: "Analytics" },
-  { src: "/landing/logos/meta.jpg", alt: "Meta" },
-  { src: "/landing/logos/google.png", alt: "Google" },
-  { src: "/landing/logos/instagram.png", alt: "Instagram" },
+  { src: "/landing/logos/Instagram.png", alt: "Instagram" },
   { src: "/landing/logos/ads.png", alt: "Google Ads" },
   { src: "/landing/logos/shopify.png", alt: "Shopify" },
   { src: "/landing/logos/tiktok.avif", alt: "TikTok" },
@@ -62,7 +55,7 @@ export default function LogoMarquee() {
 
   return (
     <div
-      className="relative w-full mt-6  overflow-hidden "
+      className="relative block lg:hidden w-full mt-6  overflow-hidden "
       // Fade edges
       style={{
         maskImage:

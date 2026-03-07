@@ -74,14 +74,12 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-       
-          <LogoMarquee />
-       
+
+        <LogoMarquee />
 
         {/* Floating icons — desktop only */}
-        <div className="hidden lg:block">
-          <FloatingIcons />
-        </div>
+
+        <FloatingIcons />
       </div>
     </div>
   );

@@ -95,7 +95,7 @@ export default function FloatingIcons() {
   return (
     <div
       ref={containerRef}
-      className="relative hidden lg:block flex-1 w-full h-[300px]"
+      className="relative hidden lg:block flex-1 min-w-md w-full h-[300px]"
     >
       {ICONS.map((icon, i) => (
         <div
