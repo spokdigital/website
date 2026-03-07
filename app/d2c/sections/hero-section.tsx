@@ -5,41 +5,13 @@ import React, { useRef, useState } from "react";
 import { Briefcase, Globe } from "lucide-react";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import gsap from "gsap";
+import OrbitingLogos from "./orbit";
 gsap.registerPlugin(ScrollToPlugin);
 const HeroSection = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const handleFullscreen = () => {
-    if (!videoRef.current) return;
-
-    if (videoRef.current.requestFullscreen) {
-      videoRef.current.requestFullscreen();
-    }
-  };
   const scrollToBooking = () => {
     gsap.to(window, {
       duration: 1.2,
       scrollTo: "#booking",
-      ease: "power3.out",
-    });
-  };
-  const scrollToPricing = () => {
-    gsap.to(window, {
-      duration: 1.2,
-      scrollTo: "#pricing",
       ease: "power3.out",
     });
   };
@@ -59,15 +31,8 @@ const HeroSection = () => {
           <div className=" flex  flex-col-reverse items-start 2xl:flex-row 2xl:items-center mt-6 gap-6 2xl:gap-10">
             <div className="flex items-center gap-4">
               <button
-                onClick={scrollToPricing}
-                className="text-white flex items-center gap-2 rounded bg-primary px-7 py-[.6rem]"
-              >
-                <ArrowUpRight />
-                View Pricing
-              </button>
-              <button
                 onClick={scrollToBooking}
-                className="text-white flex items-center gap-2 rounded bg-black px-7 py-[.6rem]"
+                className="text-white flex items-center gap-2 rounded bg-primary px-7 py-[.6rem]"
               >
                 <ArrowUpRight />
                 Book a call
@@ -109,6 +74,8 @@ const HeroSection = () => {
         </div>
 
         {/* VIDEO */}
+
+        <OrbitingLogos />
       </div>
     </div>
   );

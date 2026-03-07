@@ -12,49 +12,42 @@ import {
 const slides = [
   {
     tag: "Product",
-    image: "/landing/videos/advanz.mp4",
+    image: "/landing/d2c/vid/vid-1.mp4",
     wide: false,
-    poster: "advanz.png",
+    poster: "img-1.png",
   },
   {
     tag: "Product",
 
-    image: "/landing/videos/Business-in-Dubai.mp4",
+    image: "/landing/d2c/vid/vid-2.mp4",
     wide: false,
-    poster: "Business-in-Dubai.png",
+    poster: "img-2.png",
   },
   {
     tag: "Product",
 
-    image: "/landing/videos/nabila.mp4",
+    image: "/landing/d2c/vid/vid-3.mp4",
     wide: false,
-    poster: "nabila.png",
+    poster: "img-3.png",
   },
   {
     tag: "Product",
 
-    image: "/landing/videos/itqara.mp4",
+    image: "/landing/d2c/vid/vid-4.mp4",
     wide: false,
-    poster: "itqara.png",
+    poster: "img-4.png",
   },
   {
     tag: "Product",
-    image: "/landing/videos/bizgrowth.mov",
+    image: "/landing/d2c/vid/vid-5.mp4",
     wide: false,
-    poster: "bizgrowth.png",
+    poster: "img-5.png",
   },
   {
     tag: "Product",
-    image: "/landing/videos/Ai-Property-SHow.mp4",
+    image: "/landing/d2c/vid/vid-6.mp4",
     wide: false,
-    poster: "Ai-Property-SHow.png",
-  },
-  {
-    tag: "Product",
-
-    image: "/landing/videos/Galena-Amaal-Russian-Draft.mp4",
-    wide: false,
-    poster: "Galena-Amaal-Russian-Draft.png",
+    poster: "img-6.png",
   },
 ];
 
@@ -82,7 +75,7 @@ function VideoCard({ slide }: { slide: (typeof slides)[number] }) {
         ref={videoRef}
         className="object-cover grayscale group-hover:grayscale-0 w-full h-full"
         playsInline
-        poster={`/landing/videos/thumbs/${slide.poster}`}
+        poster={`/landing/d2c/vid/poster/${slide.poster}`}
         preload="metadata"
       >
         <source src={slide.image} type="video/mp4" />

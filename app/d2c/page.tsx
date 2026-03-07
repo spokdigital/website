@@ -30,6 +30,8 @@ const page = () => {
       {/* 5. Video stories — humanize the brand early */}
       <VideoCarousel />
 
+      <TrustSection />
+
       {/* 6. Why us — core differentiators after they're warmed up */}
       <WhyChooseMasterclassSection />
 
@@ -39,7 +41,6 @@ const page = () => {
       {/* 9. Testimonials — peer validation before asking for money */}
 
       {/* 10. Pricing — present offer once trust is fully built */}
-      <PricingSection />
 
       {/* 11. CTA banner — urgency nudge before the form */}
 
