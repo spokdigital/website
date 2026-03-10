@@ -7,7 +7,7 @@ import gsap from "gsap";
 const slides = [
   {
     id: 1,
-    src: "/landing/d2c/ads/img-1.png",
+    src: "/landing/d2c/ads/1.png",
     label: "A SUMMIT",
     sub: "FOR A NEW META",
     tag: "Curator Summit",
@@ -15,7 +15,7 @@ const slides = [
   },
   {
     id: 2,
-    src: "/landing/d2c/ads/img-2.png",
+    src: "/landing/d2c/ads/2.png",
     label: "CURATOR",
     sub: "SUMMIT",
     tag: "ETH CC · Cannes · March 31",
@@ -23,7 +23,7 @@ const slides = [
   },
   {
     id: 3,
-    src: "/landing/d2c/ads/img-3.png",
+    src: "/landing/d2c/ads/3.png",
     label: "YOU CREATE",
     sub: "A RIPPLE",
     tag: "Make an impact",
@@ -31,7 +31,7 @@ const slides = [
   },
   {
     id: 4,
-    src: "/landing/d2c/ads/img-4.png",
+    src: "/landing/d2c/ads/4.png",
     label: "NEXT",
     sub: "GENERATION",
     tag: "Web3 infrastructure",
@@ -39,7 +39,7 @@ const slides = [
   },
   {
     id: 5,
-    src: "/landing/d2c/ads/img-5.png",
+    src: "/landing/d2c/ads/5.png",
     label: "NEXT",
     sub: "GENERATION",
     tag: "Web3 infrastructure",
@@ -47,7 +47,7 @@ const slides = [
   },
   {
     id: 6,
-    src: "/landing/d2c/ads/img-6.png",
+    src: "/landing/d2c/ads/6.png",
     label: "A SUMMIT",
     sub: "FOR A NEW META",
     tag: "Curator Summit",
@@ -55,7 +55,7 @@ const slides = [
   },
   {
     id: 7,
-    src: "/landing/d2c/ads/img-1.png",
+    src: "/landing/d2c/ads/1.png",
     label: "A SUMMIT",
     sub: "FOR A NEW META",
     tag: "Curator Summit",
@@ -63,7 +63,7 @@ const slides = [
   },
   {
     id: 8,
-    src: "/landing/d2c/ads/img-2.png",
+    src: "/landing/d2c/ads/2.png",
     label: "CURATOR",
     sub: "SUMMIT",
     tag: "ETH CC · Cannes · March 31",
@@ -71,7 +71,7 @@ const slides = [
   },
   {
     id: 9,
-    src: "/landing/d2c/ads/img-3.png",
+    src: "/landing/d2c/ads/3.png",
     label: "YOU CREATE",
     sub: "A RIPPLE",
     tag: "Make an impact",
@@ -79,7 +79,7 @@ const slides = [
   },
   {
     id: 10,
-    src: "/landing/d2c/ads/img-4.png",
+    src: "/landing/d2c/ads/4.png",
     label: "NEXT",
     sub: "GENERATION",
     tag: "Web3 infrastructure",
@@ -87,7 +87,7 @@ const slides = [
   },
   {
     id: 11,
-    src: "/landing/d2c/ads/img-5.png",
+    src: "/landing/d2c/ads/5.png",
     label: "NEXT",
     sub: "GENERATION",
     tag: "Web3 infrastructure",
@@ -95,7 +95,7 @@ const slides = [
   },
   {
     id: 12,
-    src: "/landing/d2c/ads/img-6.png",
+    src: "/landing/d2c/ads/6.png",
     label: "A SUMMIT",
     sub: "FOR A NEW META",
     tag: "Curator Summit",
