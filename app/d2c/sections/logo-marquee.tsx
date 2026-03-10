@@ -33,9 +33,8 @@ export default function LogoMarquee() {
     const track = trackRef.current;
     if (!track) return;
 
-    // Wait for layout so scrollWidth is accurate
     const init = () => {
-      const totalWidth = track.scrollWidth / 2; // half = one set of logos
+      const totalWidth = track.scrollWidth / 2;
 
       tweenRef.current = gsap.to(track, {
         x: -totalWidth,
@@ -48,11 +47,25 @@ export default function LogoMarquee() {
       });
     };
 
-    // Small delay to ensure images have painted and scrollWidth is correct
-    const raf = requestAnimationFrame(init);
+    // Wait for all images to load so scrollWidth is accurate
+    const images = Array.from(track.querySelectorAll("img"));
+    const pending = images.filter((img) => !img.complete);
+
+    if (pending.length === 0) {
+      init();
+    } else {
+      let loaded = 0;
+      const onLoad = () => {
+        loaded++;
+        if (loaded >= pending.length) init();
+      };
+      pending.forEach((img) => {
+        img.addEventListener("load", onLoad, { once: true });
+        img.addEventListener("error", onLoad, { once: true }); // don't block on broken images
+      });
+    }
 
     return () => {
-      cancelAnimationFrame(raf);
       tweenRef.current?.kill();
     };
   }, []);
@@ -62,7 +75,7 @@ export default function LogoMarquee() {
 
   return (
     <div
-      className="relative block lg:hidden w-full mt-6  overflow-hidden "
+      className="relative block lg:hidden w-full mt-14  overflow-hidden "
       // Fade edges
       style={{
         maskImage:
@@ -81,7 +94,7 @@ export default function LogoMarquee() {
         {ITEMS.map((logo, i) => (
           <div
             key={i}
-            className="flex-shrink-0 w-14 h-14 rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 flex items-center justify-center"
+            className="flex-shrink-0 w-14 h-14 rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center"
           >
             <Image
               src={logo.src}

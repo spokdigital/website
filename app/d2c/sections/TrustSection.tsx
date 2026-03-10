@@ -54,10 +54,9 @@ export default function TrustSection() {
     });
   };
   return (
-    <section className="relative py-16 overflow-hidden font-serif">
+    <section className="relative pt-16 overflow-hidden font-serif">
       {/* Decorative circles */}
-      <div className="pointer-events-none absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full bg-primary/10" />
-      <div className="pointer-events-none absolute -bottom-16 -left-16 w-[300px] h-[300px] rounded-full bg-primary/10" />
+
 
       <div className="max-w-6xl mx-auto px-6 relative">
         {/* Heading */}
@@ -78,7 +77,7 @@ export default function TrustSection() {
         {/* Case Studies */}
         {CASE_STUDIES.map((item, index) => (
           <div key={item.id}>
-            <div className="grid gap-12 items-center mb-20 md:grid-cols-2">
+            <div className="grid gap-12 items-center mb-10 lg:mb-20 md:grid-cols-2">
               {/* Image */}
               <div
                 className={`bg-red-400 rounded shadow-[0_8px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden h-auto w-full border border-red-100 relative flex items-center justify-center ${
@@ -134,7 +133,7 @@ export default function TrustSection() {
 
             {/* Divider between items */}
             {index !== CASE_STUDIES.length - 1 && (
-              <div className="flex items-center gap-5 mb-20">
+              <div className="flex items-center gap-5 mb-10 lg:mb-20">
                 <div className="flex-1 h-px bg-red-200" />
                 <div className="w-2 h-2 bg-primary rotate-45" />
                 <div className="flex-1 h-px bg-red-200" />
