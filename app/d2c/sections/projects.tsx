@@ -47,6 +47,30 @@ const PROJECTS = [
     description:
       "UAE's go-to graphic tee brand for pop culture, nostalgia, and custom printing — serving men, women, and kids with oversized fits, official licensed merch, and made-to-order designs. We built a full-funnel paid social strategy on TikTok and Instagram that matched their bold brand voice, driving consistent orders and repeat buyers across the Emirates.",
   },
+  {
+    index: "04",
+    title: "Noir",
+    category: "Fashion & Apparel — D2C",
+    image: "/landing/d2c/projects/4.jpeg",
+    link: "/",
+    spend: "18,000",
+    multiplier: "6.4x",
+    revenue: "1,15,200",
+    description:
+      "UAE's go-to graphic tee brand for pop culture, nostalgia, and custom printing — serving men, women, and kids with oversized fits, official licensed merch, and made-to-order designs. We built a full-funnel paid social strategy on TikTok and Instagram that matched their bold brand voice, driving consistent orders and repeat buyers across the Emirates.",
+  },
+  {
+    index: "05",
+    title: "Oasis",
+    category: "Fashion & Apparel — D2C",
+    image: "/landing/d2c/projects/5.jpeg",
+    link: "/",
+    spend: "18,000",
+    multiplier: "6.4x",
+    revenue: "1,15,200",
+    description:
+      "UAE's go-to graphic tee brand for pop culture, nostalgia, and custom printing — serving men, women, and kids with oversized fits, official licensed merch, and made-to-order designs. We built a full-funnel paid social strategy on TikTok and Instagram that matched their bold brand voice, driving consistent orders and repeat buyers across the Emirates.",
+  },
 ];
 
 export function ProjectsCarousel() {

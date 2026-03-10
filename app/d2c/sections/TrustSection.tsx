@@ -1,5 +1,7 @@
 "use client";
-
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
 const CASE_STUDIES = [
   {
     id: 1,
@@ -8,8 +10,7 @@ const CASE_STUDIES = [
     title: "₹4.45Cr revenue",
     subtitle: "in 12 months",
     highlight: "12 months",
-    image:
-      "https://canada1.discourse-cdn.com/shopifyforum/original/2X/b/ba58ab07bb7d75ea5887c0730f11dba525f79b66.jpeg",
+    image: "/landing/d2c/trustbuild/snapshot-1.png",
     brief: [
       "The brand is an accessible luxury brand for women's fashion that inspires glamour, confidence and sensuality in the modern woman.",
       "With our efforts, the brand revived their audience and gained attention from influencers and celebrities organically.",
@@ -23,8 +24,7 @@ const CASE_STUDIES = [
     title: "$111k in spends →",
     subtitle: "$2.5M in revenue",
     highlight: "$2.5M",
-    image:
-      "https://canada1.discourse-cdn.com/shopifyforum/original/2X/b/ba58ab07bb7d75ea5887c0730f11dba525f79b66.jpeg",
+    image: "/landing/d2c/trustbuild/snapshot-2.jpeg",
     brief: [
       "Launched in 2004 to make quality wines accessible worldwide, the client had strong foundations and ambitious goals.",
       "Starting at ~$70k/month, rigorous testing and optimization delivered explosive growth — achieving a 22× ROAS.",
@@ -37,8 +37,7 @@ const CASE_STUDIES = [
     title: "₹1.2Cr in revenue",
     subtitle: "within 6 months",
     highlight: "6 months",
-    image:
-      "https://canada1.discourse-cdn.com/shopifyforum/original/2X/b/ba58ab07bb7d75ea5887c0730f11dba525f79b66.jpeg",
+    image: "/landing/d2c/trustbuild/snapshot-3.jpeg",
     brief: [
       "A fast-growing skincare startup approached us to scale their online presence and improve customer acquisition.",
       "Through high-converting creatives, targeted Meta and Google campaigns, and landing page optimization, we rapidly increased their sales pipeline.",
@@ -47,6 +46,13 @@ const CASE_STUDIES = [
   },
 ];
 export default function TrustSection() {
+  const scrollToBooking = () => {
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: "#booking",
+      ease: "power3.out",
+    });
+  };
   return (
     <section className="relative py-16 overflow-hidden font-serif">
       {/* Decorative circles */}
@@ -72,17 +78,17 @@ export default function TrustSection() {
         {/* Case Studies */}
         {CASE_STUDIES.map((item, index) => (
           <div key={item.id}>
-            <div className="grid gap-[30px] items-center mb-20 md:grid-cols-2">
+            <div className="grid gap-12 items-center mb-20 md:grid-cols-2">
               {/* Image */}
               <div
-                className={`bg-white rounded shadow-[0_8px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden h-[320px] lg:aspect-[4/3] border border-red-100 relative flex items-center justify-center ${
+                className={`bg-red-400 rounded shadow-[0_8px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden h-auto w-full border border-red-100 relative flex items-center justify-center ${
                   index % 2 === 1 ? "md:order-2" : ""
                 }`}
               >
                 <img
                   src={item.image}
                   alt={item.category}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
 
@@ -117,8 +123,11 @@ export default function TrustSection() {
                   </p>
                 ))}
 
-                <button className="border border-red-700 text-red-500 px-7 py-3 text-[11px] tracking-[2px] uppercase font-sans font-semibold transition-all duration-200 hover:bg-primary hover:text-white">
-                  Read More →
+                <button
+                  onClick={scrollToBooking}
+                  className="border border-red-700 text-red-500 px-7 py-3 text-[11px] tracking-[2px] uppercase font-sans font-semibold transition-all duration-200 hover:bg-primary hover:text-white"
+                >
+                  Book a call
                 </button>
               </div>
             </div>
