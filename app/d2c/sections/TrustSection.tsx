@@ -24,7 +24,7 @@ const CASE_STUDIES = [
     title: "$111k in spends →",
     subtitle: "$2.5M in revenue",
     highlight: "$2.5M",
-    image: "/landing/d2c/trustbuild/snapshot-2.jpeg",
+    image: "/landing/d2c/trustbuild/snapshot-2.png",
     brief: [
       "Launched in 2004 to make quality wines accessible worldwide, the client had strong foundations and ambitious goals.",
       "Starting at ~$70k/month, rigorous testing and optimization delivered explosive growth — achieving a 22× ROAS.",
@@ -37,7 +37,7 @@ const CASE_STUDIES = [
     title: "₹1.2Cr in revenue",
     subtitle: "within 6 months",
     highlight: "6 months",
-    image: "/landing/d2c/trustbuild/snapshot-3.jpeg",
+    image: "/landing/d2c/trustbuild/snapshot-3.png",
     brief: [
       "A fast-growing skincare startup approached us to scale their online presence and improve customer acquisition.",
       "Through high-converting creatives, targeted Meta and Google campaigns, and landing page optimization, we rapidly increased their sales pipeline.",
