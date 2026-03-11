@@ -8,21 +8,21 @@ export default function WhyChooseMasterclassSection() {
   const textBlock = {
     title: ["1 System. 4 Steps.", "Predictable Growth."],
     description:
-      "Most agencies do one piece. We build the full stack — from your first impression to your final sale.",
+      "Most agencies hand you one piece and call it a day. We own the entire growth engine — from your store to your creatives to your campaigns to your scale.",
   };
 
   const topCards = [
     {
-      title: "Your Conversion-Ready Website",
+      title: "A Shopify Store That Sells While You Sleep",
       description:
-        "We custom-build websites and landing pages that establish instant credibility, sharpen your positioning, and turn visitors into leads — before you spend a single dirham on ads.",
+        "Your store is your best salesperson. We build Shopify stores where every element — the layout, the copy, the checkout flow — is engineered to convert cold traffic into paying customers. No leaks. No confusion. Just sales.",
       duration: 0.6,
       id: 0,
     },
     {
-      title: " Creatives Built to Convert",
+      title: "  Performance Videos Built to Stop the Scroll",
       description:
-        "We produce scroll-stopping videos and ad creatives engineered around your buyer's psychology — designed to grab attention in 2 seconds, communicate your value clearly, and drive measurable action.",
+        "We've produced hundreds of video ads for D2C brands and we know one truth: creative is the biggest lever in paid advertising. We script, shoot, and edit performance videos built around your buyer's psychology — hook in 2 seconds, value in 5, purchase intent by the end. Not brand content. Revenue content.",
       duration: 0.7,
       id: 1,
     },
@@ -30,9 +30,9 @@ export default function WhyChooseMasterclassSection() {
 
   const bottomCards = [
     {
-      title: "Ads. Funnels. Revenue.",
+      title: "Ads That Scale, Not Just Spend",
       description:
-        "We build and manage data-driven ad campaigns across Meta, Google, and TikTok — backed by a complete sales funnel strategy that captures attention, nurtures interest, and converts strangers into paying customers. Every campaign is tracked, tested, and optimized in real time — so your ad spend works harder, your cost per acquisition drops, and your revenue grows predictably and at scale.",
+        "We run full-funnel paid campaigns across Meta, Google, and TikTok — with one obsession: profitable growth. Every dirham tracked. Every creative tested. Every week we cut what's losing and double down on what's winning. Your CAC drops. Your ROAS climbs. Your revenue compounds.",
       image: "/landing/img-1.webp",
       gradient: "from-black/40",
       span: "md:col-span-2",
@@ -40,9 +40,9 @@ export default function WhyChooseMasterclassSection() {
       id: 2,
     },
     {
-      title: "Scale What's Working",
+      title: "Scale What's Working. Kill What Isn't.",
       description:
-        "We dig into your funnel data, cut what's losing, and double down on what's winning — reducing your cost per acquisition while compounding your revenue month over month.",
+        "Finding what works is step one. Most brands stop there. We dig into your funnel data every single week — ruthlessly cutting losing creatives, doubling winning audiences, and compounding your growth month over month. This is how ₹20L months become ₹1Cr months.",
       image:
         "https://images.unsplash.com/photo-1771732267119-3eb910f8be9c?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       gradient: "from-black/50",
@@ -65,7 +65,7 @@ export default function WhyChooseMasterclassSection() {
             className="md:col-span-1 mb-8 lg:mb-0 flex flex-col justify-center"
           >
             <h2 className="text-5xl font-Cormorant  text-center lg:text-start md:text-5xl lg:font-Grostek tracking-tighter lg:font-semibold text-[#0E2B2B] leading-tight">
-              1 System. 4 Steps. <br /> Predictable Growth.
+              1 System. 4 Steps. <br /> Predictable D2C Growth.
             </h2>
             <p className="mt-6 text-center lg:text-start text-gray-600 text-lg max-w-sm">
               {textBlock.description}
