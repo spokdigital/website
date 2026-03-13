@@ -23,8 +23,7 @@ const HeroSection = () => {
       <div className="relative flex flex-col gap-4 lg:flex-row justify-between items-center">
         <div className="">
           <h1 className="max-w-4xl text-4xl lg:text-7xl mb-2 font-Grostek font-[500]">
-            From Your First Sale to AED 1M 
-— We Scale D2C Brands.
+            From Your First Sale to AED 1M — We Scale D2C Brands.
           </h1>
           <p className="text-lg text-gray-700">
             For growing startups and established brands ready to scale their
