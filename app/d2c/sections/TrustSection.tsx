@@ -10,7 +10,7 @@ const CASE_STUDIES = [
     title: "AED 600K+ Revenue",
     subtitle: "in 6 months",
     highlight: "12 months",
-    image: "/landing/d2c/trustbuild/snapshot-1.png",
+    image: "/landing/d2c/trustbuild/snapshot-1.jpeg",
     brief: [
       "Teeser came to us as UAE's boldest graphic tee brand — pop culture, nostalgia, custom prints — but their online store wasn't converting the way their product deserved.",
       "We built their full D2C growth engine from the ground up. CRO-optimised Shopify store, performance video creatives tailored to UAE audiences, and aggressive paid campaigns across Meta and TikTok.",
@@ -24,7 +24,7 @@ const CASE_STUDIES = [
     title: "AED 287K+ Revenue",
     subtitle: "in 5 Months",
     highlight: "and the curve is still going up",
-    image: "/landing/d2c/trustbuild/snapshot-2.png",
+    image: "/landing/d2c/trustbuild/snapshot-2.jpeg",
     brief: [
       "A Dubai-based perfume startup came to us with a beautiful product, zero digital presence, and one goal — build a D2C brand that sells online without relying on retail shelves.",
       "We started from scratch. Shopify store built for conversion, performance video creatives shot around the scent story and UAE lifestyle, and Meta campaigns targeting UAE fragrance buyers who actually spend.",
@@ -39,7 +39,7 @@ const CASE_STUDIES = [
     title: "AED 400K+ revenue ",
     subtitle: "in 4 Months",
     highlight: "with 1 in 5 moms coming back",
-    image: "/landing/d2c/trustbuild/snapshot-3.png",
+    image: "/landing/d2c/trustbuild/snapshot-3.jpeg",
     brief: [
       "A Dubai-based baby essentials brand had a product that UAE moms loved — but their online store wasn't finding them.",
       "We built a Shopify store that spoke directly to first-time parents — trust signals, clean UX, fast checkout. Performance videos built around real parenting moments that stopped moms mid-scroll. And Meta campaigns laser-targeted at UAE parents with newborns and toddlers.",
