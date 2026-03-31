@@ -15,7 +15,6 @@ const Footer = () => {
     { title: "Social Media Marketing", link: "/Social-Media-Marketing" },
     { title: "Performance Marketing", link: "/Performace-Marketing" },
     { title: "Branding & Designing", link: "/Branding-&-Designing" },
-    { title: "blogs", link: "/Blogs" },
     { title: "contact", link: "/contact" },
   ];
   const legal = [
