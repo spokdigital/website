@@ -72,7 +72,7 @@ const Page = () => {
         "Station & Shelter Ads: Ads displayed in train stations, bus shelters, or subway tunnels.",
         "Airport Advertising: Ads placed in airports, including on walls, floors, baggage claim areas, and even on airport shuttles.",
       ],
-      img: "services/Transit_Advertising.jpg",
+      img: "services/Transit_Advertising-2.jpg",
     },
     {
       title: "3. Digital Outdoor Advertising",
@@ -123,7 +123,7 @@ const Page = () => {
         "Event Sponsorship: A brand sponsors a high-profile event, such as a major sporting event, awards show, or reality TV program.",
         "Program Sponsorship: A brand can sponsor a particular TV program, receiving a branded segment or mention within the show.",
       ],
-      img: "https://media.githubusercontent.com/media/frontendmakaidigitals/Spok Digital/refs/heads/main/public/services/TV Sponsorship.png",
+      img: "/services/TV Sponsorship.png",
     },
   ];
   const radioAdvertising = [

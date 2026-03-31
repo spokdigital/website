@@ -444,7 +444,7 @@ const Page = () => {
               >
                 {text}
               </motion.h1>
-            )
+            ),
           )}
         </motion.article>
         <div className="container grid grid-cols-1 mt-7 gap-6">

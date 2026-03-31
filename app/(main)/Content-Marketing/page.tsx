@@ -114,7 +114,7 @@ const Page = () => {
               "Internal & External Linking: Structuring content to boost authority and drive organic traffic.",
               "Content Refreshing: Regularly updating old blogs to maintain relevance and search rankings.",
             ],
-            img: "https://media.githubusercontent.com/media/frontendmakaidigitals/Spok Digital/refs/heads/main/public/services/SEO.png",
+            img: "services/SEO.png",
           },
         ],
         topicIdeation:
@@ -154,7 +154,7 @@ const Page = () => {
               "Filming & Editing: Professional shooting, audio recording, and post-production editing.",
               "Animation & Motion Graphics: Dynamic visual effects and animations to elevate your videos.",
             ],
-            img: "https://media.githubusercontent.com/media/frontendmakaidigitals/Spok Digital/refs/heads/main/public/services/video_Production.png",
+            img: "/services/video_Production.png",
           },
         ],
         videoFormats: [
@@ -168,7 +168,7 @@ const Page = () => {
               "Social Media Videos: Create short, engaging content designed for platforms like Instagram, TikTok, and Facebook.",
               "Corporate Videos: Professional content for internal communication, events, or B2B audiences.",
             ],
-            img: "services/video_formats.jpeg",
+            img: "services/video_formats.jpg",
           },
         ],
       },
