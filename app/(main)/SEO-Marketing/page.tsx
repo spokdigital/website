@@ -75,7 +75,7 @@ const Page = () => {
             "Structured Data Implementation: Add schema markup to improve search engine understanding and boost rich snippet visibility.",
             "Indexing and Accessibility: Ensure that all vital pages are indexed properly and accessible to search engines.",
           ],
-          img: "https://media.githubusercontent.com/media/frontendmakaidigitals/Spok Digital/refs/heads/main/public/services/SEO_Audit.png",
+          img: "/services/SEO_Audit.png",
         },
         {
           category: "On-Page and Off-Page Optimization",
@@ -141,7 +141,7 @@ const Page = () => {
             "Visual Appeal: Design high-quality, visually appealing banners and images that resonate with your target audience.",
             "Ad Extensions: Enhance ads with extensions like site links, callouts, and structured snippets to increase click-through rates.",
           ],
-          img: "https://media.githubusercontent.com/media/frontendmakaidigitals/Spok Digital/refs/heads/main/public/services/google-ad-copywriting-strategies.png",
+          img: "/services/google-ad-copywriting-strategies.png",
         },
       ],
     },
