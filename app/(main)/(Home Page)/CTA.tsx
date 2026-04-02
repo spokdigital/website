@@ -2,7 +2,7 @@ import React from "react";
 
 const CTA = () => {
   return (
-    <section className="py-20 bg-red-100">
+    <section className="py-5 bg-red-100">
       <div className="container rounded-lg border border-red-200 shadow max-w-5xl py-20 relative overflow-hidden">
         <div className="absolute inset-0 ">
           <svg
