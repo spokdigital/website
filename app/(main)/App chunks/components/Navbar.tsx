@@ -8,9 +8,10 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 const menu = [
-  { title: "home", link: "/" },
-  { title: "about", link: "/About" },
-  { title: "services", link: "/service" },
+  { title: "Home", link: "/" },
+  { title: "About", link: "/About" },
+  { title: "D2c Growth", link: "/d2c" },
+  { title: "Business Accelerator", link: "/website-landing" },
   { title: "Portfolio", link: "/Portfolio" },
 ];
 const NavBar = () => {

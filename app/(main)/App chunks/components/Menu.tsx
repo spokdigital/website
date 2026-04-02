@@ -44,7 +44,7 @@ const SlideTabs = ({
         path === "/contact" || path === "/Blogs" || path === "/Blog"
           ? "text-black border-slate-500/10"
           : "text-white border-slate-50/30"
-      } font-Grostek flex w-fit border   bg-white/20 backdrop-filter backdrop-blur-lg rounded-full p-1 ${className}`}
+      } font-Grostek flex w-fit border  bg-white/20 backdrop-filter backdrop-blur-lg rounded-full p-1 ${className}`}
     >
       {menu.map((item, index) => (
         <Tab
@@ -102,12 +102,12 @@ const Tab = ({
         ref={ref}
         className={`relative group  z-10 block cursor-pointer px-3 py-1.5 text-xs  md:px-5 md:py-3 md:text-base`}
       >
-        <button className="group relative rounded-full capitalize  group-hover:text-white">
+        <button className="group relative rounded-full !capitalize  group-hover:text-white">
           <span className="relative inline-flex overflow-hidden">
-            <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[110%] group-hover:skew-y-12">
+            <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[140%] group-hover:skew-y-12">
               {children}
             </div>
-            <div className="absolute translate-y-[114%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+            <div className="absolute translate-y-[150%]  skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
               {children}
             </div>
           </span>
@@ -136,7 +136,7 @@ const Tab = ({
       ref={ref}
       className={`relative group  z-10 block cursor-pointer  px-3 py-1.5 text-xs md:px-5 md:py-3 md:text-base`}
     >
-      <button className="group relative rounded-full capitalize  group-hover:text-white ">
+      <button className="group capitalize relative rounded-full capitalize  group-hover:text-white ">
         <span className="relative inline-flex overflow-hidden">
           <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[110%] group-hover:skew-y-12">
             {children}
