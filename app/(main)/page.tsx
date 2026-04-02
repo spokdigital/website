@@ -32,7 +32,6 @@ export default function Home() {
         <Portfolio />
         <CardDistribution />
         <Testimonials />
-        <TechLogo />
         <CTA />
         <MarqueeLogo />
       </motion.div>
