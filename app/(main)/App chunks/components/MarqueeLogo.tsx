@@ -37,7 +37,7 @@ const ReviewCard = ({ img }: { img: string }) => {
         } ${img.split("/").pop() == "bizgrowth.png" ? " p-2" : ""}
         ${
           img.split("/").pop() == "craft-desk.png" ? " p-2" : ""
-        } rounded-xl border`
+        } rounded-xl border`,
       )}
     >
       <img className=" w-full h-full object-contain" src={img} />
