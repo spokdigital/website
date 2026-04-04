@@ -109,7 +109,7 @@ jobs:
             rm spok-digital-deployment.tar.gz
 
             # Install production dependencies (faster than copying node_modules)
-            npm ci --only=production
+            npm ci
 
             # Create .env file with production settings
             cat > .env << EOF
