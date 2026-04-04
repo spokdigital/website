@@ -1,12 +1,14 @@
+// components/ui/SmoothScrollWrapper.tsx
+"use client";
+import { usePathname } from "next/navigation";
 import SmoothScrollProvider from "@/components/ui/Smooth-Scroll-Provider";
-export default function RootLayout({
+
+export default function SmoothScrollWrapper({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  return (
-    <SmoothScrollProvider>
-      <div className="bg-white">{children}</div>
-    </SmoothScrollProvider>
-  );
+}) {
+  const pathname = usePathname();
+
+  return <SmoothScrollProvider key={pathname}>{children}</SmoothScrollProvider>;
 }
