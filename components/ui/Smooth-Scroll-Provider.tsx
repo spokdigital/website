@@ -1,12 +1,6 @@
 "use client";
-import { useLayoutEffect } from "react";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import ScrollSmoother from "gsap/ScrollSmoother";
-
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+import { useLayoutEffect, useRef } from "react";
 
 export default function SmoothScrollProvider({
   children,
@@ -17,17 +11,31 @@ export default function SmoothScrollProvider({
   const contentRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (!wrapperRef.current || !contentRef.current) return;
+    let smoother: any;
 
-    const smoother = ScrollSmoother.create({
-      wrapper: wrapperRef.current,
-      content: contentRef.current,
-      smooth: 0.5,
-      effects: true,
-      normalizeScroll: true,
-    });
+    const init = async () => {
+      const gsap = (await import("gsap")).default;
+      const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
+      const ScrollSmoother = (await import("gsap/ScrollSmoother")).default;
 
-    return () => smoother.kill();
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+      if (!wrapperRef.current || !contentRef.current) return;
+
+      smoother = ScrollSmoother.create({
+        wrapper: wrapperRef.current,
+        content: contentRef.current,
+        smooth: 0.5,
+        effects: true,
+        normalizeScroll: true,
+      });
+    };
+
+    init();
+
+    return () => {
+      if (smoother) smoother.kill();
+    };
   }, []);
 
   return (
