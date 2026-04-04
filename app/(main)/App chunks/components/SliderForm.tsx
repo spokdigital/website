@@ -31,27 +31,28 @@ const SliderForm: React.FC<SliderFormProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    if (isFormOpen === true) {
+    // Helper to avoid repeating the null check
+    const nav = document.getElementsByClassName("HeadNavigation")[0] as
+      | HTMLElement
+      | undefined;
+
+    if (isFormOpen) {
       document.body.style.overflow = "hidden";
-      (
-        document.getElementsByClassName("HeadNavigation")[0] as HTMLElement
-      ).style.zIndex = "9999";
+      if (nav) nav.style.zIndex = "9999";
       lenis?.stop();
     } else {
       document.body.style.overflow = "auto";
-      (
-        document.getElementsByClassName("HeadNavigation")[0] as HTMLElement
-      ).style.zIndex = "99999";
-
+      if (nav) nav.style.zIndex = "99999";
       lenis?.start();
     }
 
-    // Optional cleanup to reset the styles when the component unmounts
     return () => {
       document.body.style.overflow = "auto";
-      (
-        document.getElementsByClassName("HeadNavigation")[0] as HTMLElement
-      ).style.zIndex = "initial";
+      // Re-query inside cleanup — the ref from above may be stale on unmount
+      const navOnCleanup = document.getElementsByClassName(
+        "HeadNavigation",
+      )[0] as HTMLElement | undefined;
+      if (navOnCleanup) navOnCleanup.style.zIndex = "initial";
     };
   }, [isFormOpen]);
 
@@ -74,7 +75,7 @@ const SliderForm: React.FC<SliderFormProps> = ({
   }, [isFormOpen]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -118,21 +119,21 @@ const SliderForm: React.FC<SliderFormProps> = ({
     if (validateForm()) {
       setIsSubmitting(true);
 
-     try {
-       const resp = await fetch("/api/email", {
-        method: "POST",
-        body: JSON.stringify({
-          name: formData.fullName,
-          email: formData.email,
-          message: formData.message,
-          contact: formData.phone,
-          createdAt: new Date(),
-          subject: formData.message,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      try {
+        const resp = await fetch("/api/email", {
+          method: "POST",
+          body: JSON.stringify({
+            name: formData.fullName,
+            email: formData.email,
+            message: formData.message,
+            contact: formData.phone,
+            createdAt: new Date(),
+            subject: formData.message,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
         alert("Message sent successfully!");
         setFormData({
@@ -213,9 +214,7 @@ const SliderForm: React.FC<SliderFormProps> = ({
                     onChange={handleChange}
                   />
                   {errors.phone && (
-                    <p className="text-red-500 text-sm">
-                      {errors.phone}
-                    </p>
+                    <p className="text-red-500 text-sm">{errors.phone}</p>
                   )}
                 </div>
                 <div className="w-full">
