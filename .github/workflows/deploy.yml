@@ -2,170 +2,174 @@ name: Deploy Spok Digital to Server
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Build Next.js app
-      run: npm run build
-      
-    - name: Create deployment package
-      run: |
-        # Create deployment directory structure
-        mkdir -p deploy
-        
-        # Copy essential files for Next.js production
-        cp -r .next deploy/
-        cp -r public deploy/
-        cp package*.json deploy/
-        cp next.config.ts deploy/
-        
-        # Copy source files that Next.js might need at runtime
-        [ -d "app" ] && cp -r app deploy/ || echo "No app directory"
-        [ -d "components" ] && cp -r components deploy/ || echo "No components directory"
-        [ -d "lib" ] && cp -r lib deploy/ || echo "No lib directory"
-        [ -f "components.json" ] && cp components.json deploy/ || echo "No components.json"
-        [ -f "tailwind.config.ts" ] && cp tailwind.config.ts deploy/ || echo "No tailwind.config.ts"
-        [ -f "postcss.config.mjs" ] && cp postcss.config.mjs deploy/ || echo "No postcss.config.mjs"
-        [ -f "tsconfig.json" ] && cp tsconfig.json deploy/ || echo "No tsconfig.json"
-        
-        # Create production package
-        tar -czf spok-digital-deployment.tar.gz -C deploy .
-        
-    - name: Deploy to server via SSH
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        port: ${{ secrets.SERVER_PORT }}
-        script: |
-          # Set deployment variables
-          APP_NAME="spok-digital"
-          DEPLOY_PATH="/home/milestonehre/spok-digital"
-          
-          # Create deployment directory
-          sudo mkdir -p $DEPLOY_PATH
-          sudo chown $USER:$USER $DEPLOY_PATH
-          
-          # Stop existing PM2 process if running
-          pm2 stop $APP_NAME 2>/dev/null || echo "Process not running"
-          pm2 delete $APP_NAME 2>/dev/null || echo "Process not found"
-          
-          # Backup current deployment if it exists
-          if [ -d "$DEPLOY_PATH/current" ]; then
-            sudo rm -rf $DEPLOY_PATH/backup 2>/dev/null || echo "No backup to remove"
-            sudo mv $DEPLOY_PATH/current $DEPLOY_PATH/backup
-          fi
-          
-          # Create new deployment directory
-          mkdir -p $DEPLOY_PATH/current
-          cd $DEPLOY_PATH/current
-          
-    - name: Upload deployment package
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        port: ${{ secrets.SERVER_PORT }}
-        source: "spok-digital-deployment.tar.gz"
-        target: "/home/milestonehre/spok-digital/current/"
-        
-    - name: Extract and setup application
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        port: ${{ secrets.SERVER_PORT }}
-        script: |
-          # Set deployment variables
-          APP_NAME="spok-digital"
-          DEPLOY_PATH="/home/milestonehre/spok-digital"
-          
-          cd $DEPLOY_PATH/current
-          
-          # Extract deployment package
-          tar -xzf spok-digital-deployment.tar.gz
-          rm spok-digital-deployment.tar.gz
-          
-          # Install production dependencies (faster than copying node_modules)
-          npm ci --only=production
-          
-          # Create .env file with production settings
-          cat > .env << EOF
-          NODE_ENV=production
-          PORT=3013
-          EOF
-          
-          # Create PM2 ecosystem file
-          cat > ecosystem.config.js << EOF
-          module.exports = {
-            apps: [{
-              name: '$APP_NAME',
-              script: 'npm',
-              args: 'start',
-              env: {
-                NODE_ENV: 'production',
-                PORT: 3013
-              }
-            }]
-          };
-          EOF
-          
-          # Start application with PM2 using ecosystem file
-          pm2 start ecosystem.config.js
-          pm2 save
-          
-          # Enable PM2 startup if not already enabled
-          sudo pm2 startup systemd -u $USER --hp /home/$USER 2>/dev/null || echo "PM2 startup already configured"
-          
-    - name: Health check
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        port: ${{ secrets.SERVER_PORT }}
-        script: |
-          # Wait for application to start
-          sleep 10
-          
-          # Check if PM2 process is running
-          if pm2 list | grep -q "spok-digital.*online"; then
-            echo "✅ Spok Digital application is running successfully"
-            
-            # Test local connection
-            if curl -f http://localhost:3013 > /dev/null 2>&1; then
-              echo "✅ Application responds to HTTP requests"
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js app
+        run: npm run build
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+
+      - name: Create deployment package
+        run: |
+          # Create deployment directory structure
+          mkdir -p deploy
+
+          # Copy essential files for Next.js production
+          cp -r .next deploy/
+          cp -r public deploy/
+          cp package*.json deploy/
+          cp next.config.ts deploy/
+
+          # Copy source files that Next.js might need at runtime
+          [ -d "app" ] && cp -r app deploy/ || echo "No app directory"
+          [ -d "components" ] && cp -r components deploy/ || echo "No components directory"
+          [ -d "lib" ] && cp -r lib deploy/ || echo "No lib directory"
+          [ -f "components.json" ] && cp components.json deploy/ || echo "No components.json"
+          [ -f "tailwind.config.ts" ] && cp tailwind.config.ts deploy/ || echo "No tailwind.config.ts"
+          [ -f "postcss.config.mjs" ] && cp postcss.config.mjs deploy/ || echo "No postcss.config.mjs"
+          [ -f "tsconfig.json" ] && cp tsconfig.json deploy/ || echo "No tsconfig.json"
+
+          # Create production package
+          tar -czf spok-digital-deployment.tar.gz -C deploy .
+
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            # Set deployment variables
+            APP_NAME="spok-digital"
+            DEPLOY_PATH="/home/milestonehre/spok-digital"
+
+            # Create deployment directory
+            sudo mkdir -p $DEPLOY_PATH
+            sudo chown $USER:$USER $DEPLOY_PATH
+
+            # Stop existing PM2 process if running
+            pm2 stop $APP_NAME 2>/dev/null || echo "Process not running"
+            pm2 delete $APP_NAME 2>/dev/null || echo "Process not found"
+
+            # Backup current deployment if it exists
+            if [ -d "$DEPLOY_PATH/current" ]; then
+              sudo rm -rf $DEPLOY_PATH/backup 2>/dev/null || echo "No backup to remove"
+              sudo mv $DEPLOY_PATH/current $DEPLOY_PATH/backup
+            fi
+
+            # Create new deployment directory
+            mkdir -p $DEPLOY_PATH/current
+            cd $DEPLOY_PATH/current
+
+      - name: Upload deployment package
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          source: "spok-digital-deployment.tar.gz"
+          target: "/home/milestonehre/spok-digital/current/"
+
+      - name: Extract and setup application
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            # Set deployment variables
+            APP_NAME="spok-digital"
+            DEPLOY_PATH="/home/milestonehre/spok-digital"
+
+            cd $DEPLOY_PATH/current
+
+            # Extract deployment package
+            tar -xzf spok-digital-deployment.tar.gz
+            rm spok-digital-deployment.tar.gz
+
+            # Install production dependencies (faster than copying node_modules)
+            npm ci --only=production
+
+            # Create .env file with production settings
+            cat > .env << EOF
+            NODE_ENV=production
+            PORT=3013
+            RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+            EOF
+
+            # Create PM2 ecosystem file
+            cat > ecosystem.config.js << EOF
+            module.exports = {
+              apps: [{
+                name: '$APP_NAME',
+                script: 'npm',
+                args: 'start',
+                env: {
+                  NODE_ENV: 'production',
+                  PORT: 3013
+                  RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+                }
+              }]
+            };
+            EOF
+
+            # Start application with PM2 using ecosystem file
+            pm2 start ecosystem.config.js
+            pm2 save
+
+            # Enable PM2 startup if not already enabled
+            sudo pm2 startup systemd -u $USER --hp /home/$USER 2>/dev/null || echo "PM2 startup already configured"
+
+      - name: Health check
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            # Wait for application to start
+            sleep 10
+
+            # Check if PM2 process is running
+            if pm2 list | grep -q "spok-digital.*online"; then
+              echo "✅ Spok Digital application is running successfully"
+              
+              # Test local connection
+              if curl -f http://localhost:3013 > /dev/null 2>&1; then
+                echo "✅ Application responds to HTTP requests"
+              else
+                echo "❌ Application not responding to HTTP requests"
+                pm2 logs spok-digital --lines 20
+                exit 1
+              fi
             else
-              echo "❌ Application not responding to HTTP requests"
+              echo "❌ Application failed to start"
               pm2 logs spok-digital --lines 20
               exit 1
             fi
-          else
-            echo "❌ Application failed to start"
-            pm2 logs spok-digital --lines 20
-            exit 1
-          fi
-          
-          # Show PM2 status
-          pm2 list
-          echo "🚀 Deployment completed successfully!"
+
+            # Show PM2 status
+            pm2 list
+            echo "🚀 Deployment completed successfully!"
