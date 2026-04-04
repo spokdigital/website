@@ -20,6 +20,12 @@ export default function SmoothScrollProvider({
 
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+      // 🔥 VERY IMPORTANT: kill existing instance
+      const existing = ScrollSmoother.get();
+      if (existing) {
+        existing.kill();
+      }
+
       if (!wrapperRef.current || !contentRef.current) return;
 
       smoother = ScrollSmoother.create({
