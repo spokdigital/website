@@ -38,8 +38,8 @@ import {
 
 // import brokenImage from '@/registry/new-york-v4/editor/images/image-broken.svg';
 import { ContentEditable } from "@/components/editor/editor-ui/content-editable"
-import { ImageResizer } from "@/components/editor/editor-ui/image-resizer"
-import { $isImageNode } from "@/components/editor/nodes/image-node"
+import { ImageResizer } from "@/app/components/editor/editor-ui/image-resizer"
+import { $isImageNode } from "@/app/components/editor/nodes/image-node"
 
 const imageCache = new Set()
 
