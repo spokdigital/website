@@ -30,10 +30,6 @@ const parseContent = (content: string | object) =>
       })()
     : content;
 
-const formatDate = (date: string, options: Intl.DateTimeFormatOptions) =>
-  new Date(date).toLocaleDateString("en-US", options);
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
 const Page = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [visibleCount, setVisibleCount] = useState(9);
@@ -72,122 +68,156 @@ const Page = () => {
   const [featured, ...rest] = visibleBlogs;
 
   return (
-    <div className="min-h-screen bg-stone-50 font-sans text-stone-900">
-      {/* ── Masthead ── */}
-      <header className="flex items-baseline justify-between gap-4 border-b border-stone-200 px-6 py-5 md:px-10">
-        <div className="flex items-baseline gap-4">
-          <span className="font-serif text-2xl font-black tracking-tight">
-            The Journal
-          </span>
-          <span className="hidden text-[0.65rem] font-medium uppercase tracking-widest text-stone-400 sm:block">
-            {new Date().toLocaleDateString("en-US", {
-              weekday: "long",
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </span>
+    <div className="min-h-screen bg-[#111]">
+      {/* ── Hero — stays dark all the way down ── */}
+      <section className="relative overflow-hidden bg-[#111] pb-40 pt-20">
+        {/* Grid texture */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        {/* Coral glow behind text */}
+        <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-96 -translate-x-1/2 rounded-full bg-[#ff6b6b] opacity-10 blur-3xl" />
+
+        <div className="relative mx-auto max-w-4xl px-6 text-center">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#ff6b6b]" />
+            <span className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[#ff6b6b]">
+              Latest News &amp; Articles
+            </span>
+          </div>
+          <h1 className="mb-4 text-5xl font-black leading-tight tracking-tight text-white md:text-6xl lg:text-7xl">
+            Stories Worth <span className="text-[#ff6b6b]">Reading</span>
+          </h1>
+          <p className="mx-auto max-w-lg text-base leading-relaxed text-white/40">
+            In-depth articles, guides, and insights from our team — updated
+            regularly.
+          </p>
         </div>
-        <span className="text-[0.65rem] font-medium uppercase tracking-widest text-stone-400">
-          Stories Worth Reading
-        </span>
-      </header>
+      </section>
 
-      <div className="h-[3px] bg-stone-900" />
+      {/* ── Cards lift out of the dark hero ── */}
+      <div className="bg-[#f5f5f5]">
+        <main className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
+          {loading ? (
+            <LoadingSkeleton />
+          ) : blogs.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <>
+              {/* Featured — overlaps hero by -mt-28 */}
+              {featured && (
+                <div className="-mt-28 mb-14">
+                  <Link
+                    href={`/blogs/${featured.slugTitle}`}
+                    className="group block overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/20 ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-black/30"
+                  >
+                    <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr]">
+                      {/* Image */}
+                      <div className="relative h-64 overflow-hidden lg:h-[420px]">
+                        <img
+                          src={`/api/uploads/${featured.image}`}
+                          alt={featured.title}
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                        {/* Badges */}
+                        <div className="absolute left-4 top-4 flex gap-2">
+                          <span className="rounded-full bg-[#ff6b6b] px-3 py-1 text-[0.58rem] font-bold uppercase tracking-widest text-white">
+                            {featured.category}
+                          </span>
+                          <span className="rounded-full bg-black/50 px-3 py-1 text-[0.58rem] font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+                            Featured
+                          </span>
+                        </div>
+                      </div>
 
-      {/* ── States ── */}
-      {loading ? (
-        <LoadingSkeleton />
-      ) : blogs.length === 0 ? (
-        <EmptyState />
-      ) : (
-        <>
-          {/* Featured */}
-          {featured && (
-            <Link
-              href={`/blogs/${featured.slugTitle}`}
-              className="group mx-auto block max-w-[1200px]"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2">
-                {/* Image */}
-                <div className="overflow-hidden">
-                  <img
-                    src={`/api/uploads/${featured.image}`}
-                    alt={featured.title}
-                    className="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] md:h-[520px]"
-                  />
-                </div>
-                {/* Body */}
-                <div className="flex flex-col justify-between border-stone-200 p-6 md:border-l md:p-12">
-                  <div>
-                    <p className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-amber-700">
-                      {featured.category}
-                    </p>
-                    <h2 className="font-serif mt-3 mb-5 text-3xl font-bold leading-snug tracking-tight text-stone-900 md:text-4xl lg:text-5xl">
-                      {featured.title}
-                    </h2>
-                    <div className="line-clamp-4 text-sm leading-relaxed text-stone-500">
-                      <Editor
-                        editorSerializedState={parseContent(featured.content)}
-                        readOnly
-                        clampLines={4}
-                        blogPage={false}
-                      />
+                      {/* Body */}
+                      <div className="flex flex-col justify-between p-8 lg:p-10">
+                        <div>
+                          <h2 className="mb-4 text-2xl font-black leading-snug tracking-tight text-[#111] transition-colors group-hover:text-[#ff6b6b] lg:text-3xl">
+                            {featured.title}
+                          </h2>
+                          <div className="line-clamp-4 text-sm leading-relaxed text-[#777]">
+                            <Editor
+                              editorSerializedState={parseContent(
+                                featured.content,
+                              )}
+                              readOnly
+                              clampLines={4}
+                              blogPage={false}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="mt-8 flex items-center justify-between border-t border-[#eee] pt-5">
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#111] text-[0.6rem] font-black text-white">
+                              {featured.author.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-[#111]">
+                                {featured.author}
+                              </p>
+                              <p className="text-[0.62rem] text-[#aaa]">
+                                {new Date(
+                                  featured.createdAt,
+                                ).toLocaleDateString("en-US", {
+                                  month: "short",
+                                  day: "numeric",
+                                  year: "numeric",
+                                })}
+                              </p>
+                            </div>
+                          </div>
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#111] px-5 py-2 text-[0.62rem] font-bold uppercase tracking-widest text-white transition-all duration-200 group-hover:bg-[#ff6b6b]">
+                            Read{" "}
+                            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+                              →
+                            </span>
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="mt-8 flex items-center justify-between border-t border-stone-200 pt-5 text-xs text-stone-400">
-                    <span>
-                      {formatDate(featured.createdAt, {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                      {" · "}
-                      {featured.author}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-semibold uppercase tracking-widest text-stone-900 transition-all duration-200 group-hover:gap-2.5">
-                      Read story <span>→</span>
-                    </span>
-                  </div>
+                  </Link>
                 </div>
-              </div>
-            </Link>
-          )}
+              )}
 
-          <div className="border-t border-stone-200" />
+              {/* All articles grid */}
+              {rest.length > 0 && (
+                <>
+                  <div className="mb-7 flex items-center gap-4">
+                    <span className="text-[0.58rem] font-bold uppercase tracking-[0.22em] text-[#aaa]">
+                      All Articles
+                    </span>
+                    <div className="h-px flex-1 bg-[#e0e0e0]" />
+                  </div>
 
-          {/* Grid */}
-          {rest.length > 0 && (
-            <div className="mx-auto max-w-[1200px] px-6 pb-16 md:px-10">
-              {/* Section header */}
-              <div className="flex items-center gap-4 py-6">
-                <span className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-stone-400">
-                  More Articles
-                </span>
-                <div className="h-px flex-1 bg-stone-200" />
-              </div>
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    {rest.map((blog) => (
+                      <BlogCard key={blog.id} blog={blog} />
+                    ))}
+                  </div>
+                </>
+              )}
 
-              {/* Cards */}
-              <div className="grid grid-cols-1 border-l border-t border-stone-200 sm:grid-cols-2 lg:grid-cols-3">
-                {rest.map((blog) => (
-                  <BlogCard key={blog.id} blog={blog} />
-                ))}
-              </div>
-
-              {/* Load more */}
               {visibleCount < blogs.length && (
                 <div
                   ref={loadMoreRef}
-                  className="flex items-center justify-center gap-2 pt-10 text-[0.7rem] uppercase tracking-widest text-stone-400"
+                  className="mt-14 flex items-center justify-center gap-2 text-[0.68rem] uppercase tracking-widest text-[#aaa]"
                 >
-                  <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-stone-300 border-t-amber-700" />
+                  <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-[#ddd] border-t-[#ff6b6b]" />
                   Loading more
                 </div>
               )}
-            </div>
+            </>
           )}
-        </>
-      )}
+        </main>
+      </div>
     </div>
   );
 };
@@ -198,33 +228,40 @@ export default Page;
 const BlogCard = ({ blog }: { blog: Blog }) => (
   <Link
     href={`/blogs/${blog.slugTitle}`}
-    className="group block border-b border-r border-stone-200 transition-colors duration-200 hover:bg-stone-100"
+    className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/10"
   >
-    {/* Image */}
-    <div className="overflow-hidden">
+    <div className="relative h-48 overflow-hidden">
       <img
         src={`/api/uploads/${blog.image}`}
         alt={blog.title}
-        className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
-    </div>
-    {/* Body */}
-    <div className="p-5">
-      <span className="inline-block bg-stone-900 px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-[0.14em] text-stone-50">
+      <span className="absolute left-3 top-3 rounded-full bg-[#ff6b6b] px-2.5 py-0.5 text-[0.55rem] font-bold uppercase tracking-widest text-white">
         {blog.category}
       </span>
-      <h3 className="font-serif mt-2.5 mb-3 line-clamp-3 text-base font-bold leading-snug tracking-tight text-stone-900">
+    </div>
+
+    <div className="flex flex-1 flex-col gap-3 p-5">
+      <h3 className="line-clamp-2 text-sm font-black leading-snug tracking-tight text-[#111] transition-colors group-hover:text-[#ff6b6b]">
         {blog.title}
       </h3>
-      <div className="flex gap-3 border-t border-stone-200 pt-3 text-[0.65rem] text-stone-400">
-        <span>
-          {formatDate(blog.createdAt, {
+
+      <div className="mt-auto flex items-center justify-between border-t border-[#f0f0f0] pt-3">
+        <div className="flex items-center gap-2">
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#111] text-[0.5rem] font-black text-white">
+            {blog.author.charAt(0).toUpperCase()}
+          </div>
+          <span className="text-[0.62rem] font-medium text-[#999]">
+            {blog.author}
+          </span>
+        </div>
+        <span className="text-[0.6rem] text-[#bbb]">
+          {new Date(blog.createdAt).toLocaleDateString("en-US", {
             month: "short",
             day: "numeric",
             year: "numeric",
           })}
         </span>
-        <span>{blog.author}</span>
       </div>
     </div>
   </Link>
@@ -232,33 +269,36 @@ const BlogCard = ({ blog }: { blog: Blog }) => (
 
 // ─── Loading Skeleton ─────────────────────────────────────────────────────────
 const LoadingSkeleton = () => (
-  <div className="mx-auto max-w-[1200px] p-10">
-    {/* Featured skeleton */}
-    <div className="mb-8 grid grid-cols-2 border-b border-stone-200">
-      <div className="h-[420px] animate-pulse bg-stone-200" />
-      <div className="space-y-4 border-l border-stone-200 p-12">
-        <div className="h-2.5 w-1/4 animate-pulse rounded bg-stone-200" />
-        <div className="h-7 w-11/12 animate-pulse rounded bg-stone-200" />
-        <div className="h-7 w-3/4 animate-pulse rounded bg-stone-200" />
-        <div className="mt-2 space-y-2.5">
-          {[100, 90, 95, 55].map((w, i) => (
-            <div
-              key={i}
-              className="h-2.5 animate-pulse rounded bg-stone-200"
-              style={{ width: `${w}%` }}
-            />
-          ))}
+  <div className="-mt-28">
+    <div className="mb-14 overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/20">
+      <div className="grid grid-cols-2">
+        <div className="h-[420px] animate-pulse bg-[#eee]" />
+        <div className="space-y-4 p-10">
+          <div className="h-3 w-1/4 animate-pulse rounded-full bg-[#eee]" />
+          <div className="h-8 w-full animate-pulse rounded-lg bg-[#eee]" />
+          <div className="h-8 w-3/4 animate-pulse rounded-lg bg-[#eee]" />
+          <div className="space-y-2.5 pt-2">
+            {[100, 90, 95, 60].map((w, i) => (
+              <div
+                key={i}
+                className="h-3 animate-pulse rounded-full bg-[#eee]"
+                style={{ width: `${w}%` }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
-    {/* Grid skeleton */}
-    <div className="grid grid-cols-3 border-l border-t border-stone-200">
+    <div className="grid grid-cols-3 gap-5">
       {Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} className="border-b border-r border-stone-200">
-          <div className="h-44 animate-pulse bg-stone-200" />
-          <div className="space-y-2.5 p-5">
-            <div className="h-3 w-4/5 animate-pulse rounded bg-stone-200" />
-            <div className="h-3 w-3/5 animate-pulse rounded bg-stone-200" />
+        <div
+          key={i}
+          className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5"
+        >
+          <div className="h-48 animate-pulse bg-[#eee]" />
+          <div className="space-y-3 p-5">
+            <div className="h-3.5 w-4/5 animate-pulse rounded-full bg-[#eee]" />
+            <div className="h-3.5 w-3/5 animate-pulse rounded-full bg-[#eee]" />
           </div>
         </div>
       ))}
@@ -268,11 +308,25 @@ const LoadingSkeleton = () => (
 
 // ─── Empty State ──────────────────────────────────────────────────────────────
 const EmptyState = () => (
-  <div className="flex flex-col items-center justify-center py-40 text-stone-400">
-    <p className="font-serif text-2xl font-bold text-stone-700">
-      No articles yet
+  <div className="-mt-16 flex flex-col items-center justify-center py-36">
+    <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-lg shadow-black/10">
+      <svg
+        className="h-7 w-7 text-[#ccc]"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v10a2 2 0 01-2 2z"
+        />
+      </svg>
+    </div>
+    <p className="text-base font-black text-[#111]">No articles yet</p>
+    <p className="mt-1 text-[0.65rem] uppercase tracking-widest text-[#aaa]">
+      Check back soon.
     </p>
-    <div className="my-4 h-0.5 w-12 bg-stone-300" />
-    <p className="text-xs uppercase tracking-widest">Check back soon.</p>
   </div>
 );

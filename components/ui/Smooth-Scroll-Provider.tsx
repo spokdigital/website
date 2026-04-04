@@ -1,4 +1,5 @@
 "use client";
+import { useLayoutEffect } from "react";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -15,12 +16,12 @@ export default function SmoothScrollProvider({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!wrapperRef.current || !contentRef.current) return;
 
     const smoother = ScrollSmoother.create({
-      wrapper: wrapperRef.current, // ✅ use refs, not string IDs
-      content: contentRef.current, // ✅ guaranteed to exist
+      wrapper: wrapperRef.current,
+      content: contentRef.current,
       smooth: 0.5,
       effects: true,
       normalizeScroll: true,
