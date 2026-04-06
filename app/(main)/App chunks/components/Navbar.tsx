@@ -12,6 +12,7 @@ const menu = [
   { title: "About", link: "/About" },
   { title: "D2c Growth", link: "/d2c" },
   { title: "Business Accelerator", link: "/website-landing" },
+  { title: "Blogs", link: "/blogs" },
   { title: "Portfolio", link: "/Portfolio" },
 ];
 const NavBar = () => {
@@ -33,7 +34,7 @@ const NavBar = () => {
         >
           <Logo
             source={
-              path !== "/Blogs" && path !== "/Blog"
+              !path.startsWith("/blogs") && path !== "/Blog"
                 ? "/spok-white.png"
                 : "/spok-balck.png"
             }

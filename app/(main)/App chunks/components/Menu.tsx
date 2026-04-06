@@ -41,8 +41,8 @@ const SlideTabs = ({
         }));
       }}
       className={`relative mx-auto font-[500] z-[999] ${
-        path === "/contact" || path === "/Blogs" || path === "/Blog"
-          ? "text-black border-slate-500/10"
+        path === "/contact" || path.startsWith("/blogs")
+          ? "text-black border-gray-500/30"
           : "text-white border-slate-50/30"
       } font-Grostek flex w-fit border  bg-white/20 backdrop-filter backdrop-blur-lg rounded-full p-1 ${className}`}
     >

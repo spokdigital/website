@@ -4,7 +4,7 @@ import Testimonials from "./(Home Page)/Testimonials";
 import { TechLogo } from "./(Home Page)/TechLogo";
 import CardDistribution from "./(Home Page)/MaskSection";
 import { TextMarquee } from "./(Home Page)/Text-Marquee";
-import Form from "./App chunks/components/Form";
+import Blogs from "../components/Blogs";
 import { AnimatePresence, motion } from "framer-motion";
 import { MarqueeLogo } from "./App chunks/components/MarqueeLogo";
 import Service from "./(Home Page)/Service";
@@ -33,6 +33,9 @@ export default function Home() {
         <CardDistribution />
         <Testimonials />
         <CTA />
+        <section className="container">
+          <Blogs />
+        </section>
         <MarqueeLogo />
       </motion.div>
     </AnimatePresence>

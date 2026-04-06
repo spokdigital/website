@@ -7,21 +7,11 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 
-export function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/—/g, "-")
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-");
-}
-
 // ---------------------------------------------------------------------------
-// Lexical JSON → plain text (for blog card previews)
+// Lexical JSON → plain text
 // ---------------------------------------------------------------------------
 type LexicalNode = {
   type: string;
@@ -43,6 +33,15 @@ function lexicalToPlainText(content: string | object | null): string {
   } catch {
     return "";
   }
+}
+
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/—/g, "-")
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
 }
 // ---------------------------------------------------------------------------
 
@@ -90,87 +89,117 @@ const Blogs = () => {
     fetchBlogs();
   }, []);
 
+  if (blogs.length === 0) {
+    return (
+      <p className="text-sm text-muted-foreground py-8 text-center">
+        No blogs found.
+      </p>
+    );
+  }
+
   return (
-    <section className=" text-gray-900 relative">
-      {blogs.length !== 0 ? (
-        <div className="">
-          <Carousel opts={{ align: "start" }} setApi={setApi} className="">
-            <CarouselContent className="-ml-4">
-              {blogs.map((blog, index) => {
-                // Extract plain text preview once per blog
-                const previewText = lexicalToPlainText(blog.content);
+    <section className="container py-16">
+      {/* Header row */}
+      <div className="flex items-center justify-between mb-12">
+        <h2 className="text-3xl lg:text-5xl text-center font-SplineSans font-[500]">
+          Latest Blogs
+        </h2>
 
-                return (
-                  <CarouselItem
-                    key={blog.id || index}
-                    className="pb-10 relative basis-full sm:basis-1/2 lg:basis-1/4"
-                  >
-                    <div className="bg-blue-50 p-1 relative shadow-sm rounded-lg overflow-hidden">
-                      <div className="h-[230px] lg:h-[200px] overflow-hidden rounded-lg w-full relative">
-                        <div className="absolute inset-0 bg-black/20 z-10" />
-                        {blog.image && (
-                          <Image
-                            src={`/api/uploads/${blog.image}`}
-                            alt={blog.title}
-                            width={600}
-                            height={400}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
-                      </div>
+        {/* Navigation buttons */}
+        <div className="flex gap-2">
+          <button
+            disabled={!canScrollPrev}
+            onClick={() => api?.scrollPrev()}
+            className="bg-primary disabled:opacity-40 text-white p-2 rounded-full transition-opacity"
+            aria-label="Previous"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          <button
+            disabled={!canScrollNext}
+            onClick={() => api?.scrollNext()}
+            className="bg-primary disabled:opacity-40 text-white p-2 rounded-full transition-opacity"
+            aria-label="Next"
+          >
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
 
-                      {/* Blog Info */}
-                      <div className="p-4 relative z-20">
-                        <h3 className="font-bold text-lg line-clamp-2">
-                          {blog.title}
-                        </h3>
+      <Carousel
+        opts={{ align: "start", loop: false }}
+        setApi={setApi}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-4">
+          {blogs.map((blog, index) => {
+            const previewText = lexicalToPlainText(blog.content);
 
-                        {/* Plain text preview — no Editor needed, works server-side */}
-                        <p className="mt-1 text-sm text-gray-600 line-clamp-2">
+            return (
+              <CarouselItem
+                key={blog.id ?? index}
+                className="pl-4 basis-full sm:basis-1/2  lg:basis-1/3 xl:basis-1/4"
+              >
+                <Link
+                  href={`/blogs/${blog.slugTitle}`}
+                  className="group block h-full"
+                >
+                  <div className="relative flex flex-col h-full rounded-xl overflow-hidden border border-gray-400 bg-card shadow-sm hover:shadow-md transition-shadow duration-200">
+                    {/* Thumbnail */}
+                    <div className="relative h-48 w-full shrink-0 overflow-hidden bg-muted">
+                      {blog.image ? (
+                        <Image
+                          src={`/api/uploads/${blog.image}`}
+                          alt={blog.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-muted" />
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex flex-col flex-1 p-4 gap-2">
+                      <h3 className="font-semibold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                        {blog.title}
+                      </h3>
+
+                      {previewText && (
+                        <p className="text-sm text-muted-foreground line-clamp-2 flex-1">
                           {previewText}
                         </p>
+                      )}
 
-                        <div className="flex text-slate-500 mt-2 text-xs items-center justify-between">
-                          <span>{blog.author ?? "Unknown"}</span>
-                          <span>
-                            {blog.createdAt
-                              ? new Date(blog.createdAt).toLocaleDateString()
-                              : "Unknown"}
+                      {/* Footer */}
+                      <div className="flex items-center justify-between pt-2 border-t border-border mt-auto">
+                        <div className="text-xs text-muted-foreground">
+                          <span className="font-medium">
+                            {blog.author ?? "Unknown"}
                           </span>
+                          {blog.createdAt && (
+                            <span className="ml-2">
+                              {new Date(blog.createdAt).toLocaleDateString(
+                                undefined,
+                                {
+                                  month: "short",
+                                  day: "numeric",
+                                  year: "numeric",
+                                },
+                              )}
+                            </span>
+                          )}
                         </div>
+                        <MoveUpRight className="h-4 w-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                     </div>
-                    <Link href={`/blogs/${blog.slugTitle}`}>
-                      <button className="absolute right-4 bottom-4 bg-primary hover:bg-primary/80 text-white rounded-lg p-2">
-                        <MoveUpRight />
-                      </button>
-                    </Link>
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-          </Carousel>
-
-          <div className="mt-7 lg:mt-0 flex justify-end gap-2">
-            <button
-              disabled={!canScrollPrev}
-              onClick={() => api?.scrollPrev()}
-              className="bg-primary/80 disabled:bg-slate-400 text-white p-2 rounded-full"
-            >
-              <ArrowLeft />
-            </button>
-            <button
-              disabled={!canScrollNext}
-              onClick={() => api?.scrollNext()}
-              className="bg-primary/80 disabled:bg-slate-400 text-white p-2 rounded-full"
-            >
-              <ArrowRight />
-            </button>
-          </div>
-        </div>
-      ) : (
-        <p>Blogs not found</p>
-      )}
+                  </div>
+                </Link>
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+      </Carousel>
     </section>
   );
 };
