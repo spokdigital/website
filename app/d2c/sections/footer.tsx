@@ -139,7 +139,7 @@ export default function HackFirstFooter() {
             </p>
             <div className="flex flex-col gap-3 text-sm text-white/40">
               <a
-                href="mailto:hello@spokdigital.com"
+                href="mailto:info@spok.digital"
                 className="hover:text-white transition-colors duration-200"
               >
                 info@spok.digital

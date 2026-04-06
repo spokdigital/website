@@ -272,9 +272,6 @@ export default function BlogClient({ blog }: { blog: any }) {
         </h1>
         <Blogs />
       </div>
-
-      {/* ── Back-to-top button ── */}
-      
     </div>
   );
 }
