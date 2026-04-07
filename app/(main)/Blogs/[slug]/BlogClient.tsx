@@ -15,7 +15,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Blogs from "@/app/components/Blogs";
-import { Editor } from "@/components/blocks/editor-00/editor";
+import { Editor } from "@/app/components/blocks/editor-00/editor";
 
 // ─── constants ────────────────────────────────────────────────────────────────
 const serverUrl = "http://localhost:3000";

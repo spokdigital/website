@@ -17,7 +17,7 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { ParagraphNode, TextNode } from "lexical";
 import { ElementFormatToolbarPlugin } from "@/app/components/editor/plugins/toolbar/element-format-toolbar-plugin";
-import { ContentEditable } from "@/components/editor/editor-ui/content-editable";
+import { ContentEditable } from "../../editor/editor-ui/content-editable";
 import { BlockFormatDropDown } from "@/app/components/editor/plugins/toolbar/block-format-toolbar-plugin";
 import { FormatBulletedList } from "@/app/components/editor/plugins/toolbar/block-format/format-bulleted-list";
 import { FormatCheckList } from "@/app/components/editor/plugins/toolbar/block-format/format-check-list";
@@ -26,7 +26,7 @@ import { FormatNumberedList } from "@/app/components/editor/plugins/toolbar/bloc
 import { FormatParagraph } from "@/app/components/editor/plugins/toolbar/block-format/format-paragraph";
 import { FormatQuote } from "@/app/components/editor/plugins/toolbar/block-format/format-quote";
 import { ToolbarPlugin } from "@/app/components/editor/plugins/toolbar/toolbar-plugin";
-import { editorTheme } from "@/components/editor/themes/editor-theme";
+import { editorTheme } from "../../editor/themes/editor-theme";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { FontColorToolbarPlugin } from "@/app/components/editor/plugins/toolbar/font-color-toolbar-plugin";
 import { FontBackgroundToolbarPlugin } from "@/app/components/editor/plugins/toolbar/font-background-toolbar-plugin";

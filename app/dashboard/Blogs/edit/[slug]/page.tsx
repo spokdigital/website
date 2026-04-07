@@ -18,9 +18,9 @@ import {
 } from "@/components/ui/select";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import Spinner from "@/app/components/spinner";
-import { Editor } from "@/components/blocks/editor-00/editor";
+import { Editor } from "@/app/components/blocks/editor-00/editor";
 import { toast } from "sonner";
-import { Eye, Upload, User, Facebook, Twitter } from "lucide-react";
+import { Upload, User, Facebook, Twitter } from "lucide-react";
 import { Label } from "@/components/ui/label";
 type Blog = {
   id?: string;
