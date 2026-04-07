@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Editor } from "@/components/blocks/editor-00/editor";
+import { Editor } from "@/app/components/blocks/editor-00/editor";
 import Link from "next/link";
 
 interface Blog {

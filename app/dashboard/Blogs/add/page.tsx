@@ -12,13 +12,12 @@ import {
   SelectContent,
 } from "@/components/ui/select";
 import imageCompression from "browser-image-compression";
-
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { AnimatePresence, motion } from "motion/react";
-import { Editor } from "@/components/blocks/editor-00/editor";
+import { Editor } from "@/app/components/blocks/editor-00/editor";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { Eye, Upload, User, Facebook, Twitter } from "lucide-react";
+import { Upload, User, Facebook, Twitter } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { slugify } from "@/app/components/Blogs";
 export default function AddBlogPage() {
