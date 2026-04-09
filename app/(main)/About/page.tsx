@@ -295,7 +295,7 @@ const Page = () => {
                 }}
                 transition={{ duration: 1.5, ease: [0.175, 0.885, 0.32, 1] }}
                 key={index}
-                className=" text-slate-950 rounded-lg p-5 bg-gradient-to-tr from-[#59B546]  to-[#0F298A]"
+                className=" text-slate-950 rounded-lg p-5 bg-black"
               >
                 <h2 className="text-3xl pr-10 capitalize font-SplineSans font-[500] text-slate-50">
                   {item.title}
