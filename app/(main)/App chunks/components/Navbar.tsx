@@ -62,7 +62,7 @@ const NavBar = () => {
         >
           <Link href={"/contact"} className="hidden lg:block">
             <Button
-              className={`${path === "/blogs" ? "!text-white" : "!text-black"}`}
+              className={`${path === "/blogs" || path === "/Portfolio" ? "!text-white border-gray-50/80" : "!text-black"}`}
             >
               Contact us
             </Button>
