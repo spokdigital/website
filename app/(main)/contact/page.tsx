@@ -7,7 +7,6 @@ import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradie
 import { SealCheck } from "@phosphor-icons/react";
 import Button from "../App chunks/components/Button";
 
-
 const Page = () => {
   const [height, setHeight] = React.useState(0);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -39,7 +38,7 @@ const Page = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prevData) => {
@@ -102,20 +101,20 @@ const Page = () => {
       setIsSubmitting(true);
 
       try {
-       const resp = await fetch("/api/email", {
-        method: "POST",
-        body: JSON.stringify({
-          name: formData.firstName + " " + formData.lastName,
-          email: formData.email,
-          message: formData.message,
-          contact: formData.phone,
-          createdAt: new Date(),
-          subject: formData.message,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+        const resp = await fetch("/api/email", {
+          method: "POST",
+          body: JSON.stringify({
+            name: formData.firstName + " " + formData.lastName,
+            email: formData.email,
+            message: formData.message,
+            contact: formData.phone,
+            createdAt: new Date(),
+            subject: formData.message,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
         alert("Message sent successfully!");
         setFormData({
@@ -149,14 +148,7 @@ const Page = () => {
         <motion.div>
           <div className="w-full overflow-hidden relative">
             <div className="w-full  flex relative">
-              <div className="absolute top-0 left-0 w-full h-full">
-                <BackgroundGradientAnimation
-                  gradientBackgroundStart="#FFEAD3"
-                  gradientBackgroundEnd="#FFEAD3"
-                  firstColor="#FFCA8F"
-                  secondColor="#FFCA8F"
-                />
-              </div>
+               
               <div
                 style={{ marginTop: `${height + 10}px` }}
                 className="container py-10 relative z-[99] h-auto"
@@ -347,7 +339,7 @@ const Page = () => {
                         <div>
                           <Button
                             type="submit"
-                            className="bg-indigo-300 active:shadow-none hover:bg-indigo-200 text-blue-950"
+                            className="bg-primary active:shadow-none hover:bg-primary/80 text-white"
                             loading={isSubmitting}
                             loadingText="Submitting"
                           >
