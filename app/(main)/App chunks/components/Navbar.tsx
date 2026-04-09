@@ -34,9 +34,9 @@ const NavBar = () => {
         >
           <Logo
             source={
-              path === "/blogs" || path === "/"
-                ? "/spok-white.png"
-                : "/spok-balck.png"
+              path === "/" || path === "/About" || path.startsWith("/blogs/")
+                ? "/spok-balck.png"
+                : "/spok-white.png"
             }
             className="w-[110px] lg:!w-[190px]"
           />

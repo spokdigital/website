@@ -30,9 +30,9 @@ export default function Home() {
         <Portfolio />
         <VideoCarousel />
         <Testimonials />
-        <div className="container">
-          <Blogs />
-        </div>
+
+        <Blogs />
+
         <MarqueeLogo />
       </motion.div>
     </AnimatePresence>
