@@ -23,38 +23,42 @@ const Footer = () => {
   const path = usePathname();
   const renderPath = "/admin";
 
+  const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 16 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6, delay, ease: [0.22, 0.61, 0.36, 1] as const },
+    style: { willChange: "transform, opacity" },
+  });
+
   return !path.includes(renderPath) ? (
     <div
       ref={ref}
       className="relative overflow-hidden bg-[#0a0a0a] w-full pt-16 pb-6"
     >
-      {/* Subtle top border glow — red */}
+      {/* Top border glow */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-600/50 to-transparent" />
 
-      {/* Background ambient glow — red */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-red-900/15 rounded-full blur-[120px] pointer-events-none" />
+      {/* Ambient glow — radial gradient, no blur */}
+      <div
+        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(127,0,0,0.12) 0%, transparent 70%)",
+        }}
+      />
 
       <div className="container mx-auto px-6 lg:px-10">
         {/* Top Section */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 lg:gap-20 items-start mb-14">
           {/* Brand Column */}
           <div className="max-w-sm">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
-            >
+            <motion.div {...fadeUp(0)}>
               <Logo source="/spok-white.png" className="!w-[160px] mb-5" />
             </motion.div>
 
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.1,
-                ease: [0.22, 0.61, 0.36, 1],
-              }}
+              {...fadeUp(0.1)}
               className="text-slate-400 text-sm leading-relaxed font-Satoshi"
             >
               AI-powered websites that convert. We combine web development, SEO,
@@ -63,16 +67,7 @@ const Footer = () => {
             </motion.p>
 
             {/* Subscribe */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.2,
-                ease: [0.22, 0.61, 0.36, 1],
-              }}
-              className="mt-7"
-            >
+            <motion.div {...fadeUp(0.2)} className="mt-7">
               <p className="text-slate-300 text-xs uppercase tracking-widest mb-3 font-Satoshi">
                 Stay in the loop
               </p>
@@ -91,15 +86,7 @@ const Footer = () => {
           {/* Right Columns: Nav + Contact */}
           <div className="grid grid-cols-2 gap-10 lg:gap-16">
             {/* Menu */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.15,
-                ease: [0.22, 0.61, 0.36, 1],
-              }}
-            >
+            <motion.div {...fadeUp(0.15)}>
               <p className="text-slate-300 text-xs uppercase tracking-widest mb-5 font-Satoshi">
                 Navigation
               </p>
@@ -119,15 +106,7 @@ const Footer = () => {
             </motion.div>
 
             {/* Contact */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.2,
-                ease: [0.22, 0.61, 0.36, 1],
-              }}
-            >
+            <motion.div {...fadeUp(0.2)}>
               <p className="text-slate-300 text-xs uppercase tracking-widest mb-5 font-Satoshi">
                 Contact
               </p>
@@ -196,7 +175,9 @@ const Footer = () => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.3 }}
+        style={{ willChange: "opacity" }}
         className="overflow-hidden mt-10"
       >
         <Ribbon

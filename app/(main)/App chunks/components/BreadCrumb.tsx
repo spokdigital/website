@@ -6,17 +6,17 @@ const BreadCrumb = () => {
   const path = usePathname();
   return (
     <div className="flex font-SplineSans items-start gap-1">
-      <Link href={"/"} className="hover:underline text-slate-600">
+      <Link href={"/"} className="hover:underline text-slate-700">
         Home /
       </Link>
       <div>
         {path.split("/").map(
           (item, index) =>
             item !== "/" && (
-              <p className="text-slate-50 capitalize" key={index}>
+              <p className="text-slate-500 capitalize" key={index}>
                 {item.split("-").join(" ")}
               </p>
-            )
+            ),
         )}
       </div>
     </div>
