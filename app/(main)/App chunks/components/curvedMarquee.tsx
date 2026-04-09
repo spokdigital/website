@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useRef, useEffect, useState, useMemo, useId, FC } from "react";
 
 interface CurvedLoopProps {
@@ -38,7 +38,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   const velocityRef = useRef(0);
   const rafRef = useRef<number | null>(null);
   const spacingRef = useRef(0);
-  const lastScrollYRef = useRef(window.scrollY);
+  const lastScrollYRef = useRef(0);
   const isDraggingRef = useRef(false);
   const lastXRef = useRef(0);
   const dragVelRef = useRef(0);
@@ -47,12 +47,24 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   const targetVelRef = useRef(0);
 
   const BASE_DIR = direction === "left" ? -1 : 1;
-  const FRICTION = 0.90;
+  const FRICTION = 0.9;
   // How quickly current velocity chases target velocity (0 = instant, 1 = never)
   const LERP = 0.12;
+  useEffect(() => {
+    const handleScroll = () => {
+      lastScrollYRef.current = window.scrollY;
+    };
 
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const totalText = spacing
-    ? Array(Math.ceil(1800 / spacing) + 2).fill(text).join("")
+    ? Array(Math.ceil(1800 / spacing) + 2)
+        .fill(text)
+        .join("")
     : text;
   const ready = spacing > 0;
 
@@ -85,7 +97,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
       if (textPathRef.current) {
         textPathRef.current.setAttribute(
           "startOffset",
-          offsetRef.current.toFixed(2) + "px"
+          offsetRef.current.toFixed(2) + "px",
         );
       }
 
@@ -143,7 +155,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
     if (!interactive || !isDraggingRef.current) return;
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
-    dragVelRef.current = dragVelRef.current * 0.7 + (-dx) * 0.3;
+    dragVelRef.current = dragVelRef.current * 0.7 + -dx * 0.3;
     targetVelRef.current = -dx * 0.6;
     startLoop();
   };
