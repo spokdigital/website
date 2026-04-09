@@ -34,10 +34,7 @@ const NavBar = () => {
         >
           <Logo
             source={
-              !path.startsWith("/blogs") &&
-              path !== "/blogs" &&
-              path !== "/" &&
-              path !== "/About"
+              path === "/blogs" || path === "/"
                 ? "/spok-white.png"
                 : "/spok-balck.png"
             }
@@ -64,7 +61,11 @@ const NavBar = () => {
           }}
         >
           <Link href={"/contact"} className="hidden lg:block">
-            <Button className="">Contact us</Button>
+            <Button
+              className={`${path === "/blogs" ? "!text-white" : "!text-black"}`}
+            >
+              Contact us
+            </Button>
           </Link>
         </motion.div>
         <MobileMenu />
