@@ -9,7 +9,6 @@ const reviews = [
   "Conversions",
 ];
 
-const firstRow = reviews.slice(0, reviews.length);
 
 export function TextMarquee() {
   return (
