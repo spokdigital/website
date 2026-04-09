@@ -38,29 +38,24 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   const velocityRef = useRef(0);
   const rafRef = useRef<number | null>(null);
   const spacingRef = useRef(0);
-  const lastScrollYRef = useRef(0);
+  
   const isDraggingRef = useRef(false);
   const lastXRef = useRef(0);
   const dragVelRef = useRef(0);
 
   // Target velocity — what we're interpolating toward
   const targetVelRef = useRef(0);
+  const lastScrollYRef = useRef(0);
+
+  useEffect(() => {
+    lastScrollYRef.current = window.scrollY;
+  }, []);
 
   const BASE_DIR = direction === "left" ? -1 : 1;
   const FRICTION = 0.9;
   // How quickly current velocity chases target velocity (0 = instant, 1 = never)
   const LERP = 0.12;
-  useEffect(() => {
-    const handleScroll = () => {
-      lastScrollYRef.current = window.scrollY;
-    };
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   const totalText = spacing
     ? Array(Math.ceil(1800 / spacing) + 2)
         .fill(text)
