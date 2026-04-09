@@ -42,7 +42,7 @@ const SlideTabs = ({
       }}
       className={`relative mx-auto font-[500] z-[999] ${
         path === "/contact" ||
-        path.startsWith("/blogs") ||
+        path.startsWith("/blogs/") ||
         path === "/" ||
         path === "/About"
           ? "text-black border-gray-500/30"
