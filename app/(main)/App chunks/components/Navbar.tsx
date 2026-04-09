@@ -34,7 +34,10 @@ const NavBar = () => {
         >
           <Logo
             source={
-              !path.startsWith("/blogs") && path !== "/blogs" && path !== "/"
+              !path.startsWith("/blogs") &&
+              path !== "/blogs" &&
+              path !== "/" &&
+              path !== "/About"
                 ? "/spok-white.png"
                 : "/spok-balck.png"
             }

@@ -76,25 +76,16 @@ const Page = () => {
   const whoInView = useInView(whoContainerRef, { once: true });
   const para = ` Transforming Brands with Digital Excellence`;
   return (
-    <motion.div className="  bg-white" ref={containerRef}>
+    <motion.div className="  " ref={containerRef}>
       <motion.div>
-        <div className="w-full h-screen overflow-hidden bg-black relative">
+        <div className="w-full h-[80vh] overflow-hidden relative">
           <div className=" w-full h-full flex relative ">
-            <div className="absolute top-0 left-0 w-full h-full">
-              <BackgroundGradientAnimation
-                gradientBackgroundStart="black"
-                gradientBackgroundEnd="teal"
-              />
-            </div>
             <div
-              style={{ marginTop: `${height + 50}px` }}
+              style={{ marginTop: `${height + 80}px` }}
               className="container relative z-[99]"
             >
-              <div
-                style={{ height: `calc(100vh - ${height + 150}px)` }}
-                className="flex  flex-col items-center justify-center "
-              >
-                <motion.h1 className="text-center font-[600] text-slate-50 flex-wrap text-3xl md:text-3xl lg:text-4xl xl:text-6xl xxl:text-7xl  font-Grostek relative">
+              <div className="flex  flex-col items-center justify-center ">
+                <motion.h1 className="text-center font-[600] text-slate-950 flex-wrap text-3xl md:text-3xl lg:text-4xl xl:text-6xl xxl:text-7xl  font-Grostek relative">
                   {para.split(" ").map((item, index) => (
                     <motion.span
                       key={index}
@@ -127,23 +118,23 @@ const Page = () => {
                     </motion.span>
                   ))}
                 </motion.h1>
-                <p className="text-slate-50 text-center text-xl lg:text-2xl font-[500] font-SplineSans">
+                <p className="text-slate-800 text-center text-xl lg:text-2xl font-[500] font-SplineSans">
                   Beyond Marketing
                 </p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 w-full lg:w-1/2 gap-10 mt-10">
                   <div className=" p-3 rounded-xl">
-                    <h2 className="text-6xl text-center text-lime-300 font-[600] font-Grostek ">
+                    <h2 className="text-6xl text-center text-primary font-[600] font-Grostek ">
                       10+
                     </h2>
-                    <p className="text-lg text-slate-100 text-center font-Satoshi">
+                    <p className="text-lg text-slate-800 text-center font-Satoshi">
                       Years of experience in web development.
                     </p>
                   </div>
                   <div className=" p-3 rounded-xl">
-                    <h2 className="text-6xl text-center font-[600] font-Grostek text-lime-300">
+                    <h2 className="text-6xl text-center font-[600] font-Grostek text-primary">
                       90+
                     </h2>
-                    <p className="text-slate-100 text-lg text-center font-Satoshi">
+                    <p className="text-slate-800 text-lg text-center font-Satoshi">
                       {" "}
                       Clients across various Industries
                     </p>
@@ -202,7 +193,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div ref={whoContainerRef} className="w-full bg-white relative mt-5">
+      <div ref={whoContainerRef} className="w-full relative mt-5">
         <div className="container ">
           <motion.article className="flex justify-center lg:justify-start items-center text-black gap-3">
             {["Who", "we", "are", "?"].map((text, index) => (
