@@ -23,7 +23,35 @@ const reviews = [
   {
     img: "Logo/shobha.png",
   },
-  { img: "Logo/zippro.png" },
+  { img: "Logo/bm.png" },
+  { img: "Logo/noir black.png" },
+  { img: "Logo/opto.png" },
+  { img: "Logo/perfume oasis.png" },
+  {
+    img: "Logo/bizgrowth.png",
+  },
+  {
+    img: "Logo/Brownstone.png",
+  },
+  {
+    img: "Logo/craft-desk.png",
+  },
+  {
+    img: "Logo/InsightVision.png",
+  },
+  {
+    img: "Logo/menlocloud.png",
+  },
+  {
+    img: "Logo/milestone.png",
+  },
+  {
+    img: "Logo/shobha.png",
+  },
+  { img: "Logo/bm.png" },
+  { img: "Logo/noir black.png" },
+  { img: "Logo/opto.png" },
+  { img: "Logo/perfume oasis.png" },
 ];
 
 const firstRow = reviews.slice(0, reviews.length / 2);
@@ -47,9 +75,9 @@ const ReviewCard = ({ img }: { img: string }) => {
 
 export function MarqueeLogo() {
   return (
-    <div className="relative bg-red-100 flex py-10 w-full flex-col items-center justify-center overflow-hidden rounded-lg">
+    <div className="relative  flex py-10 w-full flex-col items-center justify-center overflow-hidden rounded-lg">
       <div className="w-full mb-12 container">
-        <h1 className="text-3xl lg:text-5xl text-center font-SplineSans font-[500] ">
+        <h1 className="text-3xl lg:text-5xl text-center font-Cormorant font-[500] ">
           Trusted by
         </h1>
       </div>

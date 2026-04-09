@@ -1,15 +1,13 @@
 "use client";
 import HeroSection from "./(Home Page)/HeroSection";
 import Testimonials from "./(Home Page)/Testimonials";
-import { TechLogo } from "./(Home Page)/TechLogo";
-import CardDistribution from "./(Home Page)/MaskSection";
 import { TextMarquee } from "./(Home Page)/Text-Marquee";
 import Blogs from "../components/Blogs";
 import { AnimatePresence, motion } from "framer-motion";
 import { MarqueeLogo } from "./App chunks/components/MarqueeLogo";
 import Service from "./(Home Page)/Service";
-import CTA from "./(Home Page)/CTA";
 import Portfolio from "./(Home Page)/Portfolio";
+import VideoCarousel from "./(Home Page)/videoCarousel";
 export default function Home() {
   return (
     <AnimatePresence mode="wait">
@@ -30,12 +28,11 @@ export default function Home() {
         <Service />
         <TextMarquee />
         <Portfolio />
-        <CardDistribution />
+        <VideoCarousel />
         <Testimonials />
-        <CTA />
-        <section className="container">
+        <div className="container">
           <Blogs />
-        </section>
+        </div>
         <MarqueeLogo />
       </motion.div>
     </AnimatePresence>

@@ -98,7 +98,7 @@ const Blogs = () => {
   }
 
   return (
-    <section className="container py-16">
+    <section className="container">
       {/* Header row */}
       <div className="flex items-center justify-between mb-12">
         <h2 className="text-3xl lg:text-5xl text-center font-SplineSans font-[500]">

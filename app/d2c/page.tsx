@@ -12,7 +12,7 @@ import PricingSection from "./sections/packages";
 import CTASection from "./sections/cta";
 import BookCallSection from "./sections/form";
 import HackFirstFooter from "./sections/footer";
- 
+
 const page = () => {
   return (
     <>

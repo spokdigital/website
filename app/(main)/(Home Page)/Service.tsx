@@ -49,9 +49,9 @@ const Service = () => {
     },
   ];
   return (
-    <div className="py-16">
+    <div className="pt-20">
       <div className="container">
-        <h1 className=" text-4xl text-[#590000] mb-4 lg:mb-8 lg:text-5xl font-Grostek font-[600]">
+        <h1 className=" text-4xl text-black text-center mb-4 lg:mb-12 lg:text-6xl font-Cormorant font-[500]">
           Our Services
         </h1>
 
@@ -59,17 +59,17 @@ const Service = () => {
           {serviceData.map((service, idx) => (
             <div
               key={idx}
-              className={`bg-[hsl(0,70%,92%)] rounded-lg relative border border-red-200/20 shadow-sm p-5 ${
+              className={`bg-primary rounded-lg relative border border-red-200/20 shadow-sm p-5 ${
                 idx === 1 || idx === 2 ? "lg:col-span-2" : ""
               }`}
             >
-              <h2 className="text-xl font-[600] font-Synonym mb-4">
+              <h2 className="text-2xl font-[600] text-white font-Grostek mb-4">
                 {service.title}
               </h2>
 
               <p className="block lg:hidden">{service.desc}</p>
               {idx == 1 ? (
-                <div className="w-full mt-12 lg:mt-0 lg:w-[70%] overflow-hidden lg:absolute top-0 right-0 lg:h-full flex justify-between  items-end lg:items-end lg:gap-3">
+                <div className="w-full mt-12 lg:mt-0 pb-2 lg:w-[70%] overflow-hidden lg:absolute top-0 right-0 lg:h-full flex justify-between  items-end lg:items-end lg:gap-3">
                   <img
                     src="/servicesMedia/mobile.png"
                     alt="mobile"
@@ -100,7 +100,7 @@ const Service = () => {
                 {service.lists.map((item, index) => (
                   <li
                     key={index}
-                    className="text-red-900 flex items-center gap-2"
+                    className="text-gray-200 flex items-center gap-2"
                   >
                     <Minus /> {item}
                   </li>

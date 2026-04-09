@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 const menu = [
   { title: "Home", link: "/" },
   { title: "About", link: "/About" },
-  { title: "D2c Growth", link: "/d2c" },
+  { title: "D2C Growth", link: "/d2c" },
   { title: "Business Accelerator", link: "/website-landing" },
   { title: "Blogs", link: "/blogs" },
   { title: "Portfolio", link: "/Portfolio" },
@@ -34,7 +34,7 @@ const NavBar = () => {
         >
           <Logo
             source={
-              !path.startsWith("/blogs") && path !== "/Blog"
+              !path.startsWith("/blogs") && path !== "/blogs" && path !== "/"
                 ? "/spok-white.png"
                 : "/spok-balck.png"
             }
