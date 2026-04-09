@@ -15,6 +15,7 @@ export default function HeroSection() {
     <main className="relative ">
       <SliderForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       <Section1 setIsFormOpen={setIsFormOpen} />
+      <FilmCarousel />
     </main>
   );
 }
