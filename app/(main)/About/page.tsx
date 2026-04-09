@@ -52,6 +52,12 @@ const Page = () => {
       color: "#FFEE58",
     },
   ];
+  const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 60 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { delay, duration: 0.7, ease: [0.22, 0.61, 0.36, 1] },
+});
   const points = [
     {
       title: "Innovators",
@@ -148,48 +154,70 @@ const Page = () => {
 
       <div className="relative">
         <div className="container py-20">
-          <motion.article className="flex justify-center lg:justify-start items-center text-black gap-3">
-            {["About", "us"].map((text, index) => (
+          {/* heading */}
+          <motion.article className="flex justify-center lg:justify-start items-center text-black gap-3 overflow-hidden">
+            {["About", "us"].map((text, i) => (
               <motion.h1
-                key={index}
-                transition={{
-                  delay: index * 0.1,
-                  duration: 0.6,
-                  ease: [0.22, 0.61, 0.36, 1],
-                }}
-                viewport={{ once: true }}
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-[600] tracking-tight break-words"
+                key={i}
+                {...fadeUp(i * 0.1)}
+                className="text-5xl lg:text-7xl leading-none font-Grostek font-[600] tracking-tight"
               >
                 {text}
               </motion.h1>
             ))}
           </motion.article>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-            <div className="">
-              <h3 className="font-Grostek text-3xl font-[400]">Our Vision</h3>
-              <p className="mt-1 text-lg">
-                Our vision is to be the driving force behind transformative
-                marketing that empowers brands to exist in an ever-evolving
-                world. We aspire to create meaningful connections between
-                businesses and their audiences through innovative strategies,
-                authentic storytelling, and measurable impact
-              </p>
-            </div>
-            <div className="">
-              <h3 className="font-Grostek text-3xl font-[400]">Our Mission</h3>
-              <p className="mt-1 text-lg">
-                Our mission at Spok Digital is to empower businesses to reach
-                their full potential through innovative marketing solutions that
-                deliver measurable results. We are committed to understanding
-                the unique needs of every client, creating tailored strategies
-                that amplify their voice, connect with their audience, and drive
-                sustainable growth.
-              </p>
-            </div>
+          {/* divider */}
+          <motion.div
+            {...fadeUp(0.3)}
+            className="w-full h-px bg-black/10 mt-8 mb-10"
+          />
+
+          {/* vision + mission */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {[
+              {
+                label: "Our Vision",
+                body: "Our vision is to be the driving force behind transformative marketing that empowers brands to exist in an ever-evolving world. We aspire to create meaningful connections between businesses and their audiences through innovative strategies, authentic storytelling, and measurable impact.",
+              },
+              {
+                label: "Our Mission",
+                body: "Our mission at Spok Digital is to empower businesses to reach their full potential through innovative marketing solutions that deliver measurable results. We are committed to understanding the unique needs of every client, creating tailored strategies that amplify their voice, connect with their audience, and drive sustainable growth.",
+              },
+            ].map((item, i) => (
+              <motion.div key={i} {...fadeUp(0.2 + i * 0.15)}>
+                <span className="text-xs uppercase tracking-widest text-black/40 font-Grostek">
+                  0{i + 1}
+                </span>
+                <h3 className="font-Grostek text-3xl font-[500] mt-2 mb-3">
+                  {item.label}
+                </h3>
+                <p className="text-lg leading-relaxed text-black/70">
+                  {item.body}
+                </p>
+              </motion.div>
+            ))}
           </div>
+
+          {/* bottom stat row */}
+          <motion.div
+            {...fadeUp(0.5)}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16 pt-10 border-t border-black/10"
+          >
+            {[
+              { value: "5+", label: "Years of experience" },
+              { value: "200+", label: "Clients served" },
+              { value: "98%", label: "Client satisfaction" },
+              { value: "3x", label: "Average ROI delivered" },
+            ].map((stat, i) => (
+              <motion.div key={i} {...fadeUp(0.5 + i * 0.1)}>
+                <p className="text-4xl font-Grostek font-[600] tracking-tight">
+                  {stat.value}
+                </p>
+                <p className="text-sm text-black/50 mt-1">{stat.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
