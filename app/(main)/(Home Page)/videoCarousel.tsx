@@ -105,8 +105,17 @@ export default function VideoCarousel() {
                           src={video.src}
                           poster={video.thumbnail}
                           className="w-full aspect-[2/3] object-cover"
-                          controls
                           preload="metadata"
+                          onMouseEnter={(e) => {
+                            const vid = e.currentTarget;
+                            vid.currentTime = 0;
+                            vid.play();
+                          }}
+                          onMouseLeave={(e) => {
+                            const vid = e.currentTarget;
+                            vid.pause();
+                            vid.currentTime = 0;
+                          }}
                         />
                       </CardContent>
                     </Card>
