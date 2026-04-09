@@ -5,7 +5,11 @@
 body {
   background-color: #f9ebeb;
 }
-
+.char {
+  display: inline-block;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
 @layer base {
   :root {
     --radius: 0.5rem;
