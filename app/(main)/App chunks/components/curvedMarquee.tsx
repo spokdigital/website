@@ -38,7 +38,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   const velocityRef = useRef(0);
   const rafRef = useRef<number | null>(null);
   const spacingRef = useRef(0);
-  
+
   const isDraggingRef = useRef(false);
   const lastXRef = useRef(0);
   const dragVelRef = useRef(0);
