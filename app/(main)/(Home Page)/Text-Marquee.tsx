@@ -1,14 +1,4 @@
 import CurvedLoop from "../App chunks/components/curvedMarquee";
-const reviews = [
-  "WooCommerce",
-  "ROAS",
-  "Scaling",
-  "Funnels",
-  "Profit",
-  "Shopify",
-  "Conversions",
-];
-
 
 export function TextMarquee() {
   return (
