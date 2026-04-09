@@ -1,354 +1,466 @@
 "use client";
 import React from "react";
-import { motion, useMotionValue, useInView } from "framer-motion";
-import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradient";
-import { Circle } from "@phosphor-icons/react";
+import { motion, useInView } from "framer-motion";
+import { Target, BarChart3, Handshake, Trophy } from "lucide-react";
+import Link from "next/link";
 
-const Page = () => {
-  const [height, setHeight] = React.useState(0);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-
-  const scrollY = useMotionValue(0);
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      if (typeof window !== undefined) {
-        scrollY.set(window.scrollY);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrollY]);
-  React.useEffect(() => {
-    const rect = document
-      .getElementsByClassName("HeadNavigation")[0]
-      .getBoundingClientRect();
-    setHeight(rect.height);
-  }, []);
-  const selfPraise = [
-    {
-      title: "expert team support",
-      content:
-        " Our professionals bring years of experience and industry knowledge to every project.",
-      color: "#D4E157",
-    },
-    {
-      title: "Measurable Results",
-      content:
-        " We combine creativity with analytics to deliver strategies that work.",
-      color: "#4FC3F7",
-    },
-    {
-      title: "Client-First Approach",
-      content:
-        " We prioritize your vision and values, ensuring campaigns align with your brand’s identity.",
-      color: "#FF8A65",
-    },
-    {
-      title: "Proven Success",
-      content:
-        " Our track record speaks for itself, with satisfied clients across various industries.",
-      color: "#FFEE58",
-    },
-  ];
-  const fadeUp = (delay = 0) => ({
+const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 60 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
   transition: { delay, duration: 0.7, ease: [0.22, 0.61, 0.36, 1] },
 });
-  const points = [
-    {
-      title: "Innovators",
-      desc: " who embrace emerging trends and cutting-edge technology.",
-    },
-    {
-      title: "Storytellers",
-      desc: "who craft compelling narratives to spark emotional connections.",
-    },
-    {
-      title: "Problem-solvers",
-      desc: "who thrive on turning challenges into opportunities.",
-    },
-    {
-      title: "Collaborators",
-      desc: "who believe the best ideas are born through partnership.",
-    },
-  ];
-  const selfPrasiseContainer = React.useRef<HTMLDivElement>(null);
-  const boxInView = useInView(selfPrasiseContainer, { once: true });
+
+const SectionHeading = ({ words }: { words: string[] }) => (
+  <motion.article className="flex flex-wrap justify-center lg:justify-start items-center text-black gap-3 overflow-hidden mb-10">
+    {words.map((text, i) => (
+      <motion.h1
+        key={i}
+        {...fadeUp(i * 0.1)}
+        className="text-5xl lg:text-6xl leading-none font-Grostek font-[600] tracking-tight"
+      >
+        {text}
+      </motion.h1>
+    ))}
+  </motion.article>
+);
+
+const selfPraise = [
+  {
+    title: "Expert Team Support",
+    content:
+      "Our professionals bring years of experience and industry knowledge to every project.",
+    icon: Target,
+  },
+  {
+    title: "Measurable Results",
+    content:
+      "We combine creativity with analytics to deliver strategies that work.",
+    icon: BarChart3,
+  },
+  {
+    title: "Client-First Approach",
+    content:
+      "We prioritize your vision and values, ensuring campaigns align with your brand's identity.",
+    icon: Handshake,
+  },
+  {
+    title: "Proven Success",
+    content:
+      "Our track record speaks for itself, with satisfied clients across various industries.",
+    icon: Trophy,
+  },
+];
+
+const points = [
+  {
+    title: "Innovators",
+    desc: "who embrace emerging trends and cutting-edge technology.",
+  },
+  {
+    title: "Storytellers",
+    desc: "who craft compelling narratives to spark emotional connections.",
+  },
+  {
+    title: "Problem-solvers",
+    desc: "who thrive on turning challenges into opportunities.",
+  },
+  {
+    title: "Collaborators",
+    desc: "who believe the best ideas are born through partnership.",
+  },
+];
+
+const stats = [
+  { value: "5+", label: "Years of experience" },
+  { value: "200+", label: "Clients served" },
+  { value: "98%", label: "Client satisfaction" },
+  { value: "3x", label: "Average ROI delivered" },
+];
+
+const Page = () => {
+  const [height, setHeight] = React.useState(0);
   const whoContainerRef = React.useRef<HTMLDivElement>(null);
+  const selfPrasiseContainer = React.useRef<HTMLDivElement>(null);
   const whoInView = useInView(whoContainerRef, { once: true });
-  const para = ` Transforming Brands with Digital Excellence`;
+  const boxInView = useInView(selfPrasiseContainer, { once: true });
+
+  React.useEffect(() => {
+    const el = document.getElementsByClassName("HeadNavigation")[0];
+    if (el) setHeight(el.getBoundingClientRect().height);
+  }, []);
+
   return (
-    <motion.div className="  " ref={containerRef}>
-      <motion.div>
-        <div className="w-full h-[80vh] overflow-hidden relative">
-          <div className=" w-full h-full flex relative ">
-            <div
-              style={{ marginTop: `${height + 80}px` }}
-              className="container relative z-[99]"
-            >
-              <div className="flex  flex-col items-center justify-center ">
-                <motion.h1 className="text-center font-[600] text-slate-950 flex-wrap text-3xl md:text-3xl lg:text-4xl xl:text-6xl xxl:text-7xl  font-Grostek relative">
-                  {para.split(" ").map((item, index) => (
-                    <motion.span
-                      key={index}
-                      className="mr-2 xl:mr-2 xxl:mr-5 overflow-hidden h-[35px] lg:h-[46px] xl:h-[70px]"
-                      style={{
-                        display: "inline-block", // Ensure words are treated as block elements
-                      }}
-                    >
-                      <motion.span
-                        initial={{ y: 300, opacity: 0, rotate: 20, x: -10 }} // Start from below
-                        animate={{
-                          y: 0, // Move to original position
-                          opacity: 1,
-                          rotate: 0,
-                          x: 0,
-                        }}
-                        style={{
-                          display: "inline-block", // Ensure words are treated as block elements
-                        }}
-                        transition={{
-                          ease: [0, 0, 0.2, 1],
-                          duration: 1,
-                          delay: index * 0.1, // Increased delay to prevent overlap
-                        }}
-                        className="origin-top-right"
-                      >
-                        {item}
-                      </motion.span>
-                      {"  "}
-                    </motion.span>
-                  ))}
-                </motion.h1>
-                <p className="text-slate-800 text-center text-xl lg:text-2xl font-[500] font-SplineSans">
-                  Beyond Marketing
-                </p>
-                <div className="grid grid-cols-1 lg:grid-cols-2 w-full lg:w-1/2 gap-10 mt-10">
-                  <div className=" p-3 rounded-xl">
-                    <h2 className="text-6xl text-center text-primary font-[600] font-Grostek ">
-                      10+
-                    </h2>
-                    <p className="text-lg text-slate-800 text-center font-Satoshi">
-                      Years of experience in web development.
-                    </p>
-                  </div>
-                  <div className=" p-3 rounded-xl">
-                    <h2 className="text-6xl text-center font-[600] font-Grostek text-primary">
-                      90+
-                    </h2>
-                    <p className="text-slate-800 text-lg text-center font-Satoshi">
-                      {" "}
-                      Clients across various Industries
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
+    <div>
+      {/* ── Hero ── */}
+      <div
+        className="w-full min-h-screen flex flex-col items-center justify-center text-center px-4"
+        style={{ paddingTop: height + 40 }}
+      >
+        <motion.p
+          {...fadeUp(0)}
+          className="text-xs uppercase tracking-[0.3em] text-black/40 font-Grostek mb-6"
+        >
+          Welcome to Spok Digital
+        </motion.p>
 
-      <div className="relative">
-        <div className="container py-20">
-          {/* heading */}
-          <motion.article className="flex justify-center lg:justify-start items-center text-black gap-3 overflow-hidden">
-            {["About", "us"].map((text, i) => (
-              <motion.h1
+        <motion.h1 className="font-[600] text-slate-950 text-4xl lg:text-7xl font-Grostek max-w-4xl leading-tight">
+          {"Transforming Brands with Digital Excellence"
+            .split(" ")
+            .map((word, i) => (
+              <motion.span
                 key={i}
-                {...fadeUp(i * 0.1)}
-                className="text-5xl lg:text-7xl leading-none font-Grostek font-[600] tracking-tight"
+                className="inline-block mr-3 overflow-hidden"
+                style={{ verticalAlign: "bottom" }}
               >
-                {text}
-              </motion.h1>
+                <motion.span
+                  initial={{ y: 80, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    ease: [0, 0, 0.2, 1],
+                    duration: 0.9,
+                    delay: i * 0.08,
+                  }}
+                  style={{ display: "inline-block" }}
+                >
+                  {word}
+                </motion.span>
+              </motion.span>
             ))}
-          </motion.article>
+        </motion.h1>
 
-          {/* divider */}
-          <motion.div
-            {...fadeUp(0.3)}
-            className="w-full h-px bg-black/10 mt-8 mb-10"
-          />
+        <motion.p
+          {...fadeUp(0.6)}
+          className="text-slate-500 text-lg lg:text-xl font-SplineSans mt-5 max-w-xl"
+        >
+          Beyond Marketing — We build connections that drive real, measurable
+          growth for your brand.
+        </motion.p>
 
-          {/* vision + mission */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {[
-              {
-                label: "Our Vision",
-                body: "Our vision is to be the driving force behind transformative marketing that empowers brands to exist in an ever-evolving world. We aspire to create meaningful connections between businesses and their audiences through innovative strategies, authentic storytelling, and measurable impact.",
-              },
-              {
-                label: "Our Mission",
-                body: "Our mission at Spok Digital is to empower businesses to reach their full potential through innovative marketing solutions that deliver measurable results. We are committed to understanding the unique needs of every client, creating tailored strategies that amplify their voice, connect with their audience, and drive sustainable growth.",
-              },
-            ].map((item, i) => (
-              <motion.div key={i} {...fadeUp(0.2 + i * 0.15)}>
-                <span className="text-xs uppercase tracking-widest text-black/40 font-Grostek">
-                  0{i + 1}
-                </span>
-                <h3 className="font-Grostek text-3xl font-[500] mt-2 mb-3">
-                  {item.label}
-                </h3>
-                <p className="text-lg leading-relaxed text-black/70">
-                  {item.body}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+        <motion.div {...fadeUp(0.8)} className="flex gap-4 mt-8">
+          <Link href="/contact">
+            <button className="px-6 py-3 bg-black text-white font-SplineSans rounded-full text-sm hover:bg-black/80 transition-colors">
+              Work with us
+            </button>
+          </Link>
+          <Link href="/Portfolio">
+            <button className="px-6 py-3 border border-black/20 text-black font-SplineSans rounded-full text-sm hover:bg-black/5 transition-colors">
+              See our work
+            </button>
+          </Link>
+        </motion.div>
 
-          {/* bottom stat row */}
-          <motion.div
-            {...fadeUp(0.5)}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16 pt-10 border-t border-black/10"
-          >
-            {[
-              { value: "5+", label: "Years of experience" },
-              { value: "200+", label: "Clients served" },
-              { value: "98%", label: "Client satisfaction" },
-              { value: "3x", label: "Average ROI delivered" },
-            ].map((stat, i) => (
-              <motion.div key={i} {...fadeUp(0.5 + i * 0.1)}>
-                <p className="text-4xl font-Grostek font-[600] tracking-tight">
-                  {stat.value}
-                </p>
-                <p className="text-sm text-black/50 mt-1">{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+        {/* stats strip */}
+        <motion.div
+          {...fadeUp(1)}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-black/10 border border-black/10 rounded-2xl overflow-hidden mt-16 w-full max-w-3xl"
+        >
+          {stats.map((s, i) => (
+            <div key={i} className="bg-white px-6 py-5 text-center">
+              <p className="text-3xl lg:text-4xl font-Grostek font-[600] text-primary">
+                {s.value}
+              </p>
+              <p className="text-xs text-black/40 mt-1 font-Satoshi">
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </motion.div>
       </div>
 
-      <div ref={whoContainerRef} className="w-full relative mt-5">
+      {/* ── About Us ── */}
+      <section className="bg-black py-24">
         <div className="container ">
-          <motion.article className="flex justify-center lg:justify-start items-center text-black gap-3">
-            {["Who", "we", "are", "?"].map((text, index) => (
-              <motion.h1
-                key={index}
-                transition={{
-                  delay: index * 0.1,
-                  duration: 0.6,
-                  ease: [0.22, 0.61, 0.36, 1],
-                }}
-                viewport={{ once: true }}
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-[600] tracking-tight break-words"
+          <div className="grid grid-cols-1 lg:grid-cols-[.8fr_1.2fr] gap-16 items-center">
+            {/* left — sticky text block */}
+            <div className="">
+              <motion.p
+                {...fadeUp(0)}
+                className="text-xs uppercase tracking-[0.3em] text-gray-50/70 font-Grostek mb-5"
               >
-                {text}
-              </motion.h1>
-            ))}
-          </motion.article>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-10">
-            <div>
-              <p className="text-[1.4rem] font-Satoshi">
-                At Spok Digital, every brand has a unique story waiting to be
-                told. Founded on passion, creativity, and a deep understanding
-                of marketing trends, we specialize in delivering solutions that
-                gives measurable results. Our mission is simple: to help you
-                grow, connect, and stand out in a crowded marketplace.{" "}
-              </p>
-              <div className="mt-3">
-                {points.map((point, idx) => (
-                  <div key={idx} className="flex items-start gap-2">
-                    <div>
-                      <Circle weight="fill" className="text-sm mt-[14px]" />
-                    </div>
-                    <p className=" mt-2">
-                      <span className="text-xl font-Grostek font-[600] ">
-                        {point.title}:{" "}
-                      </span>
-                      <span className="text-lg font-Satoshi">{point.desc}</span>
-                    </p>
-                  </div>
-                ))}
-              </div>
+                About Spok Digital
+              </motion.p>
+
+              <motion.h2
+                {...fadeUp(0.1)}
+                className="text-5xl lg:text-7xl font-Grostek font-[600] text-gray-100 tracking-tight leading-[1.05] mb-8"
+              >
+                We turn bold <br />
+                <span className="text-primary">ideas</span> into <br />
+                real growth.
+              </motion.h2>
+
+              <motion.p
+                {...fadeUp(0.2)}
+                className="text-base font-Satoshi leading-relaxed text-white/55 max-w-lg"
+              >
+                Spok Digital is a full-service digital marketing agency built
+                for brands that refuse to be ordinary. We blend creativity,
+                data, and strategy to deliver campaigns that actually move the
+                needle.
+              </motion.p>
+
+              <motion.div
+                {...fadeUp(0.3)}
+                className="flex items-center gap-6 mt-10"
+              >
+                <Link href="/contact">
+                  <button className="px-6 py-3 bg-primary text-white font-SplineSans rounded-full text-sm hover:bg-black/80 transition-colors">
+                    Work with us
+                  </button>
+                </Link>
+                <Link href="/Portfolio">
+                  <span className="text-sm !bg-white !text-black px-7 py-3 rounded-full font-SplineSans text-white/50 hover:text-white transition-colors underline underline-offset-4 cursor-pointer">
+                    See our work →
+                  </span>
+                </Link>
+              </motion.div>
             </div>
-            <div className="w-full relative overflow-hidden">
+
+            {/* right — cards stack */}
+            <div className="flex flex-col gap-5">
+              {[
+                {
+                  num: "01",
+                  label: "Our Vision",
+                  body: "To be the driving force behind transformative marketing — building brands that connect, inspire, and endure in an ever-evolving digital world.",
+                  accent: "bg-primary/8",
+                },
+                {
+                  num: "02",
+                  label: "Our Mission",
+                  body: "To empower businesses with tailored strategies that amplify their voice, connect with their audience, and deliver sustainable, measurable growth.",
+                  accent: "bg-black/[0.03]",
+                },
+                {
+                  num: "03",
+                  label: "Our Promise",
+                  body: "Radical transparency, relentless creativity, and a client-first mindset — every campaign we run is built around your success, not vanity metrics.",
+                  accent: "bg-black/[0.03]",
+                },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  {...fadeUp(0.15 + i * 0.15)}
+                  className={`group rounded-2xl p-6 ${item.accent} border border-white/20 hover:border-white/35 transition-all duration-300`}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-xs font-Grostek text-white/25 tracking-widest uppercase">
+                          {item.num}
+                        </span>
+                        <div className="h-px flex-1 bg-black/8" />
+                      </div>
+                      <h3 className="font-Grostek text-xl text-gray-100 font-[600] mb-2">
+                        {item.label}
+                      </h3>
+                      <p className="text-sm font-Satoshi leading-relaxed text-white/55">
+                        {item.body}
+                      </p>
+                    </div>
+                    <span className="text-white/10 text-4xl font-Grostek font-[700] leading-none group-hover:text-primary/20 transition-colors select-none mt-1">
+                      →
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Who We Are ── */}
+
+      <div ref={whoContainerRef} className="container py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-20 items-start">
+          {/* Image column */}
+          <div className="order-2 lg:order-1 space-y-4">
+            <div className="relative overflow-hidden rounded-3xl aspect-[4/5]">
               <motion.div
                 animate={{ y: whoInView ? "-100%" : "0%" }}
-                transition={{
-                  delay: 0.2,
-                  duration: 0.6,
-                  ease: "easeOut",
-                }}
-                className="w-full min-h-[500px] max-h-[500px] absolute z-[10] top-0 left-0 bg-red-100"
+                transition={{ delay: 0.2, duration: 0.9, ease: "easeOut" }}
+                className="absolute inset-0 bg-primary z-10"
               />
               <img
-                src={"media/we_are_image.jpg"}
+                src="/media/we_are_image.jpg"
                 className="w-full h-full object-cover"
+                alt="Who we are"
               />
+            </div>
+
+            {/* Stat strip below image */}
+            <motion.div
+              {...fadeUp(0.5)}
+              className="grid grid-cols-3 divide-x divide-black/20 border border-black/20 rounded-2xl overflow-hidden"
+            >
+              {[
+                { value: "6+", label: "Years active" },
+                { value: "180+", label: "Projects delivered" },
+                { value: "98%", label: "Client satisfaction" },
+              ].map((stat, i) => (
+                <div key={i} className="py-5 px-4 text-center">
+                  <p className="font-Grostek font-[700] text-2xl tracking-tight">
+                    {stat.value}
+                  </p>
+                  <p className="text-xs font-Satoshi text-black/40 mt-0.5">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Content column */}
+          <div className="order-1 lg:order-2 pt-2">
+            <motion.p
+              {...fadeUp(0)}
+              className="text-xs uppercase tracking-widest text-black/30 font-Grostek mb-4"
+            >
+              Our story
+            </motion.p>
+
+            <motion.h2
+              {...fadeUp(0.1)}
+              className="text-4xl lg:text-[3.25rem] font-Grostek font-[600] tracking-tight leading-[1.1] mb-6"
+            >
+              We craft brands that people actually remember.
+            </motion.h2>
+
+            <motion.div
+              {...fadeUp(0.2)}
+              className="w-12 h-0.5 bg-primary mb-6"
+            />
+
+            <motion.p
+              {...fadeUp(0.25)}
+              className="text-base font-Satoshi leading-relaxed text-black/60 mb-10 max-w-lg"
+            >
+              At Spok Digital, every brand has a unique story waiting to be
+              told. Founded on passion, creativity, and a deep understanding of
+              marketing trends, we deliver solutions that produce measurable
+              results — helping you grow, connect, and stand out.
+            </motion.p>
+
+            <div className="space-y-3">
+              {points.map((point, idx) => (
+                <motion.div
+                  key={idx}
+                  {...fadeUp(0.3 + idx * 0.08)}
+                  className="flex items-start gap-4 p-5 rounded-2xl border border-black/20 hover:border-black/16 hover:bg-black/30 transition-all duration-300 group"
+                >
+                  <div className="w-9 h-9 shrink-0 rounded-xl bg-primary/10 flex items-center justify-center mt-0.5 group-hover:bg-primary/15 transition-colors duration-300">
+                    <div className="w-2 h-2 rounded-full bg-primary" />
+                  </div>
+                  <div>
+                    <p className="font-Grostek font-[600] text-base mb-0.5">
+                      {point.title}
+                    </p>
+                    <p className="text-sm font-Satoshi text-black/50 leading-relaxed">
+                      {point.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      <div ref={selfPrasiseContainer} className="w-full py-12 overflow-hidden">
-        <div className="container ">
-          <motion.article className="flex justify-center lg:justify-start items-center text-black gap-3">
-            {["Why", "Choose", "us?"].map((text, index) => (
-              <motion.h1
-                key={index}
-                transition={{
-                  delay: index * 0.1,
-                  duration: 0.6,
-                  ease: [0.22, 0.61, 0.36, 1],
-                }}
-                viewport={{ once: true }}
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-[600] tracking-tight break-words"
-              >
-                {text}
-              </motion.h1>
-            ))}
-          </motion.article>
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-7 mt-10 !text-red-50">
-            {selfPraise.map((item, index) => (
+      {/* ── Why Choose Us ── */}
+      <div ref={selfPrasiseContainer} className="container pb-20">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+          <SectionHeading words={["Why", "Choose", "us?"]} />
+          <motion.p
+            {...fadeUp(0.3)}
+            className="text-base text-black/50 font-Satoshi max-w-sm lg:text-right mb-10"
+          >
+            Four reasons why leading brands trust Spok Digital to drive their
+            growth.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {selfPraise.map((item, i) => {
+            const Icon = item.icon;
+
+            return (
               <motion.div
+                key={i}
                 animate={{
-                  x: boxInView ? "0%" : "100%",
-                  y: boxInView ? "0%" : "70%",
+                  y: boxInView ? "0%" : "40%",
+                  opacity: boxInView ? 1 : 0,
                 }}
-                transition={{ duration: 1.5, ease: [0.175, 0.885, 0.32, 1] }}
-                key={index}
-                className=" text-slate-950 rounded-lg p-5 bg-black"
+                transition={{
+                  duration: 0.7,
+                  delay: i * 0.12,
+                  ease: [0.175, 0.885, 0.32, 1],
+                }}
+                className="group relative rounded-2xl p-6 bg-black text-slate-50 flex flex-col gap-5 overflow-hidden"
               >
-                <h2 className="text-3xl pr-10 capitalize font-SplineSans font-[500] text-slate-50">
-                  {item.title}
-                </h2>
-                <p className="mt-3 text-lg font-Grostek text-slate-50">
-                  {item.content}
-                </p>
+                {/* large number watermark */}
+                <span className="absolute top-3 right-4 text-7xl font-Grostek font-[700] text-white/20 select-none leading-none">
+                  {i + 1}
+                </span>
+
+                <div className="p-3 rounded-xl w-fit bg-primary/10">
+                  <Icon className="w-6 h-6 text-primary" />
+                </div>
+
+                <div className="flex-1">
+                  <h2 className="text-lg font-SplineSans font-[500] capitalize leading-snug mb-3">
+                    {item.title}
+                  </h2>
+                  <p className="text-sm font-Grostek text-slate-400 leading-relaxed">
+                    {item.content}
+                  </p>
+                </div>
+
+                {/* bottom accent line */}
+                <div className="h-px w-0 group-hover:w-full bg-primary transition-all duration-500" />
               </motion.div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
-      <div className="py-16 container">
-        <div className=" ">
-          <div className=" p-7  w-full bg-gradient-to-tr from-red-300 to-red-700 text-slate-100 rounded-xl">
-            <h2 className="text-3xl font-SplineSans font-[500]">
-              Let’s Grow Together
+
+      {/* ── CTA ── */}
+      <div className="container pb-20">
+        <motion.div
+          {...fadeUp(0.2)}
+          className="p-10 lg:p-16 w-full bg-gradient-to-tr from-red-400 to-red-600 text-slate-100 rounded-2xl relative overflow-hidden"
+        >
+          <div className="relative z-10">
+            <p className="text-xs uppercase tracking-widest text-white/60 font-Grostek mb-3">
+              Ready to scale?
+            </p>
+            <h2 className="text-4xl lg:text-5xl font-Grostek font-[600] leading-tight max-w-xl">
+              Let's Grow Together
             </h2>
-            <p className="mt-3 font-Synonym font-[400] text-lg">
-              At Spok Digital, we don’t just market products—we build
-              connections that last. Whether you’re a startup looking to make a
-              big growth or an established brand seeking to level up, we’re here
-              to help you achieve your goals.
+            <p className="mt-4 font-Synonym font-[400] text-lg max-w-2xl text-white/80">
+              At Spok Digital, we don't just market products — we build
+              connections that last. Whether you're a startup making your first
+              move or an established brand ready to level up, we're here to
+              help.
             </p>
-            <p className="mt-3 font-Synonym font-[400] text-lg">
-              Get in touch today and let’s turn your vision into reality.
-            </p>
-            <button className="mt-5 px-4 py-2 bg-white text-slate-900 font-SplineSans rounded-lg font-[400]">
-              Contact us
-            </button>
+            <div className="flex flex-wrap gap-3 mt-8">
+              <Link href="/contact">
+                <button className="px-6 py-3 bg-white text-slate-900 font-SplineSans rounded-full text-sm font-[500] hover:bg-white/90 transition-colors">
+                  Contact us
+                </button>
+              </Link>
+              <Link href="/Portfolio">
+                <button className="px-6 py-3 border border-white/30 text-white font-SplineSans rounded-full text-sm hover:bg-white/10 transition-colors">
+                  View our work
+                </button>
+              </Link>
+            </div>
           </div>
-        </div>
+          <div className="absolute right-0 bottom-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3" />
+          <div className="absolute right-20 bottom-20 w-32 h-32 bg-white/5 rounded-full" />
+        </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
