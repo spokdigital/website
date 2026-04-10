@@ -79,11 +79,7 @@ export function MarqueeLogo() {
           Trusted by
         </h1>
       </div>
-      <Marquee reverse pauseOnHover className="[--duration:20s]">
-        {secondRow.map((review, index) => (
-          <ReviewCard key={index} {...review} />
-        ))}
-      </Marquee>
+
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((review, index) => (
           <ReviewCard key={index} {...review} />

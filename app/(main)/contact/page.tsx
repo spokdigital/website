@@ -148,7 +148,6 @@ const Page = () => {
         <motion.div>
           <div className="w-full overflow-hidden relative">
             <div className="w-full  flex relative">
-               
               <div
                 style={{ marginTop: `${height + 10}px` }}
                 className="container py-10 relative z-[99] h-auto"

@@ -113,7 +113,7 @@ export default function FloatingImages() {
           style={item.style as React.CSSProperties}
         >
           <div className="shadow-lg">
-            <p className="absolute inset-0 text-3xl text-primary z-10">{i + 1} </p>
+
             <img
               src={item.img}
               alt=""
