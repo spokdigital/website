@@ -44,7 +44,9 @@ const SlideTabs = ({
         path === "/contact" ||
         path.startsWith("/blogs/") ||
         path === "/" ||
-        path === "/About"
+        path === "/About" ||
+        path.startsWith("/d2c") ||
+        path.startsWith("/website-landing")
           ? "text-black border-gray-500/30"
           : "text-white border-slate-50/30"
       } font-Grostek  flex w-fit border bg-white/20 rounded-full p-1 ${className}`}

@@ -34,7 +34,12 @@ const NavBar = () => {
         >
           <Logo
             source={
-              path === "/" || path === "/About" || path === "/contact" || path.startsWith("/blogs/")
+              path === "/" ||
+              path === "/About" ||
+              path === "/contact" ||
+              path.startsWith("/d2c") ||
+              path.startsWith("/website-landing") ||
+              path.startsWith("/blogs/")
                 ? "/spok-balck.png"
                 : "/spok-white.png"
             }
@@ -62,7 +67,11 @@ const NavBar = () => {
         >
           <Link href={"/contact"} className="hidden lg:block">
             <Button
-              className={`${path === "/blogs" || path === "/Portfolio" ? "!text-white border-gray-50/80" : "!text-black"}`}
+              className={`${
+                path === "/blogs" || path === "/Portfolio"
+                  ? "!text-white border-gray-50/80"
+                  : "!text-black"
+              }`}
             >
               Contact us
             </Button>
