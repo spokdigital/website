@@ -16,7 +16,7 @@ const Ribbon = ({
       <VelocityScroll
         text={text}
         default_velocity={velocity}
-        className={`font-display bg-gradient-to-tr  from-red-500 from-90% to-red-400 text-center font-Satoshi py-4 text-4xl ${className} font-bold tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem]`}
+        className={`font-display bg-primary text-center font-Satoshi py-4 text-4xl ${className} font-bold tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem]`}
       />
     </div>
   );

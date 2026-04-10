@@ -1,8 +1,9 @@
 "use client";
-import React, { useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 const Menu = ({
   menu = [{ title: "Home", link: "/" }],
   className,
@@ -11,7 +12,7 @@ const Menu = ({
   menu: { title: string; link: string }[];
 }) => {
   return (
-    <div className="">
+    <div>
       <SlideTabs menu={menu} className={className} />
     </div>
   );
@@ -29,16 +30,24 @@ const SlideTabs = ({
     width: 0,
     opacity: 0,
   });
-  const [hoveredTab, setHoveredTab] = useState<string | null>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const [activePosition, setActivePosition] = useState({
+    left: 0,
+    width: 0,
+  });
+
   const path = usePathname();
 
   return (
     <ul
+      onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => {
-        setPosition((pv) => ({
-          ...pv,
-          opacity: 0,
-        }));
+        setIsHovering(false);
+        setPosition({
+          left: activePosition.left,
+          width: activePosition.width,
+          opacity: 1,
+        });
       }}
       className={`relative mx-auto font-[500] z-[999] ${
         path === "/contact" ||
@@ -49,19 +58,21 @@ const SlideTabs = ({
         path.startsWith("/website-landing")
           ? "text-black border-gray-500/30"
           : "text-white border-slate-50/30"
-      } font-Grostek  flex w-fit border bg-white/20 rounded-full p-1 ${className}`}
+      } font-Grostek flex w-fit border bg-white/20 rounded-full p-1 ${className}`}
     >
       {menu.map((item, index) => (
         <Tab
           key={index}
-          setPosition={setPosition}
           link={item.link}
-          setHoveredTab={setHoveredTab}
-          hoveredTab={hoveredTab}
+          path={path}
+          setPosition={setPosition}
+          setActivePosition={setActivePosition}
+          isHovering={isHovering}
         >
           {item.title}
         </Tab>
       ))}
+
       <Cursor position={position} />
     </ul>
   );
@@ -70,84 +81,83 @@ const SlideTabs = ({
 const Tab = ({
   children,
   setPosition,
+  setActivePosition,
   link,
-  setHoveredTab,
-  hoveredTab,
+  path,
+  isHovering,
 }: {
   children: React.ReactNode;
   setPosition: React.Dispatch<
     React.SetStateAction<{ left: number; width: number; opacity: number }>
   >;
+  setActivePosition: React.Dispatch<
+    React.SetStateAction<{ left: number; width: number }>
+  >;
   link: string;
-  setHoveredTab: React.Dispatch<React.SetStateAction<string | null>>;
-  hoveredTab: string | null;
+  path: string;
+  isHovering: boolean;
 }) => {
   const ref = useRef<HTMLLIElement>(null);
 
-  const shouldUseLink = children !== "services";
+  const isActive = path === link || (link !== "/" && path.startsWith(link));
 
-  return shouldUseLink ? (
+  // Set active tab position on route change
+  useEffect(() => {
+    if (!ref.current) return;
+
+    if (isActive) {
+      const { width } = ref.current.getBoundingClientRect();
+
+      const newPos = {
+        left: ref.current.offsetLeft,
+        width,
+      };
+
+      setActivePosition(newPos);
+      setPosition({
+        ...newPos,
+        opacity: 1,
+      });
+    }
+  }, [path]);
+
+  return (
     <Link
       href={link}
       onMouseEnter={() => {
-        if (!ref?.current) return;
+        if (!ref.current) return;
+
         const { width } = ref.current.getBoundingClientRect();
+
         setPosition({
           left: ref.current.offsetLeft,
           width,
           opacity: 1,
         });
-        setHoveredTab(children as string); // Set the hovered tab to trigger the pop-up
-      }}
-      onMouseLeave={() => {
-        setHoveredTab(null); // Reset the hovered tab when mouse leaves
       }}
     >
       <li
         ref={ref}
-        className={`relative group  z-10 block cursor-pointer px-3 py-1.5 text-xs  md:px-5 md:py-3 md:text-base`}
+        className="relative group z-10 block cursor-pointer px-3 py-1.5 text-xs md:px-5 md:py-3 md:text-base"
       >
-        <button className="group relative rounded-full !capitalize  group-hover:text-white">
+        <button
+          className={`relative rounded-full capitalize transition-colors ${
+            isActive && !isHovering
+              ? "text-white" // only white when NOT hovering anything
+              : "text-black group-hover:text-white"
+          }`}
+        >
           <span className="relative inline-flex overflow-hidden">
             <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[140%] group-hover:skew-y-12">
               {children}
             </div>
-            <div className="absolute translate-y-[150%]  skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+            <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
               {children}
             </div>
           </span>
         </button>
       </li>
     </Link>
-  ) : (
-    <li
-      onMouseEnter={() => {
-        if (!ref?.current) return;
-        const { width } = ref.current.getBoundingClientRect();
-        setPosition({
-          left: ref.current.offsetLeft,
-          width,
-          opacity: 1,
-        });
-        setHoveredTab(children as string); // Set the hovered tab to trigger the pop-up
-      }}
-      onMouseLeave={() => {
-        setHoveredTab(null); // Reset the hovered tab when mouse leaves
-      }}
-      ref={ref}
-      className={`relative group  z-10 block cursor-pointer  px-3 py-1.5 text-xs md:px-5 md:py-3 md:text-base`}
-    >
-      <button className="group capitalize relative rounded-full  group-hover:text-white ">
-        <span className="relative inline-flex overflow-hidden">
-          <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[110%] group-hover:skew-y-12">
-            {children}
-          </div>
-          <div className="absolute translate-y-[114%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
-            {children}
-          </div>
-        </span>
-      </button>
-    </li>
   );
 };
 
@@ -164,8 +174,8 @@ const Cursor = ({
         opacity: position.opacity,
       }}
       transition={{
-        duration: 0.4,
-        ease: [0.17, 0.84, 0.44, 1],
+        duration: 0.65,
+        ease: [0.22, 1, 0.36, 1], // smoother (Vercel-like)
       }}
       className="absolute z-0 h-7 rounded-full bg-primary md:h-12"
     />
