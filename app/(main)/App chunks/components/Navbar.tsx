@@ -20,7 +20,9 @@ const NavBar = () => {
   const renderPath = "/admin";
   return !path.includes(renderPath) ? (
     <div className="HeadNavigation py-4 w-full absolute  top-0 left-0 z-[99999] ">
-      <div className="flex justify-between items-center container ">
+      <div
+        className={`flex justify-between items-center   ${path === "/d2c" || path === "/website-landing" ? "!max-w-[94%] mx-auto" : "container"}`}
+      >
         <motion.div
           initial={{ y: -200 }}
           animate={{ y: 0 }}
