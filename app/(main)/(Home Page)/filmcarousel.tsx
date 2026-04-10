@@ -113,7 +113,6 @@ export default function FloatingImages() {
           style={item.style as React.CSSProperties}
         >
           <div className="shadow-lg">
-
             <img
               src={item.img}
               alt=""

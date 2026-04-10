@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: #f9ebeb;
+  background-color: #fdf7f7;
 }
 .char {
   display: inline-block;
@@ -106,4 +106,34 @@ img {
   100% {
     transform: rotate(360deg) translateX(var(--radius)) rotate(-360deg);
   }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.ContentEditable__root p,
+.ContentEditable__root h1,
+.ContentEditable__root h2,
+.ContentEditable__root h3,
+.ContentEditable__root h4,
+.ContentEditable__root h5,
+.ContentEditable__root h6,
+.ContentEditable__root blockquote,
+.ContentEditable__root ul,
+.ContentEditable__root ol {
+  margin-top: 0.25em !important; /* adjust to taste */
+  margin-bottom: 0.25em; /* adjust to taste */
+  line-height: 1.1;
+  list-style: disc;
+}
+
+/* For completely tight spacing */
+.ContentEditable__root p,
+.ContentEditable__root h1,
+.ContentEditable__root h2,
+.ContentEditable__root h3,
+.ContentEditable__root h4,
+.ContentEditable__root h5,
+.ContentEditable__root h6 {
+  margin: 0 !important;
 }

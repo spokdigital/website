@@ -55,15 +55,13 @@ const reviews = [
 ];
 
 const firstRow = reviews.slice(0, reviews.length / 2);
-const secondRow = reviews.slice(reviews.length / 2);
+
 const ReviewCard = ({ img }: { img: string }) => {
   return (
     <figure
       className={cn(
         `relative w-[140px] cursor-pointer overflow-hidden  ${img.split("/").pop() == "bizgrowth.png" ? " p-2" : ""}
-        ${
-          img.split("/").pop() == "craft-desk.png" ? " p-2" : ""
-        } rounded-xl border`,
+        ${img.split("/").pop() == "craft-desk.png" ? " p-2" : ""}`,
       )}
     >
       <img className=" w-full h-full object-contain" src={img} />
@@ -80,7 +78,7 @@ export function MarqueeLogo() {
         </h1>
       </div>
 
-      <Marquee pauseOnHover className="[--duration:20s]">
+      <Marquee pauseOnHover className="[--duration:30s]">
         {firstRow.map((review, index) => (
           <ReviewCard key={index} {...review} />
         ))}
