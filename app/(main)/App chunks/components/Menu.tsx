@@ -177,7 +177,7 @@ const Cursor = ({
         duration: 0.65,
         ease: [0.22, 1, 0.36, 1], // smoother (Vercel-like)
       }}
-      className="absolute z-0 h-7 rounded-full bg-primary md:h-12"
+      className="absolute z-0 h-7 rounded-full shadow-[0px_0px_4px_.1px_rgba(0,0,0,.4)] border border-black/20 bg-primary md:h-12"
     />
   );
 };

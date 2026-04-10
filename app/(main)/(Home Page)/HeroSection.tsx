@@ -97,7 +97,7 @@ const Section1 = ({
             perspective: "1200px",
             transformStyle: "preserve-3d",
           }}
-          className="flex flex-col items-center gap-2 overflow-hidden"
+          className="flex flex-col items-center  overflow-hidden"
         >
           {/* LINE 1 */}
           <div className="flex gap-3 lg:gap-6 overflow-hidden">
@@ -116,7 +116,9 @@ const Section1 = ({
             {["Dominate", "the", "Market"].map((text, i) => (
               <h1
                 key={i}
-                className="heading-2 text-[8.6vw] lg:text-[7.2rem] font-Grostek font-[500] leading-none"
+                className={`heading-2 text-[8.6vw] lg:text-[7.2rem] tracking-tighter font-Grostek font-[500] leading-none ${
+                  text === "Market" ? "text-primary " : ""
+                }`}
               >
                 {text}
               </h1>
@@ -138,13 +140,13 @@ const Section1 = ({
         <div className="mt-9">
           <button
             onClick={() => setIsFormOpen(true)}
-            className="group relative inline-flex hover:bg-black font-Synonym items-center p-2 justify-center overflow-hidden rounded-full bg-primary font-medium text-red-50 transition-all duration-300"
+            className="group relative inline-flex hover:bg-primary font-Synonym items-center p-2 justify-center overflow-hidden rounded-full bg-black font-medium text-red-50 transition-all duration-300"
           >
             <span className="pl-3">
               Let&apos;s Build Something Extraordinary
             </span>
             <span className="">
-              <ArrowRight className="bg-black group-hover:bg-primary group-hover:-rotate-45 transition-all duration-200 size-9 p-1 rounded-full ml-3 " />
+              <ArrowRight className="bg-primary group-hover:bg-black group-hover:-rotate-45 transition-all duration-200 size-9 p-1 rounded-full ml-3 " />
             </span>
           </button>
         </div>
