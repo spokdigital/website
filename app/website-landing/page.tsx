@@ -17,7 +17,6 @@ const page = () => {
   return (
     <>
       {/* 1. Navigation */}
-      <Header />
 
       {/* 2. Hook — first impression, value proposition */}
       <HeroSection />
