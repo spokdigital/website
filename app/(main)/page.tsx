@@ -8,6 +8,8 @@ import { MarqueeLogo } from "./App chunks/components/MarqueeLogo";
 import Service from "./(Home Page)/Service";
 import Portfolio from "./(Home Page)/Portfolio";
 import VideoCarousel from "./(Home Page)/videoCarousel";
+import FeatureSection from "./(Home Page)/workprocess";
+import FAQSection from "./(Home Page)/FAQ";
 export default function Home() {
   return (
     <AnimatePresence mode="wait">
@@ -29,10 +31,10 @@ export default function Home() {
         <TextMarquee />
         <Portfolio />
         <VideoCarousel />
+        <FeatureSection />
         <Testimonials />
-
         <Blogs />
-
+        <FAQSection />
         <MarqueeLogo />
       </motion.div>
     </AnimatePresence>

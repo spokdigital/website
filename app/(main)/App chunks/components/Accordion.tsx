@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
- 
+
 // Define a context type
 interface AccordionContextType {
   isActive: boolean;
@@ -11,7 +11,7 @@ interface AccordionContextType {
 }
 
 const AccordionContext = React.createContext<AccordionContextType | undefined>(
-  undefined
+  undefined,
 );
 
 const useAccordion = () => {
@@ -60,31 +60,34 @@ export function Accordion({
   >(multiple ? defaultValue || [] : defaultValue || null);
 
   function onChangeIndex(value: string) {
-    setActiveIndex((currentActiveIndex) => {
+    setActiveIndex((current) => {
       if (!multiple) {
-        return value === currentActiveIndex ? null : value;
+        return value === current ? null : value;
       }
 
-      if (Array.isArray(currentActiveIndex)) {
-        if (currentActiveIndex.includes(value)) {
-          return currentActiveIndex.filter((i) => i !== value);
-        } else {
-          return [...currentActiveIndex, value];
-        }
+      if (Array.isArray(current)) {
+        return current.includes(value)
+          ? current.filter((i) => i !== value)
+          : [...current, value];
       }
+
       return [value];
     });
   }
 
   return React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      const value = child.props.value;
+      const value = child.props.value; // ✅ FIXED
+
       const isActive = multiple
         ? Array.isArray(activeIndex) && activeIndex.includes(value)
         : activeIndex === value;
 
       return (
-        <AccordionContext.Provider value={{ isActive, value, onChangeIndex }}>
+        <AccordionContext.Provider
+          key={value}
+          value={{ isActive, value, onChangeIndex }}
+        >
           {child}
         </AccordionContext.Provider>
       );
@@ -93,17 +96,18 @@ export function Accordion({
   });
 }
 
-interface AccordionItemProps {
+export function AccordionItem({
+  children,
+  value,
+}: {
   children: ReactNode;
   value: string;
-}
-
-export function AccordionItem({ children }: AccordionItemProps) {
+}) {
   const { isActive } = useAccordion();
 
   return (
     <div
-      className={` border-slate-600/40 overflow-hidden ${
+      className={`border-slate-600/40 overflow-hidden ${
         isActive ? "active bg-transparent" : "bg-transparent"
       }`}
     >

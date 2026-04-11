@@ -6,41 +6,16 @@ const reviews = [
     img: "Logo/bizgrowth.png",
   },
   {
-    img: "Logo/Brownstone.png",
+    img: "Logo/bshh.png",
   },
   {
-    img: "Logo/craft-desk.png",
+    img: "Logo/craftdesk.png",
   },
   {
-    img: "Logo/InsightVision.png",
+    img: "Logo/insight.png",
   },
   {
-    img: "Logo/menlocloud.png",
-  },
-  {
-    img: "Logo/milestone.png",
-  },
-  {
-    img: "Logo/shobha.png",
-  },
-  { img: "Logo/bm.png" },
-  { img: "Logo/noir black.png" },
-  { img: "Logo/opto.png" },
-  { img: "Logo/perfume oasis.png" },
-  {
-    img: "Logo/bizgrowth.png",
-  },
-  {
-    img: "Logo/Brownstone.png",
-  },
-  {
-    img: "Logo/craft-desk.png",
-  },
-  {
-    img: "Logo/InsightVision.png",
-  },
-  {
-    img: "Logo/menlocloud.png",
+    img: "Logo/menlo.png",
   },
   {
     img: "Logo/milestone.png",
@@ -49,9 +24,9 @@ const reviews = [
     img: "Logo/shobha.png",
   },
   { img: "Logo/bm.png" },
-  { img: "Logo/noir black.png" },
+  { img: "Logo/nnoir.png" },
   { img: "Logo/opto.png" },
-  { img: "Logo/perfume oasis.png" },
+  { img: "Logo/oasis.png" },
 ];
 
 const firstRow = reviews.slice(0, reviews.length / 2);
@@ -78,7 +53,7 @@ export function MarqueeLogo() {
         </h1>
       </div>
 
-      <Marquee pauseOnHover className="[--duration:30s]">
+      <Marquee pauseOnHover className="[--duration:25s]">
         {firstRow.map((review, index) => (
           <ReviewCard key={index} {...review} />
         ))}

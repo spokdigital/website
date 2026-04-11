@@ -26,6 +26,8 @@ const Section1 = ({
   setIsFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const headingRef = useRef<HTMLDivElement>(null);
+  const descRef = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -55,7 +57,31 @@ const Section1 = ({
       });
 
       const tl = gsap.timeline();
+      gsap.set(descRef.current, { opacity: 0, y: 30 });
 
+      // BUTTON
+      gsap.set(btnRef.current, { opacity: 0, y: 20, scale: 0.95 });
+
+      tl.to(
+        descRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        1.4, // starts after heading finishes
+      ).to(
+        btnRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          ease: "back.out(1.4)",
+        },
+        1.65,
+      );
       // FIRST LINE
       tl.to(
         ".char1",
@@ -63,8 +89,8 @@ const Section1 = ({
           y: 0,
           z: 0,
           opacity: 1,
-          stagger: 0.06,
-          duration: 0.8,
+          stagger: 0.032,
+          duration: 0.9,
           ease: "power3.out",
         },
         0.7,
@@ -76,8 +102,8 @@ const Section1 = ({
             y: 0,
             z: 0,
             opacity: 1,
-            stagger: 0.04,
-            duration: 0.8,
+            stagger: 0.032,
+            duration: 0.9,
             ease: "power3.out",
           },
           0.7,
@@ -127,7 +153,10 @@ const Section1 = ({
         </div>
 
         {/* DESCRIPTION */}
-        <div className="max-w-4xl text-center text-[.7rem] lg:text-[.97rem] font-[500] font-Synonym mt-7 ">
+        <div
+          ref={descRef}
+          className="max-w-4xl text-center text-[.7rem] lg:text-[.97rem] font-[500] font-Synonym mt-7 "
+        >
           <p>
             We’re not just another agency—we’re your growth partner. At Spok
             Digital, we blend creativity, technology, and strategy to help
@@ -137,7 +166,7 @@ const Section1 = ({
         </div>
 
         {/* BUTTON */}
-        <div className="mt-9">
+        <div ref={btnRef} className="mt-9">
           <button
             onClick={() => setIsFormOpen(true)}
             className="group relative inline-flex hover:bg-primary font-Synonym items-center p-2 justify-center overflow-hidden rounded-full bg-black font-medium text-red-50 transition-all duration-300"
