@@ -51,17 +51,23 @@ const steps = [
 ];
 export default function HowWeWork() {
   const [activeStep, setActiveStep] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
+  const prevStepRef = useRef(0);
+  const activeStepRef = useRef(0);
+  const directionRef = useRef<"down" | "up">("down");
   // Activate step when it enters the viewport centre band
   useEffect(() => {
     const observers = stepRefs.current.map((el, i) => {
       if (!el) return null;
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) setActiveStep(i);
+          if (entry.isIntersecting) {
+            prevStepRef.current = activeStepRef.current;
+            activeStepRef.current = i;
+            setActiveStep(i);
+          }
         },
         { rootMargin: "-40% 0px -40% 0px", threshold: 0 },
       );
@@ -69,6 +75,18 @@ export default function HowWeWork() {
       return observer;
     });
     return () => observers.forEach((o) => o?.disconnect());
+  }, []);
+  useEffect(() => {
+    let lastY = window.scrollY;
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      directionRef.current = currentY > lastY ? "down" : "up";
+      lastY = currentY;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
@@ -100,6 +118,53 @@ export default function HowWeWork() {
       behavior: "smooth",
       block: "center",
     });
+
+  useEffect(() => {
+    const containers = document.querySelectorAll(".reveal-container");
+    const direction = directionRef.current;
+
+    // New image slides in from top (scrolling down) or bottom (scrolling up)
+    const yStart = direction === "down" ? "100%" : "-100%";
+
+    containers.forEach((container, i) => {
+      const inner = container.querySelector(".reveal-inner");
+      const img = container.querySelector("img");
+
+      if (i === activeStep) {
+        // Bring to top z-index and animate in
+        gsap.set(container, { autoAlpha: 1, zIndex: 3 });
+        gsap.set(inner, { yPercent: direction === "down" ? 100 : -100 });
+        gsap.set(img, {
+          yPercent: direction === "down" ? -100 : 100,
+          scale: 1.3,
+        });
+
+        const tl = gsap.timeline();
+        tl.to(inner, {
+          yPercent: 0,
+          duration: .6,
+          ease: "power2.out",
+        }).to(
+          img,
+          {
+            yPercent: 0,
+            scale: 1,
+            duration: .6,
+            ease: "power2.out",
+          },
+          "<", // same time as inner
+        );
+      } else if (i === prevStepRef.current) {
+        // Keep previous image visible underneath (z-index 2), don't hide it
+        gsap.set(container, { autoAlpha: 1, zIndex: 2 });
+        gsap.set(container.querySelector(".reveal-inner"), { yPercent: 0 });
+        gsap.set(img, { yPercent: 0, scale: 1 });
+      } else {
+        // All other steps hidden below
+        gsap.set(container, { autoAlpha: 0, zIndex: 1 });
+      }
+    });
+  }, [activeStep]);
 
   return (
     <section className="w-full py-20" ref={sectionRef}>
@@ -206,18 +271,20 @@ export default function HowWeWork() {
 
         {/* ── Right: sticky mockup panel ── */}
         <div className="hidden lg:flex w-1/2 sticky top-0 h-screen items-center justify-center bg-gray-50/50">
-          <div className="relative w-full max-w-[500px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
+          <div className="relative w-full max-w-[500px] aspect-[4/5]  overflow-hidden  border-8 border-white">
             {steps.map((step, i) => (
-              <img
+              <div
                 key={i}
-                src={step.image}
-                alt={step.title}
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out ${
-                  activeStep === i
-                    ? "opacity-100 scale-100"
-                    : "opacity-0 scale-110"
-                }`}
-              />
+                className="absolute inset-0 reveal-container"
+                // ← no style={{ zIndex }} here anymore
+              >
+                <div className="reveal-inner w-full h-full overflow-hidden">
+                  <img
+                    src={step.image}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             ))}
 
             {/* Visual Overlay for text readability over images if needed */}
@@ -225,13 +292,6 @@ export default function HowWeWork() {
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(14px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </section>
   );
 }
