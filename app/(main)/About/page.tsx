@@ -299,11 +299,11 @@ const Page = () => {
                 { value: "180+", label: "Projects delivered" },
                 { value: "98%", label: "Client satisfaction" },
               ].map((stat, i) => (
-                <div key={i} className="py-5 px-4 text-center">
-                  <p className="font-Grostek font-[700] text-2xl tracking-tight">
+                <div key={i} className="py-5 px-4 bg-primary text-center">
+                  <p className="font-Grostek font-[700] text-2xl text-white tracking-tight">
                     {stat.value}
                   </p>
-                  <p className="text-xs font-Satoshi text-black/40 mt-0.5">
+                  <p className="text-xs font-Satoshi text-white/80 mt-0.5">
                     {stat.label}
                   </p>
                 </div>

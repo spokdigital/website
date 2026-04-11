@@ -12,11 +12,12 @@ const Footer = () => {
   const menu = [
     { title: "Home", link: "/" },
     { title: "About", link: "/About" },
-    { title: "D2c Growth", link: "/d2c" },
+    { title: "D2C Growth", link: "/d2c" },
     { title: "Business Accelerator", link: "/website-landing" },
     { title: "Portfolio", link: "/Portfolio" },
     { title: "Contact", link: "/contact" },
   ];
+  const [activeLocation, setActiveLocation] = React.useState("Dubai");
 
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
@@ -84,7 +85,8 @@ const Footer = () => {
           </div>
 
           {/* Right Columns: Nav + Contact */}
-          <div className="grid grid-cols-2 gap-10 lg:gap-16">
+          {/* Right Columns: Nav + Contact + Map */}
+          <div className="grid grid-cols-3 gap-10 lg:gap-12">
             {/* Menu */}
             <motion.div {...fadeUp(0.15)}>
               <p className="text-slate-300 text-xs uppercase tracking-widest mb-5 font-Satoshi">
@@ -140,6 +142,52 @@ const Footer = () => {
                   <p className="text-slate-400 text-sm font-Satoshi">
                     info@spok.digital
                   </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Map */}
+            <motion.div {...fadeUp(0.25)}>
+              <div className="flex items-center justify-between mb-5">
+                <p className="text-slate-300 text-xs uppercase tracking-widest font-Satoshi">
+                  Find Us
+                </p>
+                <div className="flex gap-1.5">
+                  {["Dubai", "Mountain View"].map((loc) => (
+                    <button
+                      key={loc}
+                      onClick={() => setActiveLocation(loc)}
+                      className={`text-[10px] px-2.5 py-1 rounded border font-Satoshi transition-colors duration-200 ${
+                        activeLocation === loc
+                          ? "bg-red-600/15 border-red-600/40 text-red-300"
+                          : "bg-white/5 border-white/10 text-slate-400 hover:text-slate-200"
+                      }`}
+                    >
+                      {loc}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative w-full h-[180px] rounded-xl overflow-hidden border border-white/[0.08]">
+                <iframe
+                  src={
+                    activeLocation === "Dubai"
+                      ? "https://maps.google.com/maps?q=Churchill+Towers+Business+Bay+Dubai&t=m&z=15&output=embed&iwloc=near"
+                      : "https://maps.google.com/maps?q=Mountain+View+CA+94040&t=m&z=14&output=embed&iwloc=near"
+                  }
+                  className="w-full h-full border-none"
+                  style={{ opacity: 0.95 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="absolute bottom-2 right-2">
+                  <span className="flex items-center gap-1 bg-black/80 border border-red-600/40 rounded px-2 py-1 text-[10px] text-red-300 backdrop-blur-sm">
+                    <MapPin className="w-2.5 h-2.5" />
+                    {activeLocation === "Dubai"
+                      ? "Business Bay, Dubai"
+                      : "Mountain View, CA"}
+                  </span>
                 </div>
               </div>
             </motion.div>
