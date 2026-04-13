@@ -58,7 +58,7 @@ const SlideTabs = ({
         path.startsWith("/website-landing") ||
         path !== "/Portfolio"
           ? "text-black border-gray-500/30"
-          : "text-white border-slate-50/30"
+          : "text-white border-gray-800/20"
       } font-Grostek flex w-fit border bg-white/20 rounded-full p-1 ${className}`}
     >
       {menu.map((item, index) => (
