@@ -36,8 +36,9 @@ const NavBar = () => {
         >
           <Logo
             source={
+              path === "/Portfolio" ||
               path === "/" ||
-              path.startsWith('/services') ||
+              path.startsWith("/services") ||
               path === "/About" ||
               path === "/contact" ||
               path.startsWith("/d2c") ||
@@ -71,7 +72,7 @@ const NavBar = () => {
           <Link href={"/contact"} className="hidden lg:block">
             <Button
               className={`${
-                path === "/blogs" || path === "/Portfolio"
+                path === "/blogs" || path !== "/Portfolio"
                   ? "!text-white border-gray-50/80"
                   : "!text-black"
               }`}

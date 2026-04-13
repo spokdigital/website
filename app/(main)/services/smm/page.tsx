@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import FAQSection from "../../(Home Page)/FAQ";
 const services = [
   {
@@ -96,8 +95,6 @@ const faqs = [
 // theme: { extend: { colors: { primary: '#d4f04a' }, fontFamily: { cormorant: ['Cormorant', 'serif'] } } }
 
 export default function SMMPage() {
-  const [openFaq, setOpenFaq] = useState(null);
-
   return (
     <div className="">
       {/* HERO */}
