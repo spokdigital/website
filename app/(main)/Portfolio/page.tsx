@@ -64,7 +64,6 @@ const Page = () => {
     "Slide 2.jpg",
     "Slide 4 - Milestone Homes Office.jpg",
     "Slide 5 - Investment Advisory Services.jpg",
-
   ];
 
   const refs = [
@@ -97,25 +96,53 @@ const Page = () => {
   };
 
   return (
-    <motion.div className="  bg-white" ref={containerRef}>
+    <motion.div className="  " ref={containerRef}>
       <SliderForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       <motion.div>
-        <div className="w-full h-screen overflow-hidden bg-gradient-to-tr from-blue-200 from-10% to-[#81C784] relative">
-          <div className="w-full h-full flex relative">
-            <div className="absolute top-0 left-0 w-full h-full">
-              <BackgroundGradientAnimation
-                gradientBackgroundStart="white"
-                gradientBackgroundEnd="blue"
-              />
-            </div>
+        <div className="w-full h-[90vh] overflow-hidden  relative">
+          <div className="absolute inset-0 w-full h-full">
+            <svg
+              viewBox="0 0 100 100"
+              className="w-full h-full"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                {/* Smooth main glow */}
+                <radialGradient id="bgGradient" cx="50%" cy="35%" r="70%">
+                  <stop offset="0%" stopColor="#de0f3f" stopOpacity="0.25" />
+                  <stop offset="40%" stopColor="#de0f3f" stopOpacity="0.10" />
+                  <stop offset="70%" stopColor="#de0f3f" stopOpacity="0.03" />
+                  <stop offset="100%" stopColor="#fdf7f7" stopOpacity="0" />
+                </radialGradient>
+
+                {/* Bottom white fade */}
+                <linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="65%" stopColor="#fdf7f7" stopOpacity="0" />
+                  <stop offset="100%" stopColor="#fdf7f7" stopOpacity="1" />
+                </linearGradient>
+              </defs>
+
+              {/* Base white */}
+              <rect width="100%" height="100%" fill="#ffffff" />
+
+              {/* Soft red glow */}
+              <rect width="100%" height="100%" fill="url(#bgGradient)" />
+
+              {/* Bottom fade */}
+              <rect width="100%" height="100%" fill="url(#bottomFade)" />
+            </svg>
+          </div>
+
+          <div className="w-full h-[80vh] flex relative">
+            <div className="absolute top-0 left-0 w-full h-full"></div>
             <div
               style={{ marginTop: `${height + 50}px` }}
               className="container relative z-[99]"
             >
               <BreadCrumb />
               <div
-                style={{ height: `calc(100vh - ${height + 200}px)` }}
-                className="w-full flex flex-col  items-center text-slate-100 justify-center"
+                
+                className="w-full h-full flex flex-col  items-center text-slate-800 justify-center"
               >
                 <motion.h1 className="text-4xl lg:text-6xl lg:w-[90%] text-center leading-[100%] font-Grostek font-[600] tracking-tight break-words">
                   {para.split(" ").map((item, index) => (
@@ -152,7 +179,7 @@ const Page = () => {
                 </motion.h1>
                 <button
                   onClick={() => setIsFormOpen(true)}
-                  className="group mt-5 relative h-12 rounded-full bg-black px-5 font-Synonym font-[500]  text-neutral-50"
+                  className="group mt-5 relative h-12 rounded-full bg-black hover:bg-primary transition-colors duration-300 px-5 font-Synonym font-[500]  text-neutral-50"
                 >
                   <span className="relative inline-flex overflow-hidden">
                     <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[130%] group-hover:skew-y-12 flex items-center gap-2">
@@ -176,12 +203,12 @@ const Page = () => {
 
         <div className="lg:sticky container top-0 left-0 z-50">
           <div className="flex  mt-5 justify-center items-center">
-            <ul className=" flex bg-slate-100 text-nowrap whitespace-nowrap shadow-sm border border-slate-100 mt-6 overflow-auto rounded-lg lg:rounded-full justify-start lg:justify-center items-center">
+            <ul className=" flex bg-primary/20  text-nowrap whitespace-nowrap backdrop-blur-lg shadow-sm border border-primary/20 mt-6 overflow-auto rounded-lg lg:rounded-full justify-start lg:justify-center items-center">
               {tabs.map((tab, idx) => (
                 <li
                   onClick={() => handleTabClick(idx)}
                   key={idx}
-                  className={`cursor-pointer  hover:bg-indigo-100 transition-all duration-300 px-8 py-3 ${
+                  className={`cursor-pointer  hover:bg-primary hover:text-white transition-all duration-300 px-8 py-3 ${
                     idx !== tabs.length - 1 ? "border-r  pr-5" : "pr-8 "
                   }    `}
                 >
