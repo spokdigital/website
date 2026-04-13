@@ -55,19 +55,19 @@ const selfPraise = [
 const points = [
   {
     title: "Innovators",
-    desc: "who embrace emerging trends and cutting-edge technology.",
+    desc: "Who embrace emerging trends and cutting-edge technology.",
   },
   {
     title: "Storytellers",
-    desc: "who craft compelling narratives to spark emotional connections.",
+    desc: "Who craft compelling narratives to spark emotional connections.",
   },
   {
     title: "Problem-solvers",
-    desc: "who thrive on turning challenges into opportunities.",
+    desc: "Who thrive on turning challenges into opportunities.",
   },
   {
     title: "Collaborators",
-    desc: "who believe the best ideas are born through partnership.",
+    desc: "Who believe the best ideas are born through partnership.",
   },
 ];
 
@@ -295,8 +295,8 @@ const Page = () => {
               className="grid grid-cols-3 divide-x divide-black/20 border border-black/20 rounded-2xl overflow-hidden"
             >
               {[
-                { value: "6+", label: "Years active" },
-                { value: "180+", label: "Projects delivered" },
+                { value: "5+", label: "Years active" },
+                { value: "200+", label: "Projects delivered" },
                 { value: "98%", label: "Client satisfaction" },
               ].map((stat, i) => (
                 <div key={i} className="py-5 px-4 bg-primary text-center">
@@ -356,7 +356,7 @@ const Page = () => {
                     <p className="font-Grostek font-[600] text-base mb-0.5">
                       {point.title}
                     </p>
-                    <p className="text-sm font-Satoshi text-black/50 leading-relaxed">
+                    <p className="text-sm  font-Satoshi text-black/50 leading-relaxed">
                       {point.desc}
                     </p>
                   </div>
