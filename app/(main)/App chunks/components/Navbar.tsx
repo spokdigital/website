@@ -37,6 +37,7 @@ const NavBar = () => {
           <Logo
             source={
               path === "/" ||
+              path.startsWith('/services') ||
               path === "/About" ||
               path === "/contact" ||
               path.startsWith("/d2c") ||

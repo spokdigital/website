@@ -29,8 +29,6 @@ const reviews = [
   { img: "Logo/oasis.png" },
 ];
 
-const firstRow = reviews.slice(0, reviews.length / 2);
-
 const ReviewCard = ({ img }: { img: string }) => {
   return (
     <figure
@@ -54,7 +52,7 @@ export function MarqueeLogo() {
       </div>
 
       <Marquee pauseOnHover className="[--duration:25s]">
-        {firstRow.map((review, index) => (
+        {reviews.map((review, index) => (
           <ReviewCard key={index} {...review} />
         ))}
       </Marquee>

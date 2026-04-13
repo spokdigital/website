@@ -6,6 +6,8 @@ import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradie
 import SliderForm from "../App chunks/components/SliderForm";
 import { ArrowUpRight, Pause, Play } from "@phosphor-icons/react";
 import Image from "next/image";
+import Link from "next/link";
+import CTASection from "@/app/d2c/sections/cta";
 const Page = () => {
   const [height, setHeight] = React.useState(0);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -38,24 +40,14 @@ const Page = () => {
     "1.jpg",
     "10.mp4",
     "7.jpg",
-    "DSC00004.jpg",
-    "DSC00044.jpg",
-    "DSC00056.jpg",
-    "DSC00060.jpg",
-    "DSC00082.jpg",
     "DSC09971.jpg",
     "Damac Island 1st Draft with text-compressed.mov",
     "Hand_Draft01-compressed.mov",
-    "IMG_8784.JPG",
+
     "Javed_Leos_draft01-compressed.mov",
     "Masaar_Rahil_Draft03-compressed.mov",
     "Ram_Podcast_Final-compressed.mov",
-    "Rubab_D2_Draft01-compressed.mov",
-    "SALWA DECA FINAL-compressed.mov",
-    "Salwa_Arabic_draft02-compressed.mov",
-    "Salwa_CG_Final-compressed.mov",
     "Salwa_Javed_Meraas_with new qr-compressed.mov",
-    "salwa_office_Video_Draft03-compressed.mov",
   ];
 
   const businessSetup = [
@@ -63,20 +55,7 @@ const Page = () => {
     "Bizgrowth 4th Render-compressed.mov",
   ];
 
-  const FandB = [
-    "11.jpg",
-    "12.mp4",
-    "13.jpg",
-    "14.mp4",
-    "15.jpg",
-    "2.mp4",
-    "3.jpg",
-    "4.mp4",
-    "5.jpg",
-    "6.mp4",
-    "8.mp4",
-    "9.jpg",
-  ];
+  const FandB = ["11.jpg", "13.jpg", "14.mp4", "2.mp4", "3.jpg", "9.jpg"];
   const marketing = [
     "IKEA CO WORKER V2-compressed.mov",
     "starbucks misspelling-compressed.mov",
@@ -85,11 +64,7 @@ const Page = () => {
     "Slide 2.jpg",
     "Slide 4 - Milestone Homes Office.jpg",
     "Slide 5 - Investment Advisory Services.jpg",
-    "Slide 5 - Mortgage Approval Services.jpg",
-    "Slide 5 - Property Evaluation.jpg",
-    "Slide 5 - Property Management.jpg",
-    "Slide 5 - Real Estate Investment.jpg",
-    "Slide 5 - Short Term & Long Term Leasing.jpg",
+
   ];
 
   const refs = [
@@ -255,24 +230,37 @@ const Page = () => {
           </div>
         </motion.div>
       </div>
-      <div className="py-16 container">
-        <div className=" ">
-          <div className=" p-7  w-full bg-[#b53f3f] text-slate-100 rounded-xl">
-            <h2 className="text-3xl font-SplineSans font-[500]">
-              Let&nbsp;s Drive Performance Together
-            </h2>
-            <p className="mt-3 font-Synonym font-[400] text-lg">
-              If you`re ready to take your marketing to the next level and see
-              measurable growth, contact us today. Whether you`re looking to
-              scale quickly or improve your marketing ROI, we have the tools and
-              expertise to get you there.
+      <div className="container pb-20">
+        <motion.div className="p-10 lg:p-16 w-full bg-gradient-to-tr from-red-400 to-red-600 text-slate-100 rounded-2xl relative overflow-hidden">
+          <div className="relative z-10">
+            <p className="text-xs uppercase tracking-widest text-white/60 font-Grostek mb-3">
+              Ready to scale?
             </p>
-
-            <button className="mt-5 px-4 py-2 bg-white text-slate-900 font-SplineSans rounded-lg font-[400]">
-              Contact us
-            </button>
+            <h2 className="text-4xl lg:text-5xl font-Grostek font-[600] leading-tight max-w-xl">
+              Let's Grow Together
+            </h2>
+            <p className="mt-4 font-Synonym font-[400] text-lg max-w-2xl text-white/80">
+              At Spok Digital, we don't just market products — we build
+              connections that last. Whether you're a startup making your first
+              move or an established brand ready to level up, we're here to
+              help.
+            </p>
+            <div className="flex flex-wrap gap-3 mt-8">
+              <Link href="/contact">
+                <button className="px-6 py-3 bg-white text-slate-900 font-SplineSans rounded-full text-sm font-[500] hover:bg-white/90 transition-colors">
+                  Contact us
+                </button>
+              </Link>
+              <Link href="/Portfolio">
+                <button className="px-6 py-3 border border-white/30 text-white font-SplineSans rounded-full text-sm hover:bg-white/10 transition-colors">
+                  View our work
+                </button>
+              </Link>
+            </div>
           </div>
-        </div>
+          <div className="absolute right-0 bottom-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3" />
+          <div className="absolute right-20 bottom-20 w-32 h-32 bg-white/5 rounded-full" />
+        </motion.div>
       </div>
     </motion.div>
   );
