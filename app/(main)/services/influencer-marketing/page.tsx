@@ -26,11 +26,9 @@ import {
   Clock,
   Shield,
   Search,
-  PenTool,
   Eye,
   Compass,
-  EyeOff,
-  ThumbsDown,
+  TrendingDown,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -171,62 +169,73 @@ export default function SocialMediaLanding() {
   // ── Data ───────────────────────────────────────────────────────────────────
   const howSteps = [
     {
-      icon: <Target size={20} />,
+      icon: <Search size={20} />,
       num: "01",
-      title: "Discovery",
-      desc: "Deep-dive into your brand, audience, and competitors to uncover your unique edge.",
+      title: "Creator Selection",
+      desc: "We identify creators who align with your audience, niche, and brand positioning — not just follower count.",
     },
     {
-      icon: <PenTool size={20} />,
+      icon: <Target size={20} />,
       num: "02",
-      title: "Content Creation",
-      desc: "Scroll-stopping Reels, carousels, and copy crafted for your exact platform and audience.",
+      title: "Campaign Strategy",
+      desc: "Clear messaging, offers, and positioning designed to convert attention into action.",
     },
     {
       icon: <Megaphone size={20} />,
       num: "03",
-      title: "Publishing & Ads",
-      desc: "Organic posting + paid amplification — timed for peak reach and maximum impact.",
+      title: "Execution",
+      desc: "End-to-end coordination — outreach, negotiation, content rollout, and publishing.",
     },
     {
-      icon: <TrendingUp size={20} />,
+      icon: <BarChart2 size={20} />,
       num: "04",
-      title: "Optimise & Scale",
-      desc: "Weekly data reviews, A/B tests, and budget reallocation to keep ROAS climbing.",
+      title: "Performance Tracking",
+      desc: "Track reach, engagement, and conversions to continuously optimise campaigns.",
     },
   ];
 
   const deliverables = [
-    "Brand voice & content strategy",
-    "Platform-specific content creation",
-    "Paid social ad campaigns",
-    "Monthly performance reports",
-    "Community management",
-    "Funnel & landing page integration",
-    "Influencer collaboration support",
-    "Hashtag & SEO research",
+    "Influencer sourcing & outreach",
+    "Campaign strategy & planning",
+    "Content direction & briefs",
+    "Creator coordination & management",
+    "Performance tracking & reporting",
+    "UGC content for ads & reuse",
+    "Platform-specific campaign execution",
+    "Ongoing optimisation & scaling",
   ];
 
   const outcomes = [
     {
-      icon: <TrendingUp size={18} />,
-      label: "More inbound leads, every month",
+      icon: <Star size={18} />,
+      label: "Higher trust through creator validation",
     },
-    { icon: <Star size={18} />, label: "A brand people recognise & trust" },
     {
-      icon: <Zap size={18} />,
-      label: "Higher click-through & conversion rates",
+      icon: <TrendingUp size={18} />,
+      label: "Better reach with the right audience",
     },
-    { icon: <BarChart2 size={18} />, label: "Transparent ROI you can measure" },
+    {
+      icon: <Users size={18} />,
+      label: "Qualified attention, not random views",
+    },
+    { icon: <Zap size={18} />, label: "More inbound leads & conversions" },
   ];
 
   const builtFor = [
-    { icon: <Layers size={26} />, label: "Service businesses", image: "" },
-    { icon: <Users size={26} />, label: "Founders & coaches", image: "" },
     {
-      icon: <RefreshCw size={26} />,
-      label: "Scaling e-commerce brands",
-      image: "",
+      icon: <Layers size={26} />,
+      label: "D2C & consumer brands",
+      image: "/images/influencer/d2c.jpg",
+    },
+    {
+      icon: <Users size={26} />,
+      label: "Founders & personal brands",
+      image: "/images/influencer/creator.jpg",
+    },
+    {
+      icon: <Megaphone size={26} />,
+      label: "Brands launching new products",
+      image: "/images/influencer/launch.jpg",
     },
   ];
 
@@ -304,7 +313,7 @@ export default function SocialMediaLanding() {
                           shadow-[0_0_24px_rgba(222,15,63,.15)]"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Social media that actually drives revenue
+            Influencer marketing that actually drives demand
           </div>
 
           <h1
@@ -312,7 +321,7 @@ export default function SocialMediaLanding() {
             className="opacity-0 font-grostek text-[clamp(52px,9vw,120px)]
                          leading-[0.92] tracking-tight mb-7 text-gray-800"
           >
-            SOCIAL MEDIA
+            INFLUENCER MARKETING
             <br />
             THAT DRIVES{" "}
             <span
@@ -329,8 +338,8 @@ export default function SocialMediaLanding() {
             ref={subRef}
             className="opacity-0 text-gray-700 text-lg md:text-xl max-w-lg leading-relaxed mb-10 font-light"
           >
-            Spok Digital builds content systems — not just posts — that turn
-            your social presence into a predictable lead engine.
+            Not random collaborations. We build strategic creator partnerships
+            that generate trust, reach, and real inbound leads.
           </p>
 
           <div ref={ctaRef} className="opacity-0 flex flex-wrap gap-3">
@@ -358,10 +367,10 @@ export default function SocialMediaLanding() {
           className="relative mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-5xl"
         >
           {[
-            ["120+", "Brands scaled"],
-            ["4.1×", "Avg. lead growth"],
-            ["$2M+", "Ad spend managed"],
-            ["93%", "Client retention"],
+            ["200+", "Creators activated"],
+            ["3.8×", "Avg. campaign ROI"],
+            ["120M+", "Total reach generated"],
+            ["91%", "Repeat brand rate"],
           ].map(([n, l]) => (
             <StatCard key={l} num={n} label={l} />
           ))}
@@ -475,19 +484,19 @@ export default function SocialMediaLanding() {
         <div className="reveal-stagger grid md:grid-cols-3 gap-3">
           {[
             {
-              title: "Content without direction",
-              desc: "Consistent posting with no strategy behind it. No target audience, no goal, no system.",
+              title: "Paying for reach, not results",
+              desc: "Vanity metrics look good, but if campaigns don’t convert into leads or sales, they’re just expensive noise.",
+              icon: TrendingDown,
+            },
+            {
+              title: "Wrong creators, wrong audience",
+              desc: "Big followers ≠ the right audience. Most brands partner with creators who don’t match their buyers.",
+              icon: Users,
+            },
+            {
+              title: "No campaign structure",
+              desc: "Random posts, no messaging, no funnel. Without strategy, influencer marketing becomes guesswork.",
               icon: Compass,
-            },
-            {
-              title: "Reach without revenue",
-              desc: "Impressions are vanity. If views aren't converting to enquiries, nothing is working.",
-              icon: EyeOff,
-            },
-            {
-              title: "Engagement without leads",
-              desc: "Likes feel good. Booked discovery calls feel better. One of these pays your bills.",
-              icon: ThumbsDown,
             },
           ].map(({ title, desc, icon: Icon }) => (
             <Card key={title} className="p-7 relative group">
@@ -713,13 +722,12 @@ export default function SocialMediaLanding() {
               Ready to scale?
             </p>
             <h2 className="text-4xl lg:text-5xl font-Grostek font-[600] leading-tight max-w-xl">
-              Let's Grow Together
+              Let’s build campaigns that don’t just reach people — they convert
+              them.
             </h2>
             <p className="mt-4 font-Synonym font-[400] text-lg max-w-2xl text-white/80">
-              At Spok Digital, we don't just market products — we build
-              connections that last. Whether you're a startup making your first
-              move or an established brand ready to level up, we're here to
-              help.
+              At Spok Digital, we turn influencer marketing into a predictable
+              growth channel.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
               <Link href="/contact">

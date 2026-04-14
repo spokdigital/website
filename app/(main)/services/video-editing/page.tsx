@@ -6,14 +6,11 @@ import Link from "next/link";
 import {
   ArrowRight,
   TrendingUp,
-  Target,
   Zap,
   BarChart2,
   CheckCircle,
   Users,
   Layers,
-  Megaphone,
-  RefreshCw,
   Star,
   Instagram,
   Youtube,
@@ -26,11 +23,12 @@ import {
   Clock,
   Shield,
   Search,
-  PenTool,
   Eye,
   Compass,
+  TrendingDown,
   EyeOff,
   ThumbsDown,
+  PenTool,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -171,61 +169,74 @@ export default function SocialMediaLanding() {
   // ── Data ───────────────────────────────────────────────────────────────────
   const howSteps = [
     {
-      icon: <Target size={20} />,
       num: "01",
-      title: "Discovery",
-      desc: "Deep-dive into your brand, audience, and competitors to uncover your unique edge.",
+      title: "Concept & Scripting",
+      desc: "We craft ideas, hooks, and scripts designed to instantly grab attention and communicate clearly.",
+      icon: <PenTool />,
     },
     {
-      icon: <PenTool size={20} />,
       num: "02",
-      title: "Content Creation",
-      desc: "Scroll-stopping Reels, carousels, and copy crafted for your exact platform and audience.",
+      title: "Editing for Performance",
+      desc: "Fast cuts, subtitles, transitions, and pacing engineered to maximise retention.",
+      icon: <Zap />,
     },
     {
-      icon: <Megaphone size={20} />,
       num: "03",
-      title: "Publishing & Ads",
-      desc: "Organic posting + paid amplification — timed for peak reach and maximum impact.",
+      title: "Platform Optimization",
+      desc: "Each video is tailored for Reels, TikTok, YouTube Shorts, and ad formats.",
+      icon: <Layers />,
     },
     {
-      icon: <TrendingUp size={20} />,
       num: "04",
-      title: "Optimise & Scale",
-      desc: "Weekly data reviews, A/B tests, and budget reallocation to keep ROAS climbing.",
+      title: "Test & Improve",
+      desc: "We refine creatives based on performance data to continuously improve results.",
+      icon: <TrendingUp />,
     },
   ];
 
   const deliverables = [
-    "Brand voice & content strategy",
-    "Platform-specific content creation",
-    "Paid social ad campaigns",
-    "Monthly performance reports",
-    "Community management",
-    "Funnel & landing page integration",
-    "Influencer collaboration support",
-    "Hashtag & SEO research",
+    "Short-form video editing (Reels / Shorts / Ads)",
+    "Hook & script development",
+    "Subtitles & caption design",
+    "Motion graphics & transitions",
+    "Platform-specific formatting",
+    "Multiple creative variations",
+    "Content repurposing",
+    "Performance-focused editing strategy",
   ];
-
   const outcomes = [
     {
-      icon: <TrendingUp size={18} />,
-      label: "More inbound leads, every month",
+      icon: <TrendingUp size={20} />,
+      label: "Higher watch time and retention",
     },
-    { icon: <Star size={18} />, label: "A brand people recognise & trust" },
     {
-      icon: <Zap size={18} />,
-      label: "Higher click-through & conversion rates",
+      icon: <Star size={20} />,
+      label: "Stronger engagement across platforms",
     },
-    { icon: <BarChart2 size={18} />, label: "Transparent ROI you can measure" },
+    {
+      icon: <Zap size={20} />,
+      label: "Scroll-stopping content that converts",
+    },
+    {
+      icon: <BarChart2 size={20} />,
+      label: "Better ROI from video content",
+    },
   ];
 
   const builtFor = [
-    { icon: <Layers size={26} />, label: "Service businesses", image: "" },
-    { icon: <Users size={26} />, label: "Founders & coaches", image: "" },
     {
-      icon: <RefreshCw size={26} />,
-      label: "Scaling e-commerce brands",
+      label: "Brands scaling with video",
+      icon: <Layers />,
+      image: "",
+    },
+    {
+      label: "Creators & personal brands",
+      icon: <Users />,
+      image: "",
+    },
+    {
+      label: "Performance-driven businesses",
+      icon: <TrendingUp />,
       image: "",
     },
   ];
@@ -304,7 +315,7 @@ export default function SocialMediaLanding() {
                           shadow-[0_0_24px_rgba(222,15,63,.15)]"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Social media that actually drives revenue
+            Video creation & editing{" "}
           </div>
 
           <h1
@@ -312,7 +323,7 @@ export default function SocialMediaLanding() {
             className="opacity-0 font-grostek text-[clamp(52px,9vw,120px)]
                          leading-[0.92] tracking-tight mb-7 text-gray-800"
           >
-            SOCIAL MEDIA
+            VIDEO CONTENT
             <br />
             THAT DRIVES{" "}
             <span
@@ -321,7 +332,7 @@ export default function SocialMediaLanding() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              GROWTH
+              ACTION
             </span>
           </h1>
 
@@ -329,8 +340,9 @@ export default function SocialMediaLanding() {
             ref={subRef}
             className="opacity-0 text-gray-700 text-lg md:text-xl max-w-lg leading-relaxed mb-10 font-light"
           >
-            Spok Digital builds content systems — not just posts — that turn
-            your social presence into a predictable lead engine.
+            We create performance-first videos — not just edits — designed to
+            capture attention, retain viewers, and convert into real business
+            outcomes.
           </p>
 
           <div ref={ctaRef} className="opacity-0 flex flex-wrap gap-3">
@@ -358,10 +370,10 @@ export default function SocialMediaLanding() {
           className="relative mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-5xl"
         >
           {[
-            ["120+", "Brands scaled"],
-            ["4.1×", "Avg. lead growth"],
-            ["$2M+", "Ad spend managed"],
-            ["93%", "Client retention"],
+            ["200+", "Creators activated"],
+            ["3.8×", "Avg. campaign ROI"],
+            ["120M+", "Total reach generated"],
+            ["91%", "Repeat brand rate"],
           ].map(([n, l]) => (
             <StatCard key={l} num={n} label={l} />
           ))}
@@ -475,18 +487,18 @@ export default function SocialMediaLanding() {
         <div className="reveal-stagger grid md:grid-cols-3 gap-3">
           {[
             {
-              title: "Content without direction",
-              desc: "Consistent posting with no strategy behind it. No target audience, no goal, no system.",
-              icon: Compass,
-            },
-            {
-              title: "Reach without revenue",
-              desc: "Impressions are vanity. If views aren't converting to enquiries, nothing is working.",
+              title: "Content that looks good but doesn’t perform",
+              desc: "Aesthetic edits without strategy fail to hold attention or drive any real results.",
               icon: EyeOff,
             },
             {
-              title: "Engagement without leads",
-              desc: "Likes feel good. Booked discovery calls feel better. One of these pays your bills.",
+              title: "No hook, no retention",
+              desc: "Without strong openings and pacing, viewers drop off before your message lands.",
+              icon: Compass,
+            },
+            {
+              title: "Engagement without conversions",
+              desc: "Views and likes mean nothing if they don’t turn into clicks, leads, or sales.",
               icon: ThumbsDown,
             },
           ].map(({ title, desc, icon: Icon }) => (
@@ -713,13 +725,11 @@ export default function SocialMediaLanding() {
               Ready to scale?
             </p>
             <h2 className="text-4xl lg:text-5xl font-Grostek font-[600] leading-tight max-w-xl">
-              Let's Grow Together
+              Turn Your Content Into a Growth Engine
             </h2>
             <p className="mt-4 font-Synonym font-[400] text-lg max-w-2xl text-white/80">
-              At Spok Digital, we don't just market products — we build
-              connections that last. Whether you're a startup making your first
-              move or an established brand ready to level up, we're here to
-              help.
+              We don’t just edit videos — we build content systems that drive
+              attention, engagement, and conversions.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
               <Link href="/contact">

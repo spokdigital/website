@@ -12,9 +12,10 @@ const menu = [
   { title: "About", link: "/About" },
   { title: "D2C Growth", link: "/d2c" },
   { title: "Business Accelerator", link: "/website-landing" },
-  { title: "Blogs", link: "/blogs" },
+  { title: "Services", link: "/services", hasSubmenu: true },
   { title: "Portfolio", link: "/Portfolio" },
 ];
+
 const NavBar = () => {
   const path = usePathname();
   const renderPath = "/admin";
@@ -72,9 +73,9 @@ const NavBar = () => {
           <Link href={"/contact"} className="hidden lg:block">
             <Button
               className={`${
-                path === "/blogs" || path !== "/Portfolio"
-                  ? "!text-white border-gray-50/80"
-                  : "!text-black"
+                path.startsWith("/services")
+                  ? "!text-black"
+                  : "!text-white border-gray-50/80"
               }`}
             >
               Contact us

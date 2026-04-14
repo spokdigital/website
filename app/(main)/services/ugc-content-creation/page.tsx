@@ -171,62 +171,64 @@ export default function SocialMediaLanding() {
   // ── Data ───────────────────────────────────────────────────────────────────
   const howSteps = [
     {
-      icon: <Target size={20} />,
+      icon: <Search size={20} />,
       num: "01",
-      title: "Discovery",
-      desc: "Deep-dive into your brand, audience, and competitors to uncover your unique edge.",
+      title: "Creator Matching",
+      desc: "We source UGC creators who match your brand voice, audience, and product positioning.",
     },
     {
       icon: <PenTool size={20} />,
       num: "02",
-      title: "Content Creation",
-      desc: "Scroll-stopping Reels, carousels, and copy crafted for your exact platform and audience.",
+      title: "Content Direction",
+      desc: "Hooks, scripts, and angles crafted to capture attention and drive action.",
     },
     {
-      icon: <Megaphone size={20} />,
+      icon: <Play size={20} />,
       num: "03",
-      title: "Publishing & Ads",
-      desc: "Organic posting + paid amplification — timed for peak reach and maximum impact.",
+      title: "Production",
+      desc: "Creators produce natural, platform-native videos that feel authentic and engaging.",
     },
     {
-      icon: <TrendingUp size={20} />,
+      icon: <Layers size={20} />,
       num: "04",
-      title: "Optimise & Scale",
-      desc: "Weekly data reviews, A/B tests, and budget reallocation to keep ROAS climbing.",
+      title: "Delivery",
+      desc: "Ad-ready creatives delivered in multiple formats, ready to scale across platforms.",
     },
   ];
 
   const deliverables = [
-    "Brand voice & content strategy",
-    "Platform-specific content creation",
-    "Paid social ad campaigns",
-    "Monthly performance reports",
-    "Community management",
-    "Funnel & landing page integration",
-    "Influencer collaboration support",
-    "Hashtag & SEO research",
+    "UGC video ads (short-form)",
+    "Script & hook writing",
+    "Multiple content angles",
+    "Creator sourcing & coordination",
+    "Ad-ready formats (Reels / TikTok / Ads)",
+    "Platform-specific optimisation",
+    "Content variations for testing",
+    "Fast turnaround delivery",
   ];
 
   const outcomes = [
-    {
-      icon: <TrendingUp size={18} />,
-      label: "More inbound leads, every month",
-    },
-    { icon: <Star size={18} />, label: "A brand people recognise & trust" },
-    {
-      icon: <Zap size={18} />,
-      label: "Higher click-through & conversion rates",
-    },
-    { icon: <BarChart2 size={18} />, label: "Transparent ROI you can measure" },
+    { icon: <TrendingUp size={18} />, label: "Higher ad performance & ROI" },
+    { icon: <Zap size={18} />, label: "Stronger hooks & retention" },
+    { icon: <BarChart2 size={18} />, label: "Lower cost per lead" },
+    { icon: <Users size={18} />, label: "More relatable brand presence" },
   ];
 
   const builtFor = [
-    { icon: <Layers size={26} />, label: "Service businesses", image: "" },
-    { icon: <Users size={26} />, label: "Founders & coaches", image: "" },
     {
-      icon: <RefreshCw size={26} />,
-      label: "Scaling e-commerce brands",
-      image: "",
+      icon: <Layers size={26} />,
+      label: "D2C & e-commerce brands",
+      image: "/images/ugc/ecom.jpg",
+    },
+    {
+      icon: <Users size={26} />,
+      label: "Brands running paid ads",
+      image: "/images/ugc/ads.jpg",
+    },
+    {
+      icon: <Play size={26} />,
+      label: "Startups scaling with content",
+      image: "/images/ugc/startup.jpg",
     },
   ];
 
@@ -242,33 +244,33 @@ export default function SocialMediaLanding() {
   const whySpok = [
     {
       icon: <Clock size={20} />,
-      title: "Fast onboarding",
-      desc: "You're live within 7 days — not 6 weeks. We move at the speed of social.",
+      title: "Fast turnaround",
+      desc: "UGC content delivered in days, not weeks.",
     },
     {
       icon: <Eye size={20} />,
-      title: "Full transparency",
-      desc: "Live dashboards you can check any time. No black-box reporting, ever.",
+      title: "Performance-first content",
+      desc: "Every video is built to convert, not just look good.",
     },
     {
       icon: <Shield size={20} />,
-      title: "No lock-in contracts",
-      desc: "Month-to-month by default. We earn your trust every single month.",
+      title: "Flexible usage rights",
+      desc: "Use content across ads, landing pages, and social.",
     },
     {
       icon: <Search size={20} />,
-      title: "Data-first decisions",
-      desc: "Every content call is backed by analytics — not gut feel or guesswork.",
+      title: "Tested content angles",
+      desc: "We create multiple variations to find what works.",
     },
     {
       icon: <MessageCircle size={20} />,
-      title: "Dedicated strategist",
-      desc: "A single point of contact who knows your brand as well as you do.",
+      title: "End-to-end management",
+      desc: "We handle creators, scripts, and delivery.",
     },
     {
       icon: <TrendingUp size={20} />,
-      title: "Growth guarantee",
-      desc: "If we don't hit agreed targets in 90 days, you get a full month free.",
+      title: "Built for scaling ads",
+      desc: "Content designed to plug directly into paid campaigns.",
     },
   ];
 
@@ -304,7 +306,7 @@ export default function SocialMediaLanding() {
                           shadow-[0_0_24px_rgba(222,15,63,.15)]"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Social media that actually drives revenue
+            UGC content that actually converts
           </div>
 
           <h1
@@ -312,7 +314,7 @@ export default function SocialMediaLanding() {
             className="opacity-0 font-grostek text-[clamp(52px,9vw,120px)]
                          leading-[0.92] tracking-tight mb-7 text-gray-800"
           >
-            SOCIAL MEDIA
+            UGC CONTENT
             <br />
             THAT DRIVES{" "}
             <span
@@ -329,8 +331,8 @@ export default function SocialMediaLanding() {
             ref={subRef}
             className="opacity-0 text-gray-700 text-lg md:text-xl max-w-lg leading-relaxed mb-10 font-light"
           >
-            Spok Digital builds content systems — not just posts — that turn
-            your social presence into a predictable lead engine.
+            Real people. Real content. We create platform-native UGC designed to
+            feel organic — but built to perform like ads.
           </p>
 
           <div ref={ctaRef} className="opacity-0 flex flex-wrap gap-3">
@@ -358,10 +360,10 @@ export default function SocialMediaLanding() {
           className="relative mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-5xl"
         >
           {[
-            ["120+", "Brands scaled"],
-            ["4.1×", "Avg. lead growth"],
-            ["$2M+", "Ad spend managed"],
-            ["93%", "Client retention"],
+            ["500+", "UGC videos created"],
+            ["3.2×", "Avg. ad performance lift"],
+            ["40%", "Lower cost per lead"],
+            ["92%", "Client retention"],
           ].map(([n, l]) => (
             <StatCard key={l} num={n} label={l} />
           ))}
@@ -475,19 +477,19 @@ export default function SocialMediaLanding() {
         <div className="reveal-stagger grid md:grid-cols-3 gap-3">
           {[
             {
-              title: "Content without direction",
-              desc: "Consistent posting with no strategy behind it. No target audience, no goal, no system.",
-              icon: Compass,
-            },
-            {
-              title: "Reach without revenue",
-              desc: "Impressions are vanity. If views aren't converting to enquiries, nothing is working.",
+              title: "Content that looks good, not performs",
+              desc: "High production doesn’t guarantee results. Most content fails because it’s not built for conversion.",
               icon: EyeOff,
             },
             {
-              title: "Engagement without leads",
-              desc: "Likes feel good. Booked discovery calls feel better. One of these pays your bills.",
-              icon: ThumbsDown,
+              title: "No hook, no retention",
+              desc: "If you don’t grab attention in the first 2 seconds, the scroll wins. Most brands lose right there.",
+              icon: Zap,
+            },
+            {
+              title: "Ads that feel like ads",
+              desc: "Polished creatives often get ignored. People engage with content that feels real and relatable.",
+              icon: Users,
             },
           ].map(({ title, desc, icon: Icon }) => (
             <Card key={title} className="p-7 relative group">
@@ -710,16 +712,14 @@ export default function SocialMediaLanding() {
         <div className="p-10 lg:p-16 w-full bg-gradient-to-tr from-red-400 to-red-600 text-slate-100 rounded-2xl relative overflow-hidden">
           <div className="relative z-10">
             <p className="text-xs uppercase tracking-widest text-white/60 font-Grostek mb-3">
-              Ready to scale?
+              Ready to scale with UGC?
             </p>
             <h2 className="text-4xl lg:text-5xl font-Grostek font-[600] leading-tight max-w-xl">
-              Let's Grow Together
+              Let’s create content that doesn’t just look native — it performs
+              like your best ad.
             </h2>
             <p className="mt-4 font-Synonym font-[400] text-lg max-w-2xl text-white/80">
-              At Spok Digital, we don't just market products — we build
-              connections that last. Whether you're a startup making your first
-              move or an established brand ready to level up, we're here to
-              help.
+              At Spok Digital, we turn UGC into a predictable growth engine.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
               <Link href="/contact">
