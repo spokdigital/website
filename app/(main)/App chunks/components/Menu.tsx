@@ -381,7 +381,7 @@ const ServicesTab = ({
                           </span>
                         )}
                       </div>
-                      <span className="text-sm text-gray-400 leading-snug">
+                      <span className="text-sm  pr-3 text-gray-400 leading-snug">
                         {s.desc}
                       </span>
                     </div>
