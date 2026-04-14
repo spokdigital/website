@@ -61,8 +61,7 @@ function Card({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border border-black/[.02]
-                     bg-black/[.01] backdrop-blur-sm hover:-translate-y-1.5
+      className={`relative overflow-hidden rounded-2xl  bg-white shadow-sm hover:-translate-y-1.5
                      transition-all duration-300 group ${className}`}
     >
       {children}
@@ -555,8 +554,8 @@ export default function SocialMediaLanding() {
       </section>
 
       {/* ──────────────────── WHAT YOU GET + WHAT CHANGES ───────────────────── */}
-      <section className="container mt-20 grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="reveal-up relative overflow-hidden rounded-2xl p-8 border border-white/[.07] bg-white/[.02]">
+      <section className="container mt-20 grid  grid-cols-1 bg-black lg:grid-cols-2 gap-4">
+        <div className="reveal-up relative overflow-hidden  rounded-2xl p-8 border border-white/[.07] ">
           <div
             className="absolute inset-0 opacity-[.03]"
             style={{

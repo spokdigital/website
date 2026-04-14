@@ -9,7 +9,6 @@ import {
   Monitor,
   TrendingUp,
   Users,
-  Search,
   ArrowRight,
   ChevronDown,
   Sparkles,
@@ -192,7 +191,6 @@ const Tab = ({
   );
 };
 
-// ── Services Tab ─────────────────────────────────────────────────────────────
 const ServicesTab = ({
   children,
   setPosition,
@@ -213,12 +211,19 @@ const ServicesTab = ({
   isHovering: boolean;
 }) => {
   const ref = useRef<HTMLLIElement>(null);
-  const triggerRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
-  const [tipOffset, setTipOffset] = useState("50%");
+  const [menuLeft, setMenuLeft] = useState(0);
+
   const isActive = path === link || (link !== "/" && path.startsWith(link));
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     if (!ref.current || !isActive) return;
@@ -226,35 +231,41 @@ const ServicesTab = ({
     const newPos = { left: ref.current.offsetLeft, width };
     setActivePosition(newPos);
     setPosition({ ...newPos, opacity: 1 });
-  }, [path]);
+  }, [path, setActivePosition, setPosition]);
 
   const handleEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setOpen(true);
+
     if (!ref.current) return;
+
     const { width } = ref.current.getBoundingClientRect();
+    const centerOfLi = width / 2;
+    const desiredLeft = centerOfLi - 305; // 305 is half of 610
+
+    setMenuLeft(desiredLeft);
     setPosition({ left: ref.current.offsetLeft, width, opacity: 1 });
   };
 
   const handleLeave = () => {
-    timeoutRef.current = setTimeout(() => setOpen(false), 120);
+    // Increased timeout to 200ms to give more time to cross the gap
+    timeoutRef.current = setTimeout(() => setOpen(false), 200);
   };
 
   return (
     <li
       ref={ref}
-      className=""
+      className="relative"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
-      <div
-        ref={triggerRef}
-        className="relative group z-10 block cursor-pointer px-3 py-1.5 text-xs md:px-5 md:py-3 md:text-base"
-      >
+      <div className="group z-10 block cursor-pointer ">
         <button
-          className={`flex items-center gap-1 relative rounded-full capitalize transition-colors ${
-            isActive && !isHovering
-              ? "text-white"
+          // FIX: Changed colors to "text-primary" (red/pink) on hover/active
+          // This ensures visibility on a white background if the pill background isn't showing.
+          className={`flex z-10 items-center px-3 py-1.5 text-xs md:px-5 md:py-3 md:text-base gap-1 relative rounded-full capitalize transition-colors ${
+            isActive
+              ? "text-white font-semibold"
               : "text-black group-hover:text-white"
           }`}
         >
@@ -271,115 +282,128 @@ const ServicesTab = ({
             className={`flex-shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
           />
         </button>
+      </div>
 
-        <AnimatePresence>
-          {open /* ← was !open — inverted bug fixed */ && (
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.96 }}
-              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              onMouseEnter={() => {
-                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.96 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            onMouseEnter={() => {
+              if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            }}
+            onMouseLeave={handleLeave}
+            className="absolute top-[calc(100%+16px)] z-[99999]"
+            style={{
+              left: menuLeft,
+              width: 610,
+            }}
+          >
+            {/* 
+              FIX: INVISIBLE BRIDGE 
+              This div fills the 16px gap between the button and the menu.
+              It ensures that moving the mouse from the button to the menu
+              keeps the cursor 'inside' the component, preventing the menu from closing.
+            */}
+            <div
+              className="absolute -top-[16px] left-0 w-full h-[16px]"
+              style={{ height: "16px" }} // Explicit height matching the top gap
+            />
+
+            {/* Tip */}
+            <div
+              className="absolute -top-[6px] left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-white rounded-tl-[2px]"
+              style={{
+                border: "0.5px solid rgba(0,0,0,0.08)",
+                borderBottom: "none",
+                borderRight: "none",
               }}
-              onMouseLeave={handleLeave}
-              className="absolute top-[calc(100%+16px)]  -left-1/2 -translate-x-1/2 z-[99999]"
-              style={{ width: 610 }}
-            >
-              {/* ── Tip — centered on the panel, which is centered on the <li> ── */}
-              <div
-                className="absolute -top-[6px] w-3 h-3 rotate-45 bg-white rounded-tl-[2px]"
-                style={{
-                  left: tipOffset /* calc(50% - 6px) centers the 12px rotated square */,
-                  border: "0.5px solid rgba(0,0,0,0.08)",
-                  borderBottom: "none",
-                  borderRight: "none",
-                }}
-              />
+            />
 
-              {/* Panel */}
-              <div
-                className="rounded-2xl border border-black/[.07] bg-white overflow-hidden"
-                style={{
-                  boxShadow:
-                    "0 20px 60px rgba(0,0,0,0.13), 0 4px 16px rgba(0,0,0,0.06)",
-                }}
-              >
-                {/* Top strip */}
-                <div className="flex items-center justify-between px-5 py-3.5 border-b border-black/[.06]">
-                  <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-md bg-primary flex items-center justify-center">
-                      <Sparkles
-                        size={11}
-                        className="text-white"
-                        strokeWidth={2}
-                      />
-                    </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-gray-400">
-                      What we offer
-                    </span>
+            {/* Panel */}
+            <div
+              className="rounded-2xl border border-black/[.07] bg-white overflow-hidden"
+              style={{
+                boxShadow:
+                  "0 20px 60px rgba(0,0,0,0.13), 0 4px 16px rgba(0,0,0,0.06)",
+              }}
+            >
+              {/* Top strip */}
+              <div className="flex items-center justify-between px-5 py-3.5 border-b border-black/[.06]">
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 rounded-md bg-primary flex items-center justify-center">
+                    <Sparkles
+                      size={11}
+                      className="text-white"
+                      strokeWidth={2}
+                    />
                   </div>
-                  <span className="text-[10.5px] text-gray-300 font-medium">
-                    {serviceItems.length} services
+                  <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-gray-400">
+                    What we offer
                   </span>
                 </div>
-
-                {/* 2-col grid */}
-                <div className="p-3 grid grid-cols-2 gap-1.5">
-                  {serviceItems.map((s) => (
-                    <Link
-                      key={s.name}
-                      href={s.href}
-                      onClick={() => setOpen(false)}
-                      onMouseEnter={() => setHovered(s.name)}
-                      onMouseLeave={() => setHovered(null)}
-                      className="relative flex items-start gap-3 p-3 rounded-xl transition-all duration-200 hover:bg-[#fdf2f4] group/item"
-                    >
-                      <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 border ${
-                          hovered === s.name
-                            ? "bg-primary border-primary shadow-[0_0_16px_rgba(222,15,63,0.25)]"
-                            : "bg-primary/[.06] border-primary/[.12]"
-                        }`}
-                      >
-                        <s.icon
-                          size={16}
-                          strokeWidth={1.8}
-                          className={`transition-colors duration-200 ${hovered === s.name ? "text-white" : "text-primary"}`}
-                        />
-                      </div>
-                      <div className="flex flex-col gap-1 min-w-0 pt-0.5">
-                        <div className="flex items-center gap-1.5">
-                          <span className=" font-semibold text-gray-800 leading-none group-hover/item:text-primary transition-colors duration-200">
-                            {s.name}
-                          </span>
-                          {s.tag && (
-                            <span className="text-[9.5px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-primary/10 text-primary leading-none">
-                              {s.tag}
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-sm text-gray-400 leading-snug">
-                          {s.desc}
-                        </span>
-                      </div>
-                      <ArrowRight
-                        size={13}
-                        strokeWidth={2}
-                        className={`absolute right-3 top-1/2 -translate-y-1/2 text-primary transition-all duration-200 ${
-                          hovered === s.name
-                            ? "opacity-100 translate-x-0"
-                            : "opacity-0 -translate-x-1"
-                        }`}
-                      />
-                    </Link>
-                  ))}
-                </div>
+                <span className="text-[10.5px] text-gray-300 font-medium">
+                  {serviceItems.length} services
+                </span>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+
+              {/* 2-col grid */}
+              <div className="p-3 grid grid-cols-2 gap-1.5">
+                {serviceItems.map((s) => (
+                  <Link
+                    key={s.name}
+                    href={s.href}
+                    onClick={() => setOpen(false)}
+                    onMouseEnter={() => setHovered(s.name)}
+                    onMouseLeave={() => setHovered(null)}
+                    className="relative flex items-start gap-3 p-3 rounded-xl transition-all duration-200 hover:bg-[#fdf2f4] group/item"
+                  >
+                    <div
+                      className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 border ${
+                        hovered === s.name
+                          ? "bg-primary border-primary shadow-[0_0_16px_rgba(222,15,63,0.25)]"
+                          : "bg-primary/[.06] border-primary/[.12]"
+                      }`}
+                    >
+                      <s.icon
+                        size={16}
+                        strokeWidth={1.8}
+                        className={`transition-colors duration-200 ${hovered === s.name ? "text-white" : "text-primary"}`}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1 min-w-0 pt-0.5">
+                      <div className="flex items-center gap-1.5">
+                        <span className=" font-semibold text-gray-800 leading-none group-hover/item:text-primary transition-colors duration-200">
+                          {s.name}
+                        </span>
+                        {s.tag && (
+                          <span className="text-[9.5px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-primary/10 text-primary leading-none">
+                            {s.tag}
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-sm text-gray-400 leading-snug">
+                        {s.desc}
+                      </span>
+                    </div>
+                    <ArrowRight
+                      size={13}
+                      strokeWidth={2}
+                      className={`absolute right-3 top-1/2 -translate-y-1/2 text-primary transition-all duration-200 ${
+                        hovered === s.name
+                          ? "opacity-100 translate-x-0"
+                          : "opacity-0 -translate-x-1"
+                      }`}
+                    />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </li>
   );
 };
