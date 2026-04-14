@@ -253,14 +253,11 @@ const ServicesTab = ({
   };
 
   return (
-    <li
-      ref={ref}
-      className="relative"
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-    >
+    <li ref={ref} className="relative">
       <div className="group z-10 block cursor-pointer ">
         <button
+          onMouseEnter={handleEnter}
+          onMouseLeave={handleLeave}
           // FIX: Changed colors to "text-primary" (red/pink) on hover/active
           // This ensures visibility on a white background if the pill background isn't showing.
           className={`flex z-10 items-center px-3 py-1.5 text-xs md:px-5 md:py-3 md:text-base gap-1 relative rounded-full capitalize transition-colors ${
