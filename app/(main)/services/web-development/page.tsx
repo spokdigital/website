@@ -6,14 +6,11 @@ import Link from "next/link";
 import {
   ArrowRight,
   TrendingUp,
-  Target,
   Zap,
   BarChart2,
   CheckCircle,
   Users,
   Layers,
-  Megaphone,
-  RefreshCw,
   Star,
   Instagram,
   Youtube,
@@ -26,11 +23,13 @@ import {
   Clock,
   Shield,
   Search,
-  PenTool,
   Eye,
   Compass,
+  TrendingDown,
   EyeOff,
   ThumbsDown,
+  PenTool,
+  Target,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -171,61 +170,74 @@ export default function SocialMediaLanding() {
   // ── Data ───────────────────────────────────────────────────────────────────
   const howSteps = [
     {
-      icon: <Target size={20} />,
       num: "01",
-      title: "Discovery",
-      desc: "Deep-dive into your brand, audience, and competitors to uncover your unique edge.",
+      title: "Strategy & Structure",
+      desc: "We map user journeys, funnels, and page structure to guide visitors toward action.",
+      icon: <Target />,
     },
     {
-      icon: <PenTool size={20} />,
       num: "02",
-      title: "Content Creation",
-      desc: "Scroll-stopping Reels, carousels, and copy crafted for your exact platform and audience.",
+      title: "UI/UX Design",
+      desc: "Clean, modern, and conversion-focused designs tailored to your brand.",
+      icon: <PenTool />,
     },
     {
-      icon: <Megaphone size={20} />,
       num: "03",
-      title: "Publishing & Ads",
-      desc: "Organic posting + paid amplification — timed for peak reach and maximum impact.",
+      title: "Development",
+      desc: "Fast, scalable, and responsive websites built with modern technologies.",
+      icon: <Layers />,
     },
     {
-      icon: <TrendingUp size={20} />,
       num: "04",
-      title: "Optimise & Scale",
-      desc: "Weekly data reviews, A/B tests, and budget reallocation to keep ROAS climbing.",
+      title: "Launch & Optimize",
+      desc: "We track performance, improve UX, and continuously optimise for better results.",
+      icon: <TrendingUp />,
     },
   ];
 
   const deliverables = [
-    "Brand voice & content strategy",
-    "Platform-specific content creation",
-    "Paid social ad campaigns",
-    "Monthly performance reports",
-    "Community management",
-    "Funnel & landing page integration",
-    "Influencer collaboration support",
-    "Hashtag & SEO research",
+    "Custom website design & development",
+    "Landing pages built for conversion",
+    "Responsive (mobile-first) layouts",
+    "Speed & performance optimization",
+    "SEO-ready structure",
+    "CMS integration (if needed)",
+    "Analytics & tracking setup",
+    "Ongoing support & updates",
   ];
-
   const outcomes = [
     {
-      icon: <TrendingUp size={18} />,
-      label: "More inbound leads, every month",
+      icon: <TrendingUp />,
+      label: "Higher conversion rates",
     },
-    { icon: <Star size={18} />, label: "A brand people recognise & trust" },
     {
-      icon: <Zap size={18} />,
-      label: "Higher click-through & conversion rates",
+      icon: <Star />,
+      label: "Stronger brand credibility",
     },
-    { icon: <BarChart2 size={18} />, label: "Transparent ROI you can measure" },
+    {
+      icon: <Zap />,
+      label: "Faster load times & better UX",
+    },
+    {
+      icon: <BarChart2 />,
+      label: "Measurable business growth",
+    },
   ];
 
   const builtFor = [
-    { icon: <Layers size={26} />, label: "Service businesses", image: "" },
-    { icon: <Users size={26} />, label: "Founders & coaches", image: "" },
     {
-      icon: <RefreshCw size={26} />,
-      label: "Scaling e-commerce brands",
+      label: "Startups & new brands",
+      icon: <Layers />,
+      image: "",
+    },
+    {
+      label: "Service-based businesses",
+      icon: <Users />,
+      image: "",
+    },
+    {
+      label: "Scaling companies",
+      icon: <TrendingUp />,
       image: "",
     },
   ];
@@ -304,7 +316,7 @@ export default function SocialMediaLanding() {
                           shadow-[0_0_24px_rgba(222,15,63,.15)]"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Social media that actually drives revenue
+            Web development
           </div>
 
           <h1
@@ -312,7 +324,7 @@ export default function SocialMediaLanding() {
             className="opacity-0 font-grostek text-[clamp(52px,9vw,120px)]
                          leading-[0.92] tracking-tight mb-7 text-gray-800"
           >
-            SOCIAL MEDIA
+            WEBSITES THAT
             <br />
             THAT DRIVES{" "}
             <span
@@ -321,7 +333,7 @@ export default function SocialMediaLanding() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              GROWTH
+              RESULTS
             </span>
           </h1>
 
@@ -329,8 +341,8 @@ export default function SocialMediaLanding() {
             ref={subRef}
             className="opacity-0 text-gray-700 text-lg md:text-xl max-w-lg leading-relaxed mb-10 font-light"
           >
-            Spok Digital builds content systems — not just posts — that turn
-            your social presence into a predictable lead engine.
+            We build high-performance websites that don’t just look good — they
+            convert visitors into leads, customers, and revenue.
           </p>
 
           <div ref={ctaRef} className="opacity-0 flex flex-wrap gap-3">
@@ -358,10 +370,10 @@ export default function SocialMediaLanding() {
           className="relative mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-5xl"
         >
           {[
-            ["120+", "Brands scaled"],
-            ["4.1×", "Avg. lead growth"],
-            ["$2M+", "Ad spend managed"],
-            ["93%", "Client retention"],
+            ["200+", "Creators activated"],
+            ["3.8×", "Avg. campaign ROI"],
+            ["120M+", "Total reach generated"],
+            ["91%", "Repeat brand rate"],
           ].map(([n, l]) => (
             <StatCard key={l} num={n} label={l} />
           ))}
@@ -475,18 +487,18 @@ export default function SocialMediaLanding() {
         <div className="reveal-stagger grid md:grid-cols-3 gap-3">
           {[
             {
-              title: "Content without direction",
-              desc: "Consistent posting with no strategy behind it. No target audience, no goal, no system.",
-              icon: Compass,
-            },
-            {
-              title: "Reach without revenue",
-              desc: "Impressions are vanity. If views aren't converting to enquiries, nothing is working.",
+              title: "Beautiful but not converting",
+              desc: "Most websites focus on design, not conversion. Traffic comes in — but nothing happens.",
               icon: EyeOff,
             },
             {
-              title: "Engagement without leads",
-              desc: "Likes feel good. Booked discovery calls feel better. One of these pays your bills.",
+              title: "No clear user journey",
+              desc: "Visitors don’t know where to go or what to do, leading to drop-offs and lost opportunities.",
+              icon: Compass,
+            },
+            {
+              title: "Slow, outdated performance",
+              desc: "Poor speed and bad UX kill trust, engagement, and ultimately your conversions.",
               icon: ThumbsDown,
             },
           ].map(({ title, desc, icon: Icon }) => (
@@ -713,13 +725,11 @@ export default function SocialMediaLanding() {
               Ready to scale?
             </p>
             <h2 className="text-4xl lg:text-5xl font-Grostek font-[600] leading-tight max-w-xl">
-              Let's Grow Together
+              Build a Website That Actually Converts{" "}
             </h2>
             <p className="mt-4 font-Synonym font-[400] text-lg max-w-2xl text-white/80">
-              At Spok Digital, we don't just market products — we build
-              connections that last. Whether you're a startup making your first
-              move or an established brand ready to level up, we're here to
-              help.
+              Your website shouldn’t just exist — it should work as your best
+              sales asset, turning traffic into real business growth.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
               <Link href="/contact">

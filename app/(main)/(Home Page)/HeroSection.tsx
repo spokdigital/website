@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import FilmCarousel from "./filmcarousel";
 import SliderForm from "../App chunks/components/SliderForm";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(SplitText);
 
@@ -12,7 +12,7 @@ export default function HeroSection() {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
-    <main className="relative ">
+    <main className="relative">
       <SliderForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       <Section1 setIsFormOpen={setIsFormOpen} />
       <FilmCarousel />
@@ -31,7 +31,6 @@ const Section1 = ({
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Split separately
       const split1 = new SplitText(".heading-1", {
         type: "chars",
         charsClass: "char1",
@@ -42,47 +41,26 @@ const Section1 = ({
         charsClass: "char2",
       });
 
-      // Initial state
       gsap.set(".char1", {
-        y: -120, // 👈 from top
+        y: -120,
         z: -200,
         force3D: true,
       });
 
       gsap.set(".char2", {
-        y: 120, // 👈 from bottom
+        y: 120,
         z: -200,
-
         force3D: true,
       });
 
-      const tl = gsap.timeline();
       gsap.set(descRef.current, { opacity: 0, y: 30 });
-
-      // BUTTON
       gsap.set(btnRef.current, { opacity: 0, y: 20, scale: 0.95 });
 
-      tl.to(
-        descRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        1.4, // starts after heading finishes
-      ).to(
-        btnRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.6,
-          ease: "back.out(1.4)",
-        },
-        1.65,
-      );
-      // FIRST LINE
+      // 👇 IMPORTANT: hide bg initially
+      gsap.set(".market-bg", { scaleX: 0, transformOrigin: "left" });
+
+      const tl = gsap.timeline();
+
       tl.to(
         ".char1",
         {
@@ -95,7 +73,6 @@ const Section1 = ({
         },
         0.7,
       )
-
         .to(
           ".char2",
           {
@@ -107,14 +84,50 @@ const Section1 = ({
             ease: "power3.out",
           },
           0.7,
-        ); // overlap slightly for smoothness
+        )
+
+        // DESCRIPTION
+        .to(
+          descRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          1.4,
+        )
+
+        // BUTTON
+        .to(
+          btnRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "back.out(1.4)",
+          },
+          1.65,
+        )
+
+        // 🔥 MARKET BG ANIMATION (AFTER EVERYTHING)
+        .to(
+          ".market-bg",
+          {
+            scaleX: 1,
+            duration: 0.7,
+            ease: "power4.out",
+          },
+          "+=0.2",
+        ); // slight delay after text
     }, headingRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className=" h-[65dvh] lg:h-screen ">
+    <section className="h-[65dvh] lg:h-screen">
       <div className="container flex flex-col pt-24 items-center justify-center h-full">
         {/* HEADING */}
         <div
@@ -123,7 +136,7 @@ const Section1 = ({
             perspective: "1200px",
             transformStyle: "preserve-3d",
           }}
-          className="flex flex-col items-center  overflow-hidden"
+          className="flex flex-col items-center overflow-hidden"
         >
           {/* LINE 1 */}
           <div className="flex gap-3 lg:gap-6 overflow-hidden">
@@ -142,11 +155,19 @@ const Section1 = ({
             {["Dominate", "the", "Market"].map((text, i) => (
               <h1
                 key={i}
-                className={`heading-2 text-[8.6vw] lg:text-[7.2rem] tracking-tighter font-Grostek font-[500] leading-none ${
-                  text === "Market" ? "text-primary " : ""
-                }`}
+                className="heading-2 text-[8.6vw] lg:text-[7.2rem] tracking-tighter font-Grostek font-[500] leading-none"
               >
-                {text}
+                {text === "Market" ? (
+                  <span className="relative inline-block px-3">
+                    {/* TEXT */}
+                    <span className="relative z-10 text-red-50">Market</span>
+
+                    {/* 🔥 ANIMATED BG */}
+                    <span className="market-bg absolute inset-0 bg-primary rounded-3xl origin-left will-change-transform"></span>
+                  </span>
+                ) : (
+                  text
+                )}
               </h1>
             ))}
           </div>
@@ -155,7 +176,7 @@ const Section1 = ({
         {/* DESCRIPTION */}
         <div
           ref={descRef}
-          className="max-w-4xl text-center text-[.7rem] lg:text-[.97rem] font-[500] font-Synonym mt-7 "
+          className="max-w-4xl text-center text-[.7rem] lg:text-[.97rem] font-[500] font-Synonym mt-7"
         >
           <p>
             We’re not just another agency—we’re your growth partner. At Spok
@@ -174,9 +195,7 @@ const Section1 = ({
             <span className="pl-3">
               Let&apos;s Build Something Extraordinary
             </span>
-            <span className="">
-              <ArrowRight className="bg-primary group-hover:bg-black group-hover:-rotate-45 transition-all duration-200 size-9 p-1 rounded-full ml-3 " />
-            </span>
+            <ArrowRight className="bg-primary group-hover:bg-black group-hover:-rotate-45 transition-all duration-200 size-9 p-1 rounded-full ml-3" />
           </button>
         </div>
       </div>
