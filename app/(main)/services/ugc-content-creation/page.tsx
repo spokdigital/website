@@ -64,7 +64,7 @@ function Card({
   return (
     <div
       className={`relative overflow-hidden rounded-2xl border border-black/[.02]
-                     bg-black/[.01] backdrop-blur-sm hover:-translate-y-1.5
+                     bg-white shadow-sm backdrop-blur-sm hover:-translate-y-1.5
                      transition-all duration-300 group ${className}`}
     >
       {children}
@@ -297,61 +297,64 @@ export default function SocialMediaLanding() {
           }}
         />
 
-        <div className="relative max-w-5xl">
-          <div
-            ref={badgeRef}
-            className="opacity-0 inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_.7fr] gap-4">
+          <div className="relative ">
+            <div
+              ref={badgeRef}
+              className="opacity-0 inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full
                           text-xs font-medium tracking-wide
                           bg-primary/[.08] border border-primary/25 text-primary
                           shadow-[0_0_24px_rgba(222,15,63,.15)]"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            UGC content that actually converts
-          </div>
-
-          <h1
-            ref={h1Ref}
-            className="opacity-0 font-grostek text-[clamp(52px,9vw,120px)]
-                         leading-[0.92] tracking-tight mb-7 text-gray-800"
-          >
-            UGC CONTENT
-            <br />
-            THAT DRIVES{" "}
-            <span
-              style={{
-                WebkitTextStroke: "2px #de0f3f",
-                WebkitTextFillColor: "transparent",
-              }}
             >
-              GROWTH
-            </span>
-          </h1>
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              UGC content that actually converts
+            </div>
 
-          <p
-            ref={subRef}
-            className="opacity-0 text-gray-700 text-lg md:text-xl max-w-lg leading-relaxed mb-10 font-light"
-          >
-            Real people. Real content. We create platform-native UGC designed to
-            feel organic — but built to perform like ads.
-          </p>
+            <h1
+              ref={h1Ref}
+              className="opacity-0 font-grostek text-4xl lg:text-8xl
+                         leading-[0.92] tracking-tight mb-7 text-gray-800"
+            >
+              UGC Content
+              <br />
+              Creation Built on
+              <br />
+              <span
+                style={{
+                  WebkitTextStroke: "2px #de0f3f",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Real Voices
+              </span>
+            </h1>
 
-          <div ref={ctaRef} className="opacity-0 flex flex-wrap gap-3">
-            <a
-              href="#"
-              className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold
+            <p
+              ref={subRef}
+              className="opacity-0 text-gray-700 text-lg md:text-xl max-w-lg leading-relaxed mb-10 font-light"
+            >
+              Real people. Real content. We create platform-native UGC designed
+              to feel organic — but built to perform like ads.
+            </p>
+
+            <div ref={ctaRef} className="opacity-0 flex flex-wrap gap-3">
+              <a
+                href="#"
+                className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold
                           bg-primary text-gray-50 hover:brightness-110  transition-all
                           shadow-[0_0_32px_rgba(222,15,63,.35)]"
-            >
-              Book a Free Strategy Call <ArrowRight size={16} />
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm
+              >
+                Book a Free Strategy Call <ArrowRight size={16} />
+              </a>
+              <a
+                href="#"
+                className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm
                           border border-white/[.12] text-gray-900/80
                           hover:border-primary/50 hover:text-primary transition-all backdrop-blur-sm"
-            >
-              See Our Work <ChevronRight size={16} />
-            </a>
+              >
+                See Our Work <ChevronRight size={16} />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -545,63 +548,65 @@ export default function SocialMediaLanding() {
       </section>
 
       {/* ──────────────────── WHAT YOU GET + WHAT CHANGES ───────────────────── */}
-      <section className="container mt-20 grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="reveal-up relative overflow-hidden rounded-2xl p-8 border border-white/[.07] bg-white/[.02]">
-          <div
-            className="absolute inset-0 opacity-[.03]"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
-              backgroundSize: "12px 12px",
-            }}
-          />
-          <div className="relative">
-            <Tag>Deliverables</Tag>
-            <h2 className="font-Cormorant text-[42px] tracking-wider leading-none text-gray-900 mb-8">
-              WHAT YOU GET
-            </h2>
-            <div className="grid grid-cols-2 gap-y-4 gap-x-3">
-              {deliverables.map((d) => (
-                <div
-                  key={d}
-                  className="flex items-center gap-2.5 text-sm text-gray-900/60 group/item hover:text-gray-900 transition-colors cursor-default"
-                >
-                  <CheckCircle
-                    size={14}
-                    className="text-primary flex-shrink-0 group-hover/item:scale-110 transition-transform group-hover:text-primary"
-                  />
-                  {d}
-                </div>
-              ))}
+      <section className=" mt-20 py-20 bg-black">
+        <div className="container grid grid-cols-1 lg:grid-cols-2  gap-4">
+          {" "}
+          <div className="reveal-up relative overflow-hidden rounded-2xl p-8 border bg-white/10 border-white/[.07] ">
+            <div
+              className="absolute inset-0 opacity-[.03]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
+                backgroundSize: "12px 12px",
+              }}
+            />
+            <div className="relative">
+              <Tag>Deliverables</Tag>
+              <h2 className="font-Cormorant text-[42px] tracking-wider leading-none text-gray-50 mb-8">
+                WHAT YOU GET
+              </h2>
+              <div className="grid grid-cols-2 gap-y-4 gap-x-3">
+                {deliverables.map((d) => (
+                  <div
+                    key={d}
+                    className="flex items-center gap-2.5 text-sm text-gray-50/60 group/item hover:text-gray-50 transition-colors cursor-default"
+                  >
+                    <CheckCircle
+                      size={14}
+                      className="text-primary flex-shrink-0 group-hover/item:scale-110 transition-transform group-hover:text-primary"
+                    />
+                    {d}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="reveal-up rounded-2xl p-8 bg-primary relative overflow-hidden">
-          <span className="absolute -bottom-4 -right-2 text-white/30 font-display text-[96px] leading-none text-bg-primary/[.08] select-none pointer-events-none">
-            ROI
-          </span>
-          <div className="relative">
-            <p className="text-gray-300 text-[11px] font-medium uppercase tracking-[.18em] mb-1">
-              Outcomes
-            </p>
-            <h2 className="font-Satoshi text-[42px] text-gray-100 font-[500] tracking-tight leading-none text-bg-primary mb-5">
-              WHAT CHANGES
-            </h2>
-            <div className="space-y-3">
-              {outcomes.map((o) => (
-                <div
-                  key={o.label}
-                  className="flex items-center gap-3  rounded-xl px-4 py-3 border border-gray-200/20 bg-white/10 backdrop-blur-sm"
-                >
-                  <div className="w-8 h-8 text-gray-100 rounded-lg bg-bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    {o.icon}
+          <div className="reveal-up rounded-2xl p-8 bg-primary relative overflow-hidden">
+            <span className="absolute -bottom-4 -right-2 text-white/30 font-display text-[96px] leading-none text-bg-primary/[.08] select-none pointer-events-none">
+              ROI
+            </span>
+            <div className="relative">
+              <p className="text-gray-300 text-[11px] font-medium uppercase tracking-[.18em] mb-1">
+                Outcomes
+              </p>
+              <h2 className="font-Satoshi text-[42px] text-gray-100 font-[500] tracking-tight leading-none text-bg-primary mb-5">
+                WHAT CHANGES
+              </h2>
+              <div className="space-y-3">
+                {outcomes.map((o) => (
+                  <div
+                    key={o.label}
+                    className="flex items-center gap-3  rounded-xl px-4 py-3 border border-gray-200/20 bg-white/10 backdrop-blur-sm"
+                  >
+                    <div className="w-8 h-8 text-gray-100 rounded-lg bg-bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      {o.icon}
+                    </div>
+                    <span className="font-medium text-gray-200 text-sm text-bg-primary">
+                      {o.label}
+                    </span>
                   </div>
-                  <span className="font-medium text-gray-200 text-sm text-bg-primary">
-                    {o.label}
-                  </span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

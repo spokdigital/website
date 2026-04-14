@@ -62,7 +62,7 @@ function Card({
   return (
     <div
       className={`relative overflow-hidden rounded-2xl border border-black/[.02]
-                     bg-black/[.01] backdrop-blur-sm hover:-translate-y-1.5
+                     bg-white shadow-sm backdrop-blur-sm hover:-translate-y-1.5
                      transition-all duration-300 group ${className}`}
     >
       {children}
@@ -304,8 +304,8 @@ export default function SocialMediaLanding() {
           }}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="relative max-w-5xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_.7fr] gap-4">
+          <div className="relative ">
             <div
               ref={badgeRef}
               className="opacity-0 inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full
@@ -319,19 +319,19 @@ export default function SocialMediaLanding() {
 
             <h1
               ref={h1Ref}
-              className="opacity-0 font-grostek text-[clamp(52px,9vw,120px)]
+              className="opacity-0 font-grostek text-4xl lg:text-8xl
                          leading-[0.92] tracking-tight mb-7 text-gray-800"
             >
-              INFLUENCER MARKETING
+              Turn Reach Into
               <br />
-              THAT DRIVES{" "}
+              Results with{" "}
               <span
                 style={{
                   WebkitTextStroke: "2px #de0f3f",
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                GROWTH
+                Influencer Marketing
               </span>
             </h1>
 
@@ -362,7 +362,6 @@ export default function SocialMediaLanding() {
               </a>
             </div>
           </div>
-          <div className="bg-primary h-[400px] w-full" />
         </div>
 
         <div
@@ -555,10 +554,10 @@ export default function SocialMediaLanding() {
       </section>
 
       {/* ──────────────────── WHAT YOU GET + WHAT CHANGES ───────────────────── */}
-      <section className="container mt-20 ">
-        <div className="grid grid-cols-1 lg:grid-cols-2 bg-black gap-4">
+      <section className=" mt-20 py-20 bg-black">
+        <div className="container grid grid-cols-1 lg:grid-cols-2  gap-4">
           {" "}
-          <div className="reveal-up relative overflow-hidden rounded-2xl p-8 border border-white/[.07] ">
+          <div className="reveal-up relative overflow-hidden rounded-2xl p-8 border bg-white/10 border-white/[.07] ">
             <div
               className="absolute inset-0 opacity-[.03]"
               style={{
@@ -569,14 +568,14 @@ export default function SocialMediaLanding() {
             />
             <div className="relative">
               <Tag>Deliverables</Tag>
-              <h2 className="font-Cormorant text-[42px] tracking-wider leading-none text-gray-900 mb-8">
+              <h2 className="font-Cormorant text-[42px] tracking-wider leading-none text-gray-50 mb-8">
                 WHAT YOU GET
               </h2>
               <div className="grid grid-cols-2 gap-y-4 gap-x-3">
                 {deliverables.map((d) => (
                   <div
                     key={d}
-                    className="flex items-center gap-2.5 text-sm text-gray-900/60 group/item hover:text-gray-900 transition-colors cursor-default"
+                    className="flex items-center gap-2.5 text-sm text-gray-50/60 group/item hover:text-gray-50 transition-colors cursor-default"
                   >
                     <CheckCircle
                       size={14}
