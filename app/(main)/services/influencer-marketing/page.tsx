@@ -346,7 +346,7 @@ export default function SocialMediaLanding() {
             <a
               href="#"
               className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold
-                          bg-primary text-bg-primary hover:brightness-110 text-gray-900 transition-all
+                          bg-primary text-gray-50 hover:brightness-110  transition-all
                           shadow-[0_0_32px_rgba(222,15,63,.35)]"
             >
               Book a Free Strategy Call <ArrowRight size={16} />

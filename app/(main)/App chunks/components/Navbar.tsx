@@ -73,7 +73,10 @@ const NavBar = () => {
           <Link href={"/contact"} className="hidden lg:block">
             <Button
               className={`${
-                path.startsWith("/services")
+                path.startsWith("/services") ||
+                path === "/Portfolio" ||
+                path === "/" ||
+                path === "/About"
                   ? "!text-black"
                   : "!text-white border-gray-50/80"
               }`}
