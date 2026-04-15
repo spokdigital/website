@@ -227,17 +227,17 @@ export default function SocialMediaLanding() {
     {
       label: "Brands scaling with video",
       icon: <Layers />,
-      image: "",
+      image: "/services/video/scaling-video.png",
     },
     {
       label: "Creators & personal brands",
       icon: <Users />,
-      image: "",
+      image: "/services/video/creators.jpg",
     },
     {
       label: "Performance-driven businesses",
       icon: <TrendingUp />,
-      image: "",
+      image: "/services/video/performance-driven-business.png",
     },
   ];
 

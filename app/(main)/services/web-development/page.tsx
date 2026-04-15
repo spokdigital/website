@@ -25,7 +25,6 @@ import {
   Search,
   Eye,
   Compass,
-  TrendingDown,
   EyeOff,
   ThumbsDown,
   PenTool,
@@ -228,17 +227,17 @@ export default function SocialMediaLanding() {
     {
       label: "Startups & new brands",
       icon: <Layers />,
-      image: "",
+      image: "/services/web/startups-brand.webp",
     },
     {
       label: "Service-based businesses",
       icon: <Users />,
-      image: "",
+      image: "/services/web/service-based-business.jpg",
     },
     {
       label: "Scaling companies",
       icon: <TrendingUp />,
-      image: "",
+      image: "/services/web/scaling-companies.webp",
     },
   ];
 

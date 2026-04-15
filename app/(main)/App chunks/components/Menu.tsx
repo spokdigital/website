@@ -216,7 +216,7 @@ const ServicesTab = ({
   const [hovered, setHovered] = useState<string | null>(null);
   const [menuLeft, setMenuLeft] = useState(0);
 
-  const isActive = path === link || (link !== "/" && path.startsWith(link));
+  const isActive = path === link || path.startsWith(link);
 
   // Cleanup timeout on unmount
   useEffect(() => {
@@ -260,10 +260,8 @@ const ServicesTab = ({
           onMouseLeave={handleLeave}
           // FIX: Changed colors to "text-primary" (red/pink) on hover/active
           // This ensures visibility on a white background if the pill background isn't showing.
-          className={`flex z-10 items-center px-3 py-1.5 text-xs md:px-5 md:py-3 md:text-base gap-1 relative rounded-full capitalize transition-colors ${
-            isActive
-              ? "text-white font-semibold"
-              : "text-black group-hover:text-white"
+          className={`flex z-10 items-center px-3 py-1.5  text-xs md:px-5 md:py-3 md:text-base gap-1 relative rounded-full capitalize transition-colors ${
+            isActive ? " text-white  " : "text-black "
           }`}
         >
           <span className="relative inline-flex overflow-hidden">
@@ -417,7 +415,7 @@ const Cursor = ({
       opacity: position.opacity,
     }}
     transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-    className="absolute z-0 h-7 rounded-full shadow-[0px_0px_4px_.1px_rgba(0,0,0,.4)] border border-black/20 bg-primary md:h-12"
+    className="absolute z-0 h-7  rounded-full shadow-[0px_0px_4px_.1px_rgba(0,0,0,.4)] border border-black/20 bg-primary md:h-12"
   />
 );
 
