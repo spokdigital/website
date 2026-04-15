@@ -215,9 +215,10 @@ const ServicesTab = ({
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
   const [menuLeft, setMenuLeft] = useState(0);
+  const isCurrentPath = path === link || path.startsWith(link);
 
-  const isActive = path === link || path.startsWith(link);
-
+  const isActive = isCurrentPath && !isHovering;
+  const isHoveredTab = open;
   // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
@@ -251,7 +252,7 @@ const ServicesTab = ({
     // Increased timeout to 200ms to give more time to cross the gap
     timeoutRef.current = setTimeout(() => setOpen(false), 200);
   };
-
+  const isHighlighted = isActive || isHoveredTab;
   return (
     <li ref={ref} className="relative">
       <div className="group z-10 block cursor-pointer ">
@@ -260,8 +261,8 @@ const ServicesTab = ({
           onMouseLeave={handleLeave}
           // FIX: Changed colors to "text-primary" (red/pink) on hover/active
           // This ensures visibility on a white background if the pill background isn't showing.
-          className={`flex z-10 items-center px-3 py-1.5  text-xs md:px-5 md:py-3 md:text-base gap-1 relative rounded-full capitalize transition-colors ${
-            isActive ? " text-white  " : "text-black "
+          className={`flex z-10 items-center px-3 py-1.5 text-xs md:px-5 md:py-3 md:text-base gap-1 relative rounded-full capitalize transition-colors ${
+            isHighlighted ? "text-white" : "text-black"
           }`}
         >
           <span className="relative inline-flex overflow-hidden">
