@@ -42,7 +42,7 @@ const ReviewCard = ({ img }: { img: string }) => {
   );
 };
 
-export function MarqueeLogo({ showText = true }: { showText: boolean }) {
+export function MarqueeLogo({ showText = true }: { showText?: boolean }) {
   return (
     <div className="relative  flex py-10 w-full flex-col items-center justify-center overflow-hidden rounded-lg">
       {showText && (
