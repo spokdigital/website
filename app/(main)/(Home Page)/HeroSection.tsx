@@ -5,7 +5,7 @@ import { SplitText } from "gsap/SplitText";
 import FilmCarousel from "./filmcarousel";
 import SliderForm from "../App chunks/components/SliderForm";
 import { ArrowRight } from "lucide-react";
-
+import { Star } from "lucide-react";
 gsap.registerPlugin(SplitText);
 
 export default function HeroSection() {
@@ -128,8 +128,31 @@ const Section1 = ({
 
   return (
     <section className="h-[65dvh] lg:h-screen">
-      <div className="container flex flex-col pt-24 items-center justify-center h-full">
-        {/* HEADING */}
+      <div className="container flex flex-col pt-18 items-center justify-center h-full">
+        <div className="inline-flex items-center mb-4 gap-3 rounded-full border border-black/10 backdrop-blur-md px-5 py-2.5 shadow-md">
+          {/* Text */}
+          <p className="font-Grostek text-sm text-gray-700 font-[500] whitespace-nowrap">
+            5 Rating on
+          </p>
+
+          {/* Stars */}
+          <div className="flex items-center gap-1">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star
+                key={i}
+                size={16}
+                className="text-yellow-400 fill-yellow-400"
+              />
+            ))}
+          </div>
+
+          {/* Logo */}
+          <img
+            src="/landing/clutch-logo.png"
+            className="w-14 object-contain opacity-90"
+            alt="Clutch"
+          />
+        </div>
         <div
           ref={headingRef}
           style={{
