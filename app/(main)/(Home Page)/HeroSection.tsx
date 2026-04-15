@@ -130,12 +130,7 @@ const Section1 = ({
     <section className="h-[65dvh] lg:h-screen">
       <div className="container flex flex-col pt-18 items-center justify-center h-full">
         <div className="inline-flex items-center mb-4 gap-3 rounded-full border border-black/10 backdrop-blur-md px-5 py-2.5 shadow-md">
-          {/* Text */}
-          <p className="font-Grostek text-sm text-gray-700 font-[500] whitespace-nowrap">
-            5 Rating on
-          </p>
-
-          {/* Stars */}
+        {/* Stars */}
           <div className="flex items-center gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star
@@ -145,7 +140,9 @@ const Section1 = ({
               />
             ))}
           </div>
-
+          <p className="font-Grostek text-sm text-gray-700 font-[500] whitespace-nowrap">
+            Rating on
+          </p>
           {/* Logo */}
           <img
             src="/landing/clutch-logo.png"
