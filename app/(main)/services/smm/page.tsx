@@ -221,12 +221,20 @@ export default function SocialMediaLanding() {
   ];
 
   const builtFor = [
-    { icon: <Layers size={26} />, label: "Service businesses", image: "" },
-    { icon: <Users size={26} />, label: "Founders & coaches", image: "" },
+    {
+      icon: <Layers size={26} />,
+      label: "Service businesses",
+      image: "/services/smm/service-business.jpg",
+    },
+    {
+      icon: <Users size={26} />,
+      label: "Founders & coaches",
+      image: "/services/smm/founder-coaches.webp",
+    },
     {
       icon: <RefreshCw size={26} />,
       label: "Scaling e-commerce brands",
-      image: "",
+      image: "/services/smm/e-commerce.webp",
     },
   ];
 

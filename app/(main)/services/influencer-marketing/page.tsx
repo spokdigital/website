@@ -225,17 +225,17 @@ export default function SocialMediaLanding() {
     {
       icon: <Layers size={26} />,
       label: "D2C & consumer brands",
-      image: "/images/influencer/d2c.jpg",
+      image: "/services/influencer-marketing/consumer.webp",
     },
     {
       icon: <Users size={26} />,
       label: "Founders & personal brands",
-      image: "/images/influencer/creator.jpg",
+      image: "/services/influencer-marketing/founders-and-personal-brands.jpg",
     },
     {
       icon: <Megaphone size={26} />,
       label: "Brands launching new products",
-      image: "/images/influencer/launch.jpg",
+      image: "/services/influencer-marketing-marketing/ProductLaunch.png",
     },
   ];
 

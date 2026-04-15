@@ -218,17 +218,17 @@ export default function SocialMediaLanding() {
     {
       icon: <Layers size={26} />,
       label: "D2C & e-commerce brands",
-      image: "/images/ugc/ecom.jpg",
+      image: "/services/ugc/D2C.jpg",
     },
     {
       icon: <Users size={26} />,
       label: "Brands running paid ads",
-      image: "/images/ugc/ads.jpg",
+      image: "/services/ugc/paid-advertising.webp",
     },
     {
       icon: <Play size={26} />,
       label: "Startups scaling with content",
-      image: "/images/ugc/startup.jpg",
+      image: "/services/ugc/startup.jpg",
     },
   ];
 
