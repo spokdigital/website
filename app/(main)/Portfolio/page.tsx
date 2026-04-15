@@ -7,7 +7,7 @@ import SliderForm from "../App chunks/components/SliderForm";
 import { ArrowUpRight, Pause, Play } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
-import CTASection from "@/app/d2c/sections/cta";
+import { MarqueeLogo } from "../App chunks/components/MarqueeLogo";
 const Page = () => {
   const [height, setHeight] = React.useState(0);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -99,7 +99,7 @@ const Page = () => {
     <motion.div className="  " ref={containerRef}>
       <SliderForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       <motion.div>
-        <div className="w-full h-[90vh] overflow-hidden  relative">
+        <div className="w-full h-screen overflow-hidden  relative">
           <div className="absolute inset-0 w-full h-full">
             <svg
               viewBox="0 0 100 100"
@@ -133,64 +133,58 @@ const Page = () => {
             </svg>
           </div>
 
-          <div className="w-full h-[80vh] flex relative">
-            <div className="absolute top-0 left-0 w-full h-full"></div>
+          <div className="w-full h-screen flex flex-col">
+            {/* Content */}
             <div
               style={{ marginTop: `${height + 50}px` }}
               className="container relative z-[99]"
             >
               <BreadCrumb />
-              <div
-                
-                className="w-full h-full flex flex-col  items-center text-slate-800 justify-center"
-              >
+
+              <div className="w-full mt-8  flex flex-col items-center text-slate-800 justify-center">
                 <motion.h1 className="text-4xl lg:text-6xl lg:w-[90%] text-center leading-[100%] font-Grostek font-[600] tracking-tight break-words">
                   {para.split(" ").map((item, index) => (
                     <motion.span
                       key={index}
                       className="mr-2 xl:mr-2 xxl:mr-4 overflow-hidden h-[35px] lg:h-[70px]"
-                      style={{
-                        display: "inline-block", // Ensure words are treated as block elements
-                      }}
+                      style={{ display: "inline-block" }}
                     >
                       <motion.span
-                        initial={{ y: 300, opacity: 0, rotate: 20, x: -10 }} // Start from below
-                        animate={{
-                          y: 0, // Move to original position
-                          opacity: 1,
-                          rotate: 0,
-                          x: 0,
-                        }}
-                        style={{
-                          display: "inline-block", // Ensure words are treated as block elements
-                        }}
+                        initial={{ y: 300, opacity: 0, rotate: 20, x: -10 }}
+                        animate={{ y: 0, opacity: 1, rotate: 0, x: 0 }}
+                        style={{ display: "inline-block" }}
                         transition={{
                           ease: [0, 0, 0.2, 1],
                           duration: 1,
-                          delay: index * 0.1, // Increased delay to prevent overlap
+                          delay: index * 0.1,
                         }}
                         className="origin-top-right"
                       >
                         {item}
                       </motion.span>
-                      {"  "}
                     </motion.span>
                   ))}
                 </motion.h1>
+
                 <button
                   onClick={() => setIsFormOpen(true)}
-                  className="group mt-5 relative h-12 rounded-full bg-black hover:bg-primary transition-colors duration-300 px-5 font-Synonym font-[500]  text-neutral-50"
+                  className="group mt-5 relative h-12 rounded-full bg-black hover:bg-primary transition-colors duration-300 px-5 font-Synonym font-[500] text-neutral-50"
                 >
                   <span className="relative inline-flex overflow-hidden">
                     <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[130%] group-hover:skew-y-12 flex items-center gap-2">
                       Get Expert Help <ArrowUpRight />
                     </div>
-                    <div className="absolute  translate-y-[134%] flex items-center gap-2 skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+                    <div className="absolute translate-y-[134%] flex items-center gap-2 skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
                       Get Expert Help <ArrowUpRight />
                     </div>
                   </span>
                 </button>
               </div>
+            </div>
+
+            {/* Bottom Marquee */}
+            <div className="mt-auto">
+              <MarqueeLogo showText={false} />
             </div>
           </div>
         </div>

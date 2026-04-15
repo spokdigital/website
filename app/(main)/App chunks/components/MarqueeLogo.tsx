@@ -42,14 +42,16 @@ const ReviewCard = ({ img }: { img: string }) => {
   );
 };
 
-export function MarqueeLogo() {
+export function MarqueeLogo({ showText = true }: { showText: boolean }) {
   return (
     <div className="relative  flex py-10 w-full flex-col items-center justify-center overflow-hidden rounded-lg">
-      <div className="w-full mb-12 container">
-        <h1 className="text-3xl lg:text-5xl text-center font-Cormorant font-[500] ">
-          Trusted by
-        </h1>
-      </div>
+      {showText && (
+        <div className="w-full mb-12 container">
+          <h1 className="text-3xl lg:text-5xl text-center font-Cormorant font-[500] ">
+            Trusted by
+          </h1>
+        </div>
+      )}
 
       <Marquee pauseOnHover className="[--duration:25s]">
         {reviews.map((review, index) => (
