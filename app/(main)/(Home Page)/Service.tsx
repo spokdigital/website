@@ -51,7 +51,7 @@ const Service = () => {
   return (
     <div className="pt-20">
       <div className="container">
-        <h1 className=" text-4xl text-black text-center mb-4 lg:mb-12 lg:text-6xl font-Cormorant font-[500]">
+        <h1 className=" text-5xl text-black text-center mb-8 lg:mb-12 lg:text-6xl font-Cormorant font-[500]">
           Our Services
         </h1>
 

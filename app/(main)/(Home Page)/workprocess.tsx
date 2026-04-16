@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 const steps = [
   {
     number: "01",
@@ -49,6 +50,7 @@ const steps = [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
   },
 ];
+
 export default function HowWeWork() {
   const [activeStep, setActiveStep] = useState(0);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -57,7 +59,7 @@ export default function HowWeWork() {
   const prevStepRef = useRef(0);
   const activeStepRef = useRef(0);
   const directionRef = useRef<"down" | "up">("down");
-  // Activate step when it enters the viewport centre band
+
   useEffect(() => {
     const observers = stepRefs.current.map((el, i) => {
       if (!el) return null;
@@ -76,30 +78,24 @@ export default function HowWeWork() {
     });
     return () => observers.forEach((o) => o?.disconnect());
   }, []);
+
   useEffect(() => {
     let lastY = window.scrollY;
-
     const onScroll = () => {
       const currentY = window.scrollY;
       directionRef.current = currentY > lastY ? "down" : "up";
       lastY = currentY;
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
     if (!lineRef.current || !sectionRef.current) return;
-
     gsap.fromTo(
       lineRef.current,
-      {
-        scaleY: 0,
-        transformOrigin: "top center",
-      },
+      { scaleY: 0, transformOrigin: "top center" },
       {
         scaleY: 1,
         ease: "none",
@@ -123,15 +119,11 @@ export default function HowWeWork() {
     const containers = document.querySelectorAll(".reveal-container");
     const direction = directionRef.current;
 
-    // New image slides in from top (scrolling down) or bottom (scrolling up)
-    const yStart = direction === "down" ? "100%" : "-100%";
-
     containers.forEach((container, i) => {
       const inner = container.querySelector(".reveal-inner");
       const img = container.querySelector("img");
 
       if (i === activeStep) {
-        // Bring to top z-index and animate in
         gsap.set(container, { autoAlpha: 1, zIndex: 3 });
         gsap.set(inner, { yPercent: direction === "down" ? 100 : -100 });
         gsap.set(img, {
@@ -140,37 +132,26 @@ export default function HowWeWork() {
         });
 
         const tl = gsap.timeline();
-        tl.to(inner, {
-          yPercent: 0,
-          duration: .6,
-          ease: "power2.out",
-        }).to(
+        tl.to(inner, { yPercent: 0, duration: 0.6, ease: "power2.out" }).to(
           img,
-          {
-            yPercent: 0,
-            scale: 1,
-            duration: .6,
-            ease: "power2.out",
-          },
-          "<", // same time as inner
+          { yPercent: 0, scale: 1, duration: 0.6, ease: "power2.out" },
+          "<",
         );
       } else if (i === prevStepRef.current) {
-        // Keep previous image visible underneath (z-index 2), don't hide it
         gsap.set(container, { autoAlpha: 1, zIndex: 2 });
         gsap.set(container.querySelector(".reveal-inner"), { yPercent: 0 });
         gsap.set(img, { yPercent: 0, scale: 1 });
       } else {
-        // All other steps hidden below
         gsap.set(container, { autoAlpha: 0, zIndex: 1 });
       }
     });
   }, [activeStep]);
 
   return (
-    <section className="w-full py-20" ref={sectionRef}>
+    <section className="w-full pt-24 pb-20 lg:py-20" ref={sectionRef}>
       {/* ── Header ── */}
-      <div className="text-center mb-14 ">
-        <span className="inline-block text-xs  font-semibold tracking-widest uppercase bg-primary/20 text-primary-600 px-4 py-1.5 rounded-full mb-5">
+      <div className="text-center mb-14 px-4">
+        <span className="inline-block text-xs font-semibold tracking-widest uppercase bg-primary/20 text-primary-600 px-4 py-1.5 rounded-full mb-5">
           Our process
         </span>
         <h2 className="text-4xl font-Cormorant lg:text-5xl font-[500] text-gray-900 leading-tight mb-4">
@@ -184,16 +165,13 @@ export default function HowWeWork() {
 
       {/* ── Sticky scroll layout ── */}
       <div className="flex relative max-w-screen-xl mx-auto border-t border-primary/30">
-        {/* Vertical progress bar */}
+        {/* Vertical progress bar — desktop only */}
         <div className="hidden lg:flex flex-col items-center w-12 py-16 flex-shrink-0">
           <div className="relative w-px flex-1 bg-primary-100 rounded-full">
-            {/* Filled portion */}
             <div
               ref={lineRef}
               className="absolute top-0 left-0 w-full h-full bg-primary rounded-full origin-top scale-y-0"
             />
-
-            {/* Step dots */}
             {steps.map((_, i) => (
               <button
                 key={i}
@@ -223,19 +201,22 @@ export default function HowWeWork() {
         </div>
 
         {/* ── Left: scrolling step blocks ── */}
-        <div className="w-full lg:w-1/2 pl-2 lg:pl-6 pr-6 lg:pr-16">
+        <div className="w-full lg:w-1/2 pl-4 lg:pl-6 pr-4 lg:pr-16">
           {steps.map((step, i) => (
             <div
               key={step.number}
               ref={(el) => {
                 stepRefs.current[i] = el;
               }}
-              className="min-h-[85vh] flex flex-col justify-center py-16 border-b border-gray-100 last:border-none transition-all duration-500"
-              style={{ opacity: activeStep === i ? 1 : 0.25 }}
+              className="flex flex-col justify-center py-12 lg:py-16 border-b border-gray-100 last:border-none transition-all duration-500"
+              style={{
+                minHeight: "auto",
+                opacity: activeStep === i ? 1 : 0.25,
+              }}
             >
               {/* Giant step number */}
               <span
-                className={`text-[clamp(72px,10vw,120px)] font-Satoshi font-bold leading-none mb-3 select-none transition-colors duration-500 ${
+                className={`text-[clamp(60px,10vw,120px)] font-Satoshi font-bold leading-none mb-3 select-none transition-colors duration-500 ${
                   activeStep === i ? "text-primary/80" : "text-gray-400"
                 }`}
               >
@@ -243,16 +224,25 @@ export default function HowWeWork() {
               </span>
 
               {/* Tag pill */}
-              <span className="inline-block self-start  text-xs font-semibold tracking-widest uppercase bg-primary-100 text-primary-800 px-3 py-1.5 rounded-full mb-4">
+              <span className="inline-block self-start text-xs font-semibold tracking-widest uppercase bg-primary-100 text-primary-800 px-3 py-1.5 rounded-full mb-4">
                 {step.tag}
               </span>
 
-              <h3 className="text-3xl font-semibold font-Grostek text-gray-900 leading-snug mb-4 max-w-sm">
+              <h3 className="text-2xl lg:text-3xl font-semibold font-Grostek text-gray-900 leading-snug mb-4 max-w-sm">
                 {step.title}
               </h3>
               <p className="text-gray-500 text-base leading-relaxed max-w-sm mb-6">
                 {step.description}
               </p>
+
+              {/* ── Mobile image — hidden on desktop ── */}
+              <div className="lg:hidden w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6">
+                <img
+                  src={step.image}
+                  alt={step.tag}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
               {/* Descriptor pills */}
               <div className="flex flex-wrap gap-2">
@@ -269,25 +259,20 @@ export default function HowWeWork() {
           ))}
         </div>
 
-        {/* ── Right: sticky mockup panel ── */}
+        {/* ── Right: sticky mockup panel — desktop only ── */}
         <div className="hidden lg:flex w-1/2 sticky top-0 h-screen items-center justify-center bg-gray-50/50">
-          <div className="relative w-full max-w-[500px] aspect-[4/5]  overflow-hidden  border-8 border-white">
+          <div className="relative w-full max-w-[500px] aspect-[4/5] overflow-hidden border-8 border-white">
             {steps.map((step, i) => (
-              <div
-                key={i}
-                className="absolute inset-0 reveal-container"
-                // ← no style={{ zIndex }} here anymore
-              >
+              <div key={i} className="absolute inset-0 reveal-container">
                 <div className="reveal-inner w-full h-full overflow-hidden">
                   <img
                     src={step.image}
+                    alt={step.tag}
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
             ))}
-
-            {/* Visual Overlay for text readability over images if needed */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
           </div>
         </div>

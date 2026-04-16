@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
-import FilmCarousel from "./filmcarousel";
+
 import SliderForm from "../App chunks/components/SliderForm";
 import { ArrowRight } from "lucide-react";
 import { Star } from "lucide-react";
@@ -15,7 +15,13 @@ export default function HeroSection() {
     <main className="relative">
       <SliderForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       <Section1 setIsFormOpen={setIsFormOpen} />
-      <FilmCarousel />
+      <div className="w-full mt-4 lg:mt-16 h-[200px] lg:h-[500px]">
+        <img
+          src={"/Hero.png"}
+          alt={"hero cover"}
+          className="w-full h-full object-contain"
+        />
+      </div>
     </main>
   );
 }
@@ -127,10 +133,10 @@ const Section1 = ({
   }, []);
 
   return (
-    <section className="h-[65dvh] lg:h-screen">
-      <div className="container flex flex-col pt-18 items-center justify-center h-full">
+    <section className="h-[65dvh] lg:h-auto">
+      <div className="container flex flex-col pt-16 lg:pt-36 items-center justify-center h-full">
         <div className="inline-flex items-center mb-4 gap-3 rounded-full border border-black/10 backdrop-blur-md px-5 py-2.5 shadow-md">
-        {/* Stars */}
+          {/* Stars */}
           <div className="flex items-center gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star
@@ -146,7 +152,7 @@ const Section1 = ({
           {/* Logo */}
           <img
             src="/landing/clutch-logo.png"
-            className="w-14 object-contain opacity-90"
+            className= "w-10 lg:w-14 object-contain opacity-90"
             alt="Clutch"
           />
         </div>
@@ -210,7 +216,7 @@ const Section1 = ({
         <div ref={btnRef} className="mt-9">
           <button
             onClick={() => setIsFormOpen(true)}
-            className="group relative inline-flex hover:bg-primary font-Synonym items-center p-2 justify-center overflow-hidden rounded-full bg-black font-medium text-red-50 transition-all duration-300"
+            className="group relative text-sm inline-flex hover:bg-primary font-Synonym items-center p-2 justify-center overflow-hidden rounded-full bg-black font-medium text-red-50 transition-all duration-300"
           >
             <span className="pl-3">
               Let&apos;s Build Something Extraordinary
