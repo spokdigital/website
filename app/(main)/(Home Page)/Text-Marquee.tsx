@@ -8,7 +8,7 @@ export function TextMarquee() {
         speed={2}
         curveAmount={400}
         interactive={false}
-        className=" !fill-black !text-[10rem] lg:text-7xl font-Grostek"
+        className=" !fill-black !text-[10rem] lg:!text-7xl font-Grostek"
       />
     </div>
   );
