@@ -86,7 +86,7 @@ const Footer = () => {
 
           {/* Right Columns: Nav + Contact */}
           {/* Right Columns: Nav + Contact + Map */}
-          <div className="grid grid-cols-3 gap-10 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
             {/* Menu */}
             <motion.div {...fadeUp(0.15)}>
               <p className="text-slate-300 text-xs uppercase tracking-widest mb-5 font-Satoshi">
