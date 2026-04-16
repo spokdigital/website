@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,268 +8,164 @@ import {
   AccordionHeader,
   AccordionPanel,
 } from "./Accordion";
-import { useLenis } from "lenis/react";
+import { serviceItems } from "./Menu";
 import { usePathname } from "next/navigation";
-const MobileMenu = ({}) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const menu = [
-    { title: "Home", link: "/" },
-    { title: "About", link: "/About" },
-    {
-      title: "Services",
-      subMenu: [
-        { title: "App Development", link: "/App-Development" },
-        { title: "Web Development", link: "/Web-Development" },
-        {
-          title: "Social Media Marketing",
-          link: "/Social-Media-Marketing",
-        },
-        { title: "Content Marketing", link: "/Content-Marketing" },
-        { title: "SEO Marketing", link: "/SEO-Marketing" },
-        { title: "Media Buying", link: "/Media-Buying" },
-        {
-          title: "Performance Marketing",
-          link: "/Performance-Marketing",
-        },
-        { title: "IT Consulting & Advisory", link: "/IT-Consulting-&-Advisory" },
-        { title: "Cyber Security", link: "/Cyber-Security" },
-        { title: "Public Relations", link: "/Public-Relations" },
-        { title: "Branding & Designing", link: "/Branding-&-Advisory" },
-        { title: "Photography & Videography", link: "/Photography-&-Videography" },
-      ],
-    },
-    { title: "Blog", link: "/" },
-    { title: "Contact", link: "/contact" },
-    { title: "Portfolio", link: "/Portfolio" },
-  ];
-  const [height, setHeight] = useState<number | undefined>(undefined);
-  const lenis = useLenis();
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
+import { ChevronDown } from "lucide-react";
 
-       lenis?.scrollTo(0, { immediate: true });
-    } else {
-      document.body.style.overflow = "auto";
-      lenis?.start();
-    }
-  }, [isOpen]);
+const menu = [
+  { title: "Home", link: "/" },
+  { title: "About", link: "/About" },
+  { title: "Services", isServices: true },
+  { title: "Blog", link: "/Blog" },
+  { title: "Portfolio", link: "/Portfolio" },
+  { title: "Contact", link: "/contact" },
+];
+
+const MobileMenu = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [navHeight, setNavHeight] = useState(0);
   const path = usePathname();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const element = document.getElementsByClassName("HeadNavigation")[0]; // Use [0] to get the first element
-      if (element) {
-        setHeight(element.clientHeight); // Set height to state
-      }
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+  }, [isOpen]);
+
+  useEffect(() => {
+    const el = document.querySelector(".HeadNavigation");
+    if (el) setNavHeight(el.clientHeight);
   }, []);
-  const handleLinkClick = () => {
-    setIsOpen(false); // Close the menu when a link is clicked
-  };
+
+  const close = () => setIsOpen(false);
+
   return (
     <div className="block lg:hidden">
       <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{
-              type: "linear",
-              duration: 0.4,
-              delay: 0.1,
-              ease: [0.79, 0.14, 0.15, 0.86],
-            }}
-            className="w-full h-screen fixed top-0 right-0 z-[999] bg-black"
+            key="menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="fixed inset-0 z-[998] bg-white"
+            style={{ paddingTop: navHeight }}
           >
-            <motion.div
-              initial={{
-                scale: 0.6,
-                translateX: "50%",
-                translateY: "-50%",
-              }}
-              animate={{
-                scale: 1.3,
-              }}
-              transition={{ delay: 0.1, duration: 2 }}
-              className="absolute top-0 right-0 pointer-events-none"
-            >
-              <svg
-                width="806"
-                height="798"
-                viewBox="0 0 806 798"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="403"
-                  cy="399"
-                  r="403"
-                  fill="url(#paint0_radial_1533_84)"
-                />
-                <defs>
-                  <radialGradient
-                    id="paint0_radial_1533_84"
-                    cx="0"
-                    cy="0"
-                    r="1"
-                    gradientUnits="userSpaceOnUse"
-                    gradientTransform="translate(403 399) rotate(90) scale(401.5)"
-                  >
-                    <stop stopColor="#0066FF" />
-                    <stop
-                      offset="0.299"
-                      stopColor="#2077FA"
-                      stopOpacity="0.71"
-                    />
-                    <stop
-                      offset="0.549"
-                      stopColor="#1975FF"
-                      stopOpacity="0.42"
-                    />
-                    <stop
-                      offset="0.764"
-                      stopColor="#2D81FF"
-                      stopOpacity="0.23"
-                    />
-                    <stop offset="1" stopColor="#A7CAFF" stopOpacity="0" />
-                  </radialGradient>
-                </defs>
-              </svg>
-            </motion.div>
-            {/* Parent container with staggerChildren */}
-            <motion.div
-              style={{
-                height: `calc(100vh - ${height ? height + 55 : 0}px)`,
-                marginTop: `${height ? height + 55 : 0}px`,
-              }}
-              className="flex flex-col text-slate-50 gap-5 justify-start items-start px-8 w-full overflow-y-auto"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-              }}
-            >
-              {menu.map((item, index) => (
-                <div key={index} className="w-full">
-                  {item.subMenu ? (
-                    <Accordion defaultValue="services" multiple>
-                      <AccordionItem value="services">
-                        {/* Accordion Header for "Services" */}
-                        <AccordionHeader className="!px-0 !py-1">
-                          <motion.p
-                            variants={{
-                              hidden: { opacity: 0, y: 100 },
-                              visible: { opacity: 1, y: 0 },
-                            }}
-                            transition={{
-                              stiffness: 100,
-                              damping: 25,
-                              type: "spring",
-                              delay: index * 0.1,
-                            }}
-                            className="font-medium font-Grostek text-4xl capitalize"
-                          >
-                            {item.title}
-                          </motion.p>
-                        </AccordionHeader>
+            {/* Subtle top border accent */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gray-100" />
 
-                        {/* Accordion Panel for Sub-Menu Items */}
-                        <AccordionPanel>
-                          <div className="pl-3">
-                            {item.subMenu.map((subItem, subIndex) => (
-                              <Link
-                                href={subItem.link}
-                                key={subIndex}
-                                onClick={handleLinkClick}
-                                className="block mt-2 text-2xl capitalize font-Grostek font-medium"
-                              >
-                                {subItem.title}
-                              </Link>
-                            ))}
-                          </div>
-                        </AccordionPanel>
-                      </AccordionItem>
-                    </Accordion>
-                  ) : (
-                    // Regular Menu Item without Submenu
+            <div
+              className="h-full overflow-y-auto px-6 pt-8 pb-16 flex flex-col"
+              style={{ height: `calc(100vh - ${navHeight}px)` }}
+            >
+              {/* Nav items */}
+              <nav className="flex flex-col divide-y divide-gray-100">
+                {menu.map((item, i) => {
+                  if (item.isServices) {
+                    return (
+                      <Accordion key={i} multiple>
+                        <AccordionItem value="services">
+                          <AccordionHeader className="!px-0 !py-5">
+                            <motion.span
+                              initial={{ opacity: 0, x: -16 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.06, duration: 0.3 }}
+                              className="text-2xl font-semibold text-gray-900 font-Grostek flex items-center justify-between w-full"
+                            >
+                              {item.title}
+
+                              <ChevronDown />
+                            </motion.span>
+                          </AccordionHeader>
+                          <AccordionPanel>
+                            <div className="grid grid-cols-1 gap-y-4 pb-5 pl-1">
+                              {serviceItems.map(
+                                (
+                                  s: {
+                                    href: string;
+                                    name: string;
+                                    icon: any;
+                                    desc: string;
+                                    tag: string | null;
+                                  },
+                                  si: number,
+                                ) => (
+                                  <Link
+                                    href={s.href}
+                                    className="text-gray-800 text-md"
+                                  >
+                                    {s.name}
+                                  </Link>
+                                ),
+                              )}
+                            </div>
+                          </AccordionPanel>
+                        </AccordionItem>
+                      </Accordion>
+                    );
+                  }
+
+                  return (
                     <Link
-                      href={item.link}
-                      className="h-12 overflow-hidden w-full"
-                      onClick={handleLinkClick}
+                      key={i}
+                      href={item.link!}
+                      onClick={close}
+                      className="py-5 block"
                     >
-                      <motion.p
-                        variants={{
-                          hidden: { opacity: 0, y: 100 },
-                          visible: { opacity: 1, y: 0 },
-                        }}
-                        transition={{
-                          stiffness: 100,
-                          damping: 25,
-                          type: "spring",
-                          delay: index * 0.1,
-                        }}
-                        className="font-medium font-Grostek text-4xl capitalize"
+                      <motion.span
+                        initial={{ opacity: 0, x: -16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.06, duration: 0.3 }}
+                        className={`text-2xl font-semibold font-Grostek transition-colors ${
+                          path === item.link ? "text-primary" : "text-gray-900"
+                        }`}
                       >
                         {item.title}
-                      </motion.p>
+                      </motion.span>
                     </Link>
-                  )}
-                </div>
-              ))}
-            </motion.div>
+                  );
+                })}
+              </nav>
+
+              {/* Bottom CTA */}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <Icon setIsOpen={setIsOpen} isOpen={isOpen} path={path} />
+      <HamburgerIcon isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
     </div>
   );
 };
 
 export default MobileMenu;
 
-// Define the type for the `Icon` component props
-interface IconProps {
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>; // Type for the state setter function
-  isOpen: boolean; // Type for the boolean state
-  path: string;
+interface HamburgerIconProps {
+  isOpen: boolean;
+  toggle: () => void;
 }
 
-const Icon: React.FC<IconProps> = ({ setIsOpen, isOpen, path }) => {
+const HamburgerIcon: React.FC<HamburgerIconProps> = ({ isOpen, toggle }) => {
   return (
     <button
-      onClick={() => setIsOpen(!isOpen)}
-      className="size-10 relative z-[99999] rounded-full"
+      onClick={toggle}
+      aria-label={isOpen ? "Close menu" : "Open menu"}
+      className="relative z-[99999] flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
     >
-      <div className="flex hover flex-col justify-center items-center transition-all gap-1">
-        <motion.div
-          animate={{
-            y: isOpen ? [2, 2] : 0,
-            rotate: isOpen ? [0, 45] : 0,
-          }}
-          transition={{ type: "linear", ease: "easeOut", duration: 0.2 }}
-          className={`w-6 transition-all duration-300 h-[2px]  ${
-            path === "/Blog" || (path === "/Blogs" && !isOpen)
-              ? "bg-black"
-              : "bg-white"
-          }`}
-        />
-        <motion.div
-          animate={{
-            y: isOpen ? [2, -4] : 0,
-            rotate: isOpen ? [0, -45] : 0,
-          }}
-          transition={{ type: "linear", ease: "easeOut", duration: 0.2 }}
-          className={`w-6 transition-all duration-300 h-[2px]  ${
-            path === "/Blog" || (path === "/Blogs" && !isOpen)
-              ? "bg-black"
-              : "bg-white"
-          }`}
-        />
-      </div>
+      <motion.span
+        animate={isOpen ? { y: 7, rotate: 45 } : { y: 0, rotate: 0 }}
+        transition={{ duration: 0.22, ease: "easeInOut" }}
+        className="block w-[22px] h-[1.5px] bg-gray-900 rounded-full origin-center"
+      />
+      <motion.span
+        animate={isOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.15 }}
+        className="block w-[22px] h-[1.5px] bg-gray-900 rounded-full"
+      />
+      <motion.span
+        animate={isOpen ? { y: -7, rotate: -45 } : { y: 0, rotate: 0 }}
+        transition={{ duration: 0.22, ease: "easeInOut" }}
+        className="block w-[22px] h-[1.5px] bg-gray-900 rounded-full origin-center"
+      />
     </button>
   );
 };
