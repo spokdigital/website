@@ -2,10 +2,11 @@
 import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
-
+import FilmCarousel from "./filmcarousel";
 import SliderForm from "../App chunks/components/SliderForm";
 import { ArrowRight } from "lucide-react";
 import { Star } from "lucide-react";
+
 gsap.registerPlugin(SplitText);
 
 export default function HeroSection() {
@@ -15,13 +16,7 @@ export default function HeroSection() {
     <main className="relative">
       <SliderForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       <Section1 setIsFormOpen={setIsFormOpen} />
-      <div className="w-full mt-4 lg:mt-16 h-[200px] lg:h-[500px]">
-        <img
-          src={"/Hero.png"}
-          alt={"hero cover"}
-          className="w-full h-full object-contain"
-        />
-      </div>
+      <FilmCarousel />
     </main>
   );
 }
@@ -152,7 +147,7 @@ const Section1 = ({
           {/* Logo */}
           <img
             src="/landing/clutch-logo.png"
-            className= "w-10 lg:w-14 object-contain opacity-90"
+            className="w-10 lg:w-14 object-contain opacity-90"
             alt="Clutch"
           />
         </div>
