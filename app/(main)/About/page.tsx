@@ -72,7 +72,7 @@ const points = [
 ];
 
 const stats = [
-  { value: "3+", label: "Years of experience" },
+  { value: "8+", label: "Years of experience" },
   { value: "200+", label: "Clients served" },
   { value: "98%", label: "Client satisfaction" },
   { value: "3x", label: "Average ROI delivered" },
@@ -295,7 +295,7 @@ const Page = () => {
               className="grid grid-cols-3 divide-x divide-black/20 border border-black/20 rounded-2xl overflow-hidden"
             >
               {[
-                { value: "3+", label: "Years active" },
+                { value: "8+", label: "Years active" },
                 { value: "200+", label: "Projects delivered" },
                 { value: "98%", label: "Client satisfaction" },
               ].map((stat, i) => (
