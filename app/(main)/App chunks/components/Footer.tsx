@@ -16,6 +16,7 @@ const Footer = () => {
     { title: "Business Accelerator", link: "/website-landing" },
     { title: "Portfolio", link: "/Portfolio" },
     { title: "Contact", link: "/contact" },
+    { title: "Blogs", link: "/blogs" },
   ];
   const [activeLocation, setActiveLocation] = React.useState("Dubai");
 
