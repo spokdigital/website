@@ -31,10 +31,10 @@ export default function Home() {
         <TextMarquee />
         <Portfolio />
         <VideoCarousel />
-        <FeatureSection />
+        
         <Testimonials />
-        <Blogs />
         <FAQSection />
+        <Blogs />
         <MarqueeLogo />
       </motion.div>
     </AnimatePresence>
