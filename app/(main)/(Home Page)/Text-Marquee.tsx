@@ -1,15 +1,18 @@
 import CurvedLoop from "../App chunks/components/curvedMarquee";
+import {
+  ScrollVelocityRow,
+  ScrollVelocityContainer,
+} from "@/components/ui/scroll-based-velocity";
 
 export function TextMarquee() {
   return (
-    <div className="relative mt-10 mb-12 lg:mt-44 lg:mb-24 flex w-full  h-[200px]  flex-col items-center justify-center">
-      <CurvedLoop
-        marqueeText="✦ WooCommerce ✦ ROAS ✦ Scaling ✦ Funnels ✦ Profit ✦ Shopify ✦ Conversions"
-        speed={2}
-        curveAmount={400}
-        interactive={false}
-        className=" !fill-black !text-[10rem] lg:!text-7xl font-Grostek"
-      />
+    <div className="relative my-24 flex w-full  flex-col items-center justify-center">
+      <ScrollVelocityContainer className="text-4xl font-bold tracking-[-0.02em] !fill-black !text-[10rem] lg:!text-7xl font-Grostek md:leading-20">
+        <ScrollVelocityRow baseVelocity={10} direction={1}>
+          ✦ WooCommerce ✦ ROAS ✦ Scaling ✦ Funnels ✦ Profit ✦ Shopify ✦
+          Conversions
+        </ScrollVelocityRow>
+      </ScrollVelocityContainer>
     </div>
   );
 }
