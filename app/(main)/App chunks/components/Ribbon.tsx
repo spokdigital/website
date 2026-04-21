@@ -1,5 +1,9 @@
 import React from "react";
-import { VelocityScroll } from "@/components/ui/scroll-based-velocity";
+
+import {
+  ScrollVelocityContainer,
+  ScrollVelocityRow,
+} from "@/components/ui/scroll-based-velocity";
 const Ribbon = ({
   text = " Modern Website | ",
   rotate = 0,
@@ -13,11 +17,13 @@ const Ribbon = ({
 }) => {
   return (
     <div style={{ rotate: `${rotate}deg` }}>
-      <VelocityScroll
-        text={text}
-        default_velocity={velocity}
-        className={`font-display bg-primary text-center font-Satoshi py-4 text-4xl ${className} font-bold tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem]`}
-      />
+      <ScrollVelocityContainer
+        className={`font-display bg-primary text-center font-Satoshi py-4 text-4xl ${className} font-bold tracking-[-0.02em] text-black drop-shadow-sm  md:text-7xl !leading-[14rem]`}
+      >
+        <ScrollVelocityRow baseVelocity={20} direction={-1}>
+          ✦ Let's Build Together &nbsp;
+        </ScrollVelocityRow>
+      </ScrollVelocityContainer>
     </div>
   );
 };
