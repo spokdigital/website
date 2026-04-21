@@ -5,6 +5,7 @@ import React, { useRef, useState } from "react";
 import { Briefcase, Globe } from "lucide-react";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import gsap from "gsap";
+import FloatingIcons from "@/app/d2c/sections/orbit";
 gsap.registerPlugin(ScrollToPlugin);
 const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -107,7 +108,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-
+        <FloatingIcons />
         {/* VIDEO */}
       </div>
     </div>
