@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SmoothScrollProvider from "@/components/ui/Smooth-Scroll-Provider";
 
 export const metadata: Metadata = {
   title: "Spok Digital |  India’s Premier Digital Marketing Agency",
@@ -21,7 +22,9 @@ export default function RootLayout({
         ></link>
       </head>
 
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased`}>
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+      </body>
     </html>
   );
 }
