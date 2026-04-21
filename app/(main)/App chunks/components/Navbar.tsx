@@ -9,7 +9,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 const menu = [
   { title: "Home", link: "/" },
-  { title: "About", link: "/About" },
   { title: "D2C Growth", link: "/d2c" },
   { title: "Business Accelerator", link: "/website-landing" },
   { title: "Services", link: "/services", hasSubmenu: true },
