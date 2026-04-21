@@ -5,6 +5,7 @@ import React, { useRef, useState } from "react";
 import { Briefcase, Globe } from "lucide-react";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import gsap from "gsap";
+import LogoMarquee from "@/app/d2c/sections/logo-marquee";
 import FloatingIcons from "@/app/d2c/sections/orbit";
 gsap.registerPlugin(ScrollToPlugin);
 const HeroSection = () => {
@@ -108,6 +109,10 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
+        <LogoMarquee />
+
+        {/* Floating icons — desktop only */}
+
         <FloatingIcons />
         {/* VIDEO */}
       </div>
