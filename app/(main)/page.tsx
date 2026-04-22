@@ -8,11 +8,13 @@ import { MarqueeLogo } from "./App chunks/components/MarqueeLogo";
 import Service from "./(Home Page)/Service";
 import Portfolio from "./(Home Page)/Portfolio";
 import VideoCarousel from "./(Home Page)/videoCarousel";
-import FeatureSection from "./(Home Page)/workprocess";
+import Whatwedobest from "./(Home Page)/whatwedobest";
+import Services2 from "./(Home Page)/service2";
 import FAQSection from "./(Home Page)/FAQ";
 export default function Home() {
   return (
     <AnimatePresence mode="wait">
+      D
       <motion.div
         exit={{
           scaleX: 0.2,
@@ -31,11 +33,11 @@ export default function Home() {
         <TextMarquee />
         <Portfolio />
         <VideoCarousel />
-        
         <Testimonials />
-        <FAQSection />
+        <Whatwedobest />
         <Blogs />
         <MarqueeLogo />
+        <FAQSection />
       </motion.div>
     </AnimatePresence>
   );

@@ -59,7 +59,7 @@ const Service = () => {
           {serviceData.map((service, idx) => (
             <div
               key={idx}
-              className={`bg-primary rounded-lg relative border border-red-200/20 shadow-sm p-5 ${
+              className={`bg-primary rounded-lg relative border border-red-200/20 sDhadow-sm p-5 ${
                 idx === 1 || idx === 2 ? "lg:col-span-2" : ""
               }`}
             >

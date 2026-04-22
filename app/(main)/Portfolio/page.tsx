@@ -1,210 +1,363 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { motion, animate, AnimatePresence } from "framer-motion";
-import BreadCrumb from "../App chunks/components/BreadCrumb";
-import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradient";
-import SliderForm from "../App chunks/components/SliderForm";
-import { ArrowUpRight, Pause, Play } from "@phosphor-icons/react";
-import Image from "next/image";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight } from "@phosphor-icons/react";
+import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
-import { MarqueeLogo } from "../App chunks/components/MarqueeLogo";
-const Page = () => {
-  const [height, setHeight] = React.useState(0);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const mediaRef = React.useRef<HTMLDivElement>(null);
-  React.useEffect(() => {
-    const rect = document
-      .getElementsByClassName("HeadNavigation")[0]
-      .getBoundingClientRect();
-    setHeight(rect.height);
-  }, []);
+import SliderForm from "../App chunks/components/SliderForm";
+import Image from "next/image";
 
-  const tabs = [
-    "F&B",
-    "Real Estate",
-    "Marketing",
-    "Corporate Photographs",
-    "Business Setup",
-  ];
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+type Tab =
+  | "Website Design"
+  | "Lead Generation"
+  | "D2C Growth"
+  | "Content Creation"
+  | "Social Media Marketing"
+  | "SEO";
+
+interface PortfolioItem {
+  id: number;
+  title: string;
+  desc: string;
+  tags: Tab[];
+  siteUrl: string;
+  // swap these placeholder bg colors for real image srcs when ready
+  bgColor: string;
+  img: string;
+}
+
+// ─── Placeholder Data ─────────────────────────────────────────────────────────
+// Each item has a `tags` array — add as many categories as apply.
+// Replace bgColor with image src when real assets are ready.
+
+// Drop-in replacement for your portfolioData array
+// All descriptions written from visiting each live site
+
+const portfolioData: PortfolioItem[] = [
+  {
+    id: 1,
+    title: "Teeser",
+    desc: "UAE-based graphic & custom printed t-shirt brand with collections for men, women, and kids — built for discovery-led D2C shopping.",
+    tags: ["Website Design", "D2C Growth", "SEO"],
+    siteUrl: "https://teeser.ae/",
+    bgColor: "bg-rose-200",
+    img: "",
+  },
+  {
+    id: 2,
+    title: "Milestone Homes",
+    desc: "Full-service Dubai real estate agency showcasing villas, apartments, and off-plan properties across all major UAE developers.",
+    tags: ["Website Design", "Lead Generation", "SEO", "Content Creation"],
+    siteUrl: "https://milestonehomesre.com/",
+    bgColor: "bg-stone-300",
+    img: "milestone.jpeg",
+  },
+  {
+    id: 3,
+    title: "Opto Watch Co.",
+    desc: "Dubai-based premium watch strap store offering leather, exotic, rubber, and non-leather straps with worldwide DHL shipping.",
+    tags: ["Website Design", "D2C Growth", "SEO", "Social Media Marketing"],
+    siteUrl: "https://optowatchco.com/",
+    bgColor: "bg-sky-200",
+    img: "optowatch.jpeg",
+  },
+  {
+    id: 4,
+    title: "Dimondra",
+    desc: "UAE business solutions firm offering HR, recruitment, IT, legal, and back-office outsourcing — backed by 20+ years of industry expertise.",
+    tags: ["Website Design", "Content Creation"],
+    siteUrl: "https://dimondra.com/",
+    bgColor: "bg-amber-200",
+    img: "dimondra.jpeg",
+  },
+  {
+    id: 5,
+    title: "BizGrowth Consultancy",
+    desc: "UAE business setup specialists helping entrepreneurs incorporate on the mainland, in free zones, and offshore — with a built-in cost calculator.",
+    tags: ["Website Design", "Lead Generation", "SEO", "Content Creation"],
+    siteUrl: "https://bizgrowthconsultancy.com",
+    bgColor: "bg-emerald-200",
+    img: "bizgrwoth.jpeg",
+  },
+  {
+    id: 6,
+    title: "Menlocloud",
+    desc: "AI-powered staff augmentation and cloud consultancy specialising in Azure, AWS, Power BI, Snowflake, and enterprise data solutions.",
+    tags: ["Website Design", "Lead Generation"],
+    siteUrl: "https://menlocloud.ai/",
+    bgColor: "bg-violet-200",
+    img: "",
+  },
+  {
+    id: 7,
+    title: "Flavors Street",
+    desc: "Global street food restaurant in Midland, MI — blending East and West flavours with a fresh, homestyle menu available on DoorDash.",
+    tags: ["Website Design", "SEO"],
+    siteUrl: "http://flavorsstreet.com/",
+    bgColor: "bg-cyan-200",
+    img: "flavorstreet.jpeg",
+  },
+  {
+    id: 8,
+    title: "Advanz Tech",
+    desc: "Premium luxury auto care centre in Dubai specialising in repair, maintenance, and advanced diagnostics for BMW, Mercedes, Audi, Porsche, and Range Rover.",
+    tags: ["Website Design", "Lead Generation"],
+    siteUrl: "https://advanztech.co/",
+    bgColor: "bg-pink-200",
+    img: "advanztech.png",
+  },
+  {
+    id: 9,
+    title: "Zaaviyan Contracting",
+    desc: "UAE fit-out and contracting company transforming residential, commercial, and hospitality spaces with bespoke interior design from concept to completion.",
+    tags: ["Website Design", "Lead Generation"],
+    siteUrl: "https://www.zaaviyancontracting.com/",
+    bgColor: "bg-orange-200",
+    img: "zaaviyan.jpeg",
+  },
+  {
+    id: 10,
+    title: "Noir Perfumes",
+    desc: "Dubai-made premium fragrance brand offering long-lasting perfumes for men, women, and unisex — crafted with ingredients sourced from France.",
+    tags: ["Website Design", "D2C Growth", "SEO", "Social Media Marketing"],
+    siteUrl: "https://noirperfumes.com/",
+    bgColor: "bg-neutral-300",
+    img: "noir.jpeg",
+  },
+  {
+    id: 11,
+    title: "BS Holiday Homes",
+    desc: "Short-term rental platform with 300+ premium Dubai properties — featuring live availability search, area filters, and a host onboarding portal.",
+    tags: ["Website Design", "Lead Generation"],
+    siteUrl: "https://bsholidayhomes.com/",
+    bgColor: "bg-teal-200",
+    img: "bssh.jpeg",
+  },
+  {
+    id: 12,
+    title: "Perfume Oasis",
+    desc: "UAE fragrance e-store carrying niche, Arabian, and designer perfumes for men and women, with multi-currency support across AED, SAR, USD, and EUR.",
+    tags: [
+      "Website Design",
+      "D2C Growth",
+      "Social Media Marketing",
+      "SEO",
+      "Content Creation",
+    ],
+    siteUrl: "https://perfumeoasis.ae/",
+    bgColor: "bg-purple-200",
+    img: "oasis.jpeg",
+  },
+  {
+    id: 13,
+    title: "Meet Trading",
+    desc: "UAE-based B2B commercial distribution company supplying energy-efficient products — from EV solutions and batteries to home appliances and apparel — globally.",
+    tags: ["Website Design", "SEO"],
+    siteUrl: "https://tradingmeet.com/",
+    bgColor: "bg-lime-200",
+    img: "meet.jpeg",
+  },
+  {
+    id: 14,
+    title: "ME Universal",
+    desc: "Smart building and infrastructure solutions provider offering building automation, DC lighting, centralised vacuum, mirror TV, and air purification systems.",
+    tags: ["Website Design", "Lead Generation", "SEO"],
+    siteUrl: "http://meuniversal.com/",
+    bgColor: "bg-indigo-200",
+    img: "meuniversal.jpeg",
+  },
+];
+
+// ─── Tabs ─────────────────────────────────────────────────────────────────────
+
+const tabs: Tab[] = [
+  "Website Design",
+  "Lead Generation",
+  "D2C Growth",
+  "Content Creation",
+  "Social Media Marketing",
+  "SEO",
+];
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+
+const PortfolioCard = ({ item }: { item: PortfolioItem }) => (
+  <motion.div
+    layout
+    initial={{ opacity: 0, scale: 0.97 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0, scale: 0.97 }}
+    transition={{ duration: 0.3, ease: "easeInOut" }}
+  >
+    {/* Thumbnail */}
+    <div
+      className={`aspect-[6/4] relative overflow-hidden rounded-xl border ${item.bgColor}`}
+    >
+      <Image
+        src={`/portfolio/${item.img}`}
+        alt={item.title}
+        fill
+        className="w-full h-full object-cover"
+      />
+    </div>
+
+    {/* Meta */}
+    <div className="mt-3 flex flex-col justify-between items-stretch">
+      <h4 className="font-Synonym mb-1 font-[500] text-xl">{item.title}</h4>
+      <p className="text-gray-700 text-sm">{item.desc}</p>
+
+      {/* Tag pills */}
+      <div className="flex flex-wrap mt-3 items-center gap-2">
+        {item.tags.map((tag) => (
+          <div
+            key={tag}
+            className="bg-gray-100 text-xs text-gray-600 px-3 py-1 rounded-full border border-gray-200"
+          >
+            {tag}
+          </div>
+        ))}
+      </div>
+
+      {/* CTA */}
+      <div className="mt-4 mb-auto w-full">
+        <a href={item.siteUrl} target="_blank" rel="noopener noreferrer">
+          <button className="flex items-center justify-center gap-2 text-sm text-primary border border-primary/30 transition-colors duration-200 hover:bg-primary w-full px-4 py-1.5 rounded-full hover:text-white">
+            Visit Site <ArrowUpRightIcon className="size-5" />
+          </button>
+        </a>
+      </div>
+    </div>
+  </motion.div>
+);
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
+const Page = () => {
+  const [activeTab, setActiveTab] = useState<Tab | null>(null);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   const para =
     "Showcasing Creativity and Craft: A Portfolio of Innovative Design and Thoughtful Solutions";
-  const [isFormOpen, setIsFormOpen] = React.useState(false);
 
-  const FandBRef = React.useRef<HTMLDivElement>(null);
-  const RealEstateRef = React.useRef<HTMLDivElement>(null);
-  const MarketingRef = React.useRef<HTMLDivElement>(null);
-  const CorporatePhotosRef = React.useRef<HTMLDivElement>(null);
-  const BusinessSetupRef = React.useRef<HTMLDivElement>(null);
-
-  const RealEstate = [
-    "1.jpg",
-    "10.mp4",
-    "7.jpg",
-    "DSC09971.jpg",
-    "Damac Island 1st Draft with text-compressed.mov",
-    "Hand_Draft01-compressed.mov",
-
-    "Javed_Leos_draft01-compressed.mov",
-    "Masaar_Rahil_Draft03-compressed.mov",
-    "Ram_Podcast_Final-compressed.mov",
-    "Salwa_Javed_Meraas_with new qr-compressed.mov",
-  ];
-
-  const businessSetup = [
-    "4th Draft - Bizgrowth-compressed.mov",
-    "Bizgrowth 4th Render-compressed.mov",
-  ];
-
-  const FandB = ["11.jpg", "13.jpg", "14.mp4", "2.mp4", "3.jpg", "9.jpg"];
-  const marketing = [
-    "IKEA CO WORKER V2-compressed.mov",
-    "starbucks misspelling-compressed.mov",
-  ];
-  const corporatePhotographs = [
-    "Slide 2.jpg",
-    "Slide 4 - Milestone Homes Office.jpg",
-    "Slide 5 - Investment Advisory Services.jpg",
-  ];
-
-  const refs = [
-    FandBRef,
-    RealEstateRef,
-    MarketingRef,
-    CorporatePhotosRef,
-    BusinessSetupRef,
-  ];
-
-  const scrollToWithEasing = (targetY: number) => {
-    const start = window.scrollY;
-    const distance = targetY - start;
-
-    animate(0, 1, {
-      duration: 1.2,
-      ease: [0.22, 1, 0.36, 1], // easeOutCubic
-      onUpdate: (latest) => {
-        window.scrollTo(0, start + distance * latest);
-      },
-    });
-  };
-
-  const handleTabClick = (idx: number) => {
-    const target = refs[idx]?.current;
-    if (target) {
-      const top = target.getBoundingClientRect().top + window.scrollY - 100;
-      scrollToWithEasing(top);
-    }
-  };
+  // null = show all
+  const filtered =
+    activeTab === null
+      ? portfolioData
+      : portfolioData.filter((item) => item.tags.includes(activeTab));
 
   return (
-    <motion.div className="  " ref={containerRef}>
+    <div>
       <SliderForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
-      <motion.div>
-        <div className="w-full h-screen overflow-hidden  relative">
-          <div className="absolute inset-0 w-full h-full">
-            <svg
-              viewBox="0 0 100 100"
-              className="w-full h-full"
-              preserveAspectRatio="none"
-            >
-              <defs>
-                {/* Smooth main glow */}
-                <radialGradient id="bgGradient" cx="50%" cy="35%" r="70%">
-                  <stop offset="0%" stopColor="#de0f3f" stopOpacity="0.25" />
-                  <stop offset="40%" stopColor="#de0f3f" stopOpacity="0.10" />
-                  <stop offset="70%" stopColor="#de0f3f" stopOpacity="0.03" />
-                  <stop offset="100%" stopColor="#fdf7f7" stopOpacity="0" />
-                </radialGradient>
 
-                {/* Bottom white fade */}
-                <linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="65%" stopColor="#fdf7f7" stopOpacity="0" />
-                  <stop offset="100%" stopColor="#fdf7f7" stopOpacity="1" />
-                </linearGradient>
-              </defs>
+      {/* ── Hero ── */}
+      <div className="w-full h-screen flex flex-col justify-center items-center overflow-hidden relative">
+        <div className="absolute inset-0 w-full h-full">
+          <svg
+            viewBox="0 0 100 100"
+            className="w-full h-full"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <radialGradient id="bgGradient" cx="50%" cy="35%" r="70%">
+                <stop offset="0%" stopColor="#de0f3f" stopOpacity="0.25" />
+                <stop offset="40%" stopColor="#de0f3f" stopOpacity="0.10" />
+                <stop offset="70%" stopColor="#de0f3f" stopOpacity="0.03" />
+                <stop offset="100%" stopColor="#fdf7f7" stopOpacity="0" />
+              </radialGradient>
+              <linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="65%" stopColor="#fdf7f7" stopOpacity="0" />
+                <stop offset="100%" stopColor="#fdf7f7" stopOpacity="1" />
+              </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="#ffffff" />
+            <rect width="100%" height="100%" fill="url(#bgGradient)" />
+            <rect width="100%" height="100%" fill="url(#bottomFade)" />
+          </svg>
+        </div>
 
-              {/* Base white */}
-              <rect width="100%" height="100%" fill="#ffffff" />
-
-              {/* Soft red glow */}
-              <rect width="100%" height="100%" fill="url(#bgGradient)" />
-
-              {/* Bottom fade */}
-              <rect width="100%" height="100%" fill="url(#bottomFade)" />
-            </svg>
-          </div>
-
-          <div className="w-full h-screen flex flex-col">
-            {/* Content */}
-            <div
-              style={{ marginTop: `${height + 50}px` }}
-              className="container relative z-[99]"
-            >
-              <BreadCrumb />
-
-              <div className="w-full mt-8  flex flex-col items-center text-slate-800 justify-center">
-                <motion.h1 className="text-4xl lg:text-6xl lg:w-[90%] text-center leading-[100%] font-Grostek font-[600] tracking-tight break-words">
-                  {para.split(" ").map((item, index) => (
-                    <motion.span
-                      key={index}
-                      className="mr-2 xl:mr-2 xxl:mr-4 overflow-hidden h-[35px] lg:h-[70px]"
-                      style={{ display: "inline-block" }}
-                    >
-                      <motion.span
-                        initial={{ y: 300, opacity: 0, rotate: 20, x: -10 }}
-                        animate={{ y: 0, opacity: 1, rotate: 0, x: 0 }}
-                        style={{ display: "inline-block" }}
-                        transition={{
-                          ease: [0, 0, 0.2, 1],
-                          duration: 1,
-                          delay: index * 0.1,
-                        }}
-                        className="origin-top-right"
-                      >
-                        {item}
-                      </motion.span>
-                    </motion.span>
-                  ))}
-                </motion.h1>
-
-                <button
-                  onClick={() => setIsFormOpen(true)}
-                  className="group mt-5 relative h-12 rounded-full bg-black hover:bg-primary transition-colors duration-300 px-5 font-Synonym font-[500] text-neutral-50"
+        <div className="container relative z-[99]">
+          <div className="w-full mt-8 flex flex-col items-center text-slate-800 justify-center">
+            <motion.h1 className="text-4xl lg:text-6xl lg:w-[90%] text-center leading-[100%] font-Grostek font-[600] tracking-tight break-words">
+              {para.split(" ").map((word, index) => (
+                <motion.span
+                  key={index}
+                  className="mr-2 xl:mr-2 xxl:mr-4 overflow-hidden h-[35px] lg:h-[70px]"
+                  style={{ display: "inline-block" }}
                 >
-                  <span className="relative inline-flex overflow-hidden">
-                    <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[130%] group-hover:skew-y-12 flex items-center gap-2">
-                      Get Expert Help <ArrowUpRight />
-                    </div>
-                    <div className="absolute translate-y-[134%] flex items-center gap-2 skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
-                      Get Expert Help <ArrowUpRight />
-                    </div>
-                  </span>
-                </button>
-              </div>
-            </div>
+                  <motion.span
+                    initial={{ y: 300, opacity: 0, rotate: 20, x: -10 }}
+                    animate={{ y: 0, opacity: 1, rotate: 0, x: 0 }}
+                    style={{ display: "inline-block" }}
+                    transition={{
+                      ease: [0, 0, 0.2, 1],
+                      duration: 1,
+                      delay: index * 0.1,
+                    }}
+                    className="origin-top-right"
+                  >
+                    {word}
+                  </motion.span>
+                </motion.span>
+              ))}
+            </motion.h1>
 
-            {/* Bottom Marquee */}
-            <div className="mt-auto">
-              <MarqueeLogo showText={false} />
-            </div>
+            <button
+              onClick={() => setIsFormOpen(true)}
+              className="group mt-5 relative h-12 rounded-full bg-black hover:bg-primary transition-colors duration-300 px-5 font-Synonym font-[500] text-neutral-50"
+            >
+              <span className="relative inline-flex overflow-hidden">
+                <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[130%] group-hover:skew-y-12 flex items-center gap-2">
+                  Get Expert Help <ArrowUpRight />
+                </div>
+                <div className="absolute translate-y-[134%] flex items-center gap-2 skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+                  Get Expert Help <ArrowUpRight />
+                </div>
+              </span>
+            </button>
           </div>
         </div>
-      </motion.div>
+      </div>
 
+      {/* ── Portfolio Section ── */}
       <div className="relative">
-        <h2 className="text-3xl mt-20 lg:text-5xl font-[500] text-center ">
-          Portfolio images and videos
+        <h2 className="text-4xl lg:text-5xl font-Cormorant font-[500] text-center">
+          Portfolio We're Proud of
         </h2>
+        <p className="text-center mt-2 max-w-3xl mx-auto">
+          Strategic solutions crafted to drive visibility, engagement, and real
+          business growth.
+        </p>
 
-        <div className="lg:sticky container top-0 left-0 z-50">
-          <div className="flex  mt-5 justify-center items-center">
-            <ul className=" flex bg-primary/20  text-nowrap whitespace-nowrap backdrop-blur-lg shadow-sm border border-primary/20 mt-6 overflow-auto rounded-lg lg:rounded-full justify-start lg:justify-center items-center">
+        {/* ── Sticky Tab Bar ── */}
+        <div className="lg:sticky top-0 left-0 z-50 container">
+          <div className="flex mt-5 justify-center items-center">
+            <ul className="flex bg-primary/20 text-nowrap whitespace-nowrap backdrop-blur-lg shadow-sm border border-primary/20 mt-6 overflow-auto rounded-lg lg:rounded-full justify-start lg:justify-center items-center">
+              {/* "All" pill */}
+              <li
+                onClick={() => setActiveTab(null)}
+                className={`cursor-pointer transition-all duration-300 px-6 py-3 border-r
+                  ${
+                    activeTab === null
+                      ? "bg-primary text-white"
+                      : "hover:bg-primary hover:text-white"
+                  }`}
+              >
+                All
+              </li>
+
               {tabs.map((tab, idx) => (
                 <li
-                  onClick={() => handleTabClick(idx)}
                   key={idx}
-                  className={`cursor-pointer  hover:bg-primary hover:text-white transition-all duration-300 px-8 py-3 ${
-                    idx !== tabs.length - 1 ? "border-r  pr-5" : "pr-8 "
-                  }    `}
+                  onClick={() => setActiveTab(tab)}
+                  className={`cursor-pointer transition-all duration-300 px-6 py-3
+                    ${idx !== tabs.length - 1 ? "border-r" : ""}
+                    ${
+                      activeTab === tab
+                        ? "bg-primary text-white"
+                        : "hover:bg-primary hover:text-white"
+                    }`}
                 >
                   {tab}
                 </li>
@@ -213,45 +366,34 @@ const Page = () => {
           </div>
         </div>
 
-        <motion.div ref={mediaRef} className=" mt-14">
-          <div className="container">
-            <div ref={FandBRef} className=" mt-4 border-b pb-12">
-              <h2 className="text-xl lg:text-3xl mb-4">F&B</h2>
-              {RenderMedia(FandB, "media/PhotosVideos/F&B/")}
-            </div>
-          </div>
-          <div className="container">
-            <div ref={RealEstateRef} className=" mt-3 pt-4 border-b pb-12">
-              <h2 className="text-xl lg:text-3xl mb-4">Real Estate</h2>
-              {RenderMedia(RealEstate, "media/PhotosVideos/Real Estate/")}
-            </div>
-          </div>
-          <div className="container">
-            <div ref={MarketingRef} className=" mt-3 pt-4 border-b pb-12">
-              <h2 className="text-xl lg:text-3xl mb-4">Marketing</h2>
-              {RenderMedia(marketing, "media/PhotosVideos/Marketing/")}
-            </div>
-          </div>
-          <div className="container">
-            <div ref={CorporatePhotosRef} className=" mt-3 pt-4 border-b pb-12">
-              <h2 className="text-xl lg:text-3xl mb-4">
-                Corporate Photographs
-              </h2>
-              {RenderMedia(
-                corporatePhotographs,
-                "media/PhotosVideos/Corporate Photographs/",
-              )}
-            </div>
-          </div>
-          <div className="container">
-            <div ref={BusinessSetupRef} className="  mt-3 pt-4  border-b pb-12">
-              <h2 className="text-xl lg:text-3xl mb-4">Business Setup</h2>
-              {RenderMedia(businessSetup, "media/PhotosVideos/Business Setup/")}
-            </div>
-          </div>
-        </motion.div>
+        {/* ── Cards Grid ── */}
+        <div className="container mt-16">
+          {/* Empty state */}
+          {filtered.length === 0 && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center text-gray-400 py-24 font-Synonym"
+            >
+              No projects in this category yet.
+            </motion.p>
+          )}
+
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6"
+          >
+            <AnimatePresence mode="popLayout">
+              {filtered.map((item) => (
+                <PortfolioCard key={item.id} item={item} />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </div>
       </div>
-      <div className="container pb-20">
+
+      {/* ── CTA Banner ── */}
+      <div className="container mt-20 pb-20">
         <motion.div className="p-10 lg:p-16 w-full bg-gradient-to-tr from-red-400 to-red-600 text-slate-100 rounded-2xl relative overflow-hidden">
           <div className="relative z-10">
             <p className="text-xs uppercase tracking-widest text-white/60 font-Grostek mb-3">
@@ -262,9 +404,7 @@ const Page = () => {
             </h2>
             <p className="mt-4 font-Synonym font-[400] text-lg max-w-2xl text-white/80">
               At Spok Digital, we don't just market products — we build
-              connections that last. Whether you're a startup making your first
-              move or an established brand ready to level up, we're here to
-              help.
+              connections that last.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
               <Link href="/contact">
@@ -283,180 +423,8 @@ const Page = () => {
           <div className="absolute right-20 bottom-20 w-32 h-32 bg-white/5 rounded-full" />
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 export default Page;
-
-const VideoPlayer = ({
-  src,
-  thumbnail,
-}: {
-  src: string;
-  thumbnail: string;
-}) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isVideoPaused, setIsVideoPaused] = useState(true);
-  const [isLoading, setIsLoading] = useState<boolean | null>(null);
-
-  const handleToggle = () => {
-    const video = videoRef.current;
-
-    if (!isPlaying) {
-      setIsPlaying(true); // Show video
-    } else if (video) {
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
-    }
-  };
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const onPlay = () => setIsVideoPaused(false);
-    const onPause = () => setIsVideoPaused(true);
-
-    video.addEventListener("play", onPlay);
-    video.addEventListener("pause", onPause);
-
-    return () => {
-      video.removeEventListener("play", onPlay);
-      video.removeEventListener("pause", onPause);
-    };
-  }, [isPlaying]);
-
-  return (
-    <div className="h-[500px] w-full relative group rounded-md overflow-hidden">
-      {isPlaying ? (
-        <>
-          {isLoading == null && (
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin" />
-            </div>
-          )}
-          <motion.div className="flex">
-            <video
-              ref={videoRef}
-              onPlaying={() => setIsLoading(false)}
-              style={{ opacity: isLoading ? 0 : 1 }}
-              autoPlay
-              muted
-              controls={false}
-              className="w-full h-full object-cover"
-            >
-              <source src={src} />
-              Your browser does not support the video tag.
-            </video>
-          </motion.div>
-        </>
-      ) : (
-        <Image
-          width={300}
-          height={400}
-          src={`/media/PhotosVideos/Thumbnails/${
-            thumbnail.split(".")[0] + ".jpg"
-          }`}
-          alt="Video thumbnail"
-          className="w-full h-full object-cover"
-        />
-      )}
-
-      <AnimatePresence>
-        {!isLoading && (
-          <div
-            key="playpause"
-            className={`${
-              isPlaying ? "hover:bg-slate-950/10" : ""
-            } absolute inset-0 w-full group h-full flex justify-center items-center`}
-          >
-            <button
-              onClick={handleToggle}
-              className={`cursor-pointer rounded-full backdrop-blur-md bg-white/60 size-[60px] ${
-                isPlaying && !isVideoPaused ? "group-hover:flex hidden" : "flex"
-              } justify-center items-center group-hover:opacity-100`}
-            >
-              {isPlaying && !isVideoPaused ? (
-                <Pause weight="fill" className="text-3xl text-white" />
-              ) : (
-                <Play weight="fill" className="text-3xl text-white" />
-              )}
-            </button>
-          </div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-const RenderMedia = (MediaArr: string[], path: string) => {
-  const thumbnails = [
-    "12.jpg",
-    "10.jpg",
-    "14.jpg",
-    "2.jpg",
-    "4.jpg",
-    "4th Draft - Bizgrowth-compressed.jpg",
-    "6.jpg",
-    "8.jpg",
-    "Al-Barari-Walkthrought---afroz-8th-Draft.jpg",
-    "Bizgrowth 4th Render-compressed.jpg",
-    "Damac Island 1st Draft with text-compressed.jpg",
-    "Hand_Draft01-compressed.jpg",
-    "IKEA CO WORKER V2-compressed.jpg",
-    "Javed_Leos_draft01-compressed.jpg",
-    "Masaar_Rahil_Draft03-compressed.jpg",
-    "Ram_Podcast_Final-compressed.jpg",
-    "Rubab_D2_Draft01-compressed.jpg",
-    "SALWA DECA FINAL-compressed.jpg",
-    "Salwa_Arabic_draft02-compressed.jpg",
-    "Salwa_CG_Final-compressed.jpg",
-    "Salwa_Javed_Meraas_with new qr-compressed.jpg",
-    "salwa_office_Video_Draft03-compressed.jpg",
-    "starbucks misspelling-compressed.jpg",
-  ];
-
-  const repoURL = "/";
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full">
-      {MediaArr.map((media, idx) => {
-        const extension = media.split(".").pop()?.toLowerCase();
-
-        if (extension === "png" || extension === "jpg") {
-          return (
-            <div key={idx} className="h-[500px] w-full relative">
-              <Image
-                width={300}
-                height={400}
-                className="w-full h-full object-cover transition-opacity duration-500"
-                alt={`Media ${idx}`}
-                loading="lazy"
-                src={"/" + path + media}
-              />
-            </div>
-          );
-        } else if (extension === "mov" || extension === "mp4") {
-          const mediaBase = media.split(".")[0];
-          const thumbnailsBase = thumbnails.map((name) => name.split(".")[0]);
-          return (
-            <VideoPlayer
-              key={idx}
-              src={repoURL + path + media}
-              thumbnail={
-                thumbnailsBase.includes(mediaBase)
-                  ? mediaBase
-                  : mediaBase + ".jpg"
-              }
-            />
-          );
-        }
-        return null;
-      })}
-    </div>
-  );
-};
