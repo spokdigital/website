@@ -51,7 +51,7 @@ const faqs = [
 
 export default function FAQSection() {
   return (
-    <section className="w-full mt-12 mb-16 py-24 bg-black">
+    <section className="w-full mt-10 py-24 bg-black">
       <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-16 items-start">
         {/* LEFT SIDE */}
         <div>

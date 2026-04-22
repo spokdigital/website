@@ -12,6 +12,7 @@ import {
   ArrowRight,
   ChevronDown,
   Sparkles,
+  Search,
 } from "lucide-react";
 
 export const serviceItems = [
@@ -48,6 +49,13 @@ export const serviceItems = [
     desc: "Vetted creator partnerships that drive real reach",
     icon: Users,
     href: "/services/web-development",
+    tag: null,
+  },
+  {
+    name: "SEO",
+    desc: "Data-driven search engine optimization to improve rankings, traffic, and visibility",
+    icon: Search,
+    href: "/services/seo",
     tag: null,
   },
 ];
