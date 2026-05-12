@@ -47,23 +47,37 @@ const Whatwedobest = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Single batch — much lighter than individual ScrollTriggers
-      ScrollTrigger.batch(".gsap-reveal", {
-        onEnter: (els) =>
-          gsap.to(els, {
-            opacity: 1,
-            y: 0,
-            stagger: 0.12,
-            duration: 0.75,
-            ease: "power3.out",
-            overwrite: true,
-          }),
-        start: "top 88%",
-      });
-    }, sectionRef);
+    let ctx: gsap.Context;
 
-    return () => ctx.revert();
+    // Small defer so ScrollSmoother's proxy is registered first
+    const id = setTimeout(() => {
+      ctx = gsap.context(() => {
+        const els = gsap.utils.toArray<HTMLElement>(".gsap-reveal");
+        gsap.set(els, { opacity: 0, y: 40 });
+
+        ScrollTrigger.batch(els, {
+          onEnter: (batch) =>
+            gsap.to(batch, {
+              opacity: 1,
+              y: 0,
+              stagger: 0.12,
+              duration: 0.75,
+              ease: "power3.out",
+              overwrite: true,
+            }),
+          onEnterBack: (batch) =>
+            gsap.to(batch, { opacity: 1, y: 0, overwrite: true }),
+          start: "top 88%",
+        });
+
+        ScrollTrigger.refresh();
+      }, sectionRef);
+    }, 100); // waits for smoother's 50ms timeout + render
+
+    return () => {
+      clearTimeout(id);
+      ctx?.revert();
+    };
   }, []);
 
   return (
@@ -90,7 +104,7 @@ const Whatwedobest = () => {
           {cards.map((card) => (
             <div
               key={card.tag}
-              className="gsap-reveal opacity-0 translate-y-10 group rounded-2xl overflow-hidden border border-primary/20 bg-[#111010] transition-all duration-300 ease-out hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_24px_48px_rgba(0,0,0,0.6)]"
+              className="gsap-reveal group rounded-2xl overflow-hidden border border-primary/20 bg-[#111010] transition-all duration-300 ease-out hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_24px_48px_rgba(0,0,0,0.6)]"
             >
               {/* Image */}
               <div className="relative h-72 overflow-hidden">

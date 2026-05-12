@@ -228,10 +228,7 @@ const Footer = () => {
         style={{ willChange: "opacity" }}
         className="overflow-hidden mt-10"
       >
-        <Ribbon
-          className="!text-red-50 !text-lg lg:!text-7xl"
-          text={`  Let's Talk ↗  `}
-        />
+        <Ribbon className="!text-red-50 " />
       </motion.div>
     </div>
   ) : null;
