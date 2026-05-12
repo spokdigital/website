@@ -60,7 +60,7 @@ export function ScrollVelocityRow(props: ScrollVelocityRowProps) {
   const sharedVelocityFactor = useContext(ScrollVelocityContext);
   if (sharedVelocityFactor) {
     return (
-      <ScrollVelocityRowImpl {...props} velocityFactor={sharedVelocityFactor} />
+      <ScrollVelocityRowImpl  {...props} velocityFactor={sharedVelocityFactor} />
     );
   }
   return <ScrollVelocityRowLocal {...props} />;
@@ -192,7 +192,7 @@ function ScrollVelocityRowImpl({
             key={i}
             ref={i === 0 ? blockRef : null}
             aria-hidden={i !== 0}
-            className="inline-flex shrink-0 items-center"
+            className="inline-flex leading-[5rem] lg:leading-[8rem] shrink-0 items-center"
           >
             {children}
           </div>
@@ -215,6 +215,6 @@ function ScrollVelocityRowLocal(props: ScrollVelocityRowProps) {
     return sign * magnitude;
   });
   return (
-    <ScrollVelocityRowImpl {...props} velocityFactor={localVelocityFactor} />
+    <ScrollVelocityRowImpl  {...props} velocityFactor={localVelocityFactor} />
   );
 }

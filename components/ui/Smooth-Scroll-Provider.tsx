@@ -11,7 +11,6 @@ export default function SmoothScrollProvider({
   const contentRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
 
-  // Wait for hydration before doing anything GSAP-related
   useLayoutEffect(() => {
     setMounted(true);
   }, []);
@@ -27,15 +26,15 @@ export default function SmoothScrollProvider({
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       const { ScrollSmoother } = await import("gsap/ScrollSmoother");
 
+      // ✅ Register BEFORE doing anything else
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-      // Kill any existing instance
+      // ✅ Kill any existing instance cleanly before creating a new one
       ScrollSmoother.get()?.kill();
       ScrollTrigger.getAll().forEach((t) => t.kill());
       ScrollTrigger.clearScrollMemory();
 
       timeout = setTimeout(() => {
-        // Double-check refs are still alive after the timeout
         if (!wrapperRef.current || !contentRef.current) return;
 
         smoother = ScrollSmoother.create({
@@ -45,6 +44,9 @@ export default function SmoothScrollProvider({
           effects: true,
           normalizeScroll: true,
         });
+
+        // ✅ Refresh AFTER smoother is created so scroll proxy is correct
+        ScrollTrigger.refresh();
       }, 50);
     };
 
@@ -58,10 +60,8 @@ export default function SmoothScrollProvider({
         ScrollTrigger.clearScrollMemory();
       });
     };
-  }, [mounted]); // only runs once mounted is true
+  }, [mounted]);
 
-  // Render children immediately so there's no layout flash,
-  // but GSAP won't touch the DOM until after hydration
   return (
     <div id="smooth-wrapper" ref={wrapperRef}>
       <div id="smooth-content" ref={contentRef}>

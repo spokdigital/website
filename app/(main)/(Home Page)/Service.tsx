@@ -67,7 +67,7 @@ const Service = () => {
                 {service.title}
               </h2>
 
-              <p className="block lg:hidden">{service.desc}</p>
+              <p className="block lg:hidden text-white">{service.desc}</p>
               {idx == 1 ? (
                 <div className="w-full mt-12 lg:mt-0 pb-2 lg:w-[70%] overflow-hidden lg:absolute top-0 right-0 lg:h-full flex justify-between  items-end lg:items-end lg:gap-3">
                   <img

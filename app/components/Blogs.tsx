@@ -98,12 +98,12 @@ const Blogs = () => {
   }
 
   return (
-    <section className=" ">
+    <section className=" mt-20">
       {/* Header row */}
       <div className="container">
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-3xl lg:text-5xl text-center font-Cormorant font-[500]">
-            Latest Blogs
+            Latest <span className="text-primary">Blogs</span>
           </h2>
 
           {/* Navigation buttons */}
