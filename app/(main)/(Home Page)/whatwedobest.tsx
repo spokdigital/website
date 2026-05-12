@@ -44,44 +44,10 @@ const stats = [
 ];
 
 const Whatwedobest = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let ctx: gsap.Context;
-
-    // Small defer so ScrollSmoother's proxy is registered first
-    const id = setTimeout(() => {
-      ctx = gsap.context(() => {
-        const els = gsap.utils.toArray<HTMLElement>(".gsap-reveal");
-        gsap.set(els, { opacity: 0, y: 40 });
-
-        ScrollTrigger.batch(els, {
-          onEnter: (batch) =>
-            gsap.to(batch, {
-              opacity: 1,
-              y: 0,
-              stagger: 0.12,
-              duration: 0.75,
-              ease: "power3.out",
-              overwrite: true,
-            }),
-          onEnterBack: (batch) =>
-            gsap.to(batch, { opacity: 1, y: 0, overwrite: true }),
-          start: "top 88%",
-        });
-
-        ScrollTrigger.refresh();
-      }, sectionRef);
-    }, 100); // waits for smoother's 50ms timeout + render
-
-    return () => {
-      clearTimeout(id);
-      ctx?.revert();
-    };
-  }, []);
+ 
 
   return (
-    <div ref={sectionRef} className="bg-[#0A0A0A] py-24 px-6">
+    <div  className="bg-[#0A0A0A] py-24 px-6">
       <div className="max-w-6xl mx-auto">
         {/* ── HEADING ── */}
         <div className="gsap-reveal opacity-0 translate-y-10 text-center mb-20">
