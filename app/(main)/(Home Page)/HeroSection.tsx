@@ -132,8 +132,8 @@ const Section1 = ({
   }, []);
 
   return (
-    <section className="h-[65dvh] lg:h-auto">
-      <div className="container flex flex-col pt-36 lg:pt-36 items-center justify-center h-full">
+    <section className=" lg:h-auto">
+      <div className="container flex flex-col pt-28 lg:pt-36 items-center justify-center h-full">
         {/* Rating badge */}
         <div className="inline-flex items-center mb-4 gap-3 rounded-full border border-black/10 backdrop-blur-md px-5 py-2.5 shadow-md">
           <div className="flex items-center gap-1">

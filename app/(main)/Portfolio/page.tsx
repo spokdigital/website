@@ -322,27 +322,24 @@ const Page = () => {
 
       {/* ── Portfolio Section ── */}
       <div className="relative">
-        <h2 className="text-4xl lg:text-5xl font-Cormorant font-[500] text-center">
-          Portfolio We're Proud of
+        <h2 className="text-4xl container mx-auto lg:text-5xl font-Cormorant font-[500] text-center">
+          Portfolio We're <span className="text-primary">Proud of</span>
         </h2>
-        <p className="text-center mt-2 max-w-3xl mx-auto">
+        <p className="text-center  mt-2 container lg:max-w-3xl mx-auto">
           Strategic solutions crafted to drive visibility, engagement, and real
           business growth.
         </p>
 
         {/* ── Sticky Tab Bar ── */}
-        <div className="lg:sticky top-0 left-0 z-50 container">
-          <div className="flex mt-5 justify-center items-center">
-            <ul className="flex bg-primary/20 text-nowrap whitespace-nowrap backdrop-blur-lg shadow-sm border border-primary/20 mt-6 overflow-auto rounded-lg lg:rounded-full justify-start lg:justify-center items-center">
-              {/* "All" pill */}
+        {/* ── Sticky Tab Bar ── */}
+        <div className="lg:sticky top-0 left-0 container z-50 w-full">
+          {/* Scrollable track — full width on mobile, centered on desktop */}
+          <div className="overflow-x-auto rounded-xl scrollbar-hide w-full mt-6 lg:flex lg:justify-center">
+            <ul className="flex w-max lg:w-auto bg-primary/20 backdrop-blur-lg shadow-sm border border-primary/20 rounded-lg lg:rounded-full">
               <li
                 onClick={() => setActiveTab(null)}
-                className={`cursor-pointer transition-all duration-300 px-6 py-3 border-r
-                  ${
-                    activeTab === null
-                      ? "bg-primary text-white"
-                      : "hover:bg-primary hover:text-white"
-                  }`}
+                className={`cursor-pointer whitespace-nowrap transition-all duration-300 px-6 py-3 border-r
+          ${activeTab === null ? "bg-primary text-white" : "hover:bg-primary hover:text-white"}`}
               >
                 All
               </li>
@@ -351,13 +348,9 @@ const Page = () => {
                 <li
                   key={idx}
                   onClick={() => setActiveTab(tab)}
-                  className={`cursor-pointer transition-all duration-300 px-6 py-3
-                    ${idx !== tabs.length - 1 ? "border-r" : ""}
-                    ${
-                      activeTab === tab
-                        ? "bg-primary text-white"
-                        : "hover:bg-primary hover:text-white"
-                    }`}
+                  className={`cursor-pointer whitespace-nowrap transition-all duration-300 px-6 py-3
+            ${idx !== tabs.length - 1 ? "border-r" : ""}
+            ${activeTab === tab ? "bg-primary text-white" : "hover:bg-primary hover:text-white"}`}
                 >
                   {tab}
                 </li>
