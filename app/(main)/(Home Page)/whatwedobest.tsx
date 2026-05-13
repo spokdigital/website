@@ -21,7 +21,7 @@ const cards = [
     link: "/d2c",
   },
   {
-    image: "/home/website-landing.webp",
+    image: "/home/website-landing.png",
     tag: "Brand & Digital",
     number: "02",
     title: "Build a Brand Consumers Choose Over and Over",
@@ -73,7 +73,7 @@ const Whatwedobest = () => {
               className="gsap-reveal group rounded-2xl overflow-hidden border border-primary/20 bg-[#111010] transition-all duration-300 ease-out hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_24px_48px_rgba(0,0,0,0.6)]"
             >
               {/* Image */}
-              <div className="relative h-72 overflow-hidden">
+              <div className="relative h-72 lg:h-[400px] overflow-hidden">
                 <img
                   src={card.image}
                   alt={card.title}
