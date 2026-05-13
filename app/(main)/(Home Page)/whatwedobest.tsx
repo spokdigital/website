@@ -50,7 +50,7 @@ const Whatwedobest = () => {
     <div  className="bg-[#0A0A0A] py-24 px-6">
       <div className="max-w-6xl mx-auto">
         {/* ── HEADING ── */}
-        <div className="gsap-reveal opacity-0 translate-y-10 text-center mb-20">
+        <div className="gsap-reveal  translate-y-10 text-center mb-20">
           <p className="font-mono text-[10px] tracking-[0.35em] text-primary uppercase mb-4 flex items-center justify-center gap-3">
             <span className="inline-block w-8 h-px bg-primary opacity-40" />
             Our Expertise
@@ -138,7 +138,7 @@ const Whatwedobest = () => {
         </div>
 
         {/* ── BOTTOM STRIP ── */}
-        <div className="gsap-reveal opacity-0 translate-y-6 mt-16 border-t border-primary/15 pt-10 flex flex-wrap gap-5 items-center justify-between">
+        <div className="gsap-reveal  translate-y-6 mt-16 border-t border-primary/15 pt-10 flex flex-wrap gap-5 items-center justify-between">
           <div className="flex gap-10 flex-wrap">
             {stats.map((s) => (
               <div key={s.label} className="flex flex-col gap-1">
