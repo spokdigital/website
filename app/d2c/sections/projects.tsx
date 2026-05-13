@@ -64,7 +64,7 @@ const PROJECTS = [
     title: "Oasis",
     category: "Luxury Perfume & Fragrance — D2C",
     image: "/landing/d2c/projects/5.jpeg",
-    link: "https://perfume-oasis-uae.myshopify.com/",
+    link: "http://perfumeoasis.ae/",
     spend: "18,000",
     multiplier: "6.4x",
     revenue: "1,15,200",

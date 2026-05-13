@@ -43,7 +43,7 @@ const portfolioData: PortfolioItem[] = [
     tags: ["Website Design", "D2C Growth", "SEO"],
     siteUrl: "https://teeser.ae/",
     bgColor: "bg-rose-200",
-    img: "",
+    img: "teeser.jpeg",
   },
   {
     id: 2,
@@ -88,7 +88,7 @@ const portfolioData: PortfolioItem[] = [
     tags: ["Website Design", "Lead Generation"],
     siteUrl: "https://menlocloud.ai/",
     bgColor: "bg-violet-200",
-    img: "",
+    img: "menlocloud.jpeg",
   },
   {
     id: 7,
