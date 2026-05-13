@@ -18,7 +18,7 @@ const menu = [
   { title: "Services", isServices: true },
   { title: "D2C Growth", link: "/d2c" },
   { title: "Business Accelerator", link: "/website-landing" },
-  { title: "Blog", link: "/Blog" },
+  { title: "Blog", link: "/blogs" },
   { title: "Portfolio", link: "/Portfolio" },
   { title: "Contact", link: "/contact" },
 ];
