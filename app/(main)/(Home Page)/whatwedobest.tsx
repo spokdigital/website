@@ -21,7 +21,7 @@ const cards = [
     link: "/d2c",
   },
   {
-    image: "/home/website-landing.png",
+    image: "/home/landing.png",
     tag: "Brand & Digital",
     number: "02",
     title: "Build a Brand Consumers Choose Over and Over",
