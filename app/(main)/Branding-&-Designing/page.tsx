@@ -586,6 +586,11 @@ const Page = () => {
             </p>
             <div className="flex justify-center items-center gap-5 mt-5">
               <a
+                onClick={() =>
+                  window.fbq?.("track", "Contact", {
+                    content_name: "book_a_call",
+                  })
+                }
                 href={"https://calendly.com/spokdigital/30min"}
                 className="bg-black px-4 py-[.4rem] rounded-lg text-slate-50"
               >

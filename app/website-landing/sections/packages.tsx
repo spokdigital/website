@@ -64,6 +64,7 @@ export default function PricingSection() {
       scrollTo: "#booking",
       ease: "power3.out",
     });
+    window.fbq?.("track", "Contact", { content_name: "pricing_package" });
   };
   return (
     <section id={"pricing"} className="min-h-screen pt-20 pb-20 font-cormorant">

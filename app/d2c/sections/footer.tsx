@@ -38,6 +38,7 @@ export default function HackFirstFooter() {
       scrollTo: "#booking",
       ease: "power3.out",
     });
+    window.fbq?.("track", "Contact", { content_name: "book_a_call" });
   };
   return (
     <footer className="relative w-full bg-[#0a0a0a] text-white overflow-hidden">

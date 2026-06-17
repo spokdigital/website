@@ -44,10 +44,8 @@ const stats = [
 ];
 
 const Whatwedobest = () => {
- 
-
   return (
-    <div  className="bg-[#0A0A0A] py-24 px-6">
+    <div className="bg-[#0A0A0A] py-24 px-6">
       <div className="max-w-6xl mx-auto">
         {/* ── HEADING ── */}
         <div className="gsap-reveal  translate-y-10 text-center mb-20">

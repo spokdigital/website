@@ -46,6 +46,7 @@ export default function ComparisonTable() {
       scrollTo: "#booking",
       ease: "power3.out",
     });
+    window.fbq?.("track", "Contact", { content_name: "book_a_call" });
   };
   return (
     <div className="flex items-center justify-center px-4 sm:px-6 pt-1 pb-10">

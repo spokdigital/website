@@ -54,6 +54,7 @@ export default function TrustSection() {
       scrollTo: "#booking",
       ease: "power3.out",
     });
+    window.fbq?.("track", "Contact", { content_name: "book_a_call" });
   };
   return (
     <section className="relative pt-16 overflow-hidden font-serif">

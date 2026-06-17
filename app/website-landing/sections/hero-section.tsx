@@ -44,6 +44,7 @@ const HeroSection = () => {
       scrollTo: "#pricing",
       ease: "power3.out",
     });
+    window.fbq?.("track", "Contact", { content_name: "book_a_call" });
   };
 
   return (

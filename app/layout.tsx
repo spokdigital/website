@@ -20,6 +20,7 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&f[]=synonym@200,300,400,500,600,700&f[]=spline-sans@300,400,500,600,700&f[]=cabinet-grotesk@100,200,300,400,500,700,800,900&f[]Cormorant:ital,wght@0,300..700;1,300..700&display=swap"
           rel="stylesheet"
         ></link>
+        
       </head>
 
       <body className={`antialiased`}>
