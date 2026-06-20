@@ -49,6 +49,18 @@ const PROJECTS = [
   },
   {
     index: "04",
+    title: "Opto Watch Co.",
+    category: "Luxury Watch Accessories — E-Commerce",
+    image: "/landing/d2c/projects/2.jpg",
+    link: "https://optowatchco.com/",
+    spend: "92,000",
+    multiplier: "9.2x",
+    revenue: "76,26,000",
+    description:
+    "Dubai-born watch strap brand built for serious collectors — offering alligator, shell cordovan, FKM rubber, and sailcloth straps with worldwide DHL shipping. We scaled their paid acquisition across Meta and Google, targeting niche watch enthusiast communities globally and turning a passion-led brand into a recognised international name.",
+  },
+  {
+    index: "05",
     title: "Billionaire Mansions",
     category: "Luxury Furniture & Interior Design",
     image: "/landing/d2c/projects/1.jpg",
@@ -58,18 +70,6 @@ const PROJECTS = [
     revenue: "106,250",
     description:
       "Dubai-based luxury interior brand specialising in bespoke marble furniture, custom bedroom suites, and full home renovations. We drove high-intent traffic to statement collections — from Armani marble dining tables to custom kitchen islands — growing their Shopify store into a destination for premium UAE homeowners.",
-  },
-  {
-    index: "05",
-    title: "Opto Watch Co.",
-    category: "Luxury Watch Accessories — E-Commerce",
-    image: "/landing/d2c/projects/2.jpg",
-    link: "https://optowatchco.com/",
-    spend: "92,000",
-    multiplier: "9.2x",
-    revenue: "76,26,000",
-    description:
-      "Dubai-born watch strap brand built for serious collectors — offering alligator, shell cordovan, FKM rubber, and sailcloth straps with worldwide DHL shipping. We scaled their paid acquisition across Meta and Google, targeting niche watch enthusiast communities globally and turning a passion-led brand into a recognised international name.",
   },
 ];
 
