@@ -13,30 +13,6 @@ import {
 const PROJECTS = [
   {
     index: "01",
-    title: "Billionaire Mansions",
-    category: "Luxury Furniture & Interior Design",
-    image: "/landing/d2c/projects/1.jpg",
-    link: "https://www.billionaire-mansions.com/",
-    spend: "12,500",
-    multiplier: "8.6x",
-    revenue: "106,250",
-    description:
-      "Dubai-based luxury interior brand specialising in bespoke marble furniture, custom bedroom suites, and full home renovations. We drove high-intent traffic to statement collections — from Armani marble dining tables to custom kitchen islands — growing their Shopify store into a destination for premium UAE homeowners.",
-  },
-  {
-    index: "02",
-    title: "Opto Watch Co.",
-    category: "Luxury Watch Accessories — E-Commerce",
-    image: "/landing/d2c/projects/2.jpg",
-    link: "https://optowatchco.com/",
-    spend: "92,000",
-    multiplier: "9.2x",
-    revenue: "76,26,000",
-    description:
-      "Dubai-born watch strap brand built for serious collectors — offering alligator, shell cordovan, FKM rubber, and sailcloth straps with worldwide DHL shipping. We scaled their paid acquisition across Meta and Google, targeting niche watch enthusiast communities globally and turning a passion-led brand into a recognised international name.",
-  },
-  {
-    index: "03",
     title: "Teeser",
     category: "Fashion & Apparel — D2C",
     image: "/landing/d2c/projects/3.jpg",
@@ -48,11 +24,11 @@ const PROJECTS = [
       "UAE's go-to graphic tee brand for pop culture, nostalgia, and custom printing — serving men, women, and kids with oversized fits, official licensed merch, and made-to-order designs. We built a full-funnel paid social strategy on TikTok and Instagram that matched their bold brand voice, driving consistent orders and repeat buyers across the Emirates.",
   },
   {
-    index: "04",
-    title: "Noir",
+    index: "02",
+    title: "Noir Perfumes",
     category: "Luxury Perfume & Fragrance — D2C",
     image: "/landing/d2c/projects/4.jpeg",
-    link: "https://noirperfumes.com/",
+    link: "https://noirperfumes.com",
     spend: "18,000",
     multiplier: "4.8x",
     revenue: "1,15,200",
@@ -60,16 +36,40 @@ const PROJECTS = [
       "A UAE-based luxury fragrance house crafting bold, oriental scents inspired by the region's rich oud heritage. We built a targeted paid social strategy across Meta and TikTok, connecting Noir's dark, sophisticated identity with fragrance enthusiasts across the Emirates and beyond.",
   },
   {
-    index: "05",
-    title: "Oasis",
+    index: "03",
+    title: "Perfume Oasis",
     category: "Luxury Perfume & Fragrance — D2C",
     image: "/landing/d2c/projects/5.jpeg",
-    link: "http://perfumeoasis.ae/",
+    link: "https://perfumeoasis.ae",
     spend: "18,000",
     multiplier: "6.4x",
     revenue: "1,15,200",
     description:
       "A UAE perfume brand bottling the essence of desert blooms and fresh citrus into everyday luxury. We scaled their D2C presence through full-funnel paid advertising on Instagram and Google, turning first-time visitors into loyal scent seekers across the GCC.",
+  },
+  {
+    index: "04",
+    title: "Billionaire Mansions",
+    category: "Luxury Furniture & Interior Design",
+    image: "/landing/d2c/projects/1.jpg",
+    link: "https://www.billionaire-mansions.com/",
+    spend: "12,500",
+    multiplier: "8.6x",
+    revenue: "106,250",
+    description:
+      "Dubai-based luxury interior brand specialising in bespoke marble furniture, custom bedroom suites, and full home renovations. We drove high-intent traffic to statement collections — from Armani marble dining tables to custom kitchen islands — growing their Shopify store into a destination for premium UAE homeowners.",
+  },
+  {
+    index: "05",
+    title: "Opto Watch Co.",
+    category: "Luxury Watch Accessories — E-Commerce",
+    image: "/landing/d2c/projects/2.jpg",
+    link: "https://optowatchco.com/",
+    spend: "92,000",
+    multiplier: "9.2x",
+    revenue: "76,26,000",
+    description:
+      "Dubai-born watch strap brand built for serious collectors — offering alligator, shell cordovan, FKM rubber, and sailcloth straps with worldwide DHL shipping. We scaled their paid acquisition across Meta and Google, targeting niche watch enthusiast communities globally and turning a passion-led brand into a recognised international name.",
   },
 ];
 
