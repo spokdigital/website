@@ -1,8 +1,23 @@
 "use client";
 
 import { InlineWidget } from "react-calendly";
-
+import { useEffect } from "react";
 export default function BookCallSection() {
+  useEffect(() => {
+    function handleMessage(e: MessageEvent) {
+      if (
+        e.origin.includes("calendly.com") &&
+        e.data?.event === "calendly.event_scheduled"
+      ) {
+        window.fbq?.("track", "Schedule", {
+          content_name: "book_a_call",
+        });
+      }
+    }
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
   return (
     <section
       id={"booking"}
