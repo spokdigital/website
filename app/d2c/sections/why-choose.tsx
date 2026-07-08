@@ -42,7 +42,7 @@ export default function WhyChooseMasterclassSection() {
     {
       title: "Scale What's Working. Kill What Isn't.",
       description:
-        "Finding what works is step one. Most brands stop there. We dig into your funnel data every single week — ruthlessly cutting losing creatives, doubling winning audiences, and compounding your growth month over month. This is how ₹20L months become ₹1Cr months.",
+        "Finding what works is step one. Most brands stop there. We dig into your funnel data every single week — ruthlessly cutting losing creatives, doubling winning audiences, and compounding your growth month over month. This is how ₹20L a month become ₹1Cr a month.",
       image:
         "https://images.unsplash.com/photo-1771732267119-3eb910f8be9c?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       gradient: "from-black/50",

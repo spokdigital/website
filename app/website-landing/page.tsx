@@ -9,8 +9,7 @@ import ComparisonSection from "./sections/comparison";
 import ProjectsHorizontalScroll from "./sections/projects";
 import Testimonial from "./sections/testimonial";
 import PricingSection from "./sections/packages";
-import CTASection from "./sections/cta";
-import BookCallSection from "./sections/form";
+import BookCallSection from "../d2c/sections/form";
 import HackFirstFooter from "./sections/footer";
 
 const page = () => {

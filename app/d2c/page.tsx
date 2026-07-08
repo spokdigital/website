@@ -1,15 +1,11 @@
 import React from "react";
-import Header from "./sections/header";
 import HeroSection from "./sections/hero-section";
 import Graphics from "./sections/graphics-section";
 import TrustSection from "./sections/TrustSection";
 import VideoCarousel from "./sections/video-Carousel";
 import WhyChooseMasterclassSection from "./sections/why-choose";
-import ComparisonSection from "./sections/comparison";
 import ProjectsHorizontalScroll from "./sections/projects";
-import Testimonial from "./sections/testimonial";
-import PricingSection from "./sections/packages";
-import CTASection from "./sections/cta";
+
 import BookCallSection from "./sections/form";
 import HackFirstFooter from "./sections/footer";
 
