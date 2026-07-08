@@ -265,7 +265,7 @@ export default async function BlogPostPage({
 
               {/* Body */}
               <article
-                className="pt-8 prose-sm md:prose-base pb-16 prose prose-neutral dark:prose-invert max-w-none
+                className="pt-8 text-black! prose-sm md:prose-base pb-16 prose prose-neutral dark:prose-invert max-w-none
                   prose-p:text-foreground-muted prose-p:leading-relaxed
                   prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                   prose-strong:text-foreground
