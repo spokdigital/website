@@ -60,7 +60,7 @@ const TechStack = () => {
   return (
     <div ref={ref} className="w-full overflow-hidden py-16 bg-black ">
       <div className="">
-        <motion.article className="container flex justify-center lg:justify-start items-center gap-3 mx-auto z-[50] flex-wrap">
+        <motion.article className="container flex justify-center lg:justify-start items-center gap-3 mx-auto z-50 flex-wrap">
           {["Supercharged", "by", "the", "Right", "Tools"].map(
             (text, index) => (
               <motion.h1
@@ -73,9 +73,9 @@ const TechStack = () => {
                 viewport={{ once: true }}
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className={`text-5xl lg:text-6xl leading-[100%] text-red-100 font-Grostek font-[600] tracking-tight ${
+                className={`text-5xl lg:text-6xl leading-[100%] text-red-100 font-Grostek font-semibold tracking-tight ${
                   text.toLowerCase() === "supercharged" &&
-                  "bg-gradient-to-r from-blue-600 to-pink-500 bg-clip-text text-transparent"
+                  "bg-linear-to-r from-blue-600 to-pink-500 bg-clip-text text-transparent"
                 }`}
               >
                 {text}
@@ -116,7 +116,7 @@ const TechStack = () => {
                       animate={{ y: 0 }}
                       exit={{ y: 50 }}
                       transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
-                      className="absolute w-full text-center capitalize font-SplineSans font-[500] left-0 rounded-t-xl -top-8 bg-white/20 backdrop-filter backdrop-blur-lg text-red-100 px-2 pb-4 pt-2"
+                      className="absolute w-full text-center capitalize font-SplineSans font-medium left-0 rounded-t-xl -top-8 bg-white/20 backdrop-filter backdrop-blur-lg text-red-100 px-2 pb-4 pt-2"
                     >
                       {src.substring(
                         src.lastIndexOf("/") + 1,
@@ -161,7 +161,7 @@ const TechStack = () => {
                       animate={{ y: 0 }}
                       exit={{ y: -50 }}
                       transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
-                      className="absolute w-full text-center capitalize font-SplineSans font-[500] left-0 rounded-b-xl -bottom-8 bg-white/20 backdrop-filter backdrop-blur-lg text-red-100 px-2 pt-4 pb-2"
+                      className="absolute w-full text-center capitalize font-SplineSans font-medium left-0 rounded-b-xl -bottom-8 bg-white/20 backdrop-filter backdrop-blur-lg text-red-100 px-2 pt-4 pb-2"
                     >
                       {src.substring(
                         src.lastIndexOf("/") + 1,

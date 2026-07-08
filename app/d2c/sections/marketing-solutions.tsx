@@ -47,7 +47,7 @@ export default function MarketingSolutions() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start mb-20">
-          <h1 className="text-5xl lg:text-6xl font-[500] text-gray-100 font-Cormorant leading-tighter">
+          <h1 className="text-5xl lg:text-6xl font-medium text-gray-100 font-Cormorant leading-tighter">
             Solutions Tailored for
             <br />
             <span className="font-Grostek text-[#FF4040]">Your Growth</span>

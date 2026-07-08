@@ -73,7 +73,7 @@ export default function VideoCarousel() {
     <section className="w-full">
       <div className="container mt-20">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-4xl lg:text-5xl font-[500] font-Cormorant tracking-tight">
+          <h2 className="text-4xl lg:text-5xl font-medium font-Cormorant tracking-tight">
             Our Best UGC Content
           </h2>
           <div className="flex gap-2">
@@ -112,7 +112,7 @@ export default function VideoCarousel() {
                     <video
                       src={video.src}
                       poster={video.thumbnail}
-                      className="w-full aspect-[2/3] object-cover"
+                      className="w-full aspect-2/3 object-cover"
                       preload="metadata"
                       onMouseEnter={(e) => {
                         const vid = e.currentTarget;

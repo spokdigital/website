@@ -88,7 +88,7 @@ export default function WhyChooseMasterclassSection() {
               <span className="absolute font-Satoshi top-0 text-7xl z-10 text-black/55 -translate-y-1/2 left-4 font-bold">
                 {card.id + 1}
               </span>
-              <Card className="rounded-2xl relative bg-transparent! border-0 shadow-sm h-full  ">
+              <Card className="rounded-2xl relative bg-transparent! border-0 shadow-xs h-full  ">
                 <CardContent className="p-8  flex flex-col justify-between h-full">
                   <h3 className="text-2xl lg:text-2xl font-Satoshi font-semibold text-gray-50">
                     {card.title}

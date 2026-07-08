@@ -38,7 +38,7 @@ const Footer = () => {
       className="relative overflow-hidden bg-[#0a0a0a] w-full pt-16 pb-6"
     >
       {/* Top border glow */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-600/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-red-600/50 to-transparent" />
 
       {/* Ambient glow — radial gradient, no blur */}
       <div
@@ -55,7 +55,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="max-w-sm">
             <motion.div {...fadeUp(0)}>
-              <Logo source="/spok-white.png" className="!w-[160px] mb-5" />
+              <Logo source="/spok-white.png" className="w-[160px]! mb-5" />
             </motion.div>
 
             <motion.p
@@ -75,7 +75,7 @@ const Footer = () => {
               <div className="relative w-full max-w-xs">
                 <input
                   placeholder="your@email.com"
-                  className="w-full text-slate-100 placeholder:text-slate-600 text-sm pl-4 pr-14 py-3 bg-white/5 border border-white/10 rounded-full focus:outline-none focus:border-red-600/60 transition-colors duration-200"
+                  className="w-full text-slate-100 placeholder:text-slate-600 text-sm pl-4 pr-14 py-3 bg-white/5 border border-white/10 rounded-full focus:outline-hidden focus:border-red-600/60 transition-colors duration-200"
                 />
                 <button className="absolute top-1/2 right-1 -translate-y-1/2 h-9 w-9 rounded-full bg-red-600 hover:bg-red-500 flex items-center justify-center transition-colors duration-200">
                   <ArrowUpRight size={16} className="text-white" />
@@ -169,7 +169,7 @@ const Footer = () => {
                 </div>
               </div>
 
-              <div className="relative w-full h-[180px] rounded-xl overflow-hidden border border-white/[0.08]">
+              <div className="relative w-full h-[180px] rounded-xl overflow-hidden border border-white/8">
                 <iframe
                   src={
                     activeLocation === "Dubai"
@@ -182,7 +182,7 @@ const Footer = () => {
                   referrerPolicy="no-referrer-when-downgrade"
                 />
                 <div className="absolute bottom-2 right-2">
-                  <span className="flex items-center gap-1 bg-black/80 border border-red-600/40 rounded px-2 py-1 text-[10px] text-red-300 backdrop-blur-sm">
+                  <span className="flex items-center gap-1 bg-black/80 border border-red-600/40 rounded px-2 py-1 text-[10px] text-red-300 backdrop-blur-xs">
                     <MapPin className="w-2.5 h-2.5" />
                     {activeLocation === "Dubai"
                       ? "Business Bay, Dubai"
@@ -195,7 +195,7 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-white/[0.06] mb-5" />
+        <div className="h-px bg-white/6 mb-5" />
 
         {/* Bottom Bar */}
         <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
@@ -228,7 +228,7 @@ const Footer = () => {
         style={{ willChange: "opacity" }}
         className="overflow-hidden mt-10"
       >
-        <Ribbon className="!text-red-50 " />
+        <Ribbon className="text-red-50! " />
       </motion.div>
     </div>
   ) : null;

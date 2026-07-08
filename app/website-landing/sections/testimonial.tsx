@@ -70,7 +70,7 @@ function VideoCard({
         <source src={src} type="video/mp4" />
       </video>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
 
       <div className="absolute top-[18px] left-5 text-[11px] text-white/35 tracking-[0.15em]">
         {String(index + 1).padStart(2, "0")}
@@ -87,10 +87,10 @@ function VideoCard({
       </div>
 
       <div
-        className={`absolute left-0 right-0 px-6 text-center transition-[opacity,transform] duration-[400ms] ease-in-out ${
+        className={`absolute left-0 right-0 px-6 text-center transition-[opacity,transform] duration-400 ease-in-out ${
           playing
             ? "opacity-100 -translate-y-1/2 top-1/2 delay-100"
-            : "opacity-0 top-1/2 -translate-y-[40%]"
+            : "opacity-0 top-1/2 translate-y-[-40%]"
         }`}
       >
         <p className="font-[Cormorant,Georgia,serif] text-[22px] italic font-light text-white/95 leading-snug">
@@ -100,7 +100,7 @@ function VideoCard({
 
       <div className="absolute bottom-0 left-0 right-0 px-5 pb-[22px] pt-5">
         <div
-          className={`h-px bg-red-300 mb-2.5 transition-[width] duration-[400ms] ease-in-out ${
+          className={`h-px bg-red-300 mb-2.5 transition-[width] duration-400 ease-in-out ${
             playing ? "w-10" : "w-5"
           }`}
         />
@@ -194,7 +194,7 @@ export default function Testimonial() {
         </div>
 
         {/* Progress bar */}
-        <div className="flex-1 h-px bg-white/[0.08] relative overflow-hidden rounded-full">
+        <div className="flex-1 h-px bg-white/8 relative overflow-hidden rounded-full">
           <div
             className="absolute left-0 top-0 h-full bg-primary rounded-full transition-all duration-300 ease-out"
             style={{ width: `${progressPercent}%` }}

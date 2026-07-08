@@ -27,7 +27,7 @@ const Portfolio = () => {
   return (
     <section className="w-full bg-[#121212] py-20 px-6">
       <div className="max-w-6xl mx-auto text-center">
-        <h1 className="text-3xl lg:text-5xl font-Grostek text-[#FCFBF8] font-[600] mb-4">
+        <h1 className="text-3xl lg:text-5xl font-Grostek text-[#FCFBF8] font-semibold mb-4">
           Proof That Speaks for Itself
         </h1>
         <p className="text-[#FCFBF8] mb-12 max-w-3xl mx-auto">
@@ -66,7 +66,7 @@ const Portfolio = () => {
       <AnimatePresence>
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center"
+            className="fixed inset-0 bg-black/90 z-100 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

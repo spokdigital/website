@@ -32,7 +32,7 @@ const HorizontalScrollCarousel = () => {
             viewport={{ once: true }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-[600] tracking-tight"
+            className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-semibold tracking-tight"
           >
             {text}
           </motion.h1>

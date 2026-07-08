@@ -160,7 +160,7 @@ const SliderForm: React.FC<SliderFormProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ ease: [0.19, 1, 0.22, 1], duration: 0.7 }}
-            className="fixed z-[999999999999]  flex px-2 justify-center lg:justify-end items-center top-0 left-0 w-screen h-screen bg-slate-50/30"
+            className="fixed z-999999999999  flex px-2 justify-center lg:justify-end items-center top-0 left-0 w-screen h-screen bg-slate-50/30"
           >
             <motion.div
               initial={{ x: "100%" }}
@@ -179,10 +179,10 @@ const SliderForm: React.FC<SliderFormProps> = ({
                 </button>
               </div>
 
-              <h2 className="text-4xl font-Synonym font-[500] ">
+              <h2 className="text-4xl font-Synonym font-medium ">
                 Have a Question?
               </h2>
-              <p className="font-SplineSans font-[300] mt-1 text-slate-800">
+              <p className="font-SplineSans font-light mt-1 text-slate-800">
                 Contact us today to see how we can help you find the right
                 solution for your financial needs.
               </p>
@@ -196,7 +196,7 @@ const SliderForm: React.FC<SliderFormProps> = ({
                   <input
                     name="fullName"
                     placeholder="Enter your full name"
-                    className="w-full font-[500] placeholder:text-slate-600 font-Grostek bg-slate-300 rounded-xl px-5 py-3"
+                    className="w-full font-medium placeholder:text-slate-600 font-Grostek bg-slate-300 rounded-xl px-5 py-3"
                     value={formData.fullName}
                     onChange={handleChange}
                   />
@@ -209,7 +209,7 @@ const SliderForm: React.FC<SliderFormProps> = ({
                   <input
                     name="phone"
                     placeholder="Enter Contact number"
-                    className="w-full font-[500] placeholder:text-slate-600 font-Grostek bg-slate-300 rounded-xl px-5 py-3"
+                    className="w-full font-medium placeholder:text-slate-600 font-Grostek bg-slate-300 rounded-xl px-5 py-3"
                     value={formData.phone}
                     onChange={handleChange}
                   />
@@ -222,7 +222,7 @@ const SliderForm: React.FC<SliderFormProps> = ({
                   <input
                     name="email"
                     placeholder="Enter your email"
-                    className="w-full font-[500] placeholder:text-slate-600 font-Grostek bg-slate-300 rounded-xl px-5 py-3"
+                    className="w-full font-medium placeholder:text-slate-600 font-Grostek bg-slate-300 rounded-xl px-5 py-3"
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -235,7 +235,7 @@ const SliderForm: React.FC<SliderFormProps> = ({
                   <textarea
                     name="message"
                     placeholder="Enter your message"
-                    className="w-full resize-none h-32 font-[500] placeholder:text-slate-600 font-Grostek bg-slate-300 rounded-xl px-5 py-3"
+                    className="w-full resize-none h-32 font-medium placeholder:text-slate-600 font-Grostek bg-slate-300 rounded-xl px-5 py-3"
                     value={formData.message}
                     onChange={handleChange}
                   />

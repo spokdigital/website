@@ -303,7 +303,7 @@ const Graphics = () => {
       window.removeEventListener("scroll", onScroll, {
         capture: true,
       } as EventListenerOptions);
-      window.removeEventListener("blur", onBlur);
+      window.removeEventListener("blur-sm", onBlur);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       track.removeEventListener("touchstart", onTouchStart);
       track.removeEventListener("touchmove", onTouchMove);
@@ -314,7 +314,7 @@ const Graphics = () => {
   const cursorEl = (
     <div
       ref={cursorRef}
-      className="pointer-events-none fixed z-[9999] flex items-center justify-center rounded-full bg-white"
+      className="pointer-events-none fixed z-9999 flex items-center justify-center rounded-full bg-white"
       style={{
         width: 88,
         height: 88,
@@ -367,7 +367,7 @@ const Graphics = () => {
           {allSlides.map((slide, idx) => (
             <div
               key={`${slide.id}-${idx}`}
-              className="relative will-change-transform flex-shrink-0 overflow-hidden rounded-sm bg-neutral-900 group"
+              className="relative will-change-transform shrink-0 overflow-hidden rounded-sm bg-neutral-900 group"
               style={{ width: CARD_WIDTH, height: 500 }}
             >
               <Image

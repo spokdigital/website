@@ -37,7 +37,7 @@ const ToTop = () => {
     <AnimatePresence>
       {isBtnShown && (
         <motion.button
-          className="px-4 fixed z-[9999999999999] text-white mix-blend-difference hover:mix-blend-normal group w-40 h-10 font-Satoshi right-10 bottom-10 overflow-hidden py-2 bg-white/20 backdrop-filter backdrop-blur-lg rounded-full"
+          className="px-4 fixed z-9999999999999 text-white mix-blend-difference hover:mix-blend-normal group w-40 h-10 font-Satoshi right-10 bottom-10 overflow-hidden py-2 bg-white/20 backdrop-filter backdrop-blur-lg rounded-full"
           onClick={scrollToTop}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

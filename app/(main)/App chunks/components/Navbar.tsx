@@ -8,20 +8,20 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 const menu = [
-  { title: "Home", link: "/" },
   { title: "D2C Growth", link: "/d2c" },
   { title: "Business Accelerator", link: "/website-landing" },
   { title: "Services", link: "/services", hasSubmenu: true },
   { title: "Portfolio", link: "/Portfolio" },
+  { title: "Blogs", link: "/blogs" },
 ];
 
 const NavBar = () => {
   const path = usePathname();
   const renderPath = "/admin";
   return !path.includes(renderPath) ? (
-    <div className="HeadNavigation py-4 w-full absolute  top-0 left-0 z-[99999] ">
+    <div className="HeadNavigation py-4 w-full absolute  top-0 left-0 z-99999 ">
       <div
-        className={`flex justify-between items-center   ${path === "/d2c" || path === "/website-landing" ? "!max-w-[94%] mx-auto" : "container"}`}
+        className={`flex justify-between items-center   ${path === "/d2c" || path === "/website-landing" ? "max-w-[94%]! mx-auto" : "container"}`}
       >
         <motion.div
           initial={{ y: -200 }}
@@ -32,7 +32,7 @@ const NavBar = () => {
             ease: "easeInOut",
             duration: 1,
           }}
-          className=" relative z-[9999999]"
+          className=" relative z-9999999"
         >
           <Logo
             source={
@@ -47,7 +47,7 @@ const NavBar = () => {
                 ? "/spok-balck.png"
                 : "/spok-white.png"
             }
-            className="w-[110px] lg:!w-[190px]"
+            className="w-[110px] lg:w-[190px]!"
           />
         </motion.div>
         <motion.div
@@ -61,7 +61,7 @@ const NavBar = () => {
         <motion.div
           initial={{ y: -200 }}
           animate={{ y: 0 }}
-          className="hidden lg:flex lg:!w-[230px]  justify-end"
+          className="hidden lg:flex lg:w-[230px]!  justify-end"
           transition={{
             delay: 0.2,
             type: "linear",
@@ -79,8 +79,8 @@ const NavBar = () => {
                 path === "/About" ||
                 path === "/d2c" ||
                 path === "/website-landing"
-                  ? "!text-black"
-                  : "!text-white border-gray-50/80"
+                  ? "text-black!"
+                  : "text-white! border-gray-50/80"
               }`}
             >
               Contact us

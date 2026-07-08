@@ -46,7 +46,7 @@ export default function HackFirstFooter() {
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-red-600/10 blur-[120px]" />
 
       {/* Top accent line */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent" />
+      <div className="w-full h-px bg-linear-to-r from-transparent via-red-500/50 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-10">
         {/* CTA Banner */}
@@ -60,7 +60,7 @@ export default function HackFirstFooter() {
               <span className="text-primary/70">that performs.</span>
             </h2>
             <Link href={"https://clutch.co/profile/spokdigital"}>
-              <div className="inline-flex mt-5 items-center gap-3 bg-red-100 text-gray-800 px-5 py-2 rounded-full shadow-sm">
+              <div className="inline-flex mt-5 items-center gap-3 bg-red-100 text-gray-800 px-5 py-2 rounded-full shadow-xs">
                 {/* Stars */}
                 <div className="flex items-center gap-1 ">
                   {[...Array(5)].map((_, i) => (
@@ -159,7 +159,7 @@ export default function HackFirstFooter() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/[0.06] pt-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="border-t border-white/6 pt-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <span className="text-xs text-white/20">
             © {new Date().getFullYear()} spok digital. All rights reserved.
           </span>

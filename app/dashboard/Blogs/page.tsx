@@ -1,161 +1,230 @@
 "use client";
-import { Plus } from "lucide-react";
-import React, { useState, useEffect } from "react";
-import { motion } from "motion/react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Header from "./page-components/header";
+import { PencilSimpleIcon, PlusIcon, SpinnerIcon } from "@phosphor-icons/react";
+import { ConfirmDialog } from "./page-components/confirm-dialog";
+import FilterTabs from "./page-components/filter-tabs";
+import BlogList from "./page-components/blog-list";
+import BlogCards from "./page-components/blog-cards";
+import { cn } from "@/lib/utils";
+import PaginationEl from "@/app/components/PaginationEL";
 
-const BlogListPage = () => {
-  const router = useRouter();
-  const [isHovered, setIsHovered] = useState(false);
+export type BlogPost = {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  author: string | null;
+  category: string | null;
+  tags: string | null;
+  status: string;
+  coverImage: string | null;
+  publishedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+  body: string;
+};
 
-  interface Blog {
-    id: string;
-    title: string;
-    content: string;
-    image: string;
-    createdAt: string;
-    author: string;
-    category?: string;
-    slugTitle: string;
-  }
+type FilterType = "all" | "published" | "draft";
+type SortType = "newest" | "oldest" | "az";
+type ViewType = "list" | "grid";
 
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-  type BlogsResponse = {
-    blogs: Blog[];
-  };
+const LIMIT = 10;
+const DEBOUNCE_MS = 400;
+
+export default function BlogListPage() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [deletingId, setDeletingId] = useState<number | null>(null);
+  const [confirmPost, setConfirmPost] = useState<BlogPost | null>(null);
+
+  const [filter, setFilter] = useState<FilterType>("all");
+  const [sort, setSort] = useState<SortType>("newest");
+  const [search, setSearch] = useState(""); // input value (live)
+  const [debouncedSearch, setDebouncedSearch] = useState(""); // sent to API
+  const [blogView, setBlogView] = useState<ViewType>("list");
+
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [total, setTotal] = useState(0);
+  const [counts, setCounts] = useState({ all: 0, published: 0, draft: 0 });
+
+  // Debounce search input
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const res = await fetch("/api/blogs");
-        if (!res.ok) throw new Error("Failed to fetch blogs");
-        const data: BlogsResponse = await res.json();
-        setBlogs(data.blogs);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      }
-    };
+    const t = setTimeout(() => setDebouncedSearch(search.trim()), DEBOUNCE_MS);
+    return () => clearTimeout(t);
+  }, [search]);
 
-    fetchBlogs();
-  }, []);
-
-  const handleDeleteBlog = async (id: string) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this blog?",
-    );
-    if (!confirmDelete) return;
-
+  /* ── Fetch — no useCallback needed, runs via useEffect ── */
+  const fetchPosts = async (
+    pg: number,
+    f: FilterType,
+    s: SortType,
+    q: string,
+  ) => {
+    setLoading(true);
+    setError("");
     try {
-      const res = await fetch(`/api/blogs/${id}`, {
-        method: "DELETE",
+      const params = new URLSearchParams({
+        page: String(pg),
+        limit: String(LIMIT),
+        sort: s,
+        ...(f !== "all" && { status: f }),
+        ...(q && { search: q }),
       });
 
-      if (!res.ok) throw new Error("Failed to delete blog");
+      const res = await fetch(`/api/blog?${params}`);
+      if (!res.ok) throw new Error();
+      const data = await res.json();
 
-      // Remove from frontend state
-      setBlogs((prev) => prev.filter((blog) => blog.id !== id));
-    } catch (err) {
-      console.error("Error deleting blog:", err);
-      alert("Failed to delete blog. Please try again.");
+      setPosts(data.posts);
+      setTotalPages(data.pagination.totalPages);
+      setTotal(data.pagination.total);
+      setCounts(data.counts);
+    } catch {
+      setError("Could not load posts.");
+    } finally {
+      setLoading(false);
     }
   };
 
+  // Reset to page 1 and refetch when filters/search/sort change
+  useEffect(() => {
+    setPage(1);
+    fetchPosts(1, filter, sort, debouncedSearch);
+  }, [filter, sort, debouncedSearch]);
+
+  // Fetch when page changes
+  useEffect(() => {
+    if (page > 1) fetchPosts(page, filter, sort, debouncedSearch);
+  }, [page]);
+
+  /* ── Delete ── */
+  const handleDelete = async (post: BlogPost) => {
+    setDeletingId(post.id);
+    setConfirmPost(null);
+    try {
+      const res = await fetch(`/api/blog/${post.id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error();
+      await fetchPosts(page, filter, sort, debouncedSearch);
+    } catch {
+      setError("Failed to delete the post. Please try again.");
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
+  const sharedProps = { deletingId, setConfirmPost };
+
   return (
-    <div>
-      <div className="fixed bottom-5 right-5">
-        <motion.button
-          onClick={() => router.push("/dashboard/Blogs/add")}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          animate={{ width: isHovered ? "7.8rem" : "3rem" }}
-          className="h-12 group bg-primary hover:bg-primary/80 rounded-full flex justify-center items-center gap-2"
-        >
-          <Plus />
-          {isHovered && (
-            <motion.span
-              initial={{ opacity: 0, x: 10 }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                transition: { delay: 0.2, duration: 0.2 },
-              }}
-              exit={{ opacity: 0, x: 10 }}
+    <div className="min-h-screen bg-background">
+      {confirmPost && (
+        <ConfirmDialog
+          title={confirmPost.title}
+          onConfirm={() => handleDelete(confirmPost)}
+          onCancel={() => setConfirmPost(null)}
+        />
+      )}
+
+      <div className="container space-y-6">
+        <Header total={total} />
+
+        <FilterTabs
+          filter={filter}
+          setFilter={setFilter}
+          sort={sort}
+          setSort={setSort}
+          search={search}
+          setSearch={setSearch}
+          blogView={blogView}
+          setBlogView={setBlogView}
+          counts={counts}
+        />
+
+        {error && (
+          <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600 flex items-center justify-between">
+            {error}
+            <button
+              type="button"
+              onClick={() => fetchPosts(page, filter, sort, debouncedSearch)}
+              className="text-xs underline underline-offset-2"
             >
-              Add blog
-            </motion.span>
-          )}
-        </motion.button>
-      </div>
+              Retry
+            </button>
+          </div>
+        )}
 
-      <h1 className="text-2xl font-semibold mb-6">All Blogs</h1>
+        {loading && (
+          <div className="flex items-center justify-center py-20 text-foreground-muted">
+            <SpinnerIcon size={20} className="animate-spin mr-2" />
+            <span className="text-sm">Loading posts...</span>
+          </div>
+        )}
 
-      <div className="overflow-x-auto border rounded-lg shadow-sm">
-        <table className="min-w-full bg-white text-sm">
-          <thead className="bg-primary text-white">
-            <tr>
-              <th className="text-left px-6 py-3">Image</th>
-              <th className="text-left px-6 py-3">Title</th>
-              <th className="text-left px-6 py-3">Date</th>
-              <th className="text-left px-6 py-3">Category</th>
-              <th className="text-left px-6 py-3">Author</th>
-              <th className="text-left px-6 py-3">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {blogs.length > 0 ? (
-              blogs.map((blog) => (
-                <tr key={blog.id} className="border-t hover:bg-gray-50">
-                  <td className="px-6 py-4">
-                    <img
-                      src={`/api/uploads/${blog.image}`}
-                      alt={blog.title}
-                      className="w-16 h-16 object-cover rounded"
-                    />
-                  </td>
-                  <td className="px-6 py-4 font-medium">{blog.title}</td>
-                  <td className="px-6 py-4">
-                    {new Date(blog.id).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="inline-block px-2 py-1 text-xs rounded bg-red-100 text-red-900">
-                      {blog.category}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">{blog.author}</td>
-                  <td className="px-6 py-4">
-                    <div className="flex flex-wrap gap-2">
-                      <button
-                        onClick={() =>
-                          router.push(`/dashboard/Blogs/edit/${blog.slugTitle}`)
-                        }
-                        className="px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteBlog(blog.slugTitle)}
-                        className="px-3 py-1 text-xs font-medium text-white bg-red-600 hover:bg-red-700 rounded"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td
-                  colSpan={6}
-                  className="text-center text-lg p-6 text-slate-500"
-                >
-                  No Blogs found
-                </td>
-              </tr>
+        {!loading && posts.length === 0 && (
+          <div className="flex flex-col items-center justify-center py-20 text-center gap-3">
+            <div className="rounded-full bg-foreground/5 p-4">
+              <PencilSimpleIcon size={24} className="text-foreground-muted" />
+            </div>
+            <p className="text-sm font-medium text-foreground">
+              {filter === "all" && !search
+                ? "No posts yet"
+                : search
+                  ? `No results for "${search}"`
+                  : `No ${filter} posts`}
+            </p>
+            <p className="text-xs text-foreground-muted">
+              {filter === "all" && !search
+                ? "Create your first blog post to get started."
+                : "Try adjusting your filters or search term."}
+            </p>
+            {filter === "all" && !search && (
+              <Link href="/blog/new">
+                <Button size="sm" variant="secondary">
+                  Create post
+                </Button>
+              </Link>
             )}
-          </tbody>
-        </table>
+          </div>
+        )}
+
+        {!loading && posts.length > 0 && (
+          <div
+            className={cn(
+              blogView === "grid"
+                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+                : "overflow-hidden divide-y divide-border",
+            )}
+          >
+            {posts.map((post) =>
+              blogView === "grid" ? (
+                <BlogCards key={post.id} post={post} {...sharedProps} />
+              ) : (
+                <BlogList key={post.id} post={post} {...sharedProps} />
+              ),
+            )}
+          </div>
+        )}
+
+        {!loading && totalPages > 1 && (
+          <PaginationEl
+            page={page}
+            totalPages={totalPages}
+            total={total}
+            limit={LIMIT}
+            onPageChange={setPage}
+          />
+        )}
       </div>
+
+      <Link href="/blog/new" className="fixed bottom-5 right-5 z-20">
+        <Button className="flex items-center gap-1.5">
+          <PlusIcon size={15} /> New Post
+        </Button>
+      </Link>
     </div>
   );
-};
-
-export default BlogListPage;
+}

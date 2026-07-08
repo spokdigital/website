@@ -14,7 +14,7 @@ const Ribbon = ({
   return (
     <div style={{ rotate: `${rotate}deg` }}>
       <ScrollVelocityContainer
-        className={`font-display bg-primary  text-center lg:text-7xl text-4xl font-Satoshi ${className} font-bold tracking-[-0.02em] text-black drop-shadow-sm  `}
+        className={`font-display bg-primary  text-center lg:text-7xl text-4xl font-Satoshi ${className} font-bold tracking-[-0.02em] text-black drop-shadow-xs  `}
       >
         <ScrollVelocityRow
           baseVelocity={20}

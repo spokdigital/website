@@ -153,7 +153,7 @@ export function ProjectsCarousel() {
         </div>
 
         {/* Progress bar */}
-        <div className="flex-1 h-px bg-white/[0.08] relative overflow-hidden rounded-full">
+        <div className="flex-1 h-px bg-white/8 relative overflow-hidden rounded-full">
           <div
             className="absolute left-0 top-0 h-full bg-primary rounded-full transition-all duration-300 ease-out"
             style={{ width: `${progressPercent}%` }}
@@ -194,7 +194,7 @@ function ProjectCard({
   return (
     <Link href={link} className="block group h-full">
       <div
-        className="rounded-2xl overflow-hidden bg-[#141414] border border-white/[0.06]
+        className="rounded-2xl overflow-hidden bg-[#141414] border border-white/6
           shadow-[0_32px_80px_rgba(0,0,0,0.6)]
           transition-transform duration-500 ease-out group-hover:-translate-y-1.5
           flex flex-col"
@@ -208,7 +208,7 @@ function ProjectCard({
             className="w-full h-full object-cover transition-[transform,filter] duration-700 ease-out
               group-hover:scale-[1.03] brightness-75 group-hover:brightness-90"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#141414] via-transparent to-transparent" />
 
           <div className="absolute top-4 left-5">
             <span className="font-mono text-[11px] tracking-[0.2em] text-white/30">
@@ -217,7 +217,7 @@ function ProjectCard({
           </div>
 
           <div className="absolute top-4 right-5">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/10">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-xs border border-white/10">
               <span className="w-1 h-1 rounded-full bg-primary" />
               <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/50">
                 {category}
@@ -233,11 +233,11 @@ function ProjectCard({
         </div>
 
         {/* Body */}
-        <div className="flex-shrink-0 px-5 pt-4 pb-5">
+        <div className="shrink-0 px-5 pt-4 pb-5">
           <p className="text-white/40 text-[12px] sm:text-[13px] font-light leading-relaxed mb-4 line-clamp-2">
             {description}
           </p>
-          <div className="h-px bg-white/[0.06] mb-4" />
+          <div className="h-px bg-white/6 mb-4" />
           <div className="flex items-center justify-between">
             <div className="flex gap-5 sm:gap-8">
               <div>

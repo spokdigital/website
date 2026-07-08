@@ -45,7 +45,7 @@ export default function Marquee({
     <div
       {...props}
       className={cn(
-        "group flex overflow-hidden will-change-transform p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
+        "group flex overflow-hidden will-change-transform p-2 [--duration:40s] [--gap:1rem] gap-(--gap)",
         {
           "flex-row": !vertical,
           "flex-col": vertical,
@@ -59,7 +59,7 @@ export default function Marquee({
           <div
             key={i}
             className={cn(
-              "flex shrink-0 will-change-transform justify-around [gap:var(--gap)]",
+              "flex shrink-0 will-change-transform justify-around gap-(--gap)",
               {
                 "animate-marquee flex-row": !vertical,
                 "animate-marquee-vertical flex-col": vertical,

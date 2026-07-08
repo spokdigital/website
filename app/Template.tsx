@@ -19,7 +19,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     <AnimatePresence mode="wait">
       <div>
         {isLoading && (
-          <div className="fixed overflow-hidden top-0 left-0 transparent z-[999] w-screen h-screen">
+          <div className="fixed overflow-hidden top-0 left-0 transparent z-999 w-screen h-screen">
             <div className="w-full h-full grid grid-row-5 lg:grid-rows-1 lg:grid-cols-5">
               {[...Array(stairs)].map((_, index) => (
                 <motion.div

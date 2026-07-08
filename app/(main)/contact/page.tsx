@@ -150,7 +150,7 @@ const Page = () => {
             <div className="w-full  flex relative">
               <div
                 style={{ marginTop: `${height + 10}px` }}
-                className="container py-10 relative z-[99] h-auto"
+                className="container py-10 relative z-99 h-auto"
               >
                 <BreadCrumb />
                 <div className="mt-10">
@@ -168,7 +168,7 @@ const Page = () => {
                             viewport={{ once: true }}
                             initial={{ opacity: 0, y: 100 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-[600] tracking-tight break-words"
+                            className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-semibold tracking-tight wrap-break-word"
                           >
                             {text}
                           </motion.h1>
@@ -200,7 +200,7 @@ const Page = () => {
                               className="text-green-600"
                             />
                           </div>
-                          <p className="font-Synonym font-[500]">
+                          <p className="font-Synonym font-medium">
                             Understand more about pricing.
                           </p>
                         </motion.div>
@@ -216,7 +216,7 @@ const Page = () => {
                               className="text-green-600"
                             />
                           </div>
-                          <p className="font-Synonym font-[500]">
+                          <p className="font-Synonym font-medium">
                             Get a customized quote for your business.
                           </p>
                         </motion.div>
@@ -232,7 +232,7 @@ const Page = () => {
                               className="text-green-600"
                             />
                           </div>
-                          <p className="font-Synonym font-[500]">
+                          <p className="font-Synonym font-medium">
                             Discover the capabilities and get answer to your
                             questions.
                           </p>
@@ -241,12 +241,12 @@ const Page = () => {
                     </div>
                     <form onSubmit={handleSubmit}>
                       <motion.div className="w-full p-5 grid rounded-lg grid-cols-1 gap-4 bg-white/60 ">
-                        <p className="text-2xl font-SplineSans font-[500]">
+                        <p className="text-2xl font-SplineSans font-medium">
                           Get in Touch
                         </p>
                         <div className="grid w-full grid-cols-1 lg:grid-cols-2 gap-4">
                           <div className="w-full">
-                            <label className="font-Grostek text-lg font-[500]">
+                            <label className="font-Grostek text-lg font-medium">
                               First Name
                             </label>
                             <input
@@ -263,7 +263,7 @@ const Page = () => {
                             )}
                           </div>
                           <div className="w-full">
-                            <label className="font-Grostek text-lg font-[500]">
+                            <label className="font-Grostek text-lg font-medium">
                               Last Name
                             </label>
                             <input
@@ -282,7 +282,7 @@ const Page = () => {
                         </div>
                         <div className="grid w-full grid-cols-1 lg:grid-cols-2 gap-4">
                           <div className="w-full">
-                            <label className="font-Grostek text-lg font-[500]">
+                            <label className="font-Grostek text-lg font-medium">
                               Email
                             </label>
                             <input
@@ -299,7 +299,7 @@ const Page = () => {
                             )}
                           </div>
                           <div className="w-full">
-                            <label className="font-Grostek text-lg font-[500]">
+                            <label className="font-Grostek text-lg font-medium">
                               Phone
                             </label>
                             <input
@@ -319,7 +319,7 @@ const Page = () => {
                         </div>
 
                         <div className="w-full">
-                          <label className="font-Grostek text-lg font-[500] ">
+                          <label className="font-Grostek text-lg font-medium ">
                             Message
                           </label>
                           <textarea

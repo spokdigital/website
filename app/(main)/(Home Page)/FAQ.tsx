@@ -55,11 +55,11 @@ export default function FAQSection() {
       <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-16 items-start">
         {/* LEFT SIDE */}
         <div>
-          <h2 className="text-4xl lg:text-5xl font-Cormorant font-[500] text-gray-100 leading-tight">
+          <h2 className="text-4xl lg:text-5xl font-Cormorant font-medium text-gray-100 leading-tight">
             Frequently asked <br /> questions
           </h2>
 
-          <div className="w-[80%] h-[1px] bg-white/20 my-6" />
+          <div className="w-[80%] h-px bg-white/20 my-6" />
 
           <p className="text-gray-400 max-w-sm">
             Can't find the answer you're looking for? We're here to help.
@@ -80,8 +80,8 @@ export default function FAQSection() {
           <Accordion>
             {faqs.map((faq) => (
               <AccordionItem key={faq.id} value={faq.id}>
-                <div className="bg-white/5 backdrop-blur rounded-2xl px-6 border border-white/10 mb-4 last:mb-0">
-                  <AccordionHeader className="!text-gray-100 font-Grostek !text-lg font-medium py-5 px-0">
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl px-6 border border-white/10 mb-4 last:mb-0">
+                  <AccordionHeader className="text-gray-100! font-Grostek text-lg! font-medium py-5 px-0">
                     {faq.q}
                   </AccordionHeader>
                   <AccordionPanel>

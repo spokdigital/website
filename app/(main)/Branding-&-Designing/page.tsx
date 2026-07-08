@@ -353,7 +353,7 @@ const Page = () => {
     <motion.div className="  bg-white" ref={containerRef}>
       <SliderForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       <motion.div>
-        <div className="w-full h-screen overflow-hidden bg-gradient-to-tr from-blue-200 from-10% to-[#81C784] relative">
+        <div className="w-full h-screen overflow-hidden bg-linear-to-tr from-blue-200 from-10% to-[#81C784] relative">
           <div className="w-full h-full flex relative">
             <div className="absolute top-0 left-0 w-full h-full">
               <BackgroundGradientAnimation
@@ -364,14 +364,14 @@ const Page = () => {
 
             <div
               style={{ marginTop: `${height + 50}px` }}
-              className="container relative z-[99]"
+              className="container relative z-99"
             >
               <BreadCrumb />
               <div
                 style={{ height: `calc(100vh - ${height + 200}px)` }}
                 className="flex flex-col container relative items-center text-slate-100 justify-center"
               >
-                <motion.h1 className="text-center font-[600] text-slate-100 flex-wrap text-3xl xl:text-5xl  font-Grostek relative">
+                <motion.h1 className="text-center font-semibold text-slate-100 flex-wrap text-3xl xl:text-5xl  font-Grostek relative">
                   {para.split(" ").map((item, index) => (
                     <motion.span
                       key={index}
@@ -406,10 +406,10 @@ const Page = () => {
                 </motion.h1>
                 <button
                   onClick={() => setIsFormOpen(true)}
-                  className="group relative h-12 rounded-full bg-black px-5 font-Synonym font-[500]  text-neutral-50"
+                  className="group relative h-12 rounded-full bg-black px-5 font-Synonym font-medium  text-neutral-50"
                 >
                   <span className="relative inline-flex overflow-hidden">
-                    <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[130%] group-hover:skew-y-12 flex items-center gap-2">
+                    <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-130%] group-hover:skew-y-12 flex items-center gap-2">
                       Get Expert Help <ArrowUpRight />
                     </div>
                     <div className="absolute  translate-y-[134%] flex items-center gap-2 skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
@@ -424,7 +424,7 @@ const Page = () => {
       </motion.div>
 
       <div className="my-20">
-        <motion.article className="flex container justify-center lg:justify-start items-center gap-3 mx-auto z-[50] flex-wrap">
+        <motion.article className="flex container justify-center lg:justify-start items-center gap-3 mx-auto z-50 flex-wrap">
           {["Our", "Branding", "and", "Design", "Services", "includes"].map(
             (text, index) => (
               <motion.h1
@@ -437,9 +437,9 @@ const Page = () => {
                 viewport={{ once: true }}
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className={`text-5xl lg:text-6xl leading-[100%] text-black font-Grostek font-[600] tracking-tight ${
+                className={`text-5xl lg:text-6xl leading-[100%] text-black font-Grostek font-semibold tracking-tight ${
                   text.toLowerCase() === "supercharged" &&
-                  "bg-gradient-to-r from-blue-600 to-pink-500 bg-clip-text text-transparent"
+                  "bg-linear-to-r from-blue-600 to-pink-500 bg-clip-text text-transparent"
                 }`}
               >
                 {text}
@@ -484,7 +484,7 @@ const Page = () => {
       <div className="py-16 bg-[#121316]">
         <div className="container">
           <div>
-            <motion.article className="flex justify-center lg:justify-start items-center gap-3 mx-auto z-[50] flex-wrap">
+            <motion.article className="flex justify-center lg:justify-start items-center gap-3 mx-auto z-50 flex-wrap">
               {["Frequently", "Asked", "Questions"].map((text, index) => (
                 <motion.h1
                   key={index}
@@ -496,9 +496,9 @@ const Page = () => {
                   viewport={{ once: true }}
                   initial={{ opacity: 0, y: 100 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  className={`text-5xl lg:text-6xl leading-[100%] text-red-100 font-Grostek font-[600] tracking-tight ${
+                  className={`text-5xl lg:text-6xl leading-[100%] text-red-100 font-Grostek font-semibold tracking-tight ${
                     text.toLowerCase() === "supercharged" &&
-                    "bg-gradient-to-r from-blue-600 to-pink-500 bg-clip-text text-transparent"
+                    "bg-linear-to-r from-blue-600 to-pink-500 bg-clip-text text-transparent"
                   }`}
                 >
                   {text}
@@ -511,12 +511,12 @@ const Page = () => {
               <p className="text-slate-400 text-md font-Grostek">
                 Can&apos;t find what you are looking for?
               </p>
-              <h3 className="text-slate-100 text-2xl font-Grostek font-[500]">
+              <h3 className="text-slate-100 text-2xl font-Grostek font-medium">
                 We would like to chat with you.
               </h3>
               <div className="mt-3">
                 <Link href={"/contact"}>
-                  <button className="text-slate-950 px-5 rounded-full font-Grostek font-[500] py-2 bg-slate-200 hover:bg-slate-100">
+                  <button className="text-slate-950 px-5 rounded-full font-Grostek font-medium py-2 bg-slate-200 hover:bg-slate-100">
                     Contact us
                   </button>
                 </Link>
@@ -539,7 +539,7 @@ const Page = () => {
       </div>
 
       <section className="py-20  ">
-        <div className="container rounded-lg border border-red-200 shadow max-w-5xl py-20 relative overflow-hidden">
+        <div className="container rounded-lg border border-red-200 shadow-sm max-w-5xl py-20 relative overflow-hidden">
           <div className="absolute inset-0 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -575,7 +575,7 @@ const Page = () => {
             </svg>
           </div>
           <div className="relative z-10">
-            <h1 className="text-3xl font-[600] font-Grostek text-center lg:text-5xl">
+            <h1 className="text-3xl font-semibold font-Grostek text-center lg:text-5xl">
               Let`s Create Something Amazing Together
             </h1>
             <p className="text-center mt-2">

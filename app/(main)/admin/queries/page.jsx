@@ -187,7 +187,7 @@ const Queries = ({
                 <TableCell className="py-3">
                   <div className="flex items-center gap-2">
                     <div className="relative group cursor-pointer">
-                      <p className="hidden group-hover:block w-auto text-nowrap z-[9999] bg-slate-500 shadow-lg text-gray-100 rounded-full px-4 py-1 absolute bottom-full left-1/2 -translate-x-1/2">
+                      <p className="hidden group-hover:block w-auto text-nowrap z-9999 bg-slate-500 shadow-lg text-gray-100 rounded-full px-4 py-1 absolute bottom-full left-1/2 -translate-x-1/2">
                         Mark as read
                       </p>
                       {isQuerySubmitting && submitId == index ? (
@@ -221,7 +221,7 @@ const Queries = ({
                       )}
                     </div>
                     <div className="relative group cursor-pointer">
-                      <p className="hidden group-hover:block w-auto text-nowrap z-[9999] bg-red-500 shadow-lg text-gray-100 rounded-full px-4 py-1 absolute bottom-full left-1/2 -translate-x-1/2">
+                      <p className="hidden group-hover:block w-auto text-nowrap z-9999 bg-red-500 shadow-lg text-gray-100 rounded-full px-4 py-1 absolute bottom-full left-1/2 -translate-x-1/2">
                         Delete blog
                       </p>
                       <Trash className="text-red-500 text-xl relative" />

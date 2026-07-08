@@ -121,7 +121,7 @@ const Slider = () => {
             viewport={{ once: true }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-[600] tracking-tight"
+            className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-semibold tracking-tight"
           >
             {text}
           </motion.h1>
@@ -133,10 +133,10 @@ const Slider = () => {
           <>
             
             <ArrowLeft
-              className={`absolute cursor-pointer size-10 p-2 rounded-full z-[99999] top-1/2 -translate-y-1/2 left-0 ${
+              className={`absolute cursor-pointer size-10 p-2 rounded-full z-99999 top-1/2 -translate-y-1/2 left-0 ${
                 currentSlide === 0
                   ? "bg-gray-300 border-gray-400" // Gray when at the first slide
-                  : "bg-gradient-to-tr border-2 border-purple-300 from-green-300 to-blue-300" // Default style
+                  : "bg-linear-to-tr border-2 border-purple-300 from-green-300 to-blue-300" // Default style
               }`}
               onClick={(e) => {
                 e.stopPropagation();
@@ -145,10 +145,10 @@ const Slider = () => {
             />
 
             <ArrowRight
-              className={`absolute cursor-pointer size-10 p-2 rounded-full z-[99999] top-1/2 -translate-y-1/2 right-0 ${
+              className={`absolute cursor-pointer size-10 p-2 rounded-full z-99999 top-1/2 -translate-y-1/2 right-0 ${
                 currentSlide === images.length - 1
                   ? "bg-gray-300 border-gray-400" // Gray when at the last slide
-                  : "bg-gradient-to-tr from-green-300 to-blue-300" // Default style
+                  : "bg-linear-to-tr from-green-300 to-blue-300" // Default style
               }`}
               onClick={(e) => {
                 e.stopPropagation();
@@ -179,7 +179,7 @@ const Slider = () => {
                   >
                     <div className="relative">
                       <div className="">
-                        <motion.div className="relative overflow-hidden w-full aspect-[3/4] ">
+                        <motion.div className="relative overflow-hidden w-full aspect-3/4 ">
                           <motion.img
                             src={image.image}
                             ref={(el) => {
@@ -194,7 +194,7 @@ const Slider = () => {
                       </div>
 
                       <div className="absolute top-1/2 left-1/2 flex justify-center w-full -translate-x-1/2 -translate-y-1/2 text-slate-50">
-                        <p className="font-[600] font-Grostek text-md lg:text-xl p-3 bg-white/50 text-slate-950 shadow-lg rounded-lg">
+                        <p className="font-semibold font-Grostek text-md lg:text-xl p-3 bg-white/50 text-slate-950 shadow-lg rounded-lg">
                           {image.name}
                         </p>
                       </div>
@@ -207,11 +207,11 @@ const Slider = () => {
                       >
                         <AuroraBackground>
                           <div className="relative px-5 py-6">
-                            <h2 className="font-Grostek text-slate-950 text-start text-lg lg:text-xl xl:text-2xl  font-[600]">
+                            <h2 className="font-Grostek text-slate-950 text-start text-lg lg:text-xl xl:text-2xl  font-semibold">
                               {image.name}
                             </h2>
                             <motion.div className=" mt-1">
-                              <p className="font-[300] font-Synonym text-black text-lg lg:text-sm xl:text-xl">
+                              <p className="font-light font-Synonym text-black text-lg lg:text-sm xl:text-xl">
                                 {image.text}
                               </p>
                             </motion.div>

@@ -73,7 +73,7 @@ export default function TrustSection() {
             <em className="text-red-500 not-italic">and Real</em> Results
           </h2>
 
-          <div className="w-12 h-[2px] bg-gradient-to-r from-primary to-primary mx-auto mt-5" />
+          <div className="w-12 h-[2px] bg-linear-to-r from-primary to-primary mx-auto mt-5" />
         </div>
 
         {/* Case Studies */}

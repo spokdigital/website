@@ -94,7 +94,7 @@ export default function LogoMarquee() {
         {ITEMS.map((logo, i) => (
           <div
             key={i}
-            className="flex-shrink-0 w-14 h-14 rounded-2xl overflow-hidden bg-white shadow-sm flex items-center justify-center"
+            className="shrink-0 w-14 h-14 rounded-2xl overflow-hidden bg-white shadow-xs flex items-center justify-center"
           >
             <Image
               src={logo.src}

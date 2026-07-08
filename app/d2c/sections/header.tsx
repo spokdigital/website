@@ -15,8 +15,8 @@ const Header = () => {
     });
   };
   return (
-    <div className="!max-w-[94%] mx-auto py-3 flex justify-between items-center ">
-      <Logo source="/spok-balck.png" className="!w-[220px]" />
+    <div className="max-w-[94%]! mx-auto py-3 flex justify-between items-center ">
+      <Logo source="/spok-balck.png" className="w-[220px]!" />
 
       <button
         onClick={scrollToBooking}

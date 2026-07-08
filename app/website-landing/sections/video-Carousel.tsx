@@ -88,12 +88,12 @@ function VideoCard({ slide }: { slide: (typeof slides)[number] }) {
         <source src={slide.image} type="video/mp4" />
       </video>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/40" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/35 via-transparent to-transparent" />
 
       {/* Play indicator — fades out on hover */}
       <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 pointer-events-none">
-        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
+        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-xs border border-white/30 flex items-center justify-center">
           <svg
             className="w-5 h-5 text-white translate-x-0.5"
             fill="currentColor"

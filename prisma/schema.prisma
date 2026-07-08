@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model BlogPost {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  excerpt     String?
+  body        String
+  author      String?
+  category    String?
+  tags        String?  // stored as comma-separated string
+  status      String   @default("draft") // "draft" | "published"
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Images — stored as file paths relative to /public/uploads/
+  coverImage  String?
+  ogImage     String?
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  metaKeywords    String?
+  canonicalUrl    String?
+  noIndex         Boolean  @default(false)
+  focusKeyword    String?
+
+  // Open Graph
+  ogTitle       String?
+  ogDescription String?
+
+  // Schema.org
+  schemaType  String  @default("BlogPosting")
+}

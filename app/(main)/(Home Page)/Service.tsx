@@ -51,7 +51,7 @@ const Service = () => {
   return (
     <div className="pt-20">
       <div className="container">
-        <h1 className=" text-5xl text-black text-center mb-8 lg:mb-12 lg:text-6xl font-Cormorant font-[500]">
+        <h1 className=" text-5xl text-black text-center mb-8 lg:mb-12 lg:text-6xl font-Cormorant font-medium">
           Our Services
         </h1>
 
@@ -63,7 +63,7 @@ const Service = () => {
                 idx === 1 || idx === 2 ? "lg:col-span-2" : ""
               }`}
             >
-              <h2 className="text-2xl font-[600] text-white font-Grostek mb-4">
+              <h2 className="text-2xl font-semibold text-white font-Grostek mb-4">
                 {service.title}
               </h2>
 

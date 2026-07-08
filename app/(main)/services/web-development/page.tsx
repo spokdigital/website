@@ -37,14 +37,14 @@ function StatCard({ num, label }: { num: string; label: string }) {
   return (
     <div
       className="stat-card opacity-0 relative overflow-hidden rounded-2xl p-5
-                    bg-black/[.04] border border-black/[.07]
-                    backdrop-blur-sm group hover:border-primary/30 transition-colors duration-500"
+                    bg-black/4 border border-black/[.07]
+                    backdrop-blur-xs group hover:border-primary/30 transition-colors duration-500"
     >
       <div
         className="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-primary/10
                       blur-xl group-hover:bg-primary/20 transition-colors duration-500"
       />
-      <div className="font-Satoshi font-[600] text-4xl text-primary mb-1 relative">
+      <div className="font-Satoshi font-semibold text-4xl text-primary mb-1 relative">
         {num}
       </div>
       <div className="text-gray-800 text-xs relative">{label}</div>
@@ -61,8 +61,8 @@ function Card({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border border-black/[.02]
-                     bg-white shadow-sm backdrop-blur-sm hover:-translate-y-1.5
+      className={`relative overflow-hidden rounded-2xl border border-black/2
+                     bg-white shadow-xs backdrop-blur-xs hover:-translate-y-1.5
                      transition-all duration-300 group ${className}`}
     >
       {children}
@@ -284,7 +284,7 @@ export default function SocialMediaLanding() {
   ];
 
   const secHead =
-    "font-Cormorant text-[clamp(32px,5vw,64px)] font-[500] leading-none";
+    "font-Cormorant text-[clamp(32px,5vw,64px)] font-medium leading-none";
 
   return (
     <div className="font-body">
@@ -312,7 +312,7 @@ export default function SocialMediaLanding() {
               ref={badgeRef}
               className="opacity-0 inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full
                           text-xs font-medium tracking-wide
-                          bg-primary/[.08] border border-primary/25 text-primary
+                          bg-primary/8 border border-primary/25 text-primary
                           shadow-[0_0_24px_rgba(222,15,63,.15)]"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
@@ -357,8 +357,8 @@ export default function SocialMediaLanding() {
               <a
                 href="#"
                 className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm
-                          border border-white/[.12] text-gray-900/80
-                          hover:border-primary/50 hover:text-primary transition-all backdrop-blur-sm"
+                          border border-white/12 text-gray-900/80
+                          hover:border-primary/50 hover:text-primary transition-all backdrop-blur-xs"
               >
                 See Our Work <ChevronRight size={16} />
               </a>
@@ -395,7 +395,7 @@ export default function SocialMediaLanding() {
 
         <div className="reveal-up grid md:grid-cols-2 gap-4">
           {/* ── Graph 1: Lead Growth ── */}
-          <div className="relative rounded-2xl border border-black/[.07] bg-white/80 backdrop-blur-sm overflow-hidden p-6 md:p-8">
+          <div className="relative rounded-2xl border border-black/[.07] bg-white/80 backdrop-blur-xs overflow-hidden p-6 md:p-8">
             <p className="text-[11px] font-medium uppercase tracking-[.12em] text-gray-400 mb-1">
               Lead growth
             </p>
@@ -416,7 +416,7 @@ export default function SocialMediaLanding() {
             <div style={{ height: 220 }}>
               <LeadGrowthGraph />
             </div>
-            <div className="mt-5 grid grid-cols-2 gap-3 border-t border-black/[.06] pt-5">
+            <div className="mt-5 grid grid-cols-2 gap-3 border-t border-black/6 pt-5">
               {[
                 ["19×", "Lead increase at 12 months"],
                 ["Month 3", "Typical ad spend breakeven"],
@@ -434,7 +434,7 @@ export default function SocialMediaLanding() {
           </div>
 
           {/* ── Graph 2: Engagement Rate ── */}
-          <div className="relative rounded-2xl border border-black/[.07] bg-white/80 backdrop-blur-sm overflow-hidden p-6 md:p-8">
+          <div className="relative rounded-2xl border border-black/[.07] bg-white/80 backdrop-blur-xs overflow-hidden p-6 md:p-8">
             <p className="text-[11px] font-medium uppercase tracking-[.12em] text-gray-400 mb-1">
               Engagement rate
             </p>
@@ -455,7 +455,7 @@ export default function SocialMediaLanding() {
             <div style={{ height: 220 }}>
               <EngagementGraph />
             </div>
-            <div className="mt-5 grid grid-cols-2 gap-3 border-t border-black/[.06] pt-5">
+            <div className="mt-5 grid grid-cols-2 gap-3 border-t border-black/6 pt-5">
               {[
                 ["3.6×", "Above industry avg. engagement"],
                 ["8.4×", "Avg. content ROI at 6 months"],
@@ -503,7 +503,7 @@ export default function SocialMediaLanding() {
           ].map(({ title, desc, icon: Icon }) => (
             <Card key={title} className="p-7 relative group">
               {/* Top hover line */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Icon */}
               <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5">
@@ -532,12 +532,12 @@ export default function SocialMediaLanding() {
         <div className="reveal-stagger grid md:grid-cols-2 lg:grid-cols-4 gap-3">
           {howSteps.map((s) => (
             <Card key={s.title} className="p-6 ">
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <span className="absolute -top-3 -right-1 font-display text-[72px] leading-none text-black/[.04] select-none pointer-events-none group-hover:text-primary/[.07] transition-colors duration-500">
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <span className="absolute -top-3 -right-1 font-display text-[72px] leading-none text-black/4 select-none pointer-events-none group-hover:text-primary/[.07] transition-colors duration-500">
                 {s.num}
               </span>
               <div className="relative z-10">
-                <div className="w-10 h-10 rounded-xl bg-primary/[.08] border border-primary/20 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-gray-50 transition-all duration-300 group-hover:shadow-[0_0_24px_rgba(222,15,63,.4)]">
+                <div className="w-10 h-10 rounded-xl bg-primary/8 border border-primary/20 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-gray-50 transition-all duration-300 group-hover:shadow-[0_0_24px_rgba(222,15,63,.4)]">
                   {s.icon}
                 </div>
                 <h3 className="text-gray-900 font-medium mb-2 text-[15px]">
@@ -577,7 +577,7 @@ export default function SocialMediaLanding() {
                   >
                     <CheckCircle
                       size={14}
-                      className="text-primary flex-shrink-0 group-hover/item:scale-110 transition-transform group-hover:text-primary"
+                      className="text-primary shrink-0 group-hover/item:scale-110 transition-transform group-hover:text-primary"
                     />
                     {d}
                   </div>
@@ -593,16 +593,16 @@ export default function SocialMediaLanding() {
               <p className="text-gray-300 text-[11px] font-medium uppercase tracking-[.18em] mb-1">
                 Outcomes
               </p>
-              <h2 className="font-Satoshi text-[42px] text-gray-100 font-[500] tracking-tight leading-none text-bg-primary mb-5">
+              <h2 className="font-Satoshi text-[42px] text-gray-100 font-medium tracking-tight leading-none text-bg-primary mb-5">
                 WHAT CHANGES
               </h2>
               <div className="space-y-3">
                 {outcomes.map((o) => (
                   <div
                     key={o.label}
-                    className="flex items-center gap-3  rounded-xl px-4 py-3 border border-gray-200/20 bg-white/10 backdrop-blur-sm"
+                    className="flex items-center gap-3  rounded-xl px-4 py-3 border border-gray-200/20 bg-white/10 backdrop-blur-xs"
                   >
-                    <div className="w-8 h-8 text-gray-100 rounded-lg bg-bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 text-gray-100 rounded-lg bg-bg-primary/10 flex items-center justify-center shrink-0">
                       {o.icon}
                     </div>
                     <span className="font-medium text-gray-200 text-sm text-bg-primary">
@@ -636,8 +636,8 @@ export default function SocialMediaLanding() {
               key={p.name}
               className="p-6 flex flex-col items-center gap-3 text-center cursor-default"
             >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-12 h-12 rounded-2xl bg-primary/[.08] border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-gray-50 group-hover:shadow-[0_0_28px_rgba(222,15,63,.4)] transition-all duration-300">
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="w-12 h-12 rounded-2xl bg-primary/8 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-gray-50 group-hover:shadow-[0_0_28px_rgba(222,15,63,.4)] transition-all duration-300">
                 {p.icon}
               </div>
               <span className="text-gray-900 text-xs font-medium">
@@ -660,8 +660,8 @@ export default function SocialMediaLanding() {
         <div className="reveal-stagger grid md:grid-cols-2 lg:grid-cols-3 gap-3">
           {whySpok.map((w) => (
             <Card key={w.title} className="p-6">
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-10 h-10 rounded-xl bg-primary/[.08] border border-primary/20 flex items-center justify-center mb-5 text-primary group-hover:bg-primary group-hover:text-gray-50 transition-all duration-300">
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="w-10 h-10 rounded-xl bg-primary/8 border border-primary/20 flex items-center justify-center mb-5 text-primary group-hover:bg-primary group-hover:text-gray-50 transition-all duration-300">
                 {w.icon}
               </div>
               <h3 className="text-gray-900 font-medium mb-2 text-[15px]">
@@ -695,12 +695,12 @@ export default function SocialMediaLanding() {
               />
 
               {/* Dark overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
 
               {/* Content */}
               <div className="absolute bottom-0 left-0 p-6 text-left">
                 {/* Icon (optional small) */}
-                <div className="w-10 h-10 rounded-xl mb-3 flex items-center justify-center bg-white/10 backdrop-blur border border-white/20 text-white">
+                <div className="w-10 h-10 rounded-xl mb-3 flex items-center justify-center bg-white/10 backdrop-blur-sm border border-white/20 text-white">
                   {b.icon}
                 </div>
 
@@ -716,21 +716,21 @@ export default function SocialMediaLanding() {
         </div>
       </section>
       <div className="container pb-20 mt-20">
-        <div className="p-10 lg:p-16 w-full bg-gradient-to-tr from-red-400 to-red-600 text-slate-100 rounded-2xl relative overflow-hidden">
+        <div className="p-10 lg:p-16 w-full bg-linear-to-tr from-red-400 to-red-600 text-slate-100 rounded-2xl relative overflow-hidden">
           <div className="relative z-10">
             <p className="text-xs uppercase tracking-widest text-white/60 font-Grostek mb-3">
               Ready to scale?
             </p>
-            <h2 className="text-4xl lg:text-5xl font-Grostek font-[600] leading-tight max-w-xl">
+            <h2 className="text-4xl lg:text-5xl font-Grostek font-semibold leading-tight max-w-xl">
               Build a Website That Actually Converts{" "}
             </h2>
-            <p className="mt-4 font-Synonym font-[400] text-lg max-w-2xl text-white/80">
+            <p className="mt-4 font-Synonym font-normal text-lg max-w-2xl text-white/80">
               Your website shouldn’t just exist — it should work as your best
               sales asset, turning traffic into real business growth.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
               <Link href="/contact">
-                <button className="px-6 py-3 bg-white text-slate-900 font-SplineSans rounded-full text-sm font-[500] hover:bg-white/90 transition-colors">
+                <button className="px-6 py-3 bg-white text-slate-900 font-SplineSans rounded-full text-sm font-medium hover:bg-white/90 transition-colors">
                   Contact us
                 </button>
               </Link>

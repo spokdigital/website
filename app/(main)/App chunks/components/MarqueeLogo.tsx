@@ -47,7 +47,7 @@ export function MarqueeLogo({ showText = true }: { showText?: boolean }) {
     <div className="relative mt-12 flex py-6 w-full flex-col items-center justify-center overflow-hidden rounded-lg">
       {showText && (
         <div className="w-full mb-6 container">
-          <h1 className="text-3xl lg:text-5xl text-center font-Cormorant font-[500] ">
+          <h1 className="text-3xl lg:text-5xl text-center font-Cormorant font-medium ">
             Trusted by
           </h1>
         </div>

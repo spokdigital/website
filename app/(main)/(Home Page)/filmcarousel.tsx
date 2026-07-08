@@ -116,7 +116,7 @@ export default function FloatingImages() {
             <img
               src={item.img}
               alt=""
-              className="w-full aspect-[3/4] object-cover block"
+              className="w-full aspect-3/4 object-cover block"
               loading="lazy"
               draggable={false}
             />

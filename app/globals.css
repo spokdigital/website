@@ -1,24 +1,130 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-body {
-  background-color: #fdf7f7;
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1.1rem;
+  max-width: 1430px;
+
 }
-.char {
-  display: inline-block;
-  transform-style: preserve-3d;
-  will-change: transform;
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--ink);
+  --color-primary: #de0f3f;
+  --color-border:var(--border);
+  --color-textPrimary: #675496;
+  --color-surface: var(--surface);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --font-Satoshi: Satoshi, sans-serif;
+  --font-Synonym: Synonym, sans-serif;
+  --font-SplineSans: Spline Sans, sans-serif;
+  --font-Grostek: Cabinet Grotesk, sans-serif;
+  --font-Cormorant: Cormorant, serif;
+
+  --animate-first: moveVertical 30s ease infinite;
+  --animate-second: moveInCircle 20s reverse infinite;
+  --animate-third: moveInCircle 40s linear infinite;
+  --animate-fourth: moveHorizontal 40s ease infinite;
+  --animate-fifth: moveInCircle 20s ease infinite;
+  --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --animate-aurora: aurora 60s linear infinite;
+  --animate-orbit: orbit 20s linear infinite;
+  --color-sb-text-primary: var(--sb-text-primary);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  @keyframes moveHorizontal {
+    0% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+    50% {
+      transform: translateX(50%) translateY(10%);
+    }
+    100% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+  }
+  @keyframes moveInCircle {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes moveVertical {
+    0% {
+      transform: translateY(-50%);
+    }
+    50% {
+      transform: translateY(50%);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes aurora {
+    from {
+      background-position:
+        50% 50%,
+        50% 50%;
+    }
+    to {
+      background-position:
+        350% 50%,
+        350% 50%;
+    }
+  }
 }
 @layer base {
   :root {
     --radius: 0.5rem;
     --ink: #0a0a0a;
+    --muted-foreground: #898783;
     --paper: #f5f2ed;
     --spok: #0a0a0a;
     --accent: #ff3c00;
-    --muted: #898783;
-    --border: rgba(10, 10, 10, 0.1);
+    --border: rgba(10, 10, 10, 0.133);
     --primary: #ff4040;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -28,12 +134,19 @@ body {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --sb-text-primary: #f5f5f5;
+    --sb-item-active: #ff4040;
+    --surface: #ffffff;
+    --background: #fafbf9;
+ 
   }
   .theme {
     --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
   }
   .dark {
     --sidebar-background: 240 5.9% 10%;
+    --background: #0d1117;
+    --surface: #161b22;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
@@ -41,48 +154,6 @@ body {
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-.mdxeditor-popup-container {
-  z-index: 99999 !important;
-}
-
-.editor-container {
-  width: 100%;
-}
-
-.mdx-editor {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.prose {
-  width: 100%;
-  max-width: none;
-}
-
-.prose
-  :where(ul > li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  padding-inline-start: 1.375em; /* Adjust the left padding for list items */
-}
-
-._listItemUnchecked_1tncs_74:before,
-._listItemChecked_1tncs_73:before {
-  top: "50%";
-  transform: translateY(50%);
-}
-img {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
   }
 }
 
@@ -99,6 +170,56 @@ img {
     }
   }
 }
+
+.char {
+  display: inline-block;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+@layer utilities {
+  .mdxeditor-popup-container {
+    z-index: 99999 !important;
+  }
+
+  .editor-container {
+    width: 100%;
+  }
+
+  .mdx-editor {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .prose {
+    width: 100%;
+    max-width: none;
+  }
+
+  .prose
+    :where(ul > li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    padding-inline-start: 1.375em; /* Adjust the left padding for list items */
+  }
+
+  ._listItemUnchecked_1tncs_74:before,
+  ._listItemChecked_1tncs_73:before {
+    top: "50%";
+    transform: translateY(50%);
+  }
+  img {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
 @keyframes orbit {
   0% {
     transform: rotate(0deg) translateX(var(--radius)) rotate(0deg);
@@ -111,29 +232,57 @@ img {
 html {
   scroll-behavior: smooth;
 }
-.ContentEditable__root p,
-.ContentEditable__root h1,
-.ContentEditable__root h2,
-.ContentEditable__root h3,
-.ContentEditable__root h4,
-.ContentEditable__root h5,
-.ContentEditable__root h6,
-.ContentEditable__root blockquote,
-.ContentEditable__root ul,
-.ContentEditable__root ol {
-  margin-top: 0.25em !important; /* adjust to taste */
-  margin-bottom: 0.25em; /* adjust to taste */
-  line-height: 1.1;
-  list-style: disc;
+.rte-editor .tiptap {
+  @apply h-60 overflow-y-auto p-4 outline-none text-foreground/80;
+}
+.rte-editor .tiptap a {
+  @apply text-blue-500 underline cursor-pointer;
+}
+.rte-editor .tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--foreground-muted);
+  pointer-events: none;
+  float: left;
+  height: 0;
 }
 
-/* For completely tight spacing */
-.ContentEditable__root p,
-.ContentEditable__root h1,
-.ContentEditable__root h2,
-.ContentEditable__root h3,
-.ContentEditable__root h4,
-.ContentEditable__root h5,
-.ContentEditable__root h6 {
-  margin: 0 !important;
+.rte-editor .tiptap h1 { @apply text-3xl font-bold mb-3; }
+.rte-editor .tiptap h2 { @apply text-2xl font-semibold mb-2; }
+
+.rte-editor .tiptap h3 {
+  @apply text-xl font-semibold mb-2;
+}
+
+
+.rte-editor .tiptap ul { @apply list-disc ml-6 ; }
+
+.rte-editor .tiptap ol {
+  @apply list-decimal ml-6 ;
+}
+
+.rte-editor .tiptap blockquote {
+  @apply border-l-4 border-gray-600 pl-4 italic text-foreground;
+}
+
+.rte-editor .tiptap pre {
+  @apply bg-gray-900 text-gray-100 rounded-md p-3 overflow-x-auto;
+}
+
+.rte-editor .tiptap code {
+  @apply bg-gray-800 text-pink-400 px-1 py-0.5 rounded;
+}
+
+.prose p:empty,
+.prose h1:empty,
+.prose h2:empty,
+.prose h3:empty,
+.prose h4:empty,
+.prose h5:empty,
+.prose h6:empty {
+  min-height: 1.5em; /* match your line-height / leading-relaxed */
+  content: "";
+  display: block;
+}
+.prose p:has(> br:only-child) {
+  min-height: 1.5em;
 }

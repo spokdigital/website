@@ -145,7 +145,7 @@ const Section1 = ({
               />
             ))}
           </div>
-          <p className="font-Grostek text-sm text-gray-700 font-[500] whitespace-nowrap">
+          <p className="font-Grostek text-sm text-gray-700 font-medium whitespace-nowrap">
             Rating on
           </p>
           <img
@@ -166,7 +166,7 @@ const Section1 = ({
             {["Elevate", "Your", "Brand", "&"].map((text, i) => (
               <h1
                 key={i}
-                className="heading-1 text-[7.2rem] font-Grostek font-[500] leading-none"
+                className="heading-1 text-[7.2rem] font-Grostek font-medium leading-none"
               >
                 {text}
               </h1>
@@ -176,7 +176,7 @@ const Section1 = ({
             {["Dominate", "the", "Market"].map((text, i) => (
               <h1
                 key={i}
-                className="heading-2 text-[7.2rem] tracking-tighter font-Grostek font-[500] leading-none"
+                className="heading-2 text-[7.2rem] tracking-tighter font-Grostek font-medium leading-none"
               >
                 {text === "Market" ? (
                   <span className="relative inline-block px-3">
@@ -191,10 +191,10 @@ const Section1 = ({
           </div>
 
           {/* ── MOBILE: single-block lines, no SplitText ── */}
-          <h1 className="mobile-line-1 xl:hidden text-5xl lg:text-7xl font-Grostek font-[500] leading-tight text-center">
+          <h1 className="mobile-line-1 xl:hidden text-5xl lg:text-7xl font-Grostek font-medium leading-tight text-center">
             Elevate Your Brand &
           </h1>
-          <h1 className="mobile-line-2 xl:hidden text-5xl lg:text-7xl font-Grostek font-[500] leading-tight text-center">
+          <h1 className="mobile-line-2 xl:hidden text-5xl lg:text-7xl font-Grostek font-medium leading-tight text-center">
             Dominate the{" "}
             <span className="relative inline-block px-3">
               <span className="relative z-10 text-red-50">Market</span>
@@ -206,7 +206,7 @@ const Section1 = ({
         {/* DESCRIPTION */}
         <div
           ref={descRef}
-          className="max-w-4xl text-center text-[.7rem] lg:text-[.97rem] font-[500] font-Synonym mt-7"
+          className="max-w-4xl text-center text-[.7rem] lg:text-[.97rem] font-medium font-Synonym mt-7"
         >
           <p>
             We're not just another agency—we're your growth partner. At Spok

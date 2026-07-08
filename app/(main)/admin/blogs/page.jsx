@@ -168,7 +168,7 @@ const BlogList = ({ blogs }) => {
                   <TableCell className={`py-3`}>
                     <div className="flex items-center gap-2">
                       <div className="relative group cursor-pointer">
-                        <p className="hidden group-hover:block w-auto text-nowrap z-[9999] bg-gray-300 shadow-lg rounded-full px-4 py-1 absolute bottom-full left-1/2 -translate-x-1/2">
+                        <p className="hidden group-hover:block w-auto text-nowrap z-9999 bg-gray-300 shadow-lg rounded-full px-4 py-1 absolute bottom-full left-1/2 -translate-x-1/2">
                           Edit blog
                         </p>
                         <Link href={`/admin/blogs/editBlogs/${invoice.id}`}>
@@ -176,7 +176,7 @@ const BlogList = ({ blogs }) => {
                         </Link>
                       </div>
                       <div className="relative group cursor-pointer">
-                        <p className="hidden group-hover:block w-auto text-nowrap z-[9999] bg-red-500 shadow-lg text-gray-100 rounded-full px-4 py-1 absolute bottom-full left-1/2 -translate-x-1/2">
+                        <p className="hidden group-hover:block w-auto text-nowrap z-9999 bg-red-500 shadow-lg text-gray-100 rounded-full px-4 py-1 absolute bottom-full left-1/2 -translate-x-1/2">
                           Delete blog
                         </p>
                         <Trash
@@ -197,7 +197,7 @@ const BlogList = ({ blogs }) => {
 
 const DeletePopUp = ({ id, setIsPopUpOpen, blogPriority }) => {
   return (
-    <div className="w-full h-screen fixed flex justify-center items-center top-0 left-0 z-[999] bg-gray-900/30">
+    <div className="w-full h-screen fixed flex justify-center items-center top-0 left-0 z-999 bg-gray-900/30">
       <div className="rounded-xl w-[350px] px-7 py-3 bg-white">
         <div className="flex justify-between items-center gap-3">
           <p className="text-xl font-satoshi font-semibold text-gray-800">

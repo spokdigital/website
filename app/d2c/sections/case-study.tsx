@@ -172,7 +172,7 @@ export default function ROISection() {
           </div>
 
           {/* Quick stats pill */}
-          <div className="flex-shrink-0 flex items-center gap-5 bg-gray-50 border border-gray-100 rounded-2xl px-6 py-4">
+          <div className="shrink-0 flex items-center gap-5 bg-gray-50 border border-gray-100 rounded-2xl px-6 py-4">
             {[
               { val: "$2.05M", lbl: "Revenue generated" },
               { val: "454%", lbl: "Average ROI" },
@@ -225,7 +225,7 @@ export default function ROISection() {
           ].map((s, i) => (
             <div
               key={i}
-              className="rs-card bg-white border border-gray-100 rounded-2xl p-6 shadow-sm"
+              className="rs-card bg-white border border-gray-100 rounded-2xl p-6 shadow-xs"
             >
               <p className="text-2xl font-bold text-gray-900 mb-0.5">
                 <AnimatedNumber
@@ -242,7 +242,7 @@ export default function ROISection() {
         </div>
 
         {/* ── Chart ── */}
-        <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-8 mb-6">
+        <div className="bg-white border border-gray-100 rounded-2xl shadow-xs p-8 mb-6">
           {/* Chart header */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
             <div>
@@ -277,7 +277,7 @@ export default function ROISection() {
           <div className="flex gap-4">
             {/* Y-axis labels — fixed height matches CHART_HEIGHT */}
             <div
-              className="flex flex-col justify-between flex-shrink-0 w-14 text-right"
+              className="flex flex-col justify-between shrink-0 w-14 text-right"
               style={{ height: CHART_HEIGHT }}
             >
               {["$400K", "$300K", "$200K", "$100K", "$0"].map((l) => (
@@ -423,7 +423,7 @@ export default function ROISection() {
         </div>
 
         {/* ── Table ── */}
-        <div className="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+        <div className="bg-white border border-gray-100 rounded-2xl shadow-xs overflow-hidden">
           {/* Table top bar */}
           <div className="px-8 py-5 border-b border-gray-100 flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -488,7 +488,7 @@ export default function ROISection() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                         <div className="flex items-center gap-2">
                           <div
-                            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                            className="w-1.5 h-1.5 rounded-full shrink-0"
                             style={{
                               background: isActive ? "#FF4040" : "transparent",
                               border: isActive ? "none" : "1.5px solid #e2e8f0",
@@ -517,7 +517,7 @@ export default function ROISection() {
                       {/* ROI bar + % */}
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-28 bg-gray-100 rounded-full h-1.5 overflow-hidden flex-shrink-0">
+                          <div className="w-28 bg-gray-100 rounded-full h-1.5 overflow-hidden shrink-0">
                             <div
                               className="rs-progress h-1.5 rounded-full bg-[#FF4040]"
                               style={{ width: animated ? roiBarWidth : "0%" }}

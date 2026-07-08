@@ -29,7 +29,7 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-oklch(1 0 0) transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-oklch(0.709 0.01 56.259) focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-oklch(1 0 0) data-[state=active]:text-oklch(0.147 0.004 49.25) data-[state=active]:shadow-sm dark:ring-offset-oklch(0.147 0.004 49.25) dark:focus-visible:ring-oklch(0.553 0.013 58.071) dark:data-[state=active]:bg-oklch(0.147 0.004 49.25) dark:data-[state=active]:text-oklch(0.985 0.001 106.423)",
+      "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-oklch(1 0 0) transition-all focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-oklch(0.709 0.01 56.259) focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-oklch(1 0 0) data-[state=active]:text-oklch(0.147 0.004 49.25) data-[state=active]:shadow-xs dark:ring-offset-oklch(0.147 0.004 49.25) dark:focus-visible:ring-oklch(0.553 0.013 58.071) dark:data-[state=active]:bg-oklch(0.147 0.004 49.25) dark:data-[state=active]:text-oklch(0.985 0.001 106.423)",
       className
     )}
     {...props}
@@ -44,7 +44,7 @@ const TabsContent = React.forwardRef<
   <TabsPrimitive.Content
     ref={ref}
     className={cn(
-      "mt-2 ring-offset-oklch(1 0 0) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-oklch(0.709 0.01 56.259) focus-visible:ring-offset-2 dark:ring-offset-oklch(0.147 0.004 49.25) dark:focus-visible:ring-oklch(0.553 0.013 58.071)",
+      "mt-2 ring-offset-oklch(1 0 0) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-oklch(0.709 0.01 56.259) focus-visible:ring-offset-2 dark:ring-offset-oklch(0.147 0.004 49.25) dark:focus-visible:ring-oklch(0.553 0.013 58.071)",
       className
     )}
     {...props}

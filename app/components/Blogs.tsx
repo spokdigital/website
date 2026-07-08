@@ -102,7 +102,7 @@ const Blogs = () => {
       {/* Header row */}
       <div className="container">
         <div className="flex items-center justify-between mb-12">
-          <h2 className="text-3xl lg:text-5xl text-center font-Cormorant font-[500]">
+          <h2 className="text-3xl lg:text-5xl text-center font-Cormorant font-medium">
             Latest <span className="text-primary">Blogs</span>
           </h2>
 
@@ -145,7 +145,7 @@ const Blogs = () => {
                     href={`/blogs/${blog.slugTitle}`}
                     className="group block h-full"
                   >
-                    <div className="relative flex flex-col h-full rounded-xl overflow-hidden border border-gray-400 bg-card shadow-sm hover:shadow-md transition-shadow duration-200">
+                    <div className="relative flex flex-col h-full rounded-xl overflow-hidden border border-gray-400 bg-card shadow-xs hover:shadow-md transition-shadow duration-200">
                       {/* Thumbnail */}
                       <div className="relative h-48 w-full shrink-0 overflow-hidden bg-muted">
                         {blog.image ? (
@@ -156,7 +156,7 @@ const Blogs = () => {
                             className="object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                         ) : (
-                          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-muted" />
+                          <div className="absolute inset-0 bg-linear-to-br from-primary/20 to-muted" />
                         )}
                       </div>
 

@@ -49,7 +49,7 @@ const MobileMenu = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-0 z-[998] bg-white"
+            className="fixed inset-0 z-998 bg-white"
             style={{ paddingTop: navHeight }}
           >
             {/* Subtle top border accent */}
@@ -66,7 +66,7 @@ const MobileMenu = () => {
                     return (
                       <Accordion key={i} multiple>
                         <AccordionItem value="services">
-                          <AccordionHeader className="!px-0 !py-5">
+                          <AccordionHeader className="px-0! py-5!">
                             <motion.span
                               initial={{ opacity: 0, x: -16 }}
                               animate={{ opacity: 1, x: 0 }}
@@ -151,7 +151,7 @@ const HamburgerIcon: React.FC<HamburgerIconProps> = ({ isOpen, toggle }) => {
     <button
       onClick={toggle}
       aria-label={isOpen ? "Close menu" : "Open menu"}
-      className="relative z-[99999] flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
+      className="relative z-99999 flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
     >
       <motion.span
         animate={isOpen ? { y: 7, rotate: 45 } : { y: 0, rotate: 0 }}

@@ -54,7 +54,7 @@ const Whatwedobest = () => {
             Our Expertise
             <span className="inline-block w-8 h-px bg-primary opacity-40" />
           </p>
-          <h2 className="font-Cormorant text-5xl md:text-6xl font-[500] text-[#F5F2EC] leading-none tracking-tight">
+          <h2 className="font-Cormorant text-5xl md:text-6xl font-medium text-[#F5F2EC] leading-none tracking-tight">
             What We Do <em className="text-primary">Best</em>
           </h2>
           <p className="mt-4 text-sm text-[#888070] font-light max-w-md mx-auto leading-relaxed">
@@ -78,7 +78,7 @@ const Whatwedobest = () => {
                   className="w-full h-full object-cover "
                 />
 
-                <span className="absolute top-3 left-3 font-mono text-[9px] tracking-widest uppercase text-primary bg-white border border-primary/30 px-3 py-1 rounded-full backdrop-blur-sm z-10">
+                <span className="absolute top-3 left-3 font-mono text-[9px] tracking-widest uppercase text-primary bg-white border border-primary/30 px-3 py-1 rounded-full backdrop-blur-xs z-10">
                   {card.tag}
                 </span>
               </div>
@@ -95,7 +95,7 @@ const Whatwedobest = () => {
                   {card.description}
                 </p>
 
-                <div className="h-px bg-gradient-to-r from-primary/20 to-transparent mb-5" />
+                <div className="h-px bg-linear-to-r from-primary/20 to-transparent mb-5" />
 
                 <ul className="space-y-2 mb-6">
                   {card.pointers.map((pt) => (
@@ -103,7 +103,7 @@ const Whatwedobest = () => {
                       key={pt}
                       className="flex items-start gap-2.5 text-[13px] text-[#B8B0A0]"
                     >
-                      <span className="mt-[7px] w-1 h-1 rounded-full bg-primary opacity-70 flex-shrink-0" />
+                      <span className="mt-[7px] w-1 h-1 rounded-full bg-primary opacity-70 shrink-0" />
                       {pt}
                     </li>
                   ))}

@@ -30,7 +30,7 @@ const Testimonials = () => {
     <div className="w-full overflow-hidden relative py-20">
       <div className="container">
         <div className="flex justify-between items-center mb-10">
-          <h1 className="text-4xl text-black lg:text-5xl font-Cormorant font-[500]">
+          <h1 className="text-4xl text-black lg:text-5xl font-Cormorant font-medium">
             Our Clients Experience
           </h1>
           <div className="flex items-center gap-2">

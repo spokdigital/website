@@ -73,10 +73,10 @@ const Sidebar = ({ path }) => {
   ];
 
   return (
-    <div className="h-screen fixed z-[999] top-0 py-5 left-0 w-[250px] bg-black overflow-hidden">
+    <div className="h-screen fixed z-999 top-0 py-5 left-0 w-[250px] bg-black overflow-hidden">
       <div className="px-10 mt-4">
         <div className="flex xl:text-lg xxl:text-xl items-center gap-1">
-          <Logo source="/Logo-white.png" className="!w-32" />
+          <Logo source="/Logo-white.png" className="w-32!" />
         </div>
       </div>
       <div className="mt-10">
@@ -95,7 +95,7 @@ const Sidebar = ({ path }) => {
             ) : null}
 
             <div className="xl:text-xl xxl:text-2xl">{menu.icon}</div>
-            <p className="font-Satoshi xl:text-sm xxl:text-lg font-[500]">
+            <p className="font-Satoshi xl:text-sm xxl:text-lg font-medium">
               {menu.name}
             </p>
           </Link>
@@ -103,7 +103,7 @@ const Sidebar = ({ path }) => {
       </div>
       <div className="px-10 absolute bottom-0 transiton-all py-5 duration-300 left-0 flex w-full items-center hover:bg-red-400 gap-3 hover:text-gray-900 text-gray-100">
         <SignOut className="xl:text-2xl xxl:text-4xl rotate-180" />
-        <p className="font-Satoshi xl:text-sm xxl:text-md font-[500]">Logout</p>
+        <p className="font-Satoshi xl:text-sm xxl:text-md font-medium">Logout</p>
       </div>
     </div>
   );

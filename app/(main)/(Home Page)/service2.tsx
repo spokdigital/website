@@ -39,7 +39,7 @@ export default function ServicesSplit() {
           <p className="text-xs tracking-[0.35em] uppercase text-gray-400 mb-4">
             Our Services
           </p>
-          <h2 className="text-5xl font-[500] font-Cormorant text-gray-900 leading-tight">
+          <h2 className="text-5xl font-medium font-Cormorant text-gray-900 leading-tight">
             Built for impact,
             <span className="block text-primary">designed to scale</span>
           </h2>
@@ -91,7 +91,7 @@ export default function ServicesSplit() {
                   </div>
 
                   {/* underline animation */}
-                  <div className="mt-6 h-[1px] w-full bg-gray-200 relative overflow-hidden">
+                  <div className="mt-6 h-px w-full bg-gray-200 relative overflow-hidden">
                     <div
                       className={`absolute left-0 top-0 h-full bg-black transition-all duration-500 ${
                         isActive ? "w-full" : "w-0"
@@ -125,7 +125,7 @@ export default function ServicesSplit() {
             })}
 
             {/* subtle overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
           </div>
         </div>
       </div>

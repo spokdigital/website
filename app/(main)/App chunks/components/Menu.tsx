@@ -97,7 +97,7 @@ const SlideTabs = ({
           opacity: 1,
         });
       }}
-      className={`relative mx-auto font-[500] z-[999] ${
+      className={`relative mx-auto font-medium z-999 ${
         path === "/contact" ||
         path.startsWith("/blogs/") ||
         path === "/" ||
@@ -186,7 +186,7 @@ const Tab = ({
           className={`relative rounded-full capitalize transition-colors ${isActive && !isHovering ? "text-white" : "text-black group-hover:text-white"}`}
         >
           <span className="relative inline-flex overflow-hidden">
-            <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[140%] group-hover:skew-y-12">
+            <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-140%] group-hover:skew-y-12">
               {children}
             </div>
             <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
@@ -274,7 +274,7 @@ const ServicesTab = ({
           }`}
         >
           <span className="relative inline-flex overflow-hidden">
-            <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[140%] group-hover:skew-y-12">
+            <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-140%] group-hover:skew-y-12">
               {children}
             </div>
             <div className="absolute translate-y-[150%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
@@ -283,7 +283,7 @@ const ServicesTab = ({
           </span>
           <ChevronDown
             size={12}
-            className={`flex-shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+            className={`shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
           />
         </button>
       </div>
@@ -299,7 +299,7 @@ const ServicesTab = ({
               if (timeoutRef.current) clearTimeout(timeoutRef.current);
             }}
             onMouseLeave={handleLeave}
-            className="absolute top-[calc(100%+16px)] z-[99999]"
+            className="absolute top-[calc(100%+16px)] z-99999"
             style={{
               left: menuLeft,
               width: 610,
@@ -312,13 +312,13 @@ const ServicesTab = ({
               keeps the cursor 'inside' the component, preventing the menu from closing.
             */}
             <div
-              className="absolute -top-[16px] left-0 w-full h-[16px]"
+              className="absolute top-[-16px] left-0 w-full h-[16px]"
               style={{ height: "16px" }} // Explicit height matching the top gap
             />
 
             {/* Tip */}
             <div
-              className="absolute -top-[6px] left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-white rounded-tl-[2px]"
+              className="absolute top-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-white rounded-tl-[2px]"
               style={{
                 border: "0.5px solid rgba(0,0,0,0.08)",
                 borderBottom: "none",
@@ -335,7 +335,7 @@ const ServicesTab = ({
               }}
             >
               {/* Top strip */}
-              <div className="flex items-center justify-between px-5 py-3.5 border-b border-black/[.06]">
+              <div className="flex items-center justify-between px-5 py-3.5 border-b border-black/6">
                 <div className="flex items-center gap-2">
                   <div className="w-5 h-5 rounded-md bg-primary flex items-center justify-center">
                     <Sparkles
@@ -364,10 +364,10 @@ const ServicesTab = ({
                     className="relative flex items-start gap-3 p-3 rounded-xl transition-all duration-200 hover:bg-[#fdf2f4] group/item"
                   >
                     <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 border ${
+                      className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 border ${
                         hovered === s.name
                           ? "bg-primary border-primary shadow-[0_0_16px_rgba(222,15,63,0.25)]"
-                          : "bg-primary/[.06] border-primary/[.12]"
+                          : "bg-primary/6 border-primary/12"
                       }`}
                     >
                       <s.icon

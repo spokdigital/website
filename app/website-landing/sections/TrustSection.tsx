@@ -2,7 +2,7 @@
 
 export default function TrustSection() {
   return (
-    <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#fffafa] to-[#fff5f5] font-serif">
+    <section className="relative py-24 overflow-hidden bg-linear-to-br from-[#fffafa] to-[#fff5f5] font-serif">
       {/* Decorative circles */}
       <div className="pointer-events-none absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full bg-[rgba(220,38,38,0.06)]" />
       <div className="pointer-events-none absolute -bottom-16 -left-16 w-[300px] h-[300px] rounded-full bg-[rgba(220,38,38,0.05)]" />
@@ -20,13 +20,13 @@ export default function TrustSection() {
             <em className="text-red-500 not-italic">and Real</em> Results
           </h2>
 
-          <div className="w-12 h-[2px] bg-gradient-to-r from-red-700 to-red-500 mx-auto mt-5" />
+          <div className="w-12 h-[2px] bg-linear-to-r from-red-700 to-red-500 mx-auto mt-5" />
         </div>
 
         {/* ===== Case Study 1 ===== */}
         <div className="grid gap-[60px] items-center mb-20 md:grid-cols-2">
           {/* Image */}
-          <div className="bg-white rounded shadow-[0_8px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden aspect-[4/3] border border-red-100 relative flex items-center justify-center">
+          <div className="bg-white rounded shadow-[0_8px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden aspect-4/3 border border-red-100 relative flex items-center justify-center">
             <img
               src="/report1.png"
               alt="Fashion Brand Report"
@@ -34,7 +34,7 @@ export default function TrustSection() {
             />
 
             {/* Fallback placeholder */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#fff5f5] to-[#ffecec]">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-linear-to-br from-[#fff5f5] to-[#ffecec]">
               <div className="w-16 h-16 border-2 border-dashed border-red-300 rounded flex items-center justify-center">
                 <svg
                   width="24"
@@ -145,14 +145,14 @@ export default function TrustSection() {
           </div>
 
           {/* Image */}
-          <div className="bg-white rounded shadow-[0_8px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden aspect-[4/3] border border-red-100 relative flex items-center justify-center md:order-2">
+          <div className="bg-white rounded shadow-[0_8px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden aspect-4/3 border border-red-100 relative flex items-center justify-center md:order-2">
             <img
               src="/report2.png"
               alt="Wine Aggregator Report"
               className="w-full h-full object-cover"
             />
 
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#fff5f5] to-[#ffecec]">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-linear-to-br from-[#fff5f5] to-[#ffecec]">
               <div className="w-16 h-16 border-2 border-dashed border-red-300 rounded flex items-center justify-center">
                 <svg
                   width="24"

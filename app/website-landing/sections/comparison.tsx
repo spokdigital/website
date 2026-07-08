@@ -26,14 +26,14 @@ const CheckCell = ({
   if (value) {
     return (
       <div
-        className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${variant === "spok" ? "bg-red-500" : "bg-stone-700"}`}
+        className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${variant === "spok" ? "bg-red-500" : "bg-stone-700"}`}
       >
         <Check size={13} strokeWidth={3} className="text-white" />
       </div>
     );
   }
   return (
-    <div className="w-7 h-7 rounded-full bg-stone-200 flex items-center justify-center flex-shrink-0">
+    <div className="w-7 h-7 rounded-full bg-stone-200 flex items-center justify-center shrink-0">
       <X size={12} strokeWidth={2.5} className="text-stone-600" />
     </div>
   );
@@ -67,7 +67,7 @@ export default function ComparisonTable() {
         {/* ── MOBILE LAYOUT (two stacked columns) ── */}
         <div className="md:hidden space-y-6">
           {/* Other platforms column */}
-          <div className="bg-stone-50 rounded-2xl border border-stone-200 shadow-sm">
+          <div className="bg-stone-50 rounded-2xl border border-stone-200 shadow-xs">
             <div className="px-5 py-4 border-b border-stone-200">
               <div className="text-sm font-bold text-stone-500">
                 Other platforms
@@ -90,7 +90,7 @@ export default function ComparisonTable() {
           </div>
 
           {/* Spok column */}
-          <div className="bg-red-50/50 rounded-2xl border border-red-100 shadow-sm">
+          <div className="bg-red-50/50 rounded-2xl border border-red-100 shadow-xs">
             <div className="px-5 py-4 border-b border-red-100 relative">
               <div className="absolute top-0 right-4 -translate-y-1/2 flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider bg-primary text-white px-2.5 py-1.5 rounded-full whitespace-nowrap">
                 <Sparkle className="size-3.5 fill-white shrink-0" />
@@ -116,13 +116,13 @@ export default function ComparisonTable() {
         </div>
 
         {/* ── DESKTOP TABLE (sm and up) ── */}
-        <div className="hidden md:block bg-stone-50 rounded-2xl border border-stone-200 shadow-sm">
-          <div className="bg-stone-50 rounded-2xl  border border-stone-200 shadow-sm">
+        <div className="hidden md:block bg-stone-50 rounded-2xl border border-stone-200 shadow-xs">
+          <div className="bg-stone-50 rounded-2xl  border border-stone-200 shadow-xs">
             {/* Column headers */}
             <div className="grid grid-cols-[1fr_180px_180px] border-b border-stone-200">
               <div className="px-8 py-5 text-xs font-semibold  tracking-widest text-stone-500">
                 <div className="text-sm font-bold text-stone-500">Features</div>
-                <div className="text-xs text-stone-400 font-[400] mt-1">
+                <div className="text-xs text-stone-400 font-normal mt-1">
                   What to expect from your website
                 </div>
               </div>
@@ -159,10 +159,10 @@ export default function ComparisonTable() {
             {features.map((f, i) => (
               <div
                 key={i}
-                className="grid grid-cols-[1fr_180px_180px] border-b border-stone-100 last:border-none hover:bg-black/[0.015] transition-colors"
+                className="grid grid-cols-[1fr_180px_180px] border-b border-stone-100 last:border-none hover:bg-black/1.5 transition-colors"
               >
                 <div className="px-8 py-5 flex items-center gap-3">
-                  <span className="w-1 h-1 rounded-full bg-stone-300 flex-shrink-0" />
+                  <span className="w-1 h-1 rounded-full bg-stone-300 shrink-0" />
                   <span
                     className={`text-sm ${!f.others ? "text-stone-600 " : "text-stone-600"}`}
                   >

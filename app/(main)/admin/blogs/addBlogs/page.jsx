@@ -133,7 +133,7 @@ const BlogForm = () => {
     <form className="w-full relative" onSubmit={handleSubmit}>
       {/* Image Preview Modal */}
       {formData.imageOpen && (
-        <div className="w-full h-screen max-h-screen fixed bg-gray-800/20 p-10 top-0 flex justify-center items-center left-0 z-[9999]">
+        <div className="w-full h-screen max-h-screen fixed bg-gray-800/20 p-10 top-0 flex justify-center items-center left-0 z-9999">
           <X
             onClick={() =>
               setFormData((prevState) => ({ ...prevState, imageOpen: false }))
@@ -214,7 +214,7 @@ const BlogForm = () => {
           <div className="flex w-full items-center gap-2">
             <div className="bg-transparent border border-gray-600 placeholder:text-gray-400 w-full relative flex items-center py-3 justify-between pl-3 pr-10 rounded-md">
               <div className="w-full">
-                <p className="text-sm truncate font-Satoshi font-[500]">
+                <p className="text-sm truncate font-Satoshi font-medium">
                   {formData.image?.length > 0
                     ? formData.image[0]?.name
                     : "No image selected"}
@@ -268,14 +268,14 @@ const BlogForm = () => {
                 setFormData({ ...formData, inputValue: e.target.value })
               }
               placeholder={formData.tags.length === 0 ? "Add a tag" : ""}
-              className="px-3 py-2 bg-transparent focus:outline-none"
+              className="px-3 py-2 bg-transparent focus:outline-hidden"
             />
             {formData.tags.length > 0 && (
               <div className="absolute w-full gap-2 flex justify-center items-center -bottom-8 left-0">
                 {formData.tags.map((tag, idx) => (
                   <button
                     onClick={() => deleteTag(idx)}
-                    className="flex px-3 font-[500] py-1 justify-between items-center gap-1 rounded-lg bg-sky-200"
+                    className="flex px-3 font-medium py-1 justify-between items-center gap-1 rounded-lg bg-sky-200"
                     key={idx}
                   >
                     <p className="text-[.8rem]">{tag}</p>

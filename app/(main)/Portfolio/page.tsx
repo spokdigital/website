@@ -193,7 +193,7 @@ const PortfolioCard = ({ item }: { item: PortfolioItem }) => (
   >
     {/* Thumbnail */}
     <div
-      className={`aspect-[6/4] relative overflow-hidden rounded-xl border ${item.bgColor}`}
+      className={`aspect-6/4 relative overflow-hidden rounded-xl border ${item.bgColor}`}
     >
       <Image
         src={`/portfolio/${item.img}`}
@@ -205,7 +205,7 @@ const PortfolioCard = ({ item }: { item: PortfolioItem }) => (
 
     {/* Meta */}
     <div className="mt-3 flex flex-col justify-between items-stretch">
-      <h4 className="font-Synonym mb-1 font-[500] text-xl">{item.title}</h4>
+      <h4 className="font-Synonym mb-1 font-medium text-xl">{item.title}</h4>
       <p className="text-gray-700 text-sm">{item.desc}</p>
 
       {/* Tag pills */}
@@ -277,9 +277,9 @@ const Page = () => {
           </svg>
         </div>
 
-        <div className="container relative z-[99]">
+        <div className="container relative z-99">
           <div className="w-full mt-8 flex flex-col items-center text-slate-800 justify-center">
-            <motion.h1 className="text-4xl lg:text-6xl lg:w-[90%] text-center leading-[100%] font-Grostek font-[600] tracking-tight break-words">
+            <motion.h1 className="text-4xl lg:text-6xl lg:w-[90%] text-center leading-[100%] font-Grostek font-semibold tracking-tight wrap-break-word">
               {para.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
@@ -305,10 +305,10 @@ const Page = () => {
 
             <button
               onClick={() => setIsFormOpen(true)}
-              className="group mt-5 relative h-12 rounded-full bg-black hover:bg-primary transition-colors duration-300 px-5 font-Synonym font-[500] text-neutral-50"
+              className="group mt-5 relative h-12 rounded-full bg-black hover:bg-primary transition-colors duration-300 px-5 font-Synonym font-medium text-neutral-50"
             >
               <span className="relative inline-flex overflow-hidden">
-                <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[130%] group-hover:skew-y-12 flex items-center gap-2">
+                <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-130%] group-hover:skew-y-12 flex items-center gap-2">
                   Get Expert Help <ArrowUpRight />
                 </div>
                 <div className="absolute translate-y-[134%] flex items-center gap-2 skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
@@ -322,7 +322,7 @@ const Page = () => {
 
       {/* ── Portfolio Section ── */}
       <div className="relative">
-        <h2 className="text-4xl container mx-auto lg:text-5xl font-Cormorant font-[500] text-center">
+        <h2 className="text-4xl container mx-auto lg:text-5xl font-Cormorant font-medium text-center">
           Portfolio We're <span className="text-primary">Proud of</span>
         </h2>
         <p className="text-center  mt-2 container lg:max-w-3xl mx-auto">
@@ -335,7 +335,7 @@ const Page = () => {
         <div className="lg:sticky top-0 left-0 container z-50 w-full">
           {/* Scrollable track — full width on mobile, centered on desktop */}
           <div className="overflow-x-auto rounded-xl scrollbar-hide w-full mt-6 lg:flex lg:justify-center">
-            <ul className="flex w-max lg:w-auto bg-primary/20 backdrop-blur-lg shadow-sm border border-primary/20 rounded-lg lg:rounded-full">
+            <ul className="flex w-max lg:w-auto bg-primary/20 backdrop-blur-lg shadow-xs border border-primary/20 rounded-lg lg:rounded-full">
               <li
                 onClick={() => setActiveTab(null)}
                 className={`cursor-pointer whitespace-nowrap transition-all duration-300 px-6 py-3 border-r
@@ -387,21 +387,21 @@ const Page = () => {
 
       {/* ── CTA Banner ── */}
       <div className="container mt-20 pb-20">
-        <motion.div className="p-10 lg:p-16 w-full bg-gradient-to-tr from-red-400 to-red-600 text-slate-100 rounded-2xl relative overflow-hidden">
+        <motion.div className="p-10 lg:p-16 w-full bg-linear-to-tr from-red-400 to-red-600 text-slate-100 rounded-2xl relative overflow-hidden">
           <div className="relative z-10">
             <p className="text-xs uppercase tracking-widest text-white/60 font-Grostek mb-3">
               Ready to scale?
             </p>
-            <h2 className="text-4xl lg:text-5xl font-Grostek font-[600] leading-tight max-w-xl">
+            <h2 className="text-4xl lg:text-5xl font-Grostek font-semibold leading-tight max-w-xl">
               Let's Grow Together
             </h2>
-            <p className="mt-4 font-Synonym font-[400] text-lg max-w-2xl text-white/80">
+            <p className="mt-4 font-Synonym font-normal text-lg max-w-2xl text-white/80">
               At Spok Digital, we don't just market products — we build
               connections that last.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
               <Link href="/contact">
-                <button className="px-6 py-3 bg-white text-slate-900 font-SplineSans rounded-full text-sm font-[500] hover:bg-white/90 transition-colors">
+                <button className="px-6 py-3 bg-white text-slate-900 font-SplineSans rounded-full text-sm font-medium hover:bg-white/90 transition-colors">
                   Contact us
                 </button>
               </Link>

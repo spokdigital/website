@@ -219,7 +219,7 @@ const Page = () => {
     <motion.div className="  bg-white" ref={containerRef}>
       <SliderForm setIsFormOpen={setIsFormOpen} isFormOpen={isFormOpen} />
       <motion.div>
-        <div className="w-full h-screen overflow-hidden bg-gradient-to-tr from-red-200 from-10% to-[#81C784] relative">
+        <div className="w-full h-screen overflow-hidden bg-linear-to-tr from-red-200 from-10% to-[#81C784] relative">
           <div className="w-full h-full flex relative">
             <div className="absolute top-0 left-0 w-full h-full">
               <BackgroundGradientAnimation
@@ -229,7 +229,7 @@ const Page = () => {
             </div>
             <div
               style={{ marginTop: `${height + 50}px` }}
-              className="container relative z-[99]"
+              className="container relative z-99"
             >
               <BreadCrumb />
               <div
@@ -237,7 +237,7 @@ const Page = () => {
                 style={{ height: `calc(100vh - ${height + 200}px)` }}
                 className="flex flex-col  items-center text-slate-100 justify-center"
               >
-                <motion.h1 className="text-center font-[600] text-slate-100 flex-wrap text-3xl xl:text-6xl  font-Grostek relative">
+                <motion.h1 className="text-center font-semibold text-slate-100 flex-wrap text-3xl xl:text-6xl  font-Grostek relative">
                   {para.split(" ").map((item, index) => (
                     <motion.span
                       key={index}
@@ -272,10 +272,10 @@ const Page = () => {
                 </motion.h1>
                 <button
                   onClick={() => setIsFormOpen(true)}
-                  className="group relative h-12 rounded-full bg-black px-5 font-Synonym font-[500]  text-neutral-50"
+                  className="group relative h-12 rounded-full bg-black px-5 font-Synonym font-medium  text-neutral-50"
                 >
                   <span className="relative inline-flex overflow-hidden">
-                    <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[130%] group-hover:skew-y-12 flex items-center gap-2">
+                    <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-130%] group-hover:skew-y-12 flex items-center gap-2">
                       Get Expert Help <ArrowUpRight />
                     </div>
                     <div className="absolute  translate-y-[134%] flex items-center gap-2 skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
@@ -302,7 +302,7 @@ const Page = () => {
                 viewport={{ once: true }}
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-[600] tracking-tight break-words"
+                className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-semibold tracking-tight wrap-break-word"
               >
                 {text}
               </motion.h1>
@@ -314,10 +314,10 @@ const Page = () => {
             {servicesData.map((service, index) => (
               <motion.div key={index} className={`p-6 bg-red-50 rounded-xl`}>
                 <div>
-                  <h3 className="text-3xl font-Grostek font-[500]">
+                  <h3 className="text-3xl font-Grostek font-medium">
                     {service.title}
                   </h3>
-                  <p className="mt-2 font-Synonym text-lg font-[400]">
+                  <p className="mt-2 font-Synonym text-lg font-normal">
                     {service.description}
                   </p>
                   <div className="grid mt-3 lg:grid-cols-2 grid-cols-1 gap-4">
@@ -325,13 +325,13 @@ const Page = () => {
                       {service.details.map((detail, id) => (
                         <div
                           key={id}
-                          className="flex bg-red-100 border border-slate-200 shadow-sm text-gray-950 rounded-lg px-3 items-start gap-2 py-2"
+                          className="flex bg-red-100 border border-slate-200 shadow-xs text-gray-950 rounded-lg px-3 items-start gap-2 py-2"
                         >
                           <div className="mt-1">
                             <Circle weight="fill" />
                           </div>
                           <p
-                            className={` rounded-lg font-sans font-[400]  text-lg `}
+                            className={` rounded-lg font-sans font-normal  text-lg `}
                           >
                             {detail}
                           </p>
@@ -368,13 +368,13 @@ const Page = () => {
                 viewport={{ once: true }}
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-[600] tracking-tight break-words"
+                className="text-5xl lg:text-6xl leading-[100%] font-Grostek font-semibold tracking-tight wrap-break-word"
               >
                 {text}
               </motion.h1>
             ))}
           </motion.article>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-10 !text-red-50">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-10 text-red-50!">
             {selfPraise.map((item, index) => (
               <motion.div
                 animate={{
@@ -385,7 +385,7 @@ const Page = () => {
                 key={index}
                 className=" text-slate-950 bg-gray-300 rounded-lg p-5"
               >
-                <h2 className="text-3xl pr-10 capitalize font-SplineSans font-[500]">
+                <h2 className="text-3xl pr-10 capitalize font-SplineSans font-medium">
                   {item.title}
                 </h2>
                 <p className="mt-3 text-lg font-Grostek">{item.description}</p>
@@ -398,7 +398,7 @@ const Page = () => {
       <div className="my-20">
         <div>
           {" "}
-          <motion.article className="flex container justify-center lg:justify-start items-center gap-3 mx-auto z-[50] flex-wrap">
+          <motion.article className="flex container justify-center lg:justify-start items-center gap-3 mx-auto z-50 flex-wrap">
             {["Our", "App", "Development", "Process"].map((text, index) => (
               <motion.h1
                 key={index}
@@ -410,7 +410,7 @@ const Page = () => {
                 viewport={{ once: true }}
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className={`text-5xl lg:text-6xl leading-[100%] text-black font-Grostek font-[600] tracking-tight`}
+                className={`text-5xl lg:text-6xl leading-[100%] text-black font-Grostek font-semibold tracking-tight`}
               >
                 {text}
               </motion.h1>
@@ -423,10 +423,10 @@ const Page = () => {
               key={index}
               className="keen-slider__slide bg-red-100 p-7 rounded "
             >
-              <p className="font-Synonym text-slate-700 font-[500]">
+              <p className="font-Synonym text-slate-700 font-medium">
                 0{index + 1}
               </p>
-              <h2 className="text-2xl font-[600] text-fuchsia-950 font-SplineSans mb-2">
+              <h2 className="text-2xl font-semibold text-fuchsia-950 font-SplineSans mb-2">
                 {slide.title}
               </h2>
               <p className="text-gray-700 ">{slide.description}</p>
@@ -438,7 +438,7 @@ const Page = () => {
       <div className="py-16 bg-[#121316]">
         <div className="container">
           <div>
-            <motion.article className="flex justify-center lg:justify-start items-center gap-3 mx-auto z-[50] flex-wrap">
+            <motion.article className="flex justify-center lg:justify-start items-center gap-3 mx-auto z-50 flex-wrap">
               {["Frequently", "Asked", "Questions"].map((text, index) => (
                 <motion.h1
                   key={index}
@@ -450,9 +450,9 @@ const Page = () => {
                   viewport={{ once: true }}
                   initial={{ opacity: 0, y: 100 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  className={`text-5xl lg:text-6xl leading-[100%] text-red-100 font-Grostek font-[600] tracking-tight ${
+                  className={`text-5xl lg:text-6xl leading-[100%] text-red-100 font-Grostek font-semibold tracking-tight ${
                     text.toLowerCase() === "supercharged" &&
-                    "bg-gradient-to-r from-blue-600 to-pink-500 bg-clip-text text-transparent"
+                    "bg-linear-to-r from-blue-600 to-pink-500 bg-clip-text text-transparent"
                   }`}
                 >
                   {text}
@@ -465,12 +465,12 @@ const Page = () => {
               <p className="text-slate-400 text-md font-Grostek">
                 Can&apos;t find what you are looking for?
               </p>
-              <h3 className="text-slate-100 text-2xl font-Grostek font-[500]">
+              <h3 className="text-slate-100 text-2xl font-Grostek font-medium">
                 We would like to chat with you.
               </h3>
               <div className="mt-3">
                 <Link href={"/contact"}>
-                  <button className="text-slate-950 px-5 rounded-full font-Grostek font-[500] py-2 bg-slate-200 hover:bg-slate-100">
+                  <button className="text-slate-950 px-5 rounded-full font-Grostek font-medium py-2 bg-slate-200 hover:bg-slate-100">
                     Contact us
                   </button>
                 </Link>
@@ -493,7 +493,7 @@ const Page = () => {
       </div>
 
       <section className="py-20  ">
-        <div className="container rounded-lg border border-red-200 shadow max-w-5xl py-20 relative overflow-hidden">
+        <div className="container rounded-lg border border-red-200 shadow-sm max-w-5xl py-20 relative overflow-hidden">
           <div className="absolute inset-0 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -529,7 +529,7 @@ const Page = () => {
             </svg>
           </div>
           <div className="relative z-10">
-            <h1 className="text-3xl font-[600] font-Grostek text-center lg:text-5xl">
+            <h1 className="text-3xl font-semibold font-Grostek text-center lg:text-5xl">
               Ready to Build Your Dream App?
             </h1>
             <p className="text-center mt-2">

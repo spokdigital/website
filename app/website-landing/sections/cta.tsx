@@ -25,7 +25,7 @@ export default function CTASection() {
           />
           <div className="relative z-10 text-center">
             {/* Badge */}
-            <div className="inline-flex mb-5 items-center gap-3 bg-red-100 text-gray-800 px-5 py-2 rounded-full shadow-sm">
+            <div className="inline-flex mb-5 items-center gap-3 bg-red-100 text-gray-800 px-5 py-2 rounded-full shadow-xs">
               {/* Stars */}
               <div className="flex items-center gap-1 ">
                 {[...Array(5)].map((_, i) => (
@@ -45,7 +45,7 @@ export default function CTASection() {
             </div>
 
             {/* Heading */}
-            <h2 className="text-5xl md:text-6xl max-w-4xl mx-auto font-[500] font-Grostek text-gray-100 mb-3">
+            <h2 className="text-5xl md:text-6xl max-w-4xl mx-auto font-medium font-Grostek text-gray-100 mb-3">
               Trusted by 100+ growing businesses
             </h2>
 
@@ -71,8 +71,8 @@ export default function CTASection() {
           </div>
 
           {/* Gradient Orbs */}
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-yellow-200/40 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-orange-200/40 to-transparent rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-linear-to-br from-yellow-200/40 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-linear-to-tl from-orange-200/40 to-transparent rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
         </div>
       </div>
     </div>

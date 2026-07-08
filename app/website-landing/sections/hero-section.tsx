@@ -48,10 +48,10 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="!max-w-[94%] mx-auto pb-16 pt-24 lg:pt-40">
+    <div className="max-w-[94%]! mx-auto pb-16 pt-24 lg:pt-40">
       <div className="relative flex flex-col gap-4 lg:flex-row justify-between items-end">
         <div>
-          <h1 className="max-w-4xl text-4xl lg:text-7xl mb-2 font-Grostek font-[500]">
+          <h1 className="max-w-4xl text-4xl lg:text-7xl mb-2 font-Grostek font-medium">
             More Leads. More Sales. More Revenue. That's What We Build
           </h1>
           <p className="text-lg text-gray-700">
