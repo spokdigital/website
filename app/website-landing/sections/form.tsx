@@ -5,6 +5,7 @@ import { useEffect } from "react";
 export default function BookCallSection() {
   useEffect(() => {
     function handleMessage(e: MessageEvent) {
+         
       if (
         e.origin.includes("calendly.com") &&
         e.data?.event === "calendly.event_scheduled"
@@ -14,6 +15,7 @@ export default function BookCallSection() {
         });
       }
     }
+    console.log("fbq type:", typeof window.fbq);
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);

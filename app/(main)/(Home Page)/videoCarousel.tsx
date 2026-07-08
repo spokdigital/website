@@ -73,7 +73,7 @@ export default function VideoCarousel() {
     <section className="w-full">
       <div className="container mt-20">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-4xl md:text-5xl font-[500] font-Cormorant tracking-tight">
+          <h2 className="text-4xl lg:text-5xl font-[500] font-Cormorant tracking-tight">
             Our Best UGC Content
           </h2>
           <div className="flex gap-2">
@@ -105,7 +105,7 @@ export default function VideoCarousel() {
             {videos.map((video, index) => (
               <CarouselItem
                 key={index}
-                className="pl-4 basis-full sm:basis-1/2 md:basis-1/4"
+                className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
               >
                 <Card className="rounded-2xl shadow-lg overflow-hidden">
                   <CardContent className="p-0">

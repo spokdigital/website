@@ -23,7 +23,7 @@ const Portfolio = () => {
     }
     return () => document.body.classList.remove("overflow-hidden");
   }, [selectedImage]);
-  console.log(selectedImage);
+ 
   return (
     <section className="w-full bg-[#121212] py-20 px-6">
       <div className="max-w-6xl mx-auto text-center">
@@ -36,7 +36,7 @@ const Portfolio = () => {
           development, and marketing.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div
               key={index}
@@ -49,7 +49,7 @@ const Portfolio = () => {
                   alt={project.title}
                   width={400}
                   height={400}
-                  className="object-cover object-top transform group-hover:scale-110 transition duration-500"
+                  className="object-cover size-full object-top transform group-hover:scale-110 transition duration-500"
                 />
               </div>
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">

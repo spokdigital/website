@@ -40,7 +40,7 @@ const MobileMenu = () => {
   const close = () => setIsOpen(false);
 
   return (
-    <div className="block lg:hidden">
+    <div className="block xl:hidden">
       <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div

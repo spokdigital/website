@@ -16,7 +16,9 @@ export function PixelPageView() {
   useEffect(() => {
     if (typeof window.fbq === "function") {
       window.fbq("track", "PageView");
+      console.log('page triggered')
     }
+    
   }, [pathname, searchParams]);
 
   return null;

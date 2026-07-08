@@ -62,7 +62,7 @@ const Testimonials = () => {
             {Array.from({ length: 6 }).map((_, i) => (
               <CarouselItem
                 key={i}
-                className="pl-2 lg:pl-5 basis-2/3 lg:basis-1/5"
+                className="pl-2 lg:pl-5 basis-2/3 lg:basis-1/4 xl:basis-1/5"
               >
                 <div className="overflow-hidden rounded-xl shadow-md">
                   <img

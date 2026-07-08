@@ -54,7 +54,7 @@ const NavBar = () => {
           initial={{ y: -200 }}
           animate={{ y: 0 }}
           transition={{ type: "linear", ease: "easeInOut", duration: 1 }}
-          className="hidden lg:flex"
+          className="hidden xl:flex"
         >
           <Menu menu={menu} />
         </motion.div>
@@ -69,7 +69,7 @@ const NavBar = () => {
             duration: 1,
           }}
         >
-          <Link href={"/contact"} className="hidden lg:block">
+          <Link href={"/contact"} className="hidden xl:block">
             <Button
               className={`${
                 path.startsWith("/blogs/") ||

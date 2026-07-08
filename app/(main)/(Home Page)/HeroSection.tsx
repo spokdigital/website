@@ -162,7 +162,7 @@ const Section1 = ({
           className="flex flex-col items-center"
         >
           {/* ── DESKTOP: original word-by-word flex row ── */}
-          <div className="hidden lg:flex gap-6 overflow-hidden">
+          <div className="hidden xl:flex gap-6 overflow-hidden">
             {["Elevate", "Your", "Brand", "&"].map((text, i) => (
               <h1
                 key={i}
@@ -172,7 +172,7 @@ const Section1 = ({
               </h1>
             ))}
           </div>
-          <div className="hidden lg:flex gap-6 overflow-hidden">
+          <div className="hidden xl:flex gap-6 overflow-hidden">
             {["Dominate", "the", "Market"].map((text, i) => (
               <h1
                 key={i}
@@ -191,10 +191,10 @@ const Section1 = ({
           </div>
 
           {/* ── MOBILE: single-block lines, no SplitText ── */}
-          <h1 className="mobile-line-1 lg:hidden text-5xl font-Grostek font-[500] leading-tight text-center">
+          <h1 className="mobile-line-1 xl:hidden text-5xl lg:text-7xl font-Grostek font-[500] leading-tight text-center">
             Elevate Your Brand &
           </h1>
-          <h1 className="mobile-line-2 lg:hidden text-5xl font-Grostek font-[500] leading-tight text-center">
+          <h1 className="mobile-line-2 xl:hidden text-5xl lg:text-7xl font-Grostek font-[500] leading-tight text-center">
             Dominate the{" "}
             <span className="relative inline-block px-3">
               <span className="relative z-10 text-red-50">Market</span>

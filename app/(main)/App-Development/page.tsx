@@ -233,6 +233,7 @@ const Page = () => {
             >
               <BreadCrumb />
               <div
+              
                 style={{ height: `calc(100vh - ${height + 200}px)` }}
                 className="flex flex-col  items-center text-slate-100 justify-center"
               >
