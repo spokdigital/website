@@ -9,7 +9,7 @@ export default function SmoothScrollWrapper({
 }) {
   return (
     <>
-      <MetaPixel pixelId="962057525363783" />
+      <MetaPixel pixelId="1531539528595725" />
       <Suspense fallback={null}>
         <PixelPageView />
       </Suspense>

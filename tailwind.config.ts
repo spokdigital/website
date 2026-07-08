@@ -28,19 +28,11 @@ const config: Config = {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
-      screens: {
-        sm: "100%",
-        md: "768px",
-        lg: "1024px",
-        xl: "1260px",
-        xxl: "1536px",
-      },
       container: {
         center: true,
         padding: "1.1rem",
         screens: {
           sm: "100%",
-          md: "768px",
           lg: "1444px",
         },
       },
