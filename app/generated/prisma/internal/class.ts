@@ -34,6 +34,10 @@ const config: runtime.GetPrismaClientConfig = {
         "fromEnvVar": null,
         "value": "darwin-arm64",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -47,6 +51,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "sqlite",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -55,8 +60,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel BlogPost {\n  id          Int       @id @default(autoincrement())\n  title       String\n  slug        String    @unique\n  excerpt     String?\n  body        String\n  author      String?\n  category    String?\n  tags        String? // stored as comma-separated string\n  status      String    @default(\"draft\") // \"draft\" | \"published\"\n  publishedAt DateTime?\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime  @updatedAt\n\n  // Images — stored as file paths relative to /public/uploads/\n  coverImage String?\n  ogImage    String?\n\n  // SEO\n  metaTitle       String?\n  metaDescription String?\n  metaKeywords    String?\n  canonicalUrl    String?\n  noIndex         Boolean @default(false)\n  focusKeyword    String?\n\n  // Open Graph\n  ogTitle       String?\n  ogDescription String?\n\n  // Schema.org\n  schemaType String @default(\"BlogPosting\")\n}\n",
-  "inlineSchemaHash": "232f4c3c8620436a3cd6266d77482668154820dc309738f9bea8c8ac31bfdc1f",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client\"\n  output        = \"../app/generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel BlogPost {\n  id          Int       @id @default(autoincrement())\n  title       String\n  slug        String    @unique\n  excerpt     String?\n  body        String\n  author      String?\n  category    String?\n  tags        String? // stored as comma-separated string\n  status      String    @default(\"draft\") // \"draft\" | \"published\"\n  publishedAt DateTime?\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime  @updatedAt\n\n  // Images — stored as file paths relative to /public/uploads/\n  coverImage String?\n  ogImage    String?\n\n  // SEO\n  metaTitle       String?\n  metaDescription String?\n  metaKeywords    String?\n  canonicalUrl    String?\n  noIndex         Boolean @default(false)\n  focusKeyword    String?\n\n  // Open Graph\n  ogTitle       String?\n  ogDescription String?\n\n  // Schema.org\n  schemaType String @default(\"BlogPosting\")\n}\n",
+  "inlineSchemaHash": "4d4601609b73f68250f6de11e3210f037d5b3b401ba01da8d0d6ef650c9ffbd1",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
