@@ -177,6 +177,7 @@ export default async function BlogPostPage({
     articleSection: post.category ?? undefined,
   };
 
+
   return (
     <>
       <script
@@ -270,7 +271,15 @@ export default async function BlogPostPage({
                   prose-strong:text-foreground
                   prose-ul:text-foreground-muted prose-ol:text-foreground-muted
                   prose-li:marker:text-primary
-                  
+                  prose-p:my-0!
+                  prose-h1:my-0!
+                  prose-h2:my-0!
+                  prose-h3:my-0!
+                  prose-li:my-0!
+                  prose-ul:my-0!
+                  prose-ol:my-0!
+                  prose-li:pl-2!
+                  prose-span:my-0!
                   prose-blockquote:border-l-primary prose-blockquote:text-foreground-muted prose-blockquote:not-italic
                   prose-code:bg-foreground/5 prose-code:rounded prose-code:px-1.5 prose-code:py-0.5
                   prose-code:text-foreground prose-code:before:content-none prose-code:after:content-none
@@ -278,7 +287,7 @@ export default async function BlogPostPage({
                   prose-img:rounded-xl prose-img:border prose-img:border-border
                   prose-hr:border-border
                   prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl"
-                dangerouslySetInnerHTML={{ __html: post.body }}
+                  dangerouslySetInnerHTML={{ __html: normalizeBlankParagraphs(post.body) }}
               />
             </div>
 
@@ -358,4 +367,10 @@ export default async function BlogPostPage({
       </div>
     </>
   );
+}
+
+
+ function normalizeBlankParagraphs(html: string) {
+  // Matches <p></p>, <p><br></p>, <p><br/></p>, and whitespace-only variants
+  return html.replace(/<p>(\s|<br\s*\/?>)*<\/p>/g, "<p>&nbsp;</p>");
 }

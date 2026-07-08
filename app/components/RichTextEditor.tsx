@@ -341,3 +341,36 @@ export default function RichTextEditor({
     </div>
   );
 }
+
+function expandGoogleDocsBlankLines(html: string): string {
+  if (typeof window === "undefined") return html;
+
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const paragraphs = Array.from(doc.body.querySelectorAll("p"));
+
+  paragraphs.forEach((p) => {
+    const isEmpty =
+      !p.textContent?.replace(/\u00a0/g, "").trim() && !p.querySelector("img");
+    if (!isEmpty) return; // never touch real content paragraphs
+
+    const style = p.getAttribute("style") || "";
+    const marginTop = parseFloat(
+      style.match(/margin-top:\s*([\d.]+)pt/)?.[1] || "0",
+    );
+    const marginBottom = parseFloat(
+      style.match(/margin-bottom:\s*([\d.]+)pt/)?.[1] || "0",
+    );
+    const totalPt = marginTop + marginBottom;
+
+    // ~12pt ≈ one blank line at normal Docs spacing — tune if needed
+    const extraLines = Math.max(0, Math.round(totalPt / 12) - 1);
+
+    for (let i = 0; i < extraLines; i++) {
+      const blank = doc.createElement("p");
+      blank.innerHTML = "<br>";
+      p.parentNode?.insertBefore(blank, p);
+    }
+  });
+
+  return doc.body.innerHTML;
+}

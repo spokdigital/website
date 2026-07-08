@@ -272,17 +272,11 @@ html {
   @apply bg-gray-800 text-pink-400 px-1 py-0.5 rounded;
 }
 
-.prose p:empty,
-.prose h1:empty,
-.prose h2:empty,
-.prose h3:empty,
-.prose h4:empty,
-.prose h5:empty,
-.prose h6:empty {
-  min-height: 1.5em; /* match your line-height / leading-relaxed */
-  content: "";
-  display: block;
+.prose p:empty::before {
+  content: "\00a0";
+  display: inline-block;
 }
-.prose p:has(> br:only-child) {
-  min-height: 1.5em;
+
+.prose p + br + p {
+  margin-top: 2rem; /* consistent visual breathing room, not tied to line count */
 }
