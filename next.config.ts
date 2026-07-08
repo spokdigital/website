@@ -4,6 +4,13 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["res.cloudinary.com", "images.unsplash.com"],
   },
+  outputFileTracingIncludes: {
+    "/api/blog": ["./app/generated/prisma/**/*"],
+    "/api/blog/[id]": ["./app/generated/prisma/**/*"],
+    "/blogs/[slug]": ["./app/generated/prisma/**/*"],
+    "/blogs": ["./app/generated/prisma/**/*"],
+    // add any other route that queries Prisma directly
+  },
   outputFileTracingExcludes: {
     "/api/blog": [
       "public/media/**",

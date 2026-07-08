@@ -1,7 +1,7 @@
 // lib/prisma.ts
 import path from "path";
 import fs from "fs";
-import { PrismaClient } from "@/app/generated/prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const SOURCE_DB = path.join(process.cwd(), "prisma/dev.db");
 const RUNTIME_DB = "/tmp/dev.db";
