@@ -62,6 +62,7 @@ export async function GET(req: NextRequest) {
         publishedAt: true,
         createdAt:   true,
         updatedAt:   true,
+         body:        true,   // ← add this
       },
     }),
     prisma.blogPost.count({ where }),

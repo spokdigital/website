@@ -10,54 +10,32 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-// ---------------------------------------------------------------------------
-// Lexical JSON → plain text
-// ---------------------------------------------------------------------------
-type LexicalNode = {
-  type: string;
-  text?: string;
-  children?: LexicalNode[];
-};
-
-function extractPlainText(node: LexicalNode): string {
-  if (node.type === "text") return node.text || "";
-  if (node.children) return node.children.map(extractPlainText).join(" ");
-  return "";
-}
-
-function lexicalToPlainText(content: string | object | null): string {
-  if (!content) return "";
-  try {
-    const parsed = typeof content === "string" ? JSON.parse(content) : content;
-    return extractPlainText(parsed.root).replace(/\s+/g, " ").trim();
-  } catch {
-    return "";
-  }
-}
-
-export function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/—/g, "-")
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-");
-}
-// ---------------------------------------------------------------------------
-
 interface Blog {
   id: string | number;
   title: string;
-  content: string;
-  image?: string;
+  body: string; // HTML from Tiptap
+  excerpt?: string | null;
+  coverImage?: string | null;
+  author?: string | null;
+  publishedAt?: string | null;
   createdAt: string;
-  author?: string;
-  slugTitle?: string;
-  [key: string]: any;
+  slug: string;
+  category?: string | null;
+}
+
+// Strip HTML tags + collapse whitespace for a plain-text preview
+function htmlToPlainText(html: string | null | undefined): string {
+  if (!html) return "";
+  return html
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
   const [api, setApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -78,16 +56,26 @@ const Blogs = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch("/api/blogs");
+        const res = await fetch("/api/blog?status=published");
         if (!res.ok) throw new Error("Failed to fetch blogs");
         const data = await res.json();
-        setBlogs(data.blogs || []);
+        setBlogs(data.posts || []); // was: data.blogs
       } catch (error) {
         console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchBlogs();
   }, []);
+
+  if (loading) {
+    return (
+      <p className="text-sm text-muted-foreground py-8 text-center">
+        Loading blogs...
+      </p>
+    );
+  }
 
   if (blogs.length === 0) {
     return (
@@ -98,15 +86,13 @@ const Blogs = () => {
   }
 
   return (
-    <section className=" mt-20">
-      {/* Header row */}
+    <section className="mt-20">
       <div className="container">
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-3xl lg:text-5xl text-center font-Cormorant font-medium">
             Latest <span className="text-primary">Blogs</span>
           </h2>
 
-          {/* Navigation buttons */}
           <div className="flex gap-2">
             <button
               disabled={!canScrollPrev}
@@ -134,23 +120,23 @@ const Blogs = () => {
         >
           <CarouselContent className="-ml-4">
             {blogs.map((blog, index) => {
-              const previewText = lexicalToPlainText(blog.content);
+              const previewText =htmlToPlainText(blog.body);
 
               return (
                 <CarouselItem
                   key={blog.id ?? index}
-                  className="pl-4 basis-full sm:basis-1/2  lg:basis-1/3 xl:basis-1/4"
+                  className="pl-4 basis-full border border-border sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                 >
                   <Link
-                    href={`/blogs/${blog.slugTitle}`}
+                    href={`/blogs/${blog.slug}`}
                     className="group block h-full"
                   >
                     <div className="relative flex flex-col h-full rounded-xl overflow-hidden border border-gray-400 bg-card shadow-xs hover:shadow-md transition-shadow duration-200">
                       {/* Thumbnail */}
                       <div className="relative h-48 w-full shrink-0 overflow-hidden bg-muted">
-                        {blog.image ? (
+                        {blog.coverImage ? (
                           <Image
-                            src={`/api/uploads/${blog.image}`}
+                            src={blog.coverImage}
                             alt={blog.title}
                             fill
                             className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -178,16 +164,15 @@ const Blogs = () => {
                             <span className="font-medium">
                               {blog.author ?? "Unknown"}
                             </span>
-                            {blog.createdAt && (
+                            {(blog.publishedAt ?? blog.createdAt) && (
                               <span className="ml-2">
-                                {new Date(blog.createdAt).toLocaleDateString(
-                                  undefined,
-                                  {
-                                    month: "short",
-                                    day: "numeric",
-                                    year: "numeric",
-                                  },
-                                )}
+                                {new Date(
+                                  blog.publishedAt ?? blog.createdAt,
+                                ).toLocaleDateString(undefined, {
+                                  month: "short",
+                                  day: "numeric",
+                                  year: "numeric",
+                                })}
                               </span>
                             )}
                           </div>
