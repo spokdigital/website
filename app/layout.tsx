@@ -3,9 +3,9 @@ import "./globals.css";
 import SmoothScrollProvider from "@/components/ui/Smooth-Scroll-Provider";
 
 export const metadata: Metadata = {
-  title: "Spok Digital |  dubai’s Premier Digital Marketing Agency",
+  title: "Spok Digital | D2C Growth & Performance Marketing Agency, UAE",
   description:
-    "Spok Digital is a top digital marketing agency in dubai, specializing in SEO, PPC, social media marketing, and branding. Boost your online presence with our expert solutions. Get a free consultation today!",
+    "Spok Digital is a Dubai-based performance marketing agency helping D2C & ecommerce brands scale with high-converting websites, CRO, and Meta/TikTok/Google ads.",
 };
 
 export default function RootLayout({
