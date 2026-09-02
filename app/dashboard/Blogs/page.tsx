@@ -25,6 +25,7 @@ export type BlogPost = {
   createdAt: string;
   updatedAt: string;
   body: string;
+  
 };
 
 type FilterType = "all" | "published" | "draft";

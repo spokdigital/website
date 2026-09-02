@@ -1,6 +1,5 @@
 // app/sitemap.xml/route.ts
 import prisma from '@/lib/prisma'
-import type { BlogPost } from '../dashboard/Blogs/page'
 const BASE_URL = 'https://www.spok.digital'
 
 export const dynamic = 'force-dynamic'
@@ -39,7 +38,7 @@ export async function GET() {
             },
         })
 
-        blogUrls = posts.map((post: BlogPost) => {
+        blogUrls = posts.map((post) => {
             const date = post.publishedAt ?? post.updatedAt ?? post.createdAt
             return {
                 loc: `${BASE_URL}/blogs/${post.slug}`,
