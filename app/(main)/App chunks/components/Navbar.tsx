@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 const menu = [
+  { title: "Home", link: "/" },
   { title: "D2C Growth", link: "/d2c" },
-  { title: "Business Accelerator", link: "/website-landing" },
   { title: "Services", link: "/services", hasSubmenu: true },
   { title: "Portfolio", link: "/Portfolio" },
   { title: "Blogs", link: "/blogs" },
