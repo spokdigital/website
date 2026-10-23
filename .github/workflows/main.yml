@@ -59,7 +59,7 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             APP_NAME="spok-digital"
-            DEPLOY_PATH="/home/milestonehre/spok-digital"
+            DEPLOY_PATH="/home/gulfcart/spok-digital"
 
             sudo mkdir -p $DEPLOY_PATH
             sudo chown $USER:$USER $DEPLOY_PATH
@@ -83,7 +83,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           source: "spok-digital-deployment.tar.gz"
-          target: "/home/milestonehre/spok-digital/current/"
+          target: "/home/gulfcart/spok-digital/current/"
 
       - name: Extract and setup application
         uses: appleboy/ssh-action@v1.0.3
@@ -94,7 +94,7 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             APP_NAME="spok-digital"
-            DEPLOY_PATH="/home/milestonehre/spok-digital"
+            DEPLOY_PATH="/home/gulfcart/spok-digital"
 
             cd $DEPLOY_PATH/current
 
