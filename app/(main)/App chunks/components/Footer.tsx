@@ -11,8 +11,6 @@ import { usePathname } from "next/navigation";
 const Footer = () => {
   const menu = [
     { title: "Home", link: "/" },
-    { title: "D2C Growth", link: "/d2c" },
-  
     { title: "Portfolio", link: "/Portfolio" },
     { title: "Contact", link: "/contact" },
     { title: "Blogs", link: "/blogs" },

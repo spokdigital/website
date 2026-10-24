@@ -356,7 +356,8 @@ const ServicesTab = ({
               {/* 2-col grid */}
               <div className="p-3 grid grid-cols-2 gap-1.5">
                 {serviceItems.map((s) => (
-                  <div
+                  <Link
+                  href={s.href}
                     key={s.name}
                     onClick={() => setOpen(false)}
                     onMouseEnter={() => setHovered(s.name)}
@@ -400,7 +401,7 @@ const ServicesTab = ({
                           : "opacity-0 -translate-x-1"
                       }`}
                     />
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

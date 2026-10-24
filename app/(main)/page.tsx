@@ -1,44 +1,53 @@
-"use client";
-import HeroSection from "./(Home Page)/HeroSection";
-import Testimonials from "./(Home Page)/Testimonials";
-import { TextMarquee } from "./(Home Page)/Text-Marquee";
-import Blogs from "../components/Blogs";
-import { AnimatePresence, motion } from "framer-motion";
-import { MarqueeLogo } from "./App chunks/components/MarqueeLogo";
-import Service from "./(Home Page)/Service";
-import Portfolio from "./(Home Page)/Portfolio";
-import VideoCarousel from "./(Home Page)/videoCarousel";
-import Whatwedobest from "./(Home Page)/whatwedobest";
-import Services2 from "./(Home Page)/service2";
-import FAQSection from "./(Home Page)/FAQ";
-export default function Home() {
+import React from "react";
+import HeroSection from "../d2c/sections/hero-section";
+import Graphics from "../d2c/sections/graphics-section";
+
+import TrustSection from "../d2c/sections/TrustSection";
+import VideoCarousel from "../d2c/sections/video-Carousel";
+import WhyChooseMasterclassSection from "../d2c/sections/why-choose";
+import ProjectsHorizontalScroll from "../d2c/sections/projects";
+
+import BookCallSection from "../d2c/sections/form";
+import HackFirstFooter from "../d2c/sections/footer";
+
+const page = () => {
   return (
-    <AnimatePresence mode="wait">
-      D
-      <motion.div
-        exit={{
-          scaleX: 0.2,
-          scaleY: 0.05,
-          borderRadius: "99px",
-          y: -500,
-        }}
-        transition={{
-          duration: 1,
-          ease: [0.33, 0.88, 0.25, 0.91],
-          delay: 0.2,
-        }}
-      >
-        <HeroSection />
-        <Service />
-        <TextMarquee />
-        <Portfolio />
-        <VideoCarousel />
-        <Testimonials />
-        <Whatwedobest />
-        <Blogs />
-        <MarqueeLogo />
-        <FAQSection />
-      </motion.div>
-    </AnimatePresence>
+    <>
+      {/* 1. Navigation */}
+      
+
+      {/* 2. Hook — first impression, value proposition */}
+      <HeroSection />
+
+      {/* 3. Visual credibility — eye-catching graphics right after hero */}
+      <Graphics />
+
+      {/* 4. Social proof — logos / trust signals while attention is high */}
+
+      {/* 5. Video stories — humanize the brand early */}
+      <VideoCarousel />
+
+      <TrustSection />
+
+      {/* 6. Why us — core differentiators after they're warmed up */}
+      <WhyChooseMasterclassSection />
+
+      {/* 8. Portfolio — show the work, prove the claims */}
+      <ProjectsHorizontalScroll />
+
+      {/* 9. Testimonials — peer validation before asking for money */}
+
+      {/* 10. Pricing — present offer once trust is fully built */}
+
+      {/* 11. CTA banner — urgency nudge before the form */}
+
+      {/* 12. Booking form — final conversion action */}
+      <BookCallSection />
+
+      {/* 13. Footer */}
+      <HackFirstFooter />
+    </>
   );
-}
+};
+
+export default page;
