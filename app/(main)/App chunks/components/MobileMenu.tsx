@@ -14,10 +14,8 @@ import { ChevronDown } from "lucide-react";
 
 const menu = [
   { title: "Home", link: "/" },
-
   { title: "Services", isServices: true },
-  { title: "D2C Growth", link: "/d2c" },
-  { title: "Business Accelerator", link: "/website-landing" },
+  { title: "Shopify", link: 'shopify' },
   { title: "Blog", link: "/blogs" },
   { title: "Portfolio", link: "/Portfolio" },
   { title: "Contact", link: "/contact" },
@@ -117,9 +115,8 @@ const MobileMenu = () => {
                         initial={{ opacity: 0, x: -16 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.06, duration: 0.3 }}
-                        className={`text-2xl font-semibold font-Grostek transition-colors ${
-                          path === item.link ? "text-primary" : "text-gray-900"
-                        }`}
+                        className={`text-2xl font-semibold font-Grostek transition-colors ${path === item.link ? "text-primary" : "text-gray-900"
+                          }`}
                       >
                         {item.title}
                       </motion.span>

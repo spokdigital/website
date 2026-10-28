@@ -7,7 +7,7 @@ import MobileMenu from "./MobileMenu";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-const menu = [
+export const menu = [
   { title: "Home", link: "/" },
   { title: "Services", link: "/services", hasSubmenu: true },
   { title: "Portfolio", link: "/Portfolio" },
