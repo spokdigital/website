@@ -42,7 +42,7 @@ const projects: Project[] = [
         description: "Dubai luxury interior brand offering bespoke marble furniture, custom bedroom suites and full home renovations, sold through a premium Shopify store.",
         tags: ["Shopify", "Luxury furniture", "UAE"],
         image: "/shopify/3.png",
-        href: "https://www.billionaire-mansions.com/",
+        href: "https://confianza.ae/",
     },
     {
         title: "Khazayan",
@@ -50,7 +50,7 @@ const projects: Project[] = [
         description: "Dubai luxury interior brand offering bespoke marble furniture, custom bedroom suites and full home renovations, sold through a premium Shopify store.",
         tags: ["Shopify", "Luxury furniture", "UAE"],
         image: "/shopify/5.png",
-        href: "https://www.billionaire-mansions.com/",
+        href: "https://khazayan.com/",
     },
     {
         title: "Tylu Kreations",
@@ -58,15 +58,15 @@ const projects: Project[] = [
         description: "Dubai luxury interior brand offering bespoke marble furniture, custom bedroom suites and full home renovations, sold through a premium Shopify store.",
         tags: ["Shopify", "Luxury furniture", "UAE"],
         image: "/shopify/6.png",
-        href: "https://www.billionaire-mansions.com/",
+        href: "https://tylukreations.com/",
     },
     {
-        title: "Suyu",
+        title: "Suyu India",
         category: "Luxury Furniture & Interiors",
         description: "Dubai luxury interior brand offering bespoke marble furniture, custom bedroom suites and full home renovations, sold through a premium Shopify store.",
         tags: ["Shopify", "Luxury furniture", "UAE"],
         image: "/shopify/8.png",
-        href: "https://www.billionaire-mansions.com/",
+        href: "http://suyuindia.com/",
     },
 ];
 const GRADIENTS = [
