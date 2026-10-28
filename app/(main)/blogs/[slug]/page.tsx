@@ -25,16 +25,7 @@ const formatDate = (d: string | Date) =>
     day: "numeric",
   });
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yoursite.com";
-
-/* ── Static params ── */
-export async function generateStaticParams() {
-  const posts = await prisma.blogPost.findMany({
-    where: { status: "published" },
-    select: { slug: true },
-  });
-  return posts.map((p) => ({ slug: p.slug }));
-}
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://spok.digital";
 
 /* ── Metadata ── */
 export async function generateMetadata({
