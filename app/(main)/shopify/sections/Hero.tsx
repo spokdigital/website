@@ -1,6 +1,7 @@
 import StatsBar from "./StatsBar";
 import { WHATSAPP } from "@/lib/data";
 import LeadForm from "./Lead-form";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -22,16 +23,12 @@ export default function Hero() {
               solutions — all built to maximize your revenue.
             </p>
 
-            <a
-              href={WHATSAPP}
+            <Link
+              href={'/book-a-demo'}
               className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-primary/90"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <path d="M3 21l1.65-4.87A8.5 8.5 0 1 1 8 19.35L3 21z" />
-                <path d="M9 10c.5 2 2 3.5 4 4l1.5-1.2a.6.6 0 0 1 .7 0l1.3.9a.6.6 0 0 1 .1.9c-.6.8-1.5 1.2-2.5 1-2.7-.6-4.9-2.8-5.5-5.5-.2-1 .2-1.9 1-2.5a.6.6 0 0 1 .9.1l.9 1.3a.6.6 0 0 1 0 .7L9 10z" />
-              </svg>
-              WhatsApp Us
-            </a>
+              Get Started
+            </Link>
 
             <div className="mt-12 max-w-3xl">
               <StatsBar />

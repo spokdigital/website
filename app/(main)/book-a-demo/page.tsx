@@ -35,7 +35,7 @@ export default function BookADemoPage() {
                 {/* Replace with your actual Calendly event URL */}
                 <div
                     className="calendly-inline-widget"
-                    data-url="https://calendly.com/info-spokdigital/gulfcart-demo"
+                    data-url="https://calendly.com/info-spokdigital/30min"
                     style={{ minWidth: '320px', height: '700px' }}
                 />
             </div>
