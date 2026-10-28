@@ -11,6 +11,7 @@ const menu = [
   { title: "Home", link: "/" },
   { title: "Services", link: "/services", hasSubmenu: true },
   { title: "Portfolio", link: "/Portfolio" },
+  { title: "Shopify", link: "/shopify" },
   { title: "Blogs", link: "/blogs" },
 ];
 
@@ -36,13 +37,14 @@ const NavBar = () => {
           <Logo
             source={
               path === "/Portfolio" ||
-              path === "/" ||
-              path.startsWith("/services") ||
-              path === "/About" ||
-              path === "/contact" ||
-              path.startsWith("/d2c") ||
-              path.startsWith("/website-landing") ||
-              path.startsWith("/blogs/")
+                path === "/" ||
+                path.startsWith("/services") ||
+                path === "/About" ||
+                path === "/contact" ||
+                path.startsWith("/d2c") ||
+                path.startsWith("/website-landing") ||
+                path === ('/shopify') ||
+                path.startsWith("/blogs/")
                 ? "/spok-balck.png"
                 : "/spok-white.png"
             }
@@ -70,17 +72,17 @@ const NavBar = () => {
         >
           <Link href={"/contact"} className="hidden xl:block">
             <Button
-              className={`${
-                path.startsWith("/blogs/") ||
+              className={`${path.startsWith("/blogs/") ||
                 path.startsWith("/services") ||
                 path === "/Portfolio" ||
                 path === "/" ||
                 path === "/About" ||
                 path === "/d2c" ||
+                path === ('/shopify') ||
                 path === "/website-landing"
-                  ? "text-black!"
-                  : "text-white! border-gray-50/80"
-              }`}
+                ? "text-black!"
+                : "text-white! border-gray-50/80"
+                }`}
             >
               Contact us
             </Button>

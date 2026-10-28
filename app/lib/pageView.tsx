@@ -1,25 +1,25 @@
 // app/lib/PixelPageView.tsx
 "use client";
+
+import { Suspense, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { trackPageView } from "@/app/lib/fbq";
 
-declare global {
-  interface Window {
-    fbq: any;
-  }
-}
-
-export function PixelPageView() {
+function PageViewTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (typeof window.fbq === "function") {
-      window.fbq("track", "PageView");
-      console.log('page triggered')
-    }
-    
+    trackPageView();
   }, [pathname, searchParams]);
 
   return null;
+}
+
+export function PixelPageView() {
+  return (
+    <Suspense fallback={null}>
+      <PageViewTracker />
+    </Suspense>
+  );
 }

@@ -42,10 +42,15 @@ jobs:
           [ -d "app" ] && cp -r app deploy/ || echo "No app directory"
           [ -d "components" ] && cp -r components deploy/ || echo "No components directory"
           [ -d "lib" ] && cp -r lib deploy/ || echo "No lib directory"
+          [ -d "prisma" ] && cp -r prisma deploy/ || echo "No prisma directory"
           [ -f "components.json" ] && cp components.json deploy/ || echo "No components.json"
           [ -f "tailwind.config.ts" ] && cp tailwind.config.ts deploy/ || echo "No tailwind.config.ts"
           [ -f "postcss.config.mjs" ] && cp postcss.config.mjs deploy/ || echo "No postcss.config.mjs"
           [ -f "tsconfig.json" ] && cp tsconfig.json deploy/ || echo "No tsconfig.json"
+
+          # Never ship local data: the server's copies must stay untouched
+          rm -rf deploy/public/uploads
+          rm -f deploy/prisma/dev.db deploy/prisma/dev.db-journal
 
           # Create production package
           tar -czf spok-digital-deployment.tar.gz -C deploy .
@@ -67,13 +72,20 @@ jobs:
             pm2 stop $APP_NAME 2>/dev/null || echo "Process not running"
             pm2 delete $APP_NAME 2>/dev/null || echo "Process not found"
 
-            if [ -d "$DEPLOY_PATH/current" ]; then
-              sudo rm -rf $DEPLOY_PATH/backup 2>/dev/null || echo "No backup to remove"
-              sudo mv $DEPLOY_PATH/current $DEPLOY_PATH/backup
-            fi
-
             mkdir -p $DEPLOY_PATH/current
             cd $DEPLOY_PATH/current
+
+            # Safety copy of the database before touching anything
+            [ -f prisma/dev.db ] && cp prisma/dev.db $DEPLOY_PATH/dev.db.bak || echo "No database yet"
+
+            # Wipe the old release, but keep prisma/ and public/
+            find . -mindepth 1 -maxdepth 1 ! -name prisma ! -name public -exec rm -rf {} +
+
+            # Inside those two, keep only the data
+            [ -d public ] && find public -mindepth 1 -maxdepth 1 ! -name uploads -exec rm -rf {} + || true
+            [ -d prisma ] && find prisma -mindepth 1 -maxdepth 1 ! -name dev.db -exec rm -rf {} + || true
+
+            mkdir -p public/uploads prisma
 
       - name: Upload deployment package
         uses: appleboy/scp-action@v0.1.7

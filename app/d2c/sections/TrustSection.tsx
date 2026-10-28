@@ -6,44 +6,66 @@ const CASE_STUDIES = [
   {
     id: 1,
     label: "Case Study 01",
-    category: "​Fashion & Apparel — D2C",
-    title: "AED 600K+ Revenue",
-    subtitle: "in 6 months",
-    highlight: "12 months",
+    category: "Shopify Store — D2C",
+    title: "AED 1.22M in Sales",
+    subtitle: "in 12 months",
+    highlight: "with 18.14% of customers coming back",
     image: "/landing/d2c/trustbuild/snapshot-1.jpeg",
     brief: [
-      "Teeser came to us as UAE's boldest graphic tee brand — pop culture, nostalgia, custom prints — but their online store wasn't converting the way their product deserved.",
-      "We built their full D2C growth engine from the ground up. CRO-optimised Shopify store, performance video creatives tailored to UAE audiences, and aggressive paid campaigns across Meta and TikTok.",
-      "The result? More than Half a Million in revenue in under 6 months — with a 19.89% returning customer rate that tells you the product keeps people coming back.",
+      "From Jan 2023 to Jan 2024, this store generated AED 1,555,268.50 in gross sales, which came to AED 1,220,790.85 in total sales after discounts and returns.",
+      "1,951 orders were placed and 1,818 fulfilled, with a returning customer rate of 18.14%.",
     ],
   },
   {
     id: 2,
     label: "Case Study 02",
-    category: "Fragrance & Lifestyle — D2C",
-    title: "AED 287K+ Revenue",
-    subtitle: "in 5 Months",
-    highlight: "and the curve is still going up",
+    category: "Shopify Store — D2C",
+    title: "AED 1.45M in Sales",
+    subtitle: "in 12 months",
+    highlight: "with 1 in 5 customers coming back",
     image: "/landing/d2c/trustbuild/snapshot-2.jpeg",
     brief: [
-      "A Dubai-based perfume startup came to us with a beautiful product, zero digital presence, and one goal — build a D2C brand that sells online without relying on retail shelves.",
-      "We started from scratch. Shopify store built for conversion, performance video creatives shot around the scent story and UAE lifestyle, and Meta campaigns targeting UAE fragrance buyers who actually spend.",
-      "January was slow. By May, they were doing AED 100K+ a month — and the graph hasn't stopped climbing.",
-      "2,661 orders. A brand that didn't exist online 5 months ago.",
+      "From Jan 2022 to Jan 2023, gross sales reached AED 1,834,986.50, finishing at AED 1,453,640.65 in total sales.",
+      "3,051 orders were placed and 2,596 fulfilled, with a 20.52% returning customer rate.",
     ],
   },
   {
     id: 3,
     label: "Case Study 03",
-    category: "Baby & Kids — D2C",
-    title: "AED 400K+ revenue ",
-    subtitle: "in 4 Months",
-    highlight: "with 1 in 5 moms coming back",
+    category: "Shopify Store — D2C",
+    title: "AED 2.50M in Sales",
+    subtitle: "in 12 months",
+    highlight: "across 5,014 orders",
     image: "/landing/d2c/trustbuild/snapshot-3.jpeg",
     brief: [
-      "A Dubai-based baby essentials brand had a product that UAE moms loved — but their online store wasn't finding them.",
-      "We built a Shopify store that spoke directly to first-time parents — trust signals, clean UX, fast checkout. Performance videos built around real parenting moments that stopped moms mid-scroll. And Meta campaigns laser-targeted at UAE parents with newborns and toddlers.",
-      "May to August — four months. AED 400K in gross sales, 1,939 orders fulfilled, and a 17.52% returning customer rate that tells you one thing: once a mom trusts your brand, she comes back.",
+      "From Jan 2021 to Jan 2022, this store recorded AED 2,967,161.75 in gross sales and AED 2,502,396.05 in total sales.",
+      "5,014 orders were placed and 4,450 fulfilled, with a 16.99% returning customer rate.",
+    ],
+  },
+  {
+    id: 4,
+    label: "Case Study 04",
+    category: "Shopify Store — D2C",
+    title: "AED 3.28M in Sales",
+    subtitle: "in 12 months",
+    highlight: "from AED 3.75M in gross sales",
+    image: "/landing/d2c/trustbuild/snapshot-4.jpeg",
+    brief: [
+      "From Jan 2020 to Jan 2021, gross sales reached AED 3,747,204.25. After discounts and returns, total sales came to AED 3,275,688.35.",
+      "Sales climbed steadily through the first half of the year and held at that level through to November.",
+    ],
+  },
+  {
+    id: 5,
+    label: "Case Study 05",
+    category: "Shopify Store — D2C",
+    title: "AED 1.01M in Sales",
+    subtitle: "in 16 months",
+    highlight: "from AED 1.20M in gross sales",
+    image: "/landing/d2c/trustbuild/snapshot-5.jpeg",
+    brief: [
+      "From Jun 2025 to Sept 2026, this store generated AED 1,197,022.00 in gross sales and AED 1,007,062.63 in total sales.",
+      "Net sales after discounts and returns were AED 965,802.41, with sales recovering through 2026.",
     ],
   },
 ];
@@ -60,7 +82,7 @@ export default function TrustSection() {
     <section className="relative pt-16 overflow-hidden font-serif">
       {/* Decorative circles */}
 
-      <div className="max-w-6xl mx-auto px-6 relative">
+      <div className="max-w-7xl mx-auto px-6 relative">
         {/* Heading */}
         <div className="text-center mb-20">
           <p className="font-sans text-[11px] tracking-[4px] uppercase text-primary mb-3 font-semibold">
@@ -82,9 +104,8 @@ export default function TrustSection() {
             <div className="grid gap-12 items-center mb-10 lg:mb-20 md:grid-cols-2">
               {/* Image */}
               <div
-                className={`bg-red-400 rounded shadow-[0_8px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden h-auto w-full border border-red-100 relative flex items-center justify-center ${
-                  index % 2 === 1 ? "md:order-2" : ""
-                }`}
+                className={`bg-red-400 rounded shadow-[0_8px_48px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden h-auto w-full border border-red-100 relative flex items-center justify-center ${index % 2 === 1 ? "md:order-2" : ""
+                  }`}
               >
                 <img
                   src={item.image}
