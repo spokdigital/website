@@ -262,7 +262,7 @@ function ProjectCard({
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 p-5">
-            <h3 className="font-Cormorant text-[clamp(20px,2.2vw,34px)] font-light text-white leading-tight tracking-tight">
+            <h3 className="font-Cormorant capitalize text-[clamp(20px,2.2vw,34px)] font-light text-white leading-tight tracking-tight">
               {title}
             </h3>
           </div>
