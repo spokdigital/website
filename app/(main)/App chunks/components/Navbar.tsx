@@ -41,6 +41,7 @@ const NavBar = () => {
                 path.startsWith("/services") ||
                 path === "/About" ||
                 path === "/contact" ||
+                path === "/book-a-demo" ||
                 path.startsWith("/d2c") ||
                 path.startsWith("/website-landing") ||
                 path === ('/shopify') ||
@@ -78,6 +79,7 @@ const NavBar = () => {
                 path === "/" ||
                 path === "/About" ||
                 path === "/d2c" ||
+                path === "/book-a-demo" ||
                 path === ('/shopify') ||
                 path === "/website-landing"
                 ? "text-black!"

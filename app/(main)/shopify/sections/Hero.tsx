@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="pt-32 pb-20">
+    <section className="pt-28">
       <div className="container">
         <div className="grid items-start gap-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>

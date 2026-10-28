@@ -17,7 +17,7 @@ export default function Services() {
   const root = useRef<HTMLElement>(null);
 
   return (
-    <section ref={root} id="services" className="bg-white py-12">
+    <section ref={root} id="services" className="bg-white pt-16">
       <div className="container px-5">
         <SectionHeading
           label="What We Do"

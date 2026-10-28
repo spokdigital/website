@@ -223,7 +223,7 @@ export default function Reviews() {
         <section
             id="reviews"
             aria-labelledby="reviews-heading"
-            className="overflow-hidden bg-white py-20"
+            className="overflow-hidden bg-white pt-16"
         >
             {/* Section heading */}
             <div className="container mx-auto px-5">

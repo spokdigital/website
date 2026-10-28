@@ -136,7 +136,7 @@ const items = [
 
 export default function Approach() {
   return (
-    <section className="bg-neutral-50/70 py-16">
+    <section className="bg-neutral-50/70 pt-16">
       <div className="container px-5">
         <SectionHeading
           label="Our Approach"
