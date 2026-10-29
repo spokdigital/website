@@ -29,12 +29,12 @@ const projects: Project[] = [
         href: "https://perfumeoasis.ae",
     },
     {
-        title: "Opto Watch Co.",
-        category: "Watch Accessories",
-        description: "Dubai watch strap brand with alligator, Alcantara, sailcloth and FKM rubber straps, shipping worldwide via DHL.",
-        tags: ["Shopify", "Global shipping", "Collectors"],
+        title: "Gazelle Glam",
+        category: "K-Beauty & Skincare",
+        description: "Dubai K-beauty and skincare store with authentic Korean and Japanese brands, shipping across the UAE with next-day delivery in major cities.",
+        tags: ["Shopify", "UAE delivery", "35+ brands"],
         image: "/shopify/2.png",
-        href: "https://optowatchco.com/",
+        href: "https://gazelleglam.com/",
     },
     {
         title: "Confianza",
