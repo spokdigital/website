@@ -4,8 +4,8 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Confetti, type ConfettiRef } from '@/components/magicui/confetti';
 import { trackBookDemo, trackFormSubmit } from '@/app/lib/fbq';
-
-
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+gsap.registerPlugin(ScrollToPlugin);
 
 
 export default function LeadForm() {
@@ -123,7 +123,11 @@ export default function LeadForm() {
                             type="button"
                             onClick={() => {
                                 trackBookDemo('form');
-                                router.push('/book-a-demo');
+                                gsap.to(window, {
+                                    duration: 1,
+                                    scrollTo: { y: '#booking', offsetY: 80 }, // offsetY = sticky header height
+                                    ease: 'power2.inOut',
+                                });
                             }}
                             className="cursor-pointer rounded-3xl border border-primary/80 py-[15px] font-display text-[15.5px] font-bold tracking-[-.01em] text-foreground hover:border-primary/50"
                         >
