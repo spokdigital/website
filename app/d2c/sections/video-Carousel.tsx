@@ -45,12 +45,6 @@ const slides = [
   },
   {
     tag: "Product",
-    image: "/landing/d2c/vid/vid-6.mp4",
-    wide: false,
-    poster: "img-6.png",
-  },
-  {
-    tag: "Product",
     image: "/landing/d2c/vid/vid-7.mp4",
     wide: false,
     poster: "img-7.png",
