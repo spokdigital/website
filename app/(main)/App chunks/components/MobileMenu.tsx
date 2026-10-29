@@ -14,8 +14,8 @@ import { ChevronDown } from "lucide-react";
 
 const menu = [
   { title: "Home", link: "/" },
+  { title: "Shopify Dev", link: '/shopify' },
   { title: "Services", isServices: true },
-  { title: "Shopify", link: '/shopify' },
   { title: "Blog", link: "/blogs" },
   { title: "Portfolio", link: "/Portfolio" },
   { title: "Contact", link: "/contact" },

@@ -9,9 +9,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 export const menu = [
   { title: "Home", link: "/" },
+  { title: "Shopify Dev", link: "/shopify" },
   { title: "Services", link: "/services", hasSubmenu: true },
   { title: "Portfolio", link: "/Portfolio" },
-  { title: "Shopify", link: "/shopify" },
   { title: "Blogs", link: "/blogs" },
 ];
 
