@@ -114,7 +114,7 @@ function ProjectCard({ p, i }: { p: Project; i: number }) {
 
 export default function Projects() {
     return (
-        <section id="projects" className="overflow-hidden py-16">
+        <section id="projects" className="overflow-hidden pt-16">
             <div className="container text-center">
                 <span className="inline-block rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
                     Our Work

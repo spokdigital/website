@@ -13,7 +13,7 @@ const stats = [
 
 export default function Speed() {
   return (
-    <section className="bg-neutral-50/70 pt-16">
+    <section className="bg-neutral-50/70 py-16">
       <div className="container grid items-center gap-14 px-5 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         {/* Visual */}
         <div className="relative">
