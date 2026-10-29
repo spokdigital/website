@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Confetti, type ConfettiRef } from '@/components/magicui/confetti';
 import { trackBookDemo, trackFormSubmit } from '@/app/lib/fbq';
+import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 gsap.registerPlugin(ScrollToPlugin);
 

@@ -5,7 +5,7 @@ import Process from "./sections/Process";
 import Reviews from "./sections/Reviews";
 import Speed from "./sections/Speed";
 import Projects from "./sections/projects";
-
+import BookCallSection from "@/app/d2c/sections/form";
 
 export default function Home() {
   return (
@@ -18,6 +18,7 @@ export default function Home() {
         <Speed />
         <Reviews />
         <Process />
+        <BookCallSection />
       </main>
     </>
   );
