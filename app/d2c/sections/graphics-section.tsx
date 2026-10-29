@@ -351,7 +351,7 @@ const Graphics = () => {
   );
 
   return (
-    <div className="relative mt-5 lg:mt-10 mb-10 w-full overflow-hidden select-none">
+    <div className="relative   mb-10 w-full overflow-hidden select-none">
       {mounted && createPortal(cursorEl, document.body)}
 
       {/* Header */}

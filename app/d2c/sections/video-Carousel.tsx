@@ -28,7 +28,7 @@ const slides = [
 
     image: "/landing/d2c/vid/vid-3.mp4",
     wide: false,
-    poster: "img-3.png",
+    poster: "vid-3.png",
   },
   {
     tag: "Product",
@@ -54,6 +54,18 @@ const slides = [
     image: "/landing/d2c/vid/vid-7.mp4",
     wide: false,
     poster: "img-7.png",
+  },
+  {
+    tag: "Product",
+    image: "/landing/d2c/vid/vid-8.mp4",
+    wide: false,
+    poster: "vid-6.png",
+  },
+  {
+    tag: "Product",
+    image: "/landing/d2c/vid/vid-9.mp4",
+    wide: false,
+    poster: "vid-5.png",
   },
 ];
 

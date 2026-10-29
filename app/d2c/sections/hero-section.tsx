@@ -20,7 +20,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="max-w-[94%]! mx-auto pb-16 pt-24 lg:pt-40">
+    <div className="max-w-[94%]! mx-auto pb-4 pt-24 lg:pt-40">
       {/* Two-column grid: copy left, form right */}
       <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,540px)] lg:gap-12">
         {/* Left */}
