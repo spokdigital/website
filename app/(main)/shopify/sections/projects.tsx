@@ -33,7 +33,7 @@ const projects: Project[] = [
         category: "K-Beauty & Skincare",
         description: "Dubai K-beauty and skincare store with authentic Korean and Japanese brands, shipping across the UAE with next-day delivery in major cities.",
         tags: ["Shopify", "UAE delivery", "35+ brands"],
-        image: "/shopify/2.png",
+        image: "/shopify/4.png",
         href: "https://gazelleglam.com/",
     },
     {
