@@ -39,7 +39,7 @@ const cards = [
 
 const stats = [
   { num: "120+", label: "Brands Accelerated" },
-  { num: "₹480Cr", label: "GMV Generated" },
+  { num: "AED 1 mil", label: "GMV Generated" },
   { num: "3.8×", label: "Avg. ROAS Improvement" },
 ];
 

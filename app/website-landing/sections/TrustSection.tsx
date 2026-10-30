@@ -66,7 +66,7 @@ export default function TrustSection() {
             </h3>
 
             <h4 className="text-[clamp(22px,3vw,34px)] text-[#1a1a1a] leading-tight mb-8 tracking-[-0.3px]">
-              ₹4.45Cr revenue
+              AED 1.17 mil revenue
               <br />
               in <em className="text-red-500 not-italic">12 months</em>
             </h4>

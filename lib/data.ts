@@ -77,4 +77,11 @@ export const posts = [
 
 export const formServices = ["New Shopify Store", "Redesign Current Store", "Custom Landing Pages", "Migration to Shopify", "B2B / Wholesale Setup", "Shopify Audit", "Custom App Development", "Other"];
 export const formIndustries = ["Fashion & Apparel", "Beauty & Skincare", "Health & Wellness", "Food & Beverages", "Electronics", "Home & Living", "Jewelry & Accessories", "Sports & Fitness", "Other"];
-export const formRevenue = ["Pre-launch", "Under ₹5 Lakhs", "₹5L - ₹25 Lakhs", "₹25L - ₹1 Crore", "₹1Cr - ₹5 Crore", "₹5 Crore+"];
+export const formRevenueAED = [
+  "Pre-launch",
+  "Under AED 19,300",
+  "AED 19,300 - AED 96,400",
+  "AED 96,400 - AED 385,600",
+  "AED 385,600 - AED 1.93 Million",
+  "AED 1.93 Million+"
+];

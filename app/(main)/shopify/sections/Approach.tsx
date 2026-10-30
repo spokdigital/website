@@ -80,7 +80,7 @@ function CheckoutVisual() {
       <div className="space-y-1.5 text-xs">
         <div className="flex justify-between text-neutral-500">
           <span>Subtotal</span>
-          <span>₹4,998</span>
+          <span>AED 192.8</span>
         </div>
         <div className="flex justify-between text-neutral-500">
           <span>Shipping</span>
@@ -88,7 +88,7 @@ function CheckoutVisual() {
         </div>
         <div className="flex justify-between border-t border-dashed border-neutral-200 pt-2 text-sm font-bold">
           <span>Total</span>
-          <span>₹4,998</span>
+          <span>AED 192.8</span>
         </div>
       </div>
       <div className="mt-3 rounded-xl bg-primary py-2.5 text-center text-[13px] font-semibold text-white">Pay now</div>

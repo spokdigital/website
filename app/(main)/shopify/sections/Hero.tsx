@@ -19,7 +19,7 @@ export default function Hero() {
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/70">
-              India&apos;s leading Shopify development agency. Custom stores, landing pages, migrations, B2B
+              UAE&apos;s leading Shopify development agency. Custom stores, landing pages, migrations, B2B
               solutions — all built to maximize your revenue.
             </p>
 
