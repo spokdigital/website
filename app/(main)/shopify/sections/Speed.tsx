@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import { speedPoints } from "@/lib/data";
-
+import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+gsap.registerPlugin(ScrollToPlugin);
 // Put your screenshot at /public/images/pagespeed-report.png
 const IMAGE_SRC = "/PageSpeed-Performance.png";
 
@@ -71,18 +73,18 @@ export default function Speed() {
           </ul>
 
           <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href="https://www.jhango.com/pages/services/shopify-audit.html"
+            <button
+              onClick={() => {
+                gsap.to(window, {
+                  duration: 1,
+                  scrollTo: { y: '#booking', offsetY: 80 }, // offsetY = sticky header height
+                  ease: 'power2.inOut',
+                });
+              }}
               className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-[15px] font-semibold text-white shadow-lg shadow-primary/20 transition-colors hover:bg-primary/90"
             >
-              Boost My Store <ArrowRight size={18} aria-hidden />
-            </a>
-            <a
-              href="https://www.jhango.com/pages/landing/free-audit.html"
-              className="inline-flex items-center rounded-full border border-neutral-300 bg-white px-7 py-3.5 text-[15px] font-semibold transition-colors hover:border-primary hover:text-primary"
-            >
-              Get Free Audit
-            </a>
+              Boost a demo <ArrowRight size={18} aria-hidden />
+            </button>
           </div>
         </div>
       </div>
