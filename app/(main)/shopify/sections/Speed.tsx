@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import { speedPoints } from "@/lib/data";
