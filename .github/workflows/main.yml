@@ -21,6 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
       - name: Generate Prisma
         run: npx prisma generate
 
@@ -31,7 +32,6 @@ jobs:
 
       - name: Create deployment package
         run: |
-          # Create deployment directory structure
           mkdir -p deploy
 
           # Copy essential files for Next.js production
@@ -57,7 +57,9 @@ jobs:
           # Create production package
           tar -czf spok-digital-deployment.tar.gz -C deploy .
 
-      - name: Deploy to server via SSH
+      # 1) Only make sure the folder exists. The live site is NOT touched yet,
+      #    so if the upload fails, the old release keeps running.
+      - name: Prepare server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -65,20 +67,51 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            sudo mkdir -p /home/gulfcart/spok-digital
+            sudo chown $USER:$USER /home/gulfcart/spok-digital
+
+      # 2) Upload the tarball NEXT TO current/, not into it
+      - name: Upload deployment package
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          source: "spok-digital-deployment.tar.gz"
+          target: "/home/gulfcart/spok-digital/"
+
+      # 3) Only now stop, swap, migrate and start
+      - name: Deploy on server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script_stop: true
+          script: |
+            set -e
+
             APP_NAME="spok-digital"
             DEPLOY_PATH="/home/gulfcart/spok-digital"
+            APP_DIR="$DEPLOY_PATH/current"
+            PACKAGE="$DEPLOY_PATH/spok-digital-deployment.tar.gz"
 
-            sudo mkdir -p $DEPLOY_PATH
-            sudo chown $USER:$USER $DEPLOY_PATH
+            mkdir -p "$APP_DIR"
+            cd "$APP_DIR"
 
+            # Timestamped DB backup, keep the last 5
+            if [ -f prisma/dev.db ]; then
+              cp prisma/dev.db "$DEPLOY_PATH/dev.db.$(date +%F-%H%M%S).bak"
+            else
+              echo "No database yet"
+            fi
+            ls -1t "$DEPLOY_PATH"/dev.db.*.bak 2>/dev/null | tail -n +6 | xargs -r rm -f
+
+            # Stop the app
             pm2 stop $APP_NAME 2>/dev/null || echo "Process not running"
             pm2 delete $APP_NAME 2>/dev/null || echo "Process not found"
-
-            mkdir -p $DEPLOY_PATH/current
-            cd $DEPLOY_PATH/current
-
-            # Safety copy of the database before touching anything
-            [ -f prisma/dev.db ] && cp prisma/dev.db $DEPLOY_PATH/dev.db.bak || echo "No database yet"
 
             # Wipe the old release, but keep prisma/ and public/
             find . -mindepth 1 -maxdepth 1 ! -name prisma ! -name public -exec rm -rf {} +
@@ -89,50 +122,37 @@ jobs:
 
             mkdir -p public/uploads prisma
 
-      - name: Upload deployment package
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT }}
-          source: "spok-digital-deployment.tar.gz"
-          target: "/home/gulfcart/spok-digital/current/"
+            # Extract the new release
+            tar -xzf "$PACKAGE" -C "$APP_DIR"
+            rm -f "$PACKAGE"
 
-      - name: Extract and setup application
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT }}
-          script: |
-            APP_NAME="spok-digital"
-            DEPLOY_PATH="/home/gulfcart/spok-digital"
-
-            cd $DEPLOY_PATH/current
-
-            tar -xzf spok-digital-deployment.tar.gz
-            rm spok-digital-deployment.tar.gz
-
-            npm ci
-
+            # .env is the single place for secrets and config
             cat > .env << EOF
             NODE_ENV=production
             PORT=3013
+            DATABASE_URL="file:./dev.db"
             RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
             EOF
+            chmod 600 .env
 
+            npm ci
+
+            # Prisma client + apply schema changes.
+            # No --accept-data-loss: if a change would destroy data, the deploy fails loudly.
+            npx prisma generate
+            npx prisma db push
+
+            # pm2 config (no secrets here, Next.js reads .env itself)
             cat > ecosystem.config.js << EOF
             module.exports = {
               apps: [{
                 name: '$APP_NAME',
+                cwd: '$APP_DIR',
                 script: 'npm',
                 args: 'start',
                 env: {
                   NODE_ENV: 'production',
-                  PORT: 3013,
-                  RESEND_API_KEY: '${{ secrets.RESEND_API_KEY }}'
+                  PORT: 3013
                 }
               }]
             };
@@ -140,5 +160,3 @@ jobs:
 
             pm2 start ecosystem.config.js
             pm2 save
-
-            sudo pm2 startup systemd -u $USER --hp /home/$USER 2>/dev/null || echo "PM2 startup already configured"
