@@ -21,13 +21,17 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
       - name: Generate Prisma
         run: npx prisma generate
+        env:
+          DATABASE_URL: "file:./dev.db"
 
       - name: Build Next.js app
         run: npm run build
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          DATABASE_URL: "file:./dev.db"
 
       - name: Create deployment package
         run: |
@@ -67,9 +71,11 @@ jobs:
           script: |
             APP_NAME="spok-digital"
             DEPLOY_PATH="/home/gulfcart/spok-digital"
+            BACKUP_DIR="$DEPLOY_PATH/backups"
 
             sudo mkdir -p $DEPLOY_PATH
             sudo chown $USER:$USER $DEPLOY_PATH
+            mkdir -p $BACKUP_DIR
 
             pm2 stop $APP_NAME 2>/dev/null || echo "Process not running"
             pm2 delete $APP_NAME 2>/dev/null || echo "Process not found"
@@ -77,8 +83,32 @@ jobs:
             mkdir -p $DEPLOY_PATH/current
             cd $DEPLOY_PATH/current
 
-            # Safety copy of the database before touching anything
-            [ -f prisma/dev.db ] && cp prisma/dev.db $DEPLOY_PATH/dev.db.bak || echo "No database yet"
+            # Back up the database (timestamped copy + a "latest" copy)
+            if [ -f prisma/dev.db ]; then
+              STAMP=$(date +%Y%m%d-%H%M%S)
+              cp prisma/dev.db $BACKUP_DIR/dev.db.$STAMP
+              cp prisma/dev.db $BACKUP_DIR/dev.db.latest
+              echo "Database backed up: dev.db.$STAMP"
+            else
+              echo "No database yet"
+            fi
+
+            # Keep only the 10 most recent timestamped database backups
+            ls -1t $BACKUP_DIR/dev.db.2* 2>/dev/null | tail -n +11 | xargs -r rm -f
+
+            # Back up uploads (latest mirror only)
+            if [ -d public/uploads ] && [ "$(ls -A public/uploads 2>/dev/null)" ]; then
+              if command -v rsync >/dev/null 2>&1; then
+                mkdir -p $BACKUP_DIR/uploads.latest
+                rsync -a --delete public/uploads/ $BACKUP_DIR/uploads.latest/
+              else
+                rm -rf $BACKUP_DIR/uploads.latest
+                cp -r public/uploads $BACKUP_DIR/uploads.latest
+              fi
+              echo "Uploads backed up"
+            else
+              echo "No uploads yet"
+            fi
 
             # Wipe the old release, but keep prisma/ and public/
             find . -mindepth 1 -maxdepth 1 ! -name prisma ! -name public -exec rm -rf {} +
@@ -109,19 +139,45 @@ jobs:
           script: |
             APP_NAME="spok-digital"
             DEPLOY_PATH="/home/gulfcart/spok-digital"
+            BACKUP_DIR="$DEPLOY_PATH/backups"
+            DB_PATH="$DEPLOY_PATH/current/prisma/dev.db"
+            UPLOADS_PATH="$DEPLOY_PATH/current/public/uploads"
 
             cd $DEPLOY_PATH/current
 
             tar -xzf spok-digital-deployment.tar.gz
             rm spok-digital-deployment.tar.gz
 
-            npm ci
+            # Restore the database if it is missing or empty
+            if [ ! -s "$DB_PATH" ] && [ -f "$BACKUP_DIR/dev.db.latest" ]; then
+              cp "$BACKUP_DIR/dev.db.latest" "$DB_PATH"
+              echo "Database restored from backup"
+            else
+              echo "Existing database kept"
+            fi
 
+            # Restore uploads if the folder is empty
+            mkdir -p "$UPLOADS_PATH"
+            if [ -z "$(ls -A "$UPLOADS_PATH" 2>/dev/null)" ] && [ -d "$BACKUP_DIR/uploads.latest" ]; then
+              cp -r "$BACKUP_DIR/uploads.latest/." "$UPLOADS_PATH/"
+              echo "Uploads restored from backup"
+            else
+              echo "Existing uploads kept"
+            fi
+
+            # Write .env first so Prisma CLI and npm scripts can read DATABASE_URL
             cat > .env << EOF
             NODE_ENV=production
             PORT=3013
             RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+            DATABASE_URL=file:$DB_PATH
             EOF
+
+            npm ci
+
+            # Create tables on first deploy; refuses destructive changes by default
+            npx prisma db push || echo "WARNING: prisma db push failed, check schema"
+            npx prisma generate
 
             cat > ecosystem.config.js << EOF
             module.exports = {
@@ -132,7 +188,8 @@ jobs:
                 env: {
                   NODE_ENV: 'production',
                   PORT: 3013,
-                  RESEND_API_KEY: '${{ secrets.RESEND_API_KEY }}'
+                  RESEND_API_KEY: '${{ secrets.RESEND_API_KEY }}',
+                  DATABASE_URL: 'file:$DB_PATH'
                 }
               }]
             };
