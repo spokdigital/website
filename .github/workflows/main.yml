@@ -67,8 +67,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            sudo mkdir -p /home/gulfcart/spok-digital
-            sudo chown $USER:$USER /home/gulfcart/spok-digital
+            mkdir -p /home/gulfcart/spok-digital
 
       # 2) Upload the tarball NEXT TO current/, not into it
       - name: Upload deployment package
