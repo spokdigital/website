@@ -2,14 +2,14 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
+
 import {
-  MagnifyingGlassIcon,
-  CalendarIcon,
-  UserIcon,
-  CaretLeftIcon,
-  CaretRightIcon,
-} from "@phosphor-icons/react";
+  Search,
+  Calendar,
+  User,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 type Post = {
   id: number;
@@ -25,7 +25,7 @@ type Post = {
   body: string;
 };
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 12;
 
 const formatDate = (d: Date) =>
   new Date(d).toLocaleDateString("en-US", {
@@ -102,7 +102,7 @@ export function BlogGrid({
       <div className="flex w-full justify-between items-center gap-3">
         {/* Search */}
         <div className="relative w-full max-w-md">
-          <MagnifyingGlassIcon
+          <Search
             size={14}
             className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground-muted"
           />
@@ -156,11 +156,10 @@ export function BlogGrid({
             >
               <div className="relative h-52 bg-background overflow-hidden">
                 {post.coverImage ? (
-                  <Image
+                  <img
                     src={post.coverImage}
                     alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                    className="object-cover size-full absolute inset-0 transition-transform duration-300 group-hover:scale-[1.04]"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-4xl font-black text-foreground/10 uppercase">
@@ -185,10 +184,10 @@ export function BlogGrid({
                 <div className="flex-1" />
                 <div className="flex items-center justify-between text-xs text-foreground-muted pt-3 border-t border-border mt-1">
                   <span className="flex items-center gap-1">
-                    <UserIcon size={11} /> {post.author ?? "Anonymous"}
+                    <User size={11} /> {post.author ?? "Anonymous"}
                   </span>
                   <span className="flex items-center gap-1">
-                    <CalendarIcon size={11} />
+                    <Calendar size={11} />
                     {formatDate(post.publishedAt ?? post.createdAt)}
                   </span>
                 </div>
@@ -215,7 +214,7 @@ export function BlogGrid({
               disabled={safePage === 1}
               className="flex items-center justify-center w-8 h-8 rounded-md border border-border text-foreground-muted hover:bg-foreground/5 transition-colors disabled:opacity-40 disabled:pointer-events-none"
             >
-              <CaretLeftIcon size={14} />
+              <ChevronLeft size={14} />
             </button>
 
             {/* Page numbers */}
@@ -234,7 +233,7 @@ export function BlogGrid({
                   className={`w-8 h-8 rounded-md text-sm font-medium transition-colors border
                     ${
                       safePage === p
-                        ? "bg-primary text-white border-primary"
+                        ? "bg-primary  border-primary"
                         : "border-border text-foreground-muted hover:bg-foreground/5"
                     }`}
                 >
@@ -249,7 +248,7 @@ export function BlogGrid({
               disabled={safePage === totalPages}
               className="flex items-center justify-center w-8 h-8 rounded-md border border-border text-foreground-muted hover:bg-foreground/5 transition-colors disabled:opacity-40 disabled:pointer-events-none"
             >
-              <CaretRightIcon size={14} />
+              <ChevronRight size={14} />
             </button>
           </div>
         </div>

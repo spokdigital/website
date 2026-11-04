@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import prisma from "@/lib/prisma";
 import { BlogClient } from "./components/blog-client";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Blog — Ideas That Inspire",
   description: "Read our latest articles, guides, and insights.",
@@ -42,8 +45,9 @@ async function getData() {
   // Collect all tags with counts
   const tagMap: Record<string, number> = {};
   posts.forEach((p) => {
-    p.tags
-      ?.split(",")
+    const tagsStr = p.tags ?? "";
+    tagsStr
+      .split(",")
       .map((t) => t.trim())
       .filter(Boolean)
       .forEach((tag) => {
@@ -61,19 +65,12 @@ async function getData() {
 export default async function BlogPage() {
   const { posts, categories, tags } = await getData();
   const latest = posts.slice(0, 3);
+ 
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ── Main layout ── */}
-
       <BlogClient
         posts={posts}
-        categories={categories.map((c) => ({
-          name: c.category as string,
-          count: c._count.category,
-        }))}
-        latest={latest}
-        tags={tags}
       />
     </div>
   );

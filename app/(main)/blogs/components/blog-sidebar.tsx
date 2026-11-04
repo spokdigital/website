@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { CalendarIcon } from "@phosphor-icons/react";
+import { Calendar } from "lucide-react";
+
 
 type LatestPost = {
   id: number;
@@ -96,7 +97,7 @@ export function BlogSidebar({
                 </div>
                 <div className="flex-1 min-w-0 space-y-0.5">
                   <p className="text-xs text-foreground-muted flex items-center gap-1">
-                    <CalendarIcon size={10} />
+                    <Calendar size={10} />
                     {formatDate(post.publishedAt ?? post.createdAt)}
                   </p>
                   <p className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors leading-snug">

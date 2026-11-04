@@ -16,12 +16,9 @@ type LatestPost = {
 
 interface Props {
   posts: Post[];
-  categories: { name: string; count: number }[];
-  latest: LatestPost[];
-  tags: string[];
 }
 
-export function BlogClient({ posts, categories, latest, tags }: Props) {
+export function BlogClient({ posts }: Props) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [page, setPage] = useState(1);
 

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { ClockIcon, UserIcon } from "@phosphor-icons/react";
+
 import {
   Carousel,
   CarouselContent,
@@ -9,19 +9,32 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Clock, User } from "lucide-react";
 
 type RelatedPost = {
-  id: number; title: string; slug: string; excerpt: string | null;
-  coverImage: string | null; author: string | null;
-  publishedAt: Date | null; createdAt: Date; body: string; category: string | null;
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  coverImage: string | null;
+  author: string | null;
+  publishedAt: Date | null;
+  createdAt: Date;
+  body: string;
+  category: string | null;
 };
 
 const readingTime = (body: string) =>
-  Math.max(1, Math.ceil(body.replace(/<[^>]+>/g, "").split(/\s+/).length / 200));
+  Math.max(
+    1,
+    Math.ceil(body.replace(/<[^>]+>/g, "").split(/\s+/).length / 200),
+  );
 
 const formatDate = (d: Date) =>
   new Date(d).toLocaleDateString("en-US", {
-    month: "short", day: "numeric", year: "numeric",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   });
 
 export function RelatedCarousel({ posts }: { posts: RelatedPost[] }) {
@@ -43,9 +56,10 @@ export function RelatedCarousel({ posts }: { posts: RelatedPost[] }) {
               {/* Cover */}
               <div className="relative h-44 overflow-hidden bg-surface">
                 {post.coverImage ? (
-                  <Image
-                    src={post.coverImage} alt={post.title} fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                  <img
+                    src={post.coverImage}
+                    alt={post.title}
+                    className="object-cover absolute inset-0 size-full transition-transform duration-300 group-hover:scale-[1.04]"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-4xl font-black text-foreground/10 uppercase">
@@ -72,10 +86,10 @@ export function RelatedCarousel({ posts }: { posts: RelatedPost[] }) {
                 <div className="flex-1" />
                 <div className="flex items-center justify-between pt-3 border-t border-border text-xs text-foreground-muted">
                   <span className="flex items-center gap-1">
-                    <UserIcon size={10} /> {post.author ?? "Anonymous"}
+                    <User size={10} /> {post.author ?? "Anonymous"}
                   </span>
                   <span className="flex items-center gap-1">
-                    <ClockIcon size={10} /> {readingTime(post.body)} min
+                    <Clock size={10} /> {readingTime(post.body)} min
                   </span>
                 </div>
               </div>
