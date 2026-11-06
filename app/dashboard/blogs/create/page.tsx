@@ -39,6 +39,21 @@ const RichTextEditor = dynamic(
   },
 );
 
+// Set NEXT_PUBLIC_SITE_URL in your env (inlined at build time)
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.spok.digital"
+).replace(/\/+$/, "");
+
+const canonicalFor = (slug: string) => (slug ? `${SITE_URL}/blogs/${slug}` : "");
+
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+
 const INITIAL: FormData = {
   title: "",
   slug: "",
@@ -72,40 +87,65 @@ export default function NewBlogPostPage() {
 
   const set =
     (field: keyof FormData) =>
-    (
-      e: React.ChangeEvent<
-        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-      >,
-    ) => {
-      const value =
-        e.target.type === "checkbox"
-          ? (e.target as HTMLInputElement).checked
-          : e.target.value;
+      (
+        e: React.ChangeEvent<
+          HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >,
+      ) => {
+        const value =
+          e.target.type === "checkbox"
+            ? (e.target as HTMLInputElement).checked
+            : e.target.value;
 
-      if (field === "title") {
-        const slug = (value as string)
-          .toLowerCase()
-          .trim()
-          .replace(/[^a-z0-9\s-]/g, "")
-          .replace(/\s+/g, "-");
-        setFormData((prev) => ({
-          ...prev,
-          title: value as string,
-          slug,
-          metaTitle: prev.metaTitle || (value as string),
-          ogTitle: prev.ogTitle || (value as string),
-        }));
-      } else if (field === "excerpt") {
-        setFormData((prev) => ({
-          ...prev,
-          excerpt: value as string,
-          metaDescription: prev.metaDescription || (value as string),
-          ogDescription: prev.ogDescription || (value as string),
-        }));
-      } else {
-        setFormData((prev) => ({ ...prev, [field]: value }));
-      }
-    };
+        if (field === "title") {
+          setFormData((prev) => {
+            const newTitle = value as string;
+
+            // slug is "auto" if empty or still matches the previous title's slug
+            const slugIsAuto = !prev.slug || prev.slug === slugify(prev.title);
+            const slug = slugIsAuto ? slugify(newTitle) : prev.slug;
+
+            // canonical is "auto" if empty or still matches the previous slug's URL
+            const canonicalIsAuto =
+              !prev.canonicalUrl || prev.canonicalUrl === canonicalFor(prev.slug);
+
+            return {
+              ...prev,
+              title: newTitle,
+              slug,
+              canonicalUrl: canonicalIsAuto
+                ? canonicalFor(slug)
+                : prev.canonicalUrl,
+              metaTitle: prev.metaTitle || newTitle,
+              ogTitle: prev.ogTitle || newTitle,
+            };
+          });
+        } else if (field === "slug") {
+          setFormData((prev) => {
+            const slug = slugify(value as string);
+
+            const canonicalIsAuto =
+              !prev.canonicalUrl || prev.canonicalUrl === canonicalFor(prev.slug);
+
+            return {
+              ...prev,
+              slug,
+              canonicalUrl: canonicalIsAuto
+                ? canonicalFor(slug)
+                : prev.canonicalUrl,
+            };
+          });
+        } else if (field === "excerpt") {
+          setFormData((prev) => ({
+            ...prev,
+            excerpt: value as string,
+            metaDescription: prev.metaDescription || (value as string),
+            ogDescription: prev.ogDescription || (value as string),
+          }));
+        } else {
+          setFormData((prev) => ({ ...prev, [field]: value }));
+        }
+      };
 
   const handleCoverImage = (file: File | null, url: string) => {
     setFormData((prev) => ({
@@ -130,6 +170,10 @@ export default function NewBlogPostPage() {
     try {
       const payload = new FormData();
 
+      // Fall back to the post's own URL if canonical is empty
+      const canonicalUrl =
+        formData.canonicalUrl.trim() || canonicalFor(formData.slug);
+
       // Append all scalar fields
       const scalarFields = {
         title: formData.title,
@@ -143,7 +187,7 @@ export default function NewBlogPostPage() {
         metaTitle: formData.metaTitle,
         metaDescription: formData.metaDescription,
         metaKeywords: formData.metaKeywords,
-        canonicalUrl: formData.canonicalUrl,
+        canonicalUrl,
         noIndex: String(formData.noIndex),
         focusKeyword: formData.focusKeyword,
         ogTitle: formData.ogTitle,
@@ -190,6 +234,12 @@ export default function NewBlogPostPage() {
             Fill in the details below and write your post.
           </p>
         </div>
+
+        {error && (
+          <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-500">
+            {error}
+          </div>
+        )}
 
         <form
           onSubmit={(e) => {
@@ -241,6 +291,7 @@ export default function NewBlogPostPage() {
                 setFormData(INITIAL);
                 setCoverPreview("");
                 setOgPreview("");
+                setError("");
               }}
               disabled={isSubmitting}
             >
@@ -256,7 +307,11 @@ export default function NewBlogPostPage() {
               >
                 {isSubmitting ? "Saving…" : "Save as Draft"}
               </Button>
-              <Button className="bg-primary text-surface cursor-pointer" type="submit" disabled={isSubmitting}>
+              <Button
+                className="bg-primary text-surface cursor-pointer"
+                type="submit"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? "Publishing…" : "Publish Post"}
               </Button>
             </div>

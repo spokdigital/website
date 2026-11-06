@@ -40,6 +40,25 @@ const RichTextEditor = dynamic(
   },
 );
 
+// Set NEXT_PUBLIC_SITE_URL in your env (inlined at build time)
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.spok.digital"
+).replace(/\/+$/, "");
+
+const canonicalFor = (slug: string) => (slug ? `${SITE_URL}/blogs/${slug}` : "");
+
+// Placeholder / wrong-pattern canonicals seen in existing rows
+const isBadCanonical = (url: string) =>
+  /yourdomain\.com|spok\.digital\/blog\//i.test(url);
+
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+
 const EMPTY: FormData = {
   title: "",
   slug: "",
@@ -87,9 +106,19 @@ export default function EditBlogPostPage() {
         if (!res.ok) throw new Error("Post not found");
         const post = await res.json();
 
+        const slug: string = post.slug ?? "";
+        const savedCanonical: string = (post.canonicalUrl ?? "").trim();
+
+        // Empty or known-bad canonicals are replaced with the post's own URL.
+        // A legitimate custom canonical (e.g. a cross-post) is kept as is.
+        const canonicalUrl =
+          !savedCanonical || isBadCanonical(savedCanonical)
+            ? canonicalFor(slug)
+            : savedCanonical;
+
         setFormData({
           title: post.title ?? "",
-          slug: post.slug ?? "",
+          slug,
           excerpt: post.excerpt ?? "",
           tags: post.tags ?? "",
           category: post.category ?? "",
@@ -102,7 +131,7 @@ export default function EditBlogPostPage() {
           metaTitle: post.metaTitle ?? "",
           metaDescription: post.metaDescription ?? "",
           metaKeywords: post.metaKeywords ?? "",
-          canonicalUrl: post.canonicalUrl ?? "",
+          canonicalUrl,
           noIndex: post.noIndex ?? false,
           ogTitle: post.ogTitle ?? "",
           ogDescription: post.ogDescription ?? "",
@@ -126,8 +155,7 @@ export default function EditBlogPostPage() {
     if (id) load();
   }, [id]);
 
-
-  /* ── Field setter (same as create page) ── */
+  /* ── Field setter ── */
   const set =
     (field: keyof FormData) =>
     (
@@ -141,18 +169,47 @@ export default function EditBlogPostPage() {
           : e.target.value;
 
       if (field === "title") {
-        const slug = (value as string)
-          .toLowerCase()
-          .trim()
-          .replace(/[^a-z0-9\s-]/g, "")
-          .replace(/\s+/g, "-");
-        setFormData((prev) => ({
-          ...prev,
-          title: value as string,
-          slug,
-          metaTitle: prev.metaTitle || (value as string),
-          ogTitle: prev.ogTitle || (value as string),
-        }));
+        setFormData((prev) => {
+          const newTitle = value as string;
+
+          // Only drafts follow the title. Changing the slug of a published
+          // post would change its URL, so published posts keep their slug
+          // unless it is edited in the slug field directly.
+          const slugIsAuto =
+            prev.status !== "published" &&
+            (!prev.slug || prev.slug === slugify(prev.title));
+          const slug = slugIsAuto ? slugify(newTitle) : prev.slug;
+
+          // canonical is "auto" if empty or still equals the previous slug's URL
+          const canonicalIsAuto =
+            !prev.canonicalUrl || prev.canonicalUrl === canonicalFor(prev.slug);
+
+          return {
+            ...prev,
+            title: newTitle,
+            slug,
+            canonicalUrl: canonicalIsAuto
+              ? canonicalFor(slug)
+              : prev.canonicalUrl,
+            metaTitle: prev.metaTitle || newTitle,
+            ogTitle: prev.ogTitle || newTitle,
+          };
+        });
+      } else if (field === "slug") {
+        setFormData((prev) => {
+          const slug = slugify(value as string);
+
+          const canonicalIsAuto =
+            !prev.canonicalUrl || prev.canonicalUrl === canonicalFor(prev.slug);
+
+          return {
+            ...prev,
+            slug,
+            canonicalUrl: canonicalIsAuto
+              ? canonicalFor(slug)
+              : prev.canonicalUrl,
+          };
+        });
       } else if (field === "excerpt") {
         setFormData((prev) => ({
           ...prev,
@@ -167,13 +224,15 @@ export default function EditBlogPostPage() {
 
   /* ── Image handlers ── */
   const handleCoverImage = (file: File | null, url: string) => {
-    setFormData((prev) => ({ ...prev, coverImageFile: file }));
-    setCoverPreview(url);
     // Pre-fill OG if not yet customised
-    if (!ogPreview) {
-      setFormData((prev) => ({ ...prev, ogImageFile: file }));
-      setOgPreview(url);
-    }
+    const fillOg = !ogPreview;
+    setFormData((prev) => ({
+      ...prev,
+      coverImageFile: file,
+      ...(fillOg ? { ogImageFile: file } : {}),
+    }));
+    setCoverPreview(url);
+    if (fillOg) setOgPreview(url);
   };
 
   const handleOgImage = (file: File | null, url: string) => {
@@ -189,6 +248,10 @@ export default function EditBlogPostPage() {
     try {
       const payload = new FormData();
 
+      // Fall back to the post's own URL if canonical is empty
+      const canonicalUrl =
+        formData.canonicalUrl.trim() || canonicalFor(formData.slug);
+
       const scalarFields = {
         title: formData.title,
         slug: formData.slug,
@@ -201,7 +264,7 @@ export default function EditBlogPostPage() {
         metaTitle: formData.metaTitle,
         metaDescription: formData.metaDescription,
         metaKeywords: formData.metaKeywords,
-        canonicalUrl: formData.canonicalUrl,
+        canonicalUrl,
         noIndex: String(formData.noIndex),
         focusKeyword: formData.focusKeyword,
         ogTitle: formData.ogTitle,
@@ -257,7 +320,10 @@ export default function EditBlogPostPage() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-3">
           <p className="text-sm text-red-500">{fetchError}</p>
-          <Button variant="secondary" onClick={() => router.push("/blog")}>
+          <Button
+            variant="secondary"
+            onClick={() => router.push("/dashboard/blogs")}
+          >
             Back to posts
           </Button>
         </div>
@@ -336,7 +402,7 @@ export default function EditBlogPostPage() {
               type="button"
               variant="ghost"
               className="text-foreground-muted"
-              onClick={() => router.push("/blog")}
+              onClick={() => router.push("/dashboard/blogs")}
               disabled={isSubmitting}
             >
               Cancel
