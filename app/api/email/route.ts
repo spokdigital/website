@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     }
 
     await resend.emails.send({
-      from: "Gulfcart <info@spok.digital>",
+      from: "SPOK <info@spok.digital>",
       to: ["mystylesouk@gmail.com"],
       subject: `New Call-Back Request: ${name}`,
       html: `
