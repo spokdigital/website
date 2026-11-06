@@ -3,9 +3,9 @@ import "./globals.css";
 import SmoothScrollProvider from "@/components/ui/Smooth-Scroll-Provider";
 
 export const metadata: Metadata = {
-  title: "Spok Digital | D2C Growth & Performance Marketing Agency, UAE",
+  title: "D2C Growth & Digital Marketing Agency in UAE | Spok Digital",
   description:
-    "Spok Digital is a Dubai-based performance marketing agency helping D2C & ecommerce brands scale with high-converting websites, CRO, and Meta/TikTok/Google ads.",
+    "Scale your brand with Spok Digital, a UAE-based growth agency offering performance marketing, SEO, web development and creative solutions.",
 };
 
 const jsonLd = {

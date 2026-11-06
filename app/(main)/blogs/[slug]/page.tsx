@@ -6,6 +6,7 @@ import prisma from "@/lib/prisma";
 import { RelatedCarousel } from "./components/related-carousel";
 import { cn } from "@/lib/utils";
 import { Calendar, Clock, TagIcon } from "lucide-react";
+import { openExternalLinksInNewTab } from "@/lib/process-post-links";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 60;
@@ -292,7 +293,10 @@ export default async function BlogPostPage({
                     prose-hr:border-border
                     prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl"
                 dangerouslySetInnerHTML={{
-                  __html: normalizeBlankParagraphs(post.body),
+                  __html: openExternalLinksInNewTab(
+                    normalizeBlankParagraphs(post.body),
+                    BASE_URL,
+                  ),
                 }}
               />
             </div>
