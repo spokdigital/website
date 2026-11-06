@@ -183,7 +183,7 @@ export default function BlogListPage() {
                 : "Try adjusting your filters or search term."}
             </p>
             {filter === "all" && !search && (
-              <Link href="/blog/new">
+              <Link href="/dashboard/blogs/create">
                 <Button size="sm" variant="secondary">
                   Create post
                 </Button>
@@ -221,7 +221,7 @@ export default function BlogListPage() {
         )}
       </div>
 
-      <Link href="/blog/new" className="fixed bottom-5 right-5 z-20">
+      <Link href="/dashboard/blogs/create" className="fixed bottom-5 right-5 z-20">
         <Button className="flex items-center gap-1.5">
           <PlusIcon size={15} /> New Post
         </Button>
