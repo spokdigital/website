@@ -63,7 +63,7 @@ export default function LeadForm() {
                         <h3 className="font-display text-2xl tracking-[-.02em] text-fg">We'll call you.</h3>
                         <p className="text-[15px] leading-relaxed text-muted">
                             A specialist will ring you within one business day at the time you picked. If it's urgent, email
-                            support@gulfcart.ae and we'll bring it forward.
+                            info@spok.digital and we'll bring it forward.
                         </p>
                         <button
                             onClick={() => setSent(false)}
