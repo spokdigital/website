@@ -42,7 +42,7 @@ export default function BookCallSection() {
         {/* Corner bracket bottom-right */}
       </div>
 
-      <div className="relative max-w-5xl mx-auto">
+      <div className="relative  mx-auto">
         {/* Label */}
         <div className="flex items-center justify-center gap-3 mb-6">
           <div className="h-px w-12 bg-primary/60" />

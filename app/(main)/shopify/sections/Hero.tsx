@@ -1,9 +1,18 @@
+'use client'
 import StatsBar from "./StatsBar";
-import { WHATSAPP } from "@/lib/data";
+import gsap from 'gsap'
 import LeadForm from "./Lead-form";
-import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
+  const scrollToBooking = () => {
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: "#booking",
+      ease: "power3.out",
+    });
+    window.fbq?.("track", "Contact", { content_name: "book_a_call" });
+  };
   return (
     <section className="pt-28">
       <div className="container">
@@ -23,12 +32,13 @@ export default function Hero() {
               solutions — all built to maximize your revenue.
             </p>
 
-            <Link
-              href={'/book-a-demo'}
-              className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-primary/90"
+            <button
+              onClick={scrollToBooking}
+              className="text-white flex items-center gap-2 rounded bg-primary px-7 py-[.6rem]"
             >
-              Get Started
-            </Link>
+              <ArrowUpRight />
+              Get started
+            </button>
 
             <div className="mt-12 max-w-3xl">
               <StatsBar />
