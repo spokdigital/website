@@ -9,12 +9,12 @@ import ProjectsHorizontalScroll from "../d2c/sections/projects";
 
 import BookCallSection from "../d2c/sections/form";
 import HackFirstFooter from "../d2c/sections/footer";
+import Projects from "./shopify/sections/projects";
 
 const page = () => {
   return (
     <>
       {/* 1. Navigation */}
-      
 
       {/* 2. Hook — first impression, value proposition */}
       <HeroSection />
@@ -33,7 +33,7 @@ const page = () => {
       <WhyChooseMasterclassSection />
 
       {/* 8. Portfolio — show the work, prove the claims */}
-      <ProjectsHorizontalScroll />
+      <Projects />
 
       {/* 9. Testimonials — peer validation before asking for money */}
 

@@ -34,7 +34,7 @@ export default function Hero() {
 
             <button
               onClick={scrollToBooking}
-              className="text-white flex items-center gap-2 rounded bg-primary px-7 py-[.6rem]"
+              className="text-white mt-3 flex items-center gap-2 rounded bg-primary px-7 py-[.6rem]"
             >
               <ArrowUpRight />
               Get started

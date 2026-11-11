@@ -34,12 +34,6 @@ export default function BookCallSection() {
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-[#C9A84C]/8 blur-3xl" />
         {/* Small circle bottom-left */}
         <div className="absolute -bottom-24 -left-24 w-[400px] h-[400px] rounded-full bg-[#C9A84C]/6 blur-2xl" />
-
-        {/* Subtle grid lines */}
-
-        {/* Corner bracket top-left */}
-
-        {/* Corner bracket bottom-right */}
       </div>
 
       <div className="relative  mx-auto">

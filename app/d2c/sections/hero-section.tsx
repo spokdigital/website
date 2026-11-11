@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowUpRight, Briefcase, DollarSign, Globe } from "lucide-react";
 import React from "react";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
+import FloatingIcons from "./orbit";
 import gsap from "gsap";
 import LogoMarquee from "./logo-marquee";
 import LeadForm from "@/app/(main)/shopify/sections/Lead-form";
@@ -74,14 +74,11 @@ const HeroSection = () => {
 
         {/* Right */}
         <div className="w-full">
-          <LeadForm />
+          <FloatingIcons />
         </div>
       </div>
 
-      {/* Marquee sits below the hero, full width */}
-      <div className="mt-16 lg:mt-20">
-        <LogoMarquee />
-      </div>
+      
     </div>
   );
 };
